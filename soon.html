@@ -130,9 +130,10 @@
       backdrop-filter: blur(20px);
     }
   </style>
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 
-<body class="font-jakarta text-white min-h-screen relative overflow-hidden">
+<body class="font-jakarta text-white min-h-screen relative">
 
 <!-- Background -->
 <div class="absolute inset-0 grid-bg"></div>
@@ -143,8 +144,15 @@
 <header class="relative z-10 px-6 py-6">
 	<nav class="max-w-7xl mx-auto flex items-center justify-between">
 		<div class="flex items-center gap-3">
-			<div class="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center shadow-[0_0_40px_rgba(247,98,53,.6)]">
-				<svg class="w-7 h-7" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.9754 0C16.2079 0.0449901 20.1672 4.31385 20.6869 4.86505C21.0479 5.24788 21.8377 6.25295 22.1065 6.7341C22.6638 7.71491 22.9696 8.82013 22.9956 9.94968C23.0434 12.0271 22.4057 13.2112 21.0739 14.7137C19.988 15.939 18.8821 17.0357 17.7165 18.1809C17.1472 18.742 16.5894 19.315 16.0435 19.8995C15.7918 19.7042 15.5714 19.4262 15.3616 19.2376C10.8644 15.1956 17.0003 13.9992 17.9062 10.3967C18.1996 9.22984 16.744 7.67592 16.0461 6.74522C15.9832 6.80109 15.9213 6.85795 15.8601 6.91573C15.7225 7.04641 15.5811 7.19159 15.4483 7.32846C13.9706 8.85185 12.426 10.3057 10.9562 11.8364C10.3187 12.5003 9.59336 13.1893 9.1336 13.9984C8.52788 15.0642 8.32529 16.6176 8.92967 17.7294C9.47809 18.5919 10.4677 19.5529 11.1865 20.3042C12.7797 21.9699 14.4283 23.5778 16.0133 25.2559C18.1975 22.9805 20.4847 20.708 22.6997 18.4553C25.3798 15.6408 26.0953 14.4483 26.0846 10.4892C26.4153 10.9209 26.6087 11.3155 26.8521 11.7932C27.5316 13.0777 27.9341 14.2223 27.9929 15.6948C28.1342 19.2308 26.1387 21.4855 23.8504 23.876L21.8775 25.9353C19.9017 27.9422 17.9407 29.9637 15.9948 32C15.373 31.242 14.0495 29.9657 13.3267 29.2228L8.86811 24.605C6.51807 22.1971 4.1882 19.9694 4.01004 16.3639C3.78772 11.8648 7.3035 8.98675 10.14 6.05798L13.2332 2.84522C14.1573 1.89359 15.0778 0.977592 15.9754 0Z" fill="currentColor"/></svg>
+			<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_40px_rgba(247,98,53,.6)]">
+				<model-viewer
+				src="erv.glb"
+				auto-rotate
+				auto-rotate-delay="0"
+				rotation-per-second="60deg"
+				alt="A 3D model"
+				style="width: 36px; height: 36px;">
+			</model-viewer>
 			</div>
 			<span class="text-[1.6rem] font-bold tracking-wide select-none font-Merienda">ERV<span style="color: #F76235;">Flow</span></span>
 		</div>
@@ -190,9 +198,9 @@
 				<span class="px-4 py-2 rounded-full glass">No-Code + Code</span>
 			</div>
 		</div>
-
+		
 		<!-- 3D Card -->
-		<div class="relative flex justify-center lg:justify-end">
+		<div class="relative flex flex-col gap-6 justify-center lg:justify-end">
 			<div class="float relative w-full max-w-md aspect-square rounded-[2.5rem] glass shadow-[0_40px_120px_rgba(247,98,53,.25)] p-6 rotate-[-4deg]">
 
 				<div class="absolute inset-0 rounded-[2.5rem] bg-gradient-to-br from-primary/30 via-transparent to-white/5"></div>

@@ -78,7 +78,7 @@ function FAQItem({
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.55, delay: index * 0.06, ease: EASE }}
-      className="border-b border-white/8 last:border-0 px-4 md:px-6"
+      className="border-b border-zinc-800/15 dark:border-white/8 last:border-0 px-4 md:px-6"
     >
       <button
         onClick={onToggle}
@@ -86,7 +86,7 @@ function FAQItem({
         aria-expanded={open}
       >
         <span
-          className={`text-base font-medium text-white md:text-lg ${
+          className={`text-base font-medium text-zinc-800 dark:text-white md:text-lg ${
             open ? "text-primary!" : ""
           }`}
         >
@@ -95,7 +95,7 @@ function FAQItem({
         <motion.div
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className={`shrink-0 rounded-full border border-white/10 bg-white/5 p-1 transition-colors duration-200 ${
+          className={`shrink-0 rounded-full border border-zinc-800/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/50 dark:text-white p-1 transition-colors duration-200 ${
             open ? "text-primary! bg-primary/10!" : ""
           }`}
         >
@@ -113,7 +113,7 @@ function FAQItem({
             transition={{ duration: 0.35, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-10 text-sm leading-relaxed text-neutral-400 md:text-base text-start">
+            <p className="pb-6 pr-10 text-sm leading-relaxed text-zinc-600 dark:text-neutral-400 md:text-base text-start">
               {answer}
             </p>
           </motion.div>
@@ -144,7 +144,7 @@ export default function FAQ() {
     setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <main className="min-h-screen relative bg-black text-white z-2">
+    <main className="min-h-screen relative bg-white dark:bg-black text-white z-2">
       <Blob />
 
       {/* ── Content ──────────────────────────────────────────────── */}
@@ -166,7 +166,7 @@ export default function FAQ() {
             </motion.span>
             <motion.h2
               variants={headerItemVariants}
-              className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+              className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-800 dark:text-white"
             >
               Got questions?{" "}
               <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -175,7 +175,7 @@ export default function FAQ() {
             </motion.h2>
             <motion.p
               variants={headerItemVariants}
-              className="mx-auto max-w-xl text-base text-neutral-400 md:text-lg"
+              className="mx-auto max-w-xl text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
             >
               Everything you need to know before you start building with
               Ervflow.
@@ -184,7 +184,7 @@ export default function FAQ() {
         </div>
 
         {/* Accordion */}
-        <div className="rounded-2xl border border-white/8 bg-white/3 backdrop-blur-sm">
+        <div className="rounded-2xl border border-zinc-800/15 dark:border-white/8 bg-white/3 backdrop-blur-sm">
           {FAQS.map((faq, i) => (
             <FAQItem
               key={faq.question}

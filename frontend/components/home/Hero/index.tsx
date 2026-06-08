@@ -49,7 +49,7 @@ const Hero = () => {
 
         <motion.h1
           variants={headerItemVariants}
-          className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight text-zinc-800 dark:text-white"
         >
           Your Skills Deserve{" "}
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -59,7 +59,7 @@ const Hero = () => {
 
         <motion.p
           variants={headerItemVariants}
-          className="text-md md:text-xl text-neutral-200 mb-10 max-w-2xl mx-auto leading-relaxed"
+          className="text-md md:text-xl text-zinc-500 dark:text-neutral-200 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
           We help creators, professionals, and brands transform experience into
           a strong online identity that stands out.
@@ -69,7 +69,10 @@ const Hero = () => {
           variants={headerItemVariants}
           className="flex gap-4 justify-center flex-wrap"
         >
-          <Link className="group text-indigo-300 hover:text-indigo-500" href="/">
+          <Link
+            className="group text-indigo-300 hover:text-indigo-500"
+            href="/"
+          >
             <motion.div
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}

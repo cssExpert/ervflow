@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Icon from "@/components/common/Icon";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
 import Social from "./Social";
-import { useTheme } from "@/components/ThemeProvider";
+// import { useTheme } from "@/components/ThemeProvider";
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
@@ -27,21 +27,21 @@ const Header = () => {
     };
   }, []);
 
-  const { resolvedTheme, setTheme } = useTheme();
+  // const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <>
       <nav
-        className={`border-b border-zinc-800/60 bg-brand-background/80 header top-0 left-0 z-40 px-3 flex w-full items-center py-3 lg:py-3 ${
+        className={`border-b border-white/10 dark:border-zinc-800/60 bg-brand-background/80 header top-0 left-0 z-40 px-3 flex w-full items-center py-3 lg:py-3 ${
           sticky
-            ? "dark:bg-gray-dark dark:shadow-sticky-dark shadow-sticky fixed z-9999 bg-black/80 backdrop-blur-lg transition"
+            ? "bg-white/80 dark:bg-black/80 dark:bg-gray-dark border-zinc-800/10 dark:shadow-sticky-dark shadow-sticky fixed z-9999 backdrop-blur-lg transition"
             : "absolute bg-transparent"
         }`}
       >
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white transition-all"
+            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white dark:text-black transition-all"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
               <Icon
@@ -52,7 +52,7 @@ const Header = () => {
                 className="w-8 h-8"
               />
             </div>
-            <span className="text-md md:text-lg lg:text-xl font-extrabold font-merienda text-white whitespace-nowrap">
+            <span className="text-md md:text-lg lg:text-xl font-extrabold font-merienda text-black dark:text-white whitespace-nowrap">
               ERV<span className="text-primary">Flow</span>
             </span>
           </Link>
@@ -64,10 +64,10 @@ const Header = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-sans font-medium tracking-wide transition-colors duration-300 cursor-pointer ${
+                  className={`relative px-4 py-2 text-sm font-sans font-semibold tracking-wide transition-colors duration-300 cursor-pointer ${
                     isActive
                       ? "text-primary"
-                      : "text-white/65 hover:text-primary"
+                      : "text-black dark:text-white/65 hover:text-primary"
                   }`}
                 >
                   {link.label}
@@ -85,7 +85,7 @@ const Header = () => {
           <div className="inline-flex items-center gap-2.5">
             <Link
               href="/"
-              className="inline-flex items-center border-[1.5px] border-white text-black bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500"
+              className="inline-flex items-center border-[1.5px] border-zinc-800/10 dark:border-white text-white dark:text-black bg-black dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500"
             >
               <span className="font-bold tracking-tight">Login</span>
             </Link>
@@ -122,10 +122,7 @@ const Header = () => {
               </motion.div>
             </Link>
 
-            {/* Theme toggle — suppressHydrationWarning handles the
-                  server(undefined) → client(dark|light) icon difference
-                  without needing a mounted gate or a setState-in-effect */}
-            <button
+            {/* <button
               suppressHydrationWarning
               onClick={() =>
                 setTheme(resolvedTheme === "dark" ? "light" : "dark")
@@ -149,7 +146,7 @@ const Header = () => {
                   )}
                 </motion.span>
               </AnimatePresence>
-            </button>
+            </button> */}
 
             {/* Mobile hamburger */}
             <button

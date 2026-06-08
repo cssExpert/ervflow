@@ -134,14 +134,14 @@ const Features = () => {
     <section id="features" className="pt-20 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-24 max-w-3xl mx-auto">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-balance">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-balance text-zinc-800 dark:text-white">
             Build{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
               stunning
             </span>{" "}
             layouts quickly
           </h2>
-          <p className="text-base md:text-lg text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-500 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
             Speed up your workflow in a few simple steps.
           </p>
         </div>

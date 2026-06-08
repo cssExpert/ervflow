@@ -183,16 +183,16 @@ function QuoteCard({
       delay={delay}
       from={from}
       hover="lift"
-      className="col-span-1 md:col-span-2 rounded-3xl border border-white/8 bg-white/5 p-8 flex flex-col justify-between gap-6 backdrop-blur-sm select-none"
+      className="col-span-1 md:col-span-2 rounded-3xl border border-zinc-800/15 dark:border-white/8 bg-white/5 p-8 flex flex-col justify-between gap-6 backdrop-blur-sm select-none"
     >
       <div>
         <span
-          className="block text-8xl font-black leading-none text-primary-500 opacity-40 -mb-2"
+          className="block text-8xl font-black leading-none text-primary-500 opacity-75 dark:opacity-40 -mb-2"
           aria-hidden="true"
         >
           &rdquo;
         </span>
-        <p className="text-lg md:text-xl font-medium text-white leading-relaxed">
+        <p className="text-lg md:text-xl font-medium text-slate-700 dark:text-white leading-relaxed">
           {t.content}
         </p>
       </div>
@@ -204,7 +204,9 @@ function QuoteCard({
             {t.initials}
           </div>
           <div>
-            <p className="font-semibold text-white">{t.name}</p>
+            <p className="font-semibold text-slate-800 dark:text-white">
+              {t.name}
+            </p>
             <p className="text-sm text-neutral-500">
               {t.role} · {t.company}
             </p>
@@ -237,11 +239,11 @@ function StatCard({
       hover="scale"
       className="rounded-3xl border border-primary-500/25 bg-linear-to-br from-primary-500/12 to-transparent p-8 flex flex-col items-center justify-center text-center gap-3 select-none"
     >
-      <p className="text-6xl font-black tracking-tight text-white leading-none">
+      <p className="text-6xl font-black tracking-tight text-slate-800 dark:text-white leading-none">
         {value}
         {unit && <span className="text-primary-400">{unit}</span>}
       </p>
-      <p className="text-sm text-neutral-400 max-w-[18ch] leading-snug">
+      <p className="text-sm text-zinc-500 dark:text-neutral-400 max-w-[18ch] leading-snug">
         {label}
       </p>
     </BentoCard>
@@ -263,10 +265,10 @@ function ReviewCard({
       delay={delay}
       from={from}
       hover="lift"
-      className="rounded-3xl border border-white/8 bg-white/[0.04] p-6 flex flex-col gap-4 backdrop-blur-sm select-none"
+      className="rounded-3xl border border-zinc-800/15 dark:border-white/8 bg-black/4 dark:bg-white/4 p-6 flex flex-col gap-4 backdrop-blur-sm select-none"
     >
       <StarRating count={t.rating} />
-      <p className="text-sm leading-relaxed text-neutral-300 grow">
+      <p className="text-sm leading-relaxed text-slate-700 dark:text-neutral-300 grow">
         &ldquo;{t.content}&rdquo;
       </p>
       <div className="flex items-center gap-3">
@@ -276,7 +278,9 @@ function ReviewCard({
           {t.initials}
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">{t.name}</p>
+          <p className="text-sm font-semibold text-slate-800 dark:text-white">
+            {t.name}
+          </p>
           <p className="text-xs text-neutral-500">
             {t.role} · {t.company}
           </p>
@@ -309,7 +313,7 @@ function FeaturedCard({
         aria-hidden="true"
       />
       <StarRating count={t.rating} />
-      <p className="text-sm leading-relaxed text-neutral-200 grow relative z-10">
+      <p className="text-sm leading-relaxed text-slate-700 dark:text-neutral-200 grow relative z-10">
         &ldquo;{t.content}&rdquo;
       </p>
       <div className="flex items-center gap-3 relative z-10">
@@ -317,7 +321,9 @@ function FeaturedCard({
           {t.initials}
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">{t.name}</p>
+          <p className="text-sm font-semibold text-slate-800 dark:text-white">
+            {t.name}
+          </p>
           <p className="text-xs text-primary-400/80">
             {t.role} · {t.company}
           </p>
@@ -365,7 +371,7 @@ export default function Testimonials() {
         </motion.span>
         <motion.h2
           variants={headerItemVariants}
-          className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
+          className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-800 dark:text-white"
         >
           Loved by builders{" "}
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -374,7 +380,7 @@ export default function Testimonials() {
         </motion.h2>
         <motion.p
           variants={headerItemVariants}
-          className="text-base text-neutral-400 md:text-lg"
+          className="text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
         >
           Join thousands of designers and developers who ship faster with
           Ervflow.

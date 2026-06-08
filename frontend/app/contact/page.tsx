@@ -4,9 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import { Mail, MapPin, Clock, Send, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Header from "@/components/common/Header";
 import Social from "@/components/common/Social";
-import Blob from "@/components/common/Blob";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -139,8 +137,6 @@ export default function ContactPage() {
         <div className="absolute bottom-0 -left-20 h-96 w-96 rounded-full bg-blue-500/6 blur-[110px]" />
       </div>
 
-      <Header />
-
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 text-center">
         <motion.div
@@ -158,7 +154,7 @@ export default function ContactPage() {
           </motion.span>
           <motion.h1
             variants={itemVariants}
-            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white"
+            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white text-balance"
           >
             Let&apos;s Build{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">

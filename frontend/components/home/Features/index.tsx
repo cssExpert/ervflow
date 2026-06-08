@@ -197,7 +197,7 @@ const Features = () => {
 
                       {/* Image block mockups */}
                       <div className="relative -mr-1 h-[40%] max-h-125 w-full min-w-0 px-0 md:h-full md:min-w-0 md:flex-1 md:basis-0 md:p-0">
-                        <div className="relative h-full w-full max-h-125">
+                        <div className="relative w-full h-70 md:h-full max-h-125">
                           <Image
                             src={image}
                             alt={title}

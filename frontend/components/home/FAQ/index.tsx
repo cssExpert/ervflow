@@ -160,7 +160,7 @@ export default function FAQ() {
     setOpenIndex((prev) => (prev === i ? null : i));
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden">
+    <main className="min-h-screen relative bg-black text-white z-2">
       {/* ── Blobs ────────────────────────────────────────────────── */}
       <Blob
         className="h-130 w-130 rounded-full bg-primary-500/18 -top-20 -left-32"
@@ -209,7 +209,7 @@ export default function FAQ() {
       />
 
       {/* ── Content ──────────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-5xl mx-auto">
+      <div className="pt-40 md:pt-50 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
         <div className="w-full max-w-3xl mx-auto">
           {/* Header */}
           <motion.div
@@ -275,6 +275,6 @@ export default function FAQ() {
           </a>
         </motion.p>
       </div>
-    </section>
+    </main>
   );
 }

@@ -10,7 +10,7 @@ import FreeTrial from "@/components/common/FreeTrial";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen relative bg-black text-white z-2">
+    <main className="min-h-screen relative bg-black text-white z-2 overflow-hidden">
       <div
         className="pointer-events-none fixed inset-0 -z-1 overflow-hidden"
         aria-hidden="true"

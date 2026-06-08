@@ -6,7 +6,17 @@ import { Zap } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="py-24 md:py-40 px-6 md:px-0 text-center">
+    <section className="pt-40 md:pt-50 pb-16 px-6 md:px-0 text-center">
+      {/* Background glows */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-40 left-1/2 h-125 w-175 -translate-x-1/2 rounded-full bg-primary-500/8 blur-[120px]" />
+        <div className="absolute -top-10 -right-20 h-96 w-96 rounded-full bg-violet-500/8 blur-[100px]" />
+        <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-500/6 blur-[100px]" />
+      </div>
+
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-xs font-semibold px-4.5 py-3 rounded-full mb-8 uppercase tracking-widest">
           <Zap className="w-4 h-4 text-primary-500" />

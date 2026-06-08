@@ -19,7 +19,6 @@ import {
   Check,
 } from "lucide-react";
 import Link from "next/link";
-import Header from "@/components/common/Header";
 import SectionReady from "@/components/common/SectionReady";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -273,8 +272,6 @@ export default function ServicesPage() {
         <div className="absolute top-1/3 -right-32 h-80 w-80 rounded-full bg-violet-500/8 blur-[100px]" />
         <div className="absolute bottom-0 -left-20 h-96 w-96 rounded-full bg-blue-500/6 blur-[110px]" />
       </div>
-
-      <Header />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-50 md:pt-70 pb-16 text-center">

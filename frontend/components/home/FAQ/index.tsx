@@ -7,8 +7,8 @@ import {
   useInView,
   type Variants,
 } from "framer-motion";
-import type { ComponentProps } from "react";
 import { Plus } from "lucide-react";
+import Blob from "@/components/common/Blob";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -55,28 +55,6 @@ const FAQS = [
   },
 ];
 
-/* ── Animated blob ──────────────────────────────────────────────────── */
-type MotionDivProps = ComponentProps<typeof motion.div>;
-
-function Blob({
-  className,
-  animate,
-  transition,
-}: {
-  className: string;
-  animate: MotionDivProps["animate"];
-  transition: MotionDivProps["transition"];
-}) {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className={`pointer-events-none absolute blur-[120px] ${className}`}
-      animate={animate}
-      transition={transition}
-    />
-  );
-}
-
 /* ── Single FAQ row ─────────────────────────────────────────────────── */
 function FAQItem({
   question,
@@ -100,22 +78,28 @@ function FAQItem({
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       transition={{ duration: 0.55, delay: index * 0.06, ease: EASE }}
-      className="border-b border-white/8 last:border-0"
+      className="border-b border-white/8 last:border-0 px-4 md:px-6"
     >
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-6 py-5 text-left"
         aria-expanded={open}
       >
-        <span className="text-base font-medium text-white md:text-lg">
+        <span
+          className={`text-base font-medium text-white md:text-lg ${
+            open ? "text-primary!" : ""
+          }`}
+        >
           {question}
         </span>
         <motion.div
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="shrink-0 rounded-full border border-white/10 bg-white/5 p-1"
+          className={`shrink-0 rounded-full border border-white/10 bg-white/5 p-1 transition-colors duration-200 ${
+            open ? "text-primary! bg-primary/10!" : ""
+          }`}
         >
-          <Plus className="h-4 w-4 text-neutral-400" />
+          <Plus className="h-4 w-4 text-currentColor" />
         </motion.div>
       </button>
 
@@ -129,7 +113,7 @@ function FAQItem({
             transition={{ duration: 0.35, ease: EASE }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-10 text-sm leading-relaxed text-neutral-400 md:text-base">
+            <p className="pb-6 pr-10 text-sm leading-relaxed text-neutral-400 md:text-base text-start">
               {answer}
             </p>
           </motion.div>
@@ -161,52 +145,7 @@ export default function FAQ() {
 
   return (
     <main className="min-h-screen relative bg-black text-white z-2">
-      {/* ── Blobs ────────────────────────────────────────────────── */}
-      <Blob
-        className="h-130 w-130 rounded-full bg-primary-500/18 -top-20 -left-32"
-        animate={{
-          borderRadius: [
-            "60% 40% 70% 30% / 50% 60% 40% 70%",
-            "40% 60% 30% 70% / 70% 30% 60% 40%",
-            "70% 30% 50% 50% / 40% 60% 70% 30%",
-            "60% 40% 70% 30% / 50% 60% 40% 70%",
-          ],
-          x: [0, 60, -30, 0],
-          y: [0, -50, 70, 0],
-          scale: [1, 1.08, 0.96, 1],
-        }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <Blob
-        className="h-100 w-100 rounded-full bg-violet-500/12 bottom-0 -right-24"
-        animate={{
-          borderRadius: [
-            "40% 60% 50% 50% / 60% 40% 70% 30%",
-            "70% 30% 60% 40% / 40% 60% 30% 70%",
-            "50% 50% 40% 60% / 70% 30% 50% 50%",
-            "40% 60% 50% 50% / 60% 40% 70% 30%",
-          ],
-          x: [0, -50, 40, 0],
-          y: [0, 60, -40, 0],
-          scale: [1, 0.94, 1.06, 1],
-        }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <Blob
-        className="h-75 w-75 rounded-full bg-blue-500/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        animate={{
-          borderRadius: [
-            "50% 50% 60% 40% / 40% 70% 30% 60%",
-            "60% 40% 40% 60% / 60% 40% 60% 40%",
-            "40% 60% 70% 30% / 30% 60% 40% 70%",
-            "50% 50% 60% 40% / 40% 70% 30% 60%",
-          ],
-          x: [0, 80, -60, 20, 0],
-          y: [0, -40, 60, -20, 0],
-          scale: [1, 1.12, 0.92, 1.04, 1],
-        }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <Blob />
 
       {/* ── Content ──────────────────────────────────────────────── */}
       <div className="pt-40 md:pt-50 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
@@ -245,7 +184,7 @@ export default function FAQ() {
         </div>
 
         {/* Accordion */}
-        <div className="rounded-2xl border border-white/8 bg-white/3 px-6 backdrop-blur-sm md:px-10">
+        <div className="rounded-2xl border border-white/8 bg-white/3 backdrop-blur-sm">
           {FAQS.map((faq, i) => (
             <FAQItem
               key={faq.question}

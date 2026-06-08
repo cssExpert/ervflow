@@ -4,7 +4,6 @@ import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Check, X, Minus, MoveRight, Gem, Zap } from "lucide-react";
 import Link from "next/link";
-import Header from "@/components/common/Header";
 import SectionReady from "@/components/common/SectionReady";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -488,8 +487,6 @@ export default function PricingPage() {
         <div className="absolute -top-10 -right-20 h-96 w-96 rounded-full bg-violet-500/8 blur-[100px]" />
         <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-500/6 blur-[100px]" />
       </div>
-
-      <Header />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 px-6 text-center">

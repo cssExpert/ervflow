@@ -42,6 +42,11 @@
     --font-merienda: "Merienda", cursive;
   }
 
+  html,
+  body {
+    background-color: #000;
+  }
+
   *,
   ::after,
   ::before,
@@ -79,6 +84,13 @@
       linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
+}
+
+@utility text-stroke-* {
+  -webkit-text-stroke-width: rgba(255, 255, 255, 0.03);
+}
+@utility text-stroke-color-* {
+  -webkit-text-stroke-color: rgba(255, 255, 255, 0.03);
 }
 
 @utility sticky {

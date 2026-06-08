@@ -148,7 +148,7 @@ export default function FAQ() {
       <Blob />
 
       {/* ── Content ──────────────────────────────────────────────── */}
-      <div className="pt-40 md:pt-50 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
+      <div className="pt-30 md:pt-35 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
         <div className="w-full max-w-3xl mx-auto">
           {/* Header */}
           <motion.div

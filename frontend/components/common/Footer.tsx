@@ -71,7 +71,7 @@ const NAV_GROUPS = [
 const Footer = () => {
   return (
     <>
-      <footer className="w-full px-6 border-t border-zinc-800/60 py-20 bg-black backdrop-blur-lg">
+      <footer className="w-full px-6 border-t border-zinc-800/60 pt-20 pb-10 bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <div className="w-full grid gap-10 md:grid-cols-3">
             <div className="col-span-1 space-y-6">
@@ -116,6 +116,18 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+
+      <div className="w-full max-w-7xl mx-auto relative min-h-21.75 bg-black ">
+        <div
+          className="relative -bottom-8.5 bg-black text-center uppercase text-[clamp(4rem,-1.5rem+21.5909vw,15.625rem)] leading-none font-black text-transparent font-sans"
+          style={{
+            WebkitTextStroke: "1px rgba(255,255,255,0.125)",
+            WebkitTextFillColor: "transparent",
+          }}
+        >
+          ERVFlow
+        </div>
+      </div>
 
       {/* Bottom bar */}
       <div className="border-t border-zinc-800/60 px-6 py-6 bg-black backdrop-blur-lg">

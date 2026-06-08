@@ -46,6 +46,14 @@ export default function RootLayout({
       )}
       suppressHydrationWarning
     >
+      <head>
+        {/* Runs before React hydration to prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light')document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="h-full">
         <ThemeProvider>
           <TooltipProvider>

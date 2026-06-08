@@ -365,9 +365,12 @@ export default function Testimonials() {
         </motion.span>
         <motion.h2
           variants={headerItemVariants}
-          className="mb-5 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+          className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white"
         >
-          Loved by builders <span className="text-neutral-400">worldwide</span>
+          Loved by builders{" "}
+          <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
+            worldwide
+          </span>
         </motion.h2>
         <motion.p
           variants={headerItemVariants}

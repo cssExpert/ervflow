@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 import Icon from "@/components/common/Icon";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
 import Social from "./Social";
+import { useTheme } from "@/components/ThemeProvider";
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
@@ -25,6 +26,8 @@ const Header = () => {
       window.removeEventListener("scroll", handleStickyNavbar);
     };
   }, []);
+
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <>
@@ -118,6 +121,35 @@ const Header = () => {
                 </div>
               </motion.div>
             </Link>
+
+            {/* Theme toggle — suppressHydrationWarning handles the
+                  server(undefined) → client(dark|light) icon difference
+                  without needing a mounted gate or a setState-in-effect */}
+            <button
+              suppressHydrationWarning
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
+              aria-label="Toggle Theme"
+              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={resolvedTheme}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                  transition={{ duration: 0.25 }}
+                  suppressHydrationWarning
+                >
+                  {resolvedTheme === "dark" ? (
+                    <Moon size={20} />
+                  ) : (
+                    <Sun size={20} />
+                  )}
+                </motion.span>
+              </AnimatePresence>
+            </button>
 
             {/* Mobile hamburger */}
             <button

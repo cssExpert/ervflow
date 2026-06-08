@@ -1,31 +1,49 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-// import type { ReactNode } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+
+type Theme = "dark" | "light";
+
+interface ThemeContextValue {
+  resolvedTheme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+const ThemeContext = createContext<ThemeContextValue>({
+  resolvedTheme: "dark",
+  setTheme: () => {},
+});
+
+export function useTheme(): ThemeContextValue {
+  return useContext(ThemeContext);
+}
 
 export default function ThemeProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Bypasses the React 19 script-tag warning safely
-  const scriptProps =
-    typeof window === "undefined"
-      ? undefined
-      : ({ type: "application/json" } as const);
+  const [theme, setThemeState] = useState<Theme>("dark");
+
+  useEffect(() => {
+    const stored = (localStorage.getItem("theme") as Theme | null) ?? "dark";
+    setThemeState(stored);
+    document.documentElement.classList.toggle("dark", stored === "dark");
+  }, []);
+
+  const setTheme = (next: Theme) => {
+    setThemeState(next);
+    localStorage.setItem("theme", next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+  };
+
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={false}
-      scriptProps={scriptProps}
-    >
+    <ThemeContext.Provider value={{ resolvedTheme: theme, setTheme }}>
       {children}
-      {/* Scroll to top */}
       <motion.button
         onClick={scrollTop}
         whileHover={{ y: -3 }}
@@ -34,6 +52,6 @@ export default function ThemeProvider({
       >
         <ArrowUp size={18} strokeWidth={2.5} />
       </motion.button>
-    </NextThemesProvider>
+    </ThemeContext.Provider>
   );
 }

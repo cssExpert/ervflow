@@ -216,7 +216,7 @@ export default function Resources() {
   return (
     <section className="overflow-x-hidden max-w-full mx-auto py-12 md:pt-16 md:pb-24">
       <div className="max-w-4xl text-center mx-auto mb-10">
-        <h3 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-balance">
+        <h3 className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-balance">
           Launch{" "}
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
             Faster

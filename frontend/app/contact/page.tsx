@@ -11,11 +11,11 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 /* ── Variants ────────────────────────────────────────────────────── */
 const containerVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 
 /* ── Info card ───────────────────────────────────────────────────── */
@@ -103,7 +103,7 @@ export default function ContactPage() {
     once: true,
     amount: 0.15,
   });
-  const isHeroInView = useInView(heroRef, { once: true, amount: 0.5 });
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
 
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [fields, setFields] = useState({

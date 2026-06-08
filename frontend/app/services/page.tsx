@@ -1,7 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  type Variants,
+} from "framer-motion";
 import {
   Palette,
   Code2,
@@ -13,9 +19,19 @@ import {
   Check,
 } from "lucide-react";
 import Link from "next/link";
+import Header from "@/components/common/Header";
 import SectionReady from "@/components/common/SectionReady";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const headerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+const headerItemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
+};
 
 /* ── Services data ───────────────────────────────────────────────── */
 const SERVICES = [
@@ -214,7 +230,7 @@ function ServiceCard({ service }: { service: Service }) {
 
             <Link
               href="/contact"
-              className="inline-flex w-fit items-center gap-2 rounded-xl bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(247,98,53,0.3)] transition-all hover:bg-primary-600"
+              className="inline-flex w-fit items-center gap-2 rounded-md bg-primary-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(247,98,53,0.3)] transition-all hover:bg-primary-600"
             >
               Get started <ArrowRight className="h-4 w-4" />
             </Link>
@@ -243,6 +259,9 @@ function ServiceCard({ service }: { service: Service }) {
 
 /* ── Page ────────────────────────────────────────────────────────── */
 export default function ServicesPage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
+
   return (
     <main className="min-h-screen relative px-6 overflow-hidden bg-black text-white z-2">
       {/* Ambient glows */}
@@ -255,32 +274,43 @@ export default function ServicesPage() {
         <div className="absolute bottom-0 -left-20 h-96 w-96 rounded-full bg-blue-500/6 blur-[110px]" />
       </div>
 
+      <Header />
+
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="pt-50 md:pt-75 pb-16 text-center flex items-center">
+      <section className="pt-50 md:pt-70 pb-16 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: EASE }}
-          className="mx-auto max-w-2xl"
+          ref={heroRef}
+          variants={headerVariants}
+          initial="hidden"
+          animate={isHeroInView ? "visible" : "hidden"}
+          className="mx-auto max-w-3xl"
         >
-          <span className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-400">
+          <motion.span
+            variants={headerItemVariants}
+            className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-400"
+          >
             Services
-          </span>
-          <h1 className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white text-balance">
-            What we{" "}
+          </motion.span>
+          <motion.h1
+            variants={headerItemVariants}
+            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white"
+          >
+            Digital Solutions Built{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
-              build
+              for Growth
             </span>
-          </h1>
-          <p className="text-lg text-neutral-400">
+          </motion.h1>
+          <motion.p
+            variants={headerItemVariants}
+            className="text-lg text-neutral-400"
+          >
             Scroll through to explore our services — each card highlights as it
             reaches the center of your view.
-          </p>
+          </motion.p>
 
           {/* Scroll indicator */}
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+            variants={headerItemVariants}
             className="mt-10 flex justify-center"
             aria-hidden
           >
@@ -304,7 +334,7 @@ export default function ServicesPage() {
         <ServiceCard key={service.id} service={service} />
       ))}
 
-      {/* ── Bottom CTA ───────────────────────────────────────────── */}
+      {/* ── Bottom CTA ───────────────────────────────────────── */}
       <SectionReady />
     </main>
   );

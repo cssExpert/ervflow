@@ -1,10 +1,25 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { Zap } from "lucide-react";
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const headerVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+const headerItemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
+};
+
 const Hero = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
+
   return (
     <section className="pt-40 md:pt-50 pb-16 px-6 md:px-0 text-center">
       {/* Background glows */}
@@ -17,26 +32,44 @@ const Hero = () => {
         <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-500/6 blur-[100px]" />
       </div>
 
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-xs font-semibold px-4.5 py-3 rounded-full mb-8 uppercase tracking-widest">
+      <motion.div
+        ref={heroRef}
+        variants={headerVariants}
+        initial="hidden"
+        animate={isHeroInView ? "visible" : "hidden"}
+        className="max-w-4xl mx-auto space-y-6"
+      >
+        <motion.div
+          variants={headerItemVariants}
+          className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-xs font-semibold px-4.5 py-3 rounded-full mb-8 uppercase tracking-widest"
+        >
           <Zap className="w-4 h-4 text-primary-500" />
           Next.js 15 · Tailwind · dnd-kit · Framer Motion
-        </div>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight">
+        </motion.div>
+
+        <motion.h1
+          variants={headerItemVariants}
+          className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight tracking-tight"
+        >
           Your Skills Deserve{" "}
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
             More Visibility
           </span>
-        </h1>
-        <p className="text-md md:text-xl text-neutral-200 mb-10 max-w-2xl mx-auto leading-relaxed">
+        </motion.h1>
+
+        <motion.p
+          variants={headerItemVariants}
+          className="text-md md:text-xl text-neutral-200 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
           We help creators, professionals, and brands transform experience into
           a strong online identity that stands out.
-        </p>
-        <div className="flex gap-4 justify-center flex-wrap">
-          <Link
-            className="group text-indigo-300 hover:text-indigo-500"
-            href="/"
-          >
+        </motion.p>
+
+        <motion.div
+          variants={headerItemVariants}
+          className="flex gap-4 justify-center flex-wrap"
+        >
+          <Link className="group text-indigo-300 hover:text-indigo-500" href="/">
             <motion.div
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
@@ -61,9 +94,10 @@ const Hero = () => {
               </div>
             </motion.div>
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
+
 export default Hero;

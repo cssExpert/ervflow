@@ -240,7 +240,7 @@ function PricingCard({
 
       {/* Plan name & tagline */}
       <div className="mb-6">
-        <h3 className="text-lg font-bold text-white">{plan.name}</h3>
+        <h2 className="text-lg font-bold text-white">{plan.name}</h2>
         <p className="mt-1 text-sm text-neutral-500">{plan.tagline}</p>
       </div>
 
@@ -280,7 +280,7 @@ function PricingCard({
           </motion.p>
         )}
         {!annual && price > 0 && (
-          <p className="mt-1.5 text-xs text-neutral-600">
+          <p className="mt-1.5 text-xs text-neutral-400">
             Switch to annual to save 20%
           </p>
         )}
@@ -334,13 +334,13 @@ function Cell({
   if (value === false)
     return (
       <div className="flex justify-center">
-        <X className="h-4 w-4 text-neutral-700" />
+        <X className="h-4 w-4 text-neutral-500" />
       </div>
     );
   if (value === null)
     return (
       <div className="flex justify-center">
-        <Minus className="h-4 w-4 text-neutral-700" />
+        <Minus className="h-4 w-4 text-neutral-500" />
       </div>
     );
   return (
@@ -556,7 +556,7 @@ export default function PricingPage() {
         </div>
 
         {/* Trust line */}
-        <p className="mt-8 text-center text-sm text-neutral-600">
+        <p className="mt-8 text-center text-sm text-neutral-400">
           All plans include a 14-day free trial · No credit card required
         </p>
       </section>
@@ -565,9 +565,9 @@ export default function PricingPage() {
       <section className="hidden md:block px-6 pb-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
               Compare all features
-            </h2>
+            </h3>
             <p className="mt-3 text-neutral-500">
               Everything you need to make the right choice.
             </p>

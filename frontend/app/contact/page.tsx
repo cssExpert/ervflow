@@ -93,7 +93,7 @@ function Field({
 }
 
 const inputClass =
-  "w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-600 outline-none transition-all duration-200 focus:border-primary-500/60 focus:bg-primary-500/5 focus:ring-2 focus:ring-primary-500/20";
+  "w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-400 outline-none transition-all duration-200 focus:border-primary-500/60 focus:bg-primary-500/5 focus:ring-2 focus:ring-primary-500/20";
 
 /* ── Page ────────────────────────────────────────────────────────── */
 export default function ContactPage() {
@@ -105,6 +105,7 @@ export default function ContactPage() {
   });
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
 
+  const [cardMouse, setCardMouse] = useState({ x: 0, y: 0 });
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [fields, setFields] = useState({
     name: "",
@@ -197,12 +198,32 @@ export default function ContactPage() {
           <motion.form
             ref={formRef}
             onSubmit={handleSubmit}
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              setCardMouse({ x: e.clientX - r.left, y: e.clientY - r.top });
+            }}
             initial={{ opacity: 0, y: 40 }}
             animate={formInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, ease: EASE }}
-            className="lg:col-span-3 flex flex-col gap-5 rounded-3xl border border-white/8 bg-white/3 p-8 backdrop-blur-sm"
+            className="relative lg:col-span-3 flex flex-col gap-5 rounded-3xl border border-white/8 bg-white/3 p-8 backdrop-blur-sm overflow-hidden group/form"
+            style={{ "--mx": `${cardMouse.x}px`, "--my": `${cardMouse.y}px` } as React.CSSProperties}
           >
-            <div>
+            {/* Cursor glow */}
+            <div
+              className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover/form:opacity-100 rounded-3xl"
+              style={{ background: "radial-gradient(500px circle at var(--mx) var(--my), rgba(247,98,53,0.07), transparent 70%)" }}
+            />
+            <div
+              className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover/form:opacity-100 rounded-3xl"
+              style={{
+                background: "radial-gradient(200px circle at var(--mx) var(--my), rgba(247,98,53,0.15), transparent 60%)",
+                padding: "1px",
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+              }}
+            />
+            <div className="relative z-10">
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
                 Send a message
               </h2>
@@ -312,6 +333,7 @@ export default function ContactPage() {
                 <>Message sent — we&rsquo;ll be in touch!</>
               )}
             </motion.button>
+            </div>{/* end relative z-10 */}
           </motion.form>
 
           {/* ── Info sidebar (2 cols) ───────────────────────────── */}

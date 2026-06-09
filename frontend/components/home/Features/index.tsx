@@ -54,7 +54,7 @@ const Features = () => {
       image: "/images/Features/Features_02.jpg",
     },
     {
-      color: "#8A6EE4",
+      color: "#7558D4",
       badge: "Step 3 of 4",
       title: "Customize styles",
       titleColor: "#FFFFFF",
@@ -76,7 +76,7 @@ const Features = () => {
       image: "/images/Features/Features_03.jpg",
     },
     {
-      color: "#F76235",
+      color: "#C94D1F",
       badge: "Step 4 of 4",
       title: "Publish anywhere or download the source code",
       titleColor: "#FFFFFF",

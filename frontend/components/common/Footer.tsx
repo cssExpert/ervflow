@@ -73,23 +73,6 @@ const NAV_GROUPS = [
 const Footer = () => {
   return (
     <>
-      <div
-        className="relative z-2 w-full max-w-7xl mx-auto text-center bg-primary-600 min-h-60 md:min-h-110 
-        origin-top md:origin-center 
-        
-        /* 1. Mobile-first Explicit Mask Utilities */
-        mask-(--mask-url) [-webkit-mask-image:var(--mask-url)]
-        mask-cover [-webkit-mask-size:cover]
-        mask-no-repeat [-webkit-mask-repeat:no-repeat]
-        mask-[top_center] [-webkit-mask-position:top_center]
-        
-        /* 2. Responsive adjustments for Desktop */
-        md:mask-[center_top] md:[-webkit-mask-position:center_top]
-        
-        /* 3. Your CSS Variable definition */
-        [--mask-url:url('/images/Footer-Glow.png')]"
-      ></div>
-
       <footer className="w-full px-6 dark:border-zinc-800/60 pt-20 pb-10 bg-zinc-100 dark:bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <div className="w-full grid gap-10 md:grid-cols-3">

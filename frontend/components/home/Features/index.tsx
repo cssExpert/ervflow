@@ -29,7 +29,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_01.jpg",
+      image: "/images/Features/Features_01.webp",
     },
     {
       color: "#FFD104",
@@ -51,7 +51,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_02.jpg",
+      image: "/images/Features/Features_02.webp",
     },
     {
       color: "#7558D4",
@@ -73,7 +73,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_03.jpg",
+      image: "/images/Features/Features_03.webp",
     },
     {
       color: "#C94D1F",
@@ -95,7 +95,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_04.jpg",
+      image: "/images/Features/Features_04.webp",
     },
   ];
 
@@ -104,29 +104,29 @@ const Features = () => {
   const [pinnedIndex, setPinnedIndex] = useState<number>(-1);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const cards = containerRef.current.children;
-      let currentPinned = -1;
-
-      for (let i = 0; i < cards.length; i++) {
-        const rect = cards[i].getBoundingClientRect();
-        // Trigger sticky lock style manually when top boundary crosses threshold
-        if (rect.top <= 100 + i * 40) {
-          currentPinned = i;
+      // Batch DOM reads in rAF to prevent forced reflow
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!containerRef.current) return;
+        const cards = containerRef.current.children;
+        let currentPinned = -1;
+        for (let i = 0; i < cards.length; i++) {
+          const rect = cards[i].getBoundingClientRect();
+          if (rect.top <= 100 + i * 40) currentPinned = i;
         }
-      }
-      setPinnedIndex(currentPinned);
+        setPinnedIndex(currentPinned);
+      });
     };
 
-    // Listen to scroll events on both window and custom scroll layouts
     window.addEventListener("scroll", handleScroll, { passive: true });
-    document.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -189,9 +189,7 @@ const Features = () => {
                           >
                             {title}
                           </h3>
-                          <div className="text-sm md:text-base">
-                            {desc}
-                          </div>
+                          <div className="text-sm md:text-base">{desc}</div>
                         </div>
                       </div>
 

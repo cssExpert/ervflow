@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 
 type Theme = "dark" | "light";
@@ -44,14 +43,13 @@ export default function ThemeProvider({
   return (
     <ThemeContext.Provider value={{ resolvedTheme: theme, setTheme }}>
       {children}
-      <motion.button
+      <button
         onClick={scrollTop}
-        whileHover={{ y: -3 }}
         aria-label="Scroll to top"
-        className="cursor-pointer fixed bottom-8 right-6 z-40 w-10 h-10 rounded-full bg-primary text-white dark:text-dark flex items-center justify-center shadow-lg glow-primary hover:shadow-primary/40 transition-shadow duration-300"
+        className="cursor-pointer fixed bottom-8 right-6 z-40 w-10 h-10 rounded-full bg-primary text-white dark:text-dark flex items-center justify-center shadow-lg glow-primary hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-200"
       >
-        <ArrowUp size={18} strokeWidth={2.5} />
-      </motion.button>
+        <ArrowUp size={18} strokeWidth={2.5} aria-hidden="true" />
+      </button>
     </ThemeContext.Provider>
   );
 }

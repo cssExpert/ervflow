@@ -1,16 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useInView,
-  type Variants,
-} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import Blob from "@/components/common/Blob";
-
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const FAQS = [
   {
@@ -55,7 +47,6 @@ const FAQS = [
   },
 ];
 
-/* ── Single FAQ row ─────────────────────────────────────────────────── */
 function FAQItem({
   question,
   answer,
@@ -70,120 +61,116 @@ function FAQItem({
   onToggle: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.3 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      transition={{ duration: 0.55, delay: index * 0.06, ease: EASE }}
-      className="border-b border-zinc-800/15 dark:border-white/8 last:border-0 px-4 md:px-6"
+      className="faq-item border-b border-zinc-800/15 dark:border-white/8 last:border-0 px-4 md:px-6"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: `opacity 0.55s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms`,
+      }}
     >
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-6 py-5 text-left"
         aria-expanded={open}
       >
-        <span
-          className={`text-base font-medium text-zinc-800 dark:text-white md:text-lg ${
-            open ? "text-primary!" : ""
-          }`}
-        >
+        <span className={`text-base font-medium text-zinc-800 dark:text-white md:text-lg ${open ? "text-primary!" : ""}`}>
           {question}
         </span>
-        <motion.div
-          animate={{ rotate: open ? 45 : 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className={`shrink-0 rounded-full border border-zinc-800/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/50 dark:text-white p-1 transition-colors duration-200 ${
-            open ? "text-primary! bg-primary/10!" : ""
+        {/* CSS rotate — replaces motion.div animate rotate */}
+        <span
+          className={`shrink-0 rounded-full border border-zinc-800/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-black/50 dark:text-white p-1 transition-all duration-250 ${
+            open ? "rotate-45 text-primary! bg-primary/10!" : "rotate-0"
           }`}
+          aria-hidden="true"
         >
-          <Plus className="h-4 w-4 text-currentColor" />
-        </motion.div>
+          <Plus className="h-4 w-4" />
+        </span>
       </button>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: EASE }}
-            className="overflow-hidden"
-          >
-            <p className="pb-6 pr-10 text-sm leading-relaxed text-zinc-600 dark:text-neutral-400 md:text-base text-start">
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      {/* CSS grid height animation — replaces AnimatePresence */}
+      <div
+        className="grid transition-[grid-template-rows] duration-350 ease-out"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <p className="pb-6 pr-10 text-sm leading-relaxed text-zinc-600 dark:text-neutral-400 md:text-base text-start">
+            {answer}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 
-/* ── Section header variants ─────────────────────────────────────────── */
-const headerVariants: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.13 } },
-};
-
-const headerItemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
-};
-
-/* ── Main section ───────────────────────────────────────────────────── */
 export default function FAQ() {
   const headerRef = useRef<HTMLDivElement>(null);
-  const isHeaderInView = useInView(headerRef, { once: true, amount: 0.5 });
+  const [headerVisible, setHeaderVisible] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setHeaderVisible(true); observer.disconnect(); } },
+      { threshold: 0.5 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleToggle = (i: number) =>
     setOpenIndex((prev) => (prev === i ? null : i));
+
+  const fadeStyle = (delay = 0) => ({
+    opacity: headerVisible ? 1 : 0,
+    transform: headerVisible ? "translateY(0)" : "translateY(24px)",
+    transition: `opacity 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+  });
 
   return (
     <main className="min-h-screen relative bg-white dark:bg-black text-white z-2">
       <Blob />
 
-      {/* ── Content ──────────────────────────────────────────────── */}
       <div className="pt-30 md:pt-35 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
         <div className="w-full max-w-3xl mx-auto">
-          {/* Header */}
-          <motion.div
-            ref={headerRef}
-            variants={headerVariants}
-            initial="hidden"
-            animate={isHeaderInView ? "visible" : "hidden"}
-            className="mb-14 text-center"
-          >
-            <motion.span
-              variants={headerItemVariants}
-              className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-primary-500"
-            >
+          <div ref={headerRef} className="mb-14 text-center">
+            <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-primary-500" style={fadeStyle(0)}>
               FAQ
-            </motion.span>
-            <motion.h2
-              variants={headerItemVariants}
+            </span>
+            <h2
               className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-800 dark:text-white"
+              style={fadeStyle(130)}
             >
               Got questions?{" "}
               <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
                 We&apos;ve got answers.
               </span>
-            </motion.h2>
-            <motion.p
-              variants={headerItemVariants}
+            </h2>
+            <p
               className="mx-auto max-w-xl text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
+              style={fadeStyle(260)}
             >
-              Everything you need to know before you start building with
-              Ervflow.
-            </motion.p>
-          </motion.div>
+              Everything you need to know before you start building with Ervflow.
+            </p>
+          </div>
         </div>
 
-        {/* Accordion */}
         <div className="rounded-2xl border border-zinc-800/15 dark:border-white/8 bg-white/3 backdrop-blur-sm">
           {FAQS.map((faq, i) => (
             <FAQItem
@@ -197,13 +184,9 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* Footer nudge */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
+        <p
           className="mt-10 text-center text-sm text-neutral-600"
+          style={fadeStyle(400)}
         >
           Still have questions?{" "}
           <a
@@ -212,7 +195,7 @@ export default function FAQ() {
           >
             Reach out to us
           </a>
-        </motion.p>
+        </p>
       </div>
     </main>
   );

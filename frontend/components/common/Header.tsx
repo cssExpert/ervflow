@@ -2,12 +2,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
 import Icon from "@/components/common/Icon";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
 import Social from "./Social";
-// import { useTheme } from "@/components/ThemeProvider";
+import { useTheme } from "@/components/ThemeProvider";
 
 const Header = () => {
   const [sticky, setSticky] = useState(false);
@@ -28,7 +28,7 @@ const Header = () => {
     };
   }, []);
 
-  // const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <>
@@ -42,7 +42,7 @@ const Header = () => {
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-black dark:text-white transition-all"
+            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white transition-all"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
               <Icon
@@ -87,7 +87,7 @@ const Header = () => {
           <div className="inline-flex items-center gap-2.5">
             <Link
               href="/"
-              className="inline-flex items-center border-[1.5px] border-zinc-800/10 dark:border-white text-white dark:text-black bg-black dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500"
+              className="inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
             >
               <span className="font-bold tracking-tight">Login</span>
             </Link>
@@ -100,7 +100,7 @@ const Header = () => {
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                className="relative inline-flex rounded-full p-[1.5px] overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
+                className="relative group inline-flex rounded-full p-0.75 overflow-hidden bg-white dark:bg-zinc-800/40 shadow-sm cursor-pointer select-none"
               >
                 {/* 1. ROTATING GLOW BEAM */}
                 <motion.div
@@ -116,15 +116,15 @@ const Header = () => {
                 />
 
                 {/* 2. INNER CONTENT CARD */}
-                <div className="relative z-10 flex items-center px-6 py-2.5 rounded-full text-sm text-zinc-400 bg-black border border-zinc-900/60">
-                  <span className="font-bold text-primary-300 hover:text-primary-500 tracking-tight">
+                <div className="relative z-10 flex items-center px-6 py-2.5 rounded-full text-sm text-zinc-400 bg-slate-100 dark:bg-black border group-hover:bg-primary-50 dark:group-hover:bg-black border-black/5 dark:border-zinc-900/60">
+                  <span className="font-bold text-slate-800 dark:text-primary-300 hover:text-primary-600 group-hover:text-primary-600 dark:hover:text-primary-500 dark:group-hover:text-primary-500 tracking-tight">
                     Get Started — Save 50%
                   </span>
                 </div>
               </motion.div>
             </Link>
 
-            {/* <button
+            <button
               suppressHydrationWarning
               onClick={() =>
                 setTheme(resolvedTheme === "dark" ? "light" : "dark")
@@ -148,7 +148,7 @@ const Header = () => {
                   )}
                 </motion.span>
               </AnimatePresence>
-            </button> */}
+            </button>
 
             {/* Mobile hamburger */}
             <button
@@ -223,7 +223,7 @@ const Header = () => {
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className="relative inline-flex rounded-full p-[1.5px] overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
+                  className="relative inline-flex rounded-full p-0.5 overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
                 >
                   {/* 1. ROTATING GLOW BEAM */}
                   <motion.div

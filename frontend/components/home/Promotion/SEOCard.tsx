@@ -95,28 +95,28 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
       className="p-4 sm:p-8 flex flex-col justify-between h-full"
     >
       <div className="space-y-2 mb-6">
-        <span className="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">
+        <span className="text-xs font-mono text-cyan-600 dark:text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">
           Module 03
         </span>
-        <h2 className="text-xl md:text-2xl font-bold tracking-tight mt-2 text-white">
+        <h2 className="text-xl md:text-2xl font-bold tracking-tight mt-2 text-slate-900 dark:text-white">
           SEO & performance
         </h2>
-        <p className="text-neutral-400 text-sm">
+        <p className="text-slate-600 dark:text-neutral-400 text-sm">
           Optimize every page with built-in SEO settings, metadata, and
           blazing-fast performance.
         </p>
         <a
           href="#learn-more-seo"
-          className="inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-white transition-colors pt-1 group"
+          className="inline-flex items-center gap-1 text-sm text-slate-600 dark:text-neutral-400 hover:text-slate-900 dark:hover:text-white transition-colors pt-1 group"
         >
           Learn more
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
 
-      <div className="bg-[#050505] rounded-[18px] border border-white/5 p-4 sm:p-6 flex flex-col items-center justify-center">
+      <div className="bg-slate-100 dark:bg-[#050505] rounded-[18px] border border-black/8 dark:border-white/5 p-4 sm:p-6 flex flex-col items-center justify-center [--track-ring:rgba(0,0,0,0.1)] dark:[--track-ring:rgba(255,255,255,0.05)]">
         <div className="flex items-center gap-2 mb-6 self-start">
-          <span className="text-xs text-neutral-400 font-mono tracking-wider">
+          <span className="text-xs text-slate-600 dark:text-neutral-400 font-mono tracking-wider">
             Lighthouse Metrics Engine
           </span>
           <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
@@ -131,7 +131,7 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   cx="50%"
                   cy="50%"
                   r="32"
-                  stroke="rgba(255,255,255,0.05)"
+                  stroke="var(--track-ring)"
                   strokeWidth="6"
                   fill="transparent"
                 />
@@ -148,11 +148,11 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   className="transition-all duration-1000 ease-out"
                 />
               </svg>
-              <span className="font-mono text-base sm:text-lg font-bold text-white group-hover/meter:scale-110 transition-transform">
+              <span className="font-mono text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover/meter:scale-110 transition-transform">
                 {lighthouseSEO}
               </span>
             </div>
-            <span className="text-[11px] text-neutral-400 font-medium font-sans mt-1">
+            <span className="text-[11px] text-slate-600 dark:text-neutral-400 font-medium font-sans mt-1">
               SEO
             </span>
           </div>
@@ -165,7 +165,7 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   cx="50%"
                   cy="50%"
                   r="40"
-                  stroke="rgba(255,255,255,0.05)"
+                  stroke="var(--track-ring)"
                   strokeWidth="8"
                   fill="transparent"
                 />
@@ -182,7 +182,7 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   className="transition-all duration-1000 ease-out"
                 />
               </svg>
-              <span className="font-mono text-lg sm:text-2xl font-black text-white group-hover/meter:scale-110 transition-transform">
+              <span className="font-mono text-lg sm:text-2xl font-black text-slate-900 dark:text-white group-hover/meter:scale-110 transition-transform">
                 {lighthousePerformance}
               </span>
             </div>
@@ -199,7 +199,7 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   cx="50%"
                   cy="50%"
                   r="32"
-                  stroke="rgba(255,255,255,0.05)"
+                  stroke="var(--track-ring)"
                   strokeWidth="6"
                   fill="transparent"
                 />
@@ -216,17 +216,17 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
                   className="transition-all duration-1000 ease-out"
                 />
               </svg>
-              <span className="font-mono text-base sm:text-lg font-bold text-white group-hover/meter:scale-110 transition-transform">
+              <span className="font-mono text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover/meter:scale-110 transition-transform">
                 {lighthouseAccessibility}
               </span>
             </div>
-            <span className="text-[11px] text-neutral-400 font-medium font-sans mt-1">
+            <span className="text-[11px] text-slate-600 dark:text-neutral-400 font-medium font-sans mt-1">
               Accessibility
             </span>
           </div>
         </div>
 
-        <div className="w-full mt-6 grid grid-cols-2 gap-3 text-[10px] text-neutral-400 font-mono border-t border-white/5 pt-4">
+        <div className="w-full mt-6 grid grid-cols-2 gap-3 text-[10px] text-slate-600 dark:text-neutral-400 font-mono border-t border-black/8 dark:border-white/5 pt-4">
           <div className="flex items-center justify-between">
             <label htmlFor="seo-range" className="cursor-pointer">Adjust SEO:</label>
             <input

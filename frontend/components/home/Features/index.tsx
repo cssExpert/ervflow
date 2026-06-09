@@ -141,7 +141,7 @@ const Features = () => {
             </span>{" "}
             layouts quickly
           </h2>
-          <p className="text-base md:text-lg text-zinc-500 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-600 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
             Speed up your workflow in a few simple steps.
           </p>
         </div>

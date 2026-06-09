@@ -131,14 +131,14 @@ function CustomTicker({
   });
 
   const cardBase =
-    "group flex items-center gap-3 w-65 md:w-90 h-60 sm:h-70 p-3 rounded-xl bg-black border border-neutral-800 backdrop-blur-md shadow-lg flex-shrink-0 select-none";
+    "group flex items-center gap-3 w-65 md:w-90 h-60 sm:h-70 p-3 rounded-xl bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 backdrop-blur-md shadow-sm dark:shadow-lg flex-shrink-0 select-none";
 
   const cardTheme =
     theme === "cyber"
-      ? "group bg-black/80 border-neutral-800 text-cyan-400"
+      ? "group dark:bg-black/80 border-neutral-200 dark:border-neutral-800 text-cyan-600 dark:text-cyan-400"
       : theme === "elegant"
-        ? "group bg-white/95 border-neutral-800 text-slate-900 shadow-sm"
-        : "group bg-black/80 border-neutral-800 text-white";
+        ? "group bg-white dark:bg-white/95 border-neutral-200 dark:border-neutral-800 text-slate-900 shadow-sm"
+        : "group bg-white dark:bg-black/80 border-neutral-200 dark:border-neutral-800 text-slate-800 dark:text-white";
 
   const renderCard = (item: TickerItem, keyPrefix: string) => (
     <div
@@ -154,7 +154,7 @@ function CustomTicker({
             onClick={() => {
               alert("alert");
             }}
-            className="inline-flex items-center border-[1.5px] gap-1.5 border-white text-black bg-white hover:border-primary-700 hover:text-white hover:bg-primary-700 px-6 min-h-11 rounded-full text-[13px] transition-all shadow-md"
+            className="inline-flex items-center border-[1.5px] gap-1.5 border-white text-black bg-white hover:border-primary-600 hover:text-white hover:bg-primary-600 px-6 min-h-11 rounded-full text-[13px] transition-all shadow-md"
           >
             <LayoutPanelTop className="w-4 h-4" />
             View Template
@@ -169,7 +169,7 @@ function CustomTicker({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <span className="font-semibold tracking-wide text-sm whitespace-nowrap">
+      <span className="font-semibold tracking-wide text-sm whitespace-nowrap text-slate-800 dark:text-white">
         {item.name}
       </span>
     </div>
@@ -182,8 +182,8 @@ function CustomTicker({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Edge fade masks */}
-      <div className="absolute inset-y-0 left-0 w-40 bg-linear-to-r from-black to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-40 bg-linear-to-r from-white dark:from-black to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-white dark:from-black to-transparent z-10 pointer-events-none" />
 
       <motion.div className="flex items-center" style={{ x }}>
         {/* Primary set — its measured width drives the seamless loop distance */}
@@ -223,7 +223,7 @@ export default function Resources() {
           </span>{" "}
           with community resources
         </h3>
-        <p className="text-xl text-zinc-500 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-zinc-600 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
           Accelerate development using ready-made sections, templates,
           components, and shared assets from the editor community.
         </p>

@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import SectionReady from "@/components/common/SectionReady";
+import { useTheme } from "@/components/ThemeProvider";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -49,7 +50,7 @@ const SERVICES = [
     Icon: Palette,
     accent: "from-blue-500/20 to-indigo-500/5",
     iconBg: "bg-blue-500/10",
-    iconColor: "text-blue-300",
+    iconColor: "text-blue-500 dark:text-blue-300",
   },
   {
     id: "02",
@@ -66,7 +67,7 @@ const SERVICES = [
     Icon: Code2,
     accent: "from-emerald-500/20 to-teal-500/5",
     iconBg: "bg-emerald-500/10",
-    iconColor: "text-emerald-300",
+    iconColor: "text-emerald-600 dark:text-emerald-300",
   },
   {
     id: "03",
@@ -83,7 +84,7 @@ const SERVICES = [
     Icon: Layers,
     accent: "from-violet-500/20 to-purple-500/5",
     iconBg: "bg-violet-500/10",
-    iconColor: "text-violet-300",
+    iconColor: "text-violet-600 dark:text-violet-300",
   },
   {
     id: "04",
@@ -100,7 +101,7 @@ const SERVICES = [
     Icon: Sparkles,
     accent: "from-amber-500/20 to-orange-500/5",
     iconBg: "bg-amber-500/10",
-    iconColor: "text-amber-300",
+    iconColor: "text-amber-600 dark:text-amber-300",
   },
   {
     id: "05",
@@ -117,7 +118,7 @@ const SERVICES = [
     Icon: Gauge,
     accent: "from-rose-500/20 to-pink-500/5",
     iconBg: "bg-rose-500/10",
-    iconColor: "text-rose-300",
+    iconColor: "text-rose-600 dark:text-rose-300",
   },
   {
     id: "06",
@@ -134,7 +135,7 @@ const SERVICES = [
     Icon: Rocket,
     accent: "from-cyan-500/20 to-sky-500/5",
     iconBg: "bg-cyan-500/10",
-    iconColor: "text-cyan-300",
+    iconColor: "text-cyan-600 dark:text-cyan-300",
   },
 ] as const;
 
@@ -143,13 +144,14 @@ type Service = (typeof SERVICES)[number];
 /* ── Service card with scroll-driven highlight ───────────────────── */
 function ServiceCard({ service }: { service: Service }) {
   const ref = useRef<HTMLElement>(null);
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme !== "light";
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start center", "end center"],
   });
 
-  /* All motion values derived at top-level (no hooks in JSX) */
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.25, 0.5, 0.75, 1],
@@ -159,13 +161,21 @@ function ServiceCard({ service }: { service: Service }) {
   const borderColor = useTransform(
     scrollYProgress,
     [0, 0.4, 0.5, 0.6, 1],
-    [
-      "rgba(255,255,255,0.06)",
-      "rgba(247,98,53,0.3)",
-      "rgba(247,98,53,0.55)",
-      "rgba(247,98,53,0.3)",
-      "rgba(255,255,255,0.06)",
-    ],
+    isDark
+      ? [
+          "rgba(255,255,255,0.06)",
+          "rgba(247,98,53,0.3)",
+          "rgba(247,98,53,0.55)",
+          "rgba(247,98,53,0.3)",
+          "rgba(255,255,255,0.06)",
+        ]
+      : [
+          "rgba(0,0,0,0.08)",
+          "rgba(247,98,53,0.4)",
+          "rgba(247,98,53,0.65)",
+          "rgba(247,98,53,0.4)",
+          "rgba(0,0,0,0.08)",
+        ],
   );
   const boxShadow = useTransform(
     scrollYProgress,
@@ -191,7 +201,7 @@ function ServiceCard({ service }: { service: Service }) {
       <div className="mx-auto w-full max-w-6xl">
         <motion.div
           style={{ opacity, scale, borderColor, boxShadow }}
-          className="grid gap-10 rounded-3xl border bg-white/0.025 p-0 backdrop-blur-sm md:p-14 lg:grid-cols-2"
+          className="grid gap-10 rounded-3xl border bg-white/50 dark:bg-white/[0.025] p-0 backdrop-blur-sm md:p-14 lg:grid-cols-2"
         >
           {/* ── Left: text content ─────────────────────────────── */}
           <div className="flex flex-col justify-center gap-6">
@@ -202,16 +212,16 @@ function ServiceCard({ service }: { service: Service }) {
               >
                 {service.id}
               </motion.span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+              <span className="rounded-full border border-black/8 dark:border-white/10 bg-black/5 dark:bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-neutral-400">
                 {service.category}
               </span>
             </div>
 
-            <h2 className="text-4xl font-black tracking-tight text-white md:text-5xl">
+            <h2 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white md:text-5xl">
               {service.title}
             </h2>
 
-            <p className="leading-relaxed text-neutral-400">
+            <p className="leading-relaxed text-slate-600 dark:text-neutral-400">
               {service.description}
             </p>
 
@@ -219,7 +229,7 @@ function ServiceCard({ service }: { service: Service }) {
               {service.features.map((f) => (
                 <li
                   key={f}
-                  className="flex items-center gap-2 text-sm text-neutral-300"
+                  className="flex items-center gap-2 text-sm text-slate-700 dark:text-neutral-300"
                 >
                   <Check className="h-3.5 w-3.5 shrink-0 text-primary-500" />
                   {f}
@@ -262,8 +272,8 @@ export default function ServicesPage() {
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
 
   return (
-    <main className="min-h-screen relative px-6 overflow-hidden bg-black text-white z-2">
-      {/* Ambient glows — radial-gradient instead of blur-filter (no GPU cost) */}
+    <main className="min-h-screen relative px-6 overflow-hidden bg-white dark:bg-black text-slate-800 dark:text-white z-2">
+      {/* Ambient glows */}
       <div
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
         aria-hidden
@@ -302,13 +312,13 @@ export default function ServicesPage() {
         >
           <motion.span
             variants={headerItemVariants}
-            className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-400"
+            className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400"
           >
             Services
           </motion.span>
           <motion.h1
             variants={headerItemVariants}
-            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white"
+            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-800 dark:text-white"
           >
             Digital Solutions Built{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -317,7 +327,7 @@ export default function ServicesPage() {
           </motion.h1>
           <motion.p
             variants={headerItemVariants}
-            className="text-lg text-neutral-400"
+            className="text-lg text-slate-600 dark:text-neutral-300"
           >
             Scroll through to explore our services — each card highlights as it
             reaches the center of your view.
@@ -329,7 +339,7 @@ export default function ServicesPage() {
             className="mt-10 flex justify-center"
             aria-hidden
           >
-            <div className="flex h-10 w-6 items-start justify-center rounded-full border border-white/20 p-1.5">
+            <div className="flex h-10 w-6 items-start justify-center rounded-full border border-slate-300 dark:border-white/20 p-1.5">
               <motion.div
                 animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
                 transition={{
@@ -337,7 +347,7 @@ export default function ServicesPage() {
                   duration: 1.8,
                   ease: "easeInOut",
                 }}
-                className="h-2 w-1 rounded-full bg-white/60"
+                className="h-2 w-1 rounded-full bg-slate-500 dark:bg-white/60"
               />
             </div>
           </motion.div>

@@ -36,3 +36,4 @@
 - ALWAYS use TypeScript strict mode
 - NEVER commit directly to main
 - Keep files under 300 lines — split if larger
+- ALWAYS check for Color Contrast ratio and make it positive

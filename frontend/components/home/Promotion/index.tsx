@@ -21,7 +21,7 @@ export default function Promotion() {
             </span>{" "}
             switching tools
           </h3>
-          <p className="text-base md:text-lg text-zinc-500 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-zinc-600 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
             Build, edit, customize, and manage your entire website experience
             from one powerful visual editor — no coding or platform switching
             required.

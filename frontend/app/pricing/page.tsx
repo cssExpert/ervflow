@@ -174,13 +174,13 @@ function BillingToggle({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-sm">
+    <div className="inline-flex items-center gap-3 rounded-full border border-zinc-800/20 dark:border-white/10 bg-white/5 px-2 py-1.5 backdrop-blur-sm">
       <button
         onClick={() => onChange(false)}
         className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
           !annual
-            ? "bg-white/10 text-white"
-            : "text-neutral-500 hover:text-neutral-300"
+            ? "bg-black/10 dark:bg-white/5 text-black dark:text-white"
+            : "text-black dark:text-neutral-100 hover:text-primary"
         }`}
       >
         Monthly
@@ -189,12 +189,12 @@ function BillingToggle({
         onClick={() => onChange(true)}
         className={`flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
           annual
-            ? "bg-white/10 text-white"
-            : "text-neutral-500 hover:text-neutral-300"
+            ? "bg-black/10 dark:bg-white/5 text-black dark:text-white"
+            : "text-black dark:text-neutral-100 hover:text-primary"
         }`}
       >
         Annual
-        <span className="rounded-full bg-primary-500/25 px-2 py-0.5 text-xs font-semibold text-primary-400">
+        <span className="rounded-full bg-primary-500/15 dark:bg-primary-500/25 px-2 py-0.5 text-xs font-semibold text-primary-600 dark:text-primary-400">
           Save 20%
         </span>
       </button>
@@ -226,7 +226,7 @@ function PricingCard({
       className={`relative flex flex-col rounded-2xl border p-6 md:p-8 ${
         plan.popular
           ? "border-primary-500/50 bg-linear-to-b from-primary-500/10 to-primary-500/4 shadow-[0_0_50px_rgba(247,98,53,0.12)]"
-          : "border-white/8 bg-white/3"
+          : "border-zinc-800/20 dark:border-white/8 bg-white/3"
       }`}
     >
       {plan.popular && (
@@ -240,18 +240,24 @@ function PricingCard({
 
       {/* Plan name & tagline */}
       <div className="mb-6">
-        <h2 className="text-lg font-bold text-white">{plan.name}</h2>
-        <p className="mt-1 text-sm text-neutral-500">{plan.tagline}</p>
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+          {plan.name}
+        </h2>
+        <p className="mt-1 text-sm text-slate-800 dark:text-neutral-300">
+          {plan.tagline}
+        </p>
       </div>
 
       {/* Price */}
       <div className="mb-8">
         <div className="flex items-end gap-1.5">
           {price === 0 ? (
-            <span className="text-5xl font-black text-white">Free</span>
+            <span className="text-5xl font-black text-slate-700 dark:text-white">
+              Free
+            </span>
           ) : (
             <>
-              <span className="mb-1 text-2xl font-bold text-neutral-400">
+              <span className="mb-1 text-2xl font-bold text-slate-800 dark:text-neutral-300">
                 $
               </span>
               <AnimatePresence mode="wait">
@@ -261,12 +267,14 @@ function PricingCard({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="text-5xl font-black text-white leading-none"
+                  className="text-5xl font-black text-slate-700 dark:text-white leading-none"
                 >
                   {price}
                 </motion.span>
               </AnimatePresence>
-              <span className="mb-1.5 text-sm text-neutral-500">/ mo</span>
+              <span className="mb-1.5 text-sm text-slate-700 dark:text-neutral-300">
+                / mo
+              </span>
             </>
           )}
         </div>
@@ -274,13 +282,13 @@ function PricingCard({
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-1.5 text-xs text-neutral-500"
+            className="mt-1.5 text-xs text-slate-800 dark:text-neutral-300"
           >
             Billed annually · ${price * 12} / yr
           </motion.p>
         )}
         {!annual && price > 0 && (
-          <p className="mt-1.5 text-xs text-neutral-400">
+          <p className="mt-1.5 text-xs text-slate-800 dark:text-neutral-300">
             Switch to annual to save 20%
           </p>
         )}
@@ -291,7 +299,7 @@ function PricingCard({
         {plan.features.map((f) => (
           <li
             key={f}
-            className="flex items-start gap-2.5 text-sm text-neutral-300"
+            className="flex items-start gap-2.5 text-sm text-slate-800 dark:text-neutral-300"
           >
             <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary-500" />
             {f}
@@ -305,7 +313,7 @@ function PricingCard({
         className={`flex items-center justify-center gap-2 rounded-md py-3 text-sm font-semibold transition-all duration-200 ${
           plan.popular
             ? "bg-primary-500 text-white hover:bg-primary-600 shadow-[0_4px_20px_rgba(247,98,53,0.3)]"
-            : "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+            : "border border-white/10 bg-slate-800/25 dark:bg-white/5 text-black hover:text-white dark:text-white hover:bg-slate-800/50 dark:hover:bg-white/10"
         }`}
       >
         {plan.cta}
@@ -327,25 +335,25 @@ function Cell({
     return (
       <div className="flex justify-center">
         <Check
-          className={`h-5 w-5 ${highlight ? "text-primary-400" : "text-primary-500/70"}`}
+          className={`h-5 w-5 ${highlight ? "text-green-500" : "text-green-500"}`}
         />
       </div>
     );
   if (value === false)
     return (
       <div className="flex justify-center">
-        <X className="h-4 w-4 text-neutral-500" />
+        <X className="h-4 w-4 text-red-500 dark:text-red-500" />
       </div>
     );
   if (value === null)
     return (
       <div className="flex justify-center">
-        <Minus className="h-4 w-4 text-neutral-500" />
+        <Minus className="h-4 w-4 text-slate-800 dark:text-neutral-300" />
       </div>
     );
   return (
     <span
-      className={`block text-center text-sm ${highlight ? "font-medium text-white" : "text-neutral-400"}`}
+      className={`block text-center text-sm ${highlight ? "font-medium text-slate-800 dark:text-white" : "text-slate-800 dark:text-neutral-300"}`}
     >
       {value}
     </span>
@@ -368,21 +376,21 @@ function ComparisonTable({ annual }: { annual: boolean }) {
       <table className="w-full min-w-160 border-collapse">
         <thead>
           <tr>
-            <th className="sticky top-19.5 z-20 w-56 bg-black/50 py-4 text-left text-sm font-medium text-neutral-500 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md" />
+            <th className="sticky top-19.5 z-20 w-56  bg-white/1 dark:bg-black/50 py-4 text-left text-sm font-medium text-slate-800 dark:text-neutral-300 shadow-[0_1px_0_rgba(0,0,0,0.075)] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md" />
             {PLANS.map((plan) => (
               <th
                 key={plan.id}
-                className={`sticky top-19.5 z-20 py-4 text-center shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md ${
-                  plan.popular ? "bg-[#0d0905]/50" : "bg-black/85"
+                className={`sticky top-19.5 z-20 py-4 text-center shadow-[0_1px_0_rgba(0,0,0,0.075)] dark:shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md ${
+                  plan.popular ? "dark:bg-[#0d0905]/50" : "dark:bg-black/85"
                 }`}
               >
                 <div className="flex flex-col items-center gap-1">
                   <span
-                    className={`text-sm font-bold ${plan.popular ? "text-primary-400" : "text-white"}`}
+                    className={`text-sm md:text-base font-bold ${plan.popular ? "text-primary-500" : "dark:text-white"}`}
                   >
                     {plan.name}
                   </span>
-                  <span className="text-xs text-neutral-500">
+                  <span className="text-xs text-slate-700 dark:text-neutral-300">
                     {annual && plan.annual > 0
                       ? `$${plan.annual}/mo`
                       : plan.monthly === 0
@@ -402,7 +410,7 @@ function ComparisonTable({ annual }: { annual: boolean }) {
               <tr>
                 <td
                   colSpan={5}
-                  className="border-t border-white/8 pb-2 pt-8 text-xs font-semibold uppercase tracking-widest text-neutral-500"
+                  className="border-t border-white/8 pb-2 pt-8 text-xs font-semibold uppercase tracking-widest text-slate-800 dark:text-neutral-300"
                 >
                   {group.label}
                 </td>
@@ -412,9 +420,9 @@ function ComparisonTable({ annual }: { annual: boolean }) {
               {group.rows.map((row, ri) => (
                 <tr
                   key={`${gi}-${ri}`}
-                  className="border-t border-white/5 transition-colors hover:bg-white/2"
+                  className="border-t border-black/5 dark:border-white/5 transition-colors hover:bg-white/2"
                 >
-                  <td className="py-3.5 pr-6 text-sm text-neutral-400">
+                  <td className="py-3.5 pr-6 text-sm text-slate-800 dark:text-neutral-300">
                     {row.name}
                   </td>
                   {row.values.map((val, vi) => (
@@ -445,7 +453,7 @@ function ComparisonTable({ annual }: { annual: boolean }) {
                   className={`inline-flex items-center gap-1.5 rounded-md px-4 py-2.5 text-sm font-semibold transition-all ${
                     plan.popular
                       ? "bg-primary-500 text-white hover:bg-primary-600"
-                      : "border border-white/10 bg-white/5 text-white hover:bg-white/10"
+                      : "border border-black/10 dark:border-white/10 bg-slate-800/5 dark:bg-white/5 text-slate-800 dark:text-white hover:text-primary-500 dark:hover:bg-white/10"
                   }`}
                 >
                   {plan.id === "business" ? "Contact sales" : "Get started"}
@@ -477,7 +485,7 @@ export default function PricingPage() {
   const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
 
   return (
-    <main className="min-h-screen relative bg-black text-white z-2">
+    <main className="min-h-screen relative bg-white dark:bg-black text-black dark:text-white z-2">
       {/* Background glows */}
       <div
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
@@ -524,7 +532,7 @@ export default function PricingPage() {
           </motion.span>
           <motion.h1
             variants={headerItemVariants}
-            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white"
+            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-800 dark:text-white"
           >
             One platform. All your{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -534,7 +542,7 @@ export default function PricingPage() {
           </motion.h1>
           <motion.p
             variants={headerItemVariants}
-            className="mb-10 text-lg text-neutral-400"
+            className="mb-10 text-lg text-slate-800 dark:text-neutral-300"
           >
             Start free, scale when you need to. No hidden fees, no surprises.
           </motion.p>
@@ -556,7 +564,7 @@ export default function PricingPage() {
         </div>
 
         {/* Trust line */}
-        <p className="mt-8 text-center text-sm text-neutral-400">
+        <p className="mt-8 text-center text-sm text-slate-800 dark:text-neutral-300">
           All plans include a 14-day free trial · No credit card required
         </p>
       </section>
@@ -565,10 +573,10 @@ export default function PricingPage() {
       <section className="hidden md:block px-6 pb-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 text-center">
-            <h3 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+            <h3 className="text-3xl font-bold tracking-tight text-slate-800 dark:text-white md:text-4xl">
               Compare all features
             </h3>
-            <p className="mt-3 text-neutral-500">
+            <p className="mt-3 text-slate-600 dark:text-neutral-300">
               Everything you need to make the right choice.
             </p>
           </div>

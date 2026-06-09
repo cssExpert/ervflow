@@ -174,7 +174,7 @@ function QuoteCard({ t, delay, from }: { t: Testimonial; delay: number; from: An
           <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${AVATAR_COLORS[t.initials]}`}>{t.initials}</div>
           <div>
             <p className="font-semibold text-slate-800 dark:text-white">{t.name}</p>
-            <p className="text-sm text-neutral-500">{t.role} · {t.company}</p>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">{t.role} · {t.company}</p>
           </div>
         </div>
         <StarRating count={t.rating} />
@@ -205,7 +205,7 @@ function ReviewCard({ t, delay, from }: { t: Testimonial; delay: number; from: A
         <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${AVATAR_COLORS[t.initials]}`}>{t.initials}</div>
         <div>
           <p className="text-sm font-semibold text-slate-800 dark:text-white">{t.name}</p>
-          <p className="text-xs text-neutral-500">{t.role} · {t.company}</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400">{t.role} · {t.company}</p>
         </div>
       </div>
     </BentoCard>

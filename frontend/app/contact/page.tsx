@@ -37,14 +37,14 @@ function InfoCard({
 
   const content = (
     <div className="flex items-start gap-4">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary-400">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-black/8 dark:border-white/10 bg-black/5 dark:bg-white/5 text-primary-600 dark:text-primary-400">
         {icon}
       </div>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+        <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-neutral-400">
           {label}
         </p>
-        <p className="mt-1 text-sm font-medium text-white">{value}</p>
+        <p className="mt-1 text-sm font-medium text-slate-900 dark:text-white">{value}</p>
       </div>
     </div>
   );
@@ -61,12 +61,12 @@ function InfoCard({
           href={href}
           target={href.startsWith("http") ? "_blank" : undefined}
           rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="group block rounded-2xl border border-white/8 bg-white/3 p-5 transition-colors hover:border-primary-500/30 hover:bg-primary-500/5"
+          className="group block rounded-2xl border border-black/8 dark:border-white/8 bg-slate-50 dark:bg-white/[0.03] p-5 transition-colors hover:border-primary-500/30 hover:bg-primary-500/5"
         >
           {content}
         </Link>
       ) : (
-        <div className="rounded-2xl border border-white/8 bg-white/3 p-5">
+        <div className="rounded-2xl border border-black/8 dark:border-white/8 bg-slate-50 dark:bg-white/[0.03] p-5">
           {content}
         </div>
       )}
@@ -84,7 +84,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
+      <label className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-neutral-400">
         {label}
       </label>
       {children}
@@ -93,7 +93,7 @@ function Field({
 }
 
 const inputClass =
-  "w-full rounded-md border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-neutral-400 outline-none transition-all duration-200 focus:border-primary-500/60 focus:bg-primary-500/5 focus:ring-2 focus:ring-primary-500/20";
+  "w-full rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-neutral-400 outline-none transition-all duration-200 focus:border-primary-500/60 focus:bg-primary-500/5 focus:ring-2 focus:ring-primary-500/20";
 
 /* ── Page ────────────────────────────────────────────────────────── */
 export default function ContactPage() {
@@ -127,7 +127,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen relative px-6 overflow-hidden bg-black text-white z-2">
+    <main className="min-h-screen relative px-6 overflow-hidden bg-white dark:bg-black text-slate-900 dark:text-white z-2">
       {/* Ambient glows */}
       <div
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
@@ -167,13 +167,13 @@ export default function ContactPage() {
         >
           <motion.span
             variants={itemVariants}
-            className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-400"
+            className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400"
           >
             Contact
           </motion.span>
           <motion.h1
             variants={itemVariants}
-            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white text-balance"
+            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white text-balance"
           >
             Let&apos;s Build{" "}
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
@@ -183,7 +183,7 @@ export default function ContactPage() {
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-neutral-400"
+            className="text-lg text-slate-600 dark:text-neutral-400"
           >
             Have a project in mind or just want to say hello? We&apos;d love to
             hear from you.
@@ -205,29 +205,39 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={formInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, ease: EASE }}
-            className="relative lg:col-span-3 flex flex-col gap-5 rounded-3xl border border-white/8 bg-white/3 p-8 backdrop-blur-sm overflow-hidden group/form"
-            style={{ "--mx": `${cardMouse.x}px`, "--my": `${cardMouse.y}px` } as React.CSSProperties}
+            className="relative lg:col-span-3 flex flex-col gap-5 rounded-3xl border border-black/8 dark:border-white/8 bg-slate-50 dark:bg-white/[0.03] p-8 backdrop-blur-sm overflow-hidden group/form"
+            style={
+              {
+                "--mx": `${cardMouse.x}px`,
+                "--my": `${cardMouse.y}px`,
+              } as React.CSSProperties
+            }
           >
             {/* Cursor glow */}
             <div
               className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover/form:opacity-100 rounded-3xl"
-              style={{ background: "radial-gradient(500px circle at var(--mx) var(--my), rgba(247,98,53,0.07), transparent 70%)" }}
+              style={{
+                background:
+                  "radial-gradient(500px circle at var(--mx) var(--my), rgba(247,98,53,0.07), transparent 70%)",
+              }}
             />
             <div
               className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-500 group-hover/form:opacity-100 rounded-3xl"
               style={{
-                background: "radial-gradient(200px circle at var(--mx) var(--my), rgba(247,98,53,0.15), transparent 60%)",
+                background:
+                  "radial-gradient(200px circle at var(--mx) var(--my), rgba(247,98,53,0.15), transparent 60%)",
                 padding: "1px",
-                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMask:
+                  "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
               }}
             />
             <div className="relative z-10">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
                 Send a message
               </h2>
-              <p className="mt-1 text-sm text-neutral-500">
+              <p className="mt-1 text-sm text-slate-600 dark:text-neutral-400">
                 We typically reply within 24 hours.
               </p>
             </div>
@@ -264,22 +274,22 @@ export default function ContactPage() {
                 required
                 className={`${inputClass} cursor-pointer`}
               >
-                <option value="" disabled className="bg-neutral-900">
+                <option value="" disabled className="bg-white dark:bg-neutral-900">
                   Select a topic…
                 </option>
-                <option value="project" className="bg-neutral-900">
+                <option value="project" className="bg-white dark:bg-neutral-900">
                   New project
                 </option>
-                <option value="freelance" className="bg-neutral-900">
+                <option value="freelance" className="bg-white dark:bg-neutral-900">
                   Freelance inquiry
                 </option>
-                <option value="partnership" className="bg-neutral-900">
+                <option value="partnership" className="bg-white dark:bg-neutral-900">
                   Partnership
                 </option>
-                <option value="support" className="bg-neutral-900">
+                <option value="support" className="bg-white dark:bg-neutral-900">
                   Support
                 </option>
-                <option value="other" className="bg-neutral-900">
+                <option value="other" className="bg-white dark:bg-neutral-900">
                   Other
                 </option>
               </select>
@@ -306,7 +316,7 @@ export default function ContactPage() {
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className={`mt-1 flex items-center justify-center gap-2.5 rounded-md py-3.5 text-base font-semibold transition-all duration-300 ${
                 status === "sent"
-                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
                   : "bg-primary-500 text-white hover:bg-primary-600 shadow-[0_4px_24px_rgba(247,98,53,0.3)]"
               }`}
             >
@@ -333,7 +343,6 @@ export default function ContactPage() {
                 <>Message sent — we&rsquo;ll be in touch!</>
               )}
             </motion.button>
-            </div>{/* end relative z-10 */}
           </motion.form>
 
           {/* ── Info sidebar (2 cols) ───────────────────────────── */}
@@ -364,13 +373,12 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.34, ease: EASE }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-white/8 bg-white/3 p-5"
+              className="rounded-2xl border border-black/8 dark:border-white/8 bg-slate-50 dark:bg-white/[0.03] p-5"
             >
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-500">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-neutral-400">
                 Find me on
               </p>
               <div className="flex gap-3">
-                {/* Social icons */}
                 <Social />
               </div>
             </motion.div>
@@ -388,16 +396,16 @@ export default function ContactPage() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
                 </span>
-                <p className="text-sm font-semibold text-emerald-400">
+                <p className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">
                   Available for new projects
                 </p>
               </div>
-              <p className="mt-2 text-xs text-neutral-500 leading-relaxed">
+              <p className="mt-2 text-xs text-slate-600 dark:text-neutral-400 leading-relaxed">
                 Currently accepting freelance and contract work for Q3 2026.
               </p>
               <Link
                 href="/pricing"
-                className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
+                className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors"
               >
                 View packages <ArrowRight className="h-3 w-3" />
               </Link>

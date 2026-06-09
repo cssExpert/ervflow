@@ -73,7 +73,7 @@ const NAV_GROUPS = [
 const Footer = () => {
   return (
     <>
-      <footer className="w-full px-6 dark:border-zinc-800/60 pt-20 pb-10 bg-zinc-100 dark:bg-black backdrop-blur-lg">
+      <footer className="w-full px-6 dark:border-zinc-800/60 pt-20 pb-10 bg-white dark:bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <div className="w-full grid gap-10 md:grid-cols-3">
             <div className="col-span-1 space-y-6">
@@ -86,7 +86,7 @@ const Footer = () => {
                   className="w-8 h-8"
                 />
               </div>
-              <p className="font-sans text-sm text-muted-foreground leading-relaxed max-w-sm mb-6">
+              <p className="font-sans text-sm text-slate-700 dark:text-muted-foreground leading-relaxed max-w-sm mb-6">
                 ERVFlow is a modern all-in-one business operating platform —
                 CRM, CMS, SEO, Payments, Store, Email, and more.
               </p>
@@ -106,7 +106,7 @@ const Footer = () => {
                         <Link
                           href={href}
                           prefetch={false}
-                          className="group relative inline-flex items-center text-xs md:text-sm text-muted-foreground hover:text-primary transition-all duration-300 hover:pl-2.5"
+                          className="group relative inline-flex items-center text-xs md:text-sm text-slate-700 dark:text-muted-foreground hover:text-primary transition-all duration-300 hover:pl-2.5"
                         >
                           <span className="opacity-0 absolute left-0 group-hover:opacity-100 w-1 h-1 rounded-full bg-primary transition-all duration-500 delay-100"></span>
                           {label}
@@ -121,9 +121,9 @@ const Footer = () => {
         </div>
       </footer>
 
-      <div className="w-full mx-auto relative min-h-21.75 border-zinc-300/20 dark:border-zinc-800/60 bg-zinc-200 dark:bg-black">
+      <div className="w-full mx-auto relative min-h-21.75 border-zinc-300/20 dark:border-zinc-800/60 bg-zinc-100 dark:bg-black">
         <div
-          className="relative -bottom-8.5  bg-zinc-200 dark:bg-black text-center uppercase text-[clamp(4rem,-1.5rem+21.5909vw,15.625rem)] leading-none font-black text-transparent font-sans"
+          className="relative -bottom-8.5 bg-zinc-100 dark:bg-black text-center uppercase text-[clamp(4rem,-1.5rem+21.5909vw,15.625rem)] leading-none font-black text-transparent font-sans"
           style={{
             WebkitTextStroke: "1px var(--stroke-color)",
             WebkitTextFillColor: "transparent",
@@ -134,11 +134,11 @@ const Footer = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-black/10 dark:border-zinc-800/60 px-6 py-6 bg-zinc-100 dark:bg-black backdrop-blur-lg">
+      <div className="border-t border-black/10 dark:border-zinc-800/60 px-6 py-6 bg-white dark:bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p
             suppressHydrationWarning
-            className="font-sans text-sm text-muted-foreground leading-relaxed flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0"
+            className="font-sans text-sm text-slate-700 dark:text-muted-foreground leading-relaxed flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0"
           >
             <span suppressHydrationWarning>© {new Date().getFullYear()}</span>
             <span className="font-merienda text-black dark:text-white whitespace-nowrap">
@@ -150,7 +150,7 @@ const Footer = () => {
               Next.js &amp; Tailwind CSS
             </span>
           </p>
-          <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+          <p className="font-sans text-sm text-slate-700 dark:text-muted-foreground leading-relaxed">
             All rights reserved.
           </p>
         </div>

@@ -185,7 +185,7 @@ export default function FAQ() {
         </div>
 
         <p
-          className="mt-10 text-center text-sm text-neutral-600"
+          className="mt-10 text-center text-sm text-neutral-600 dark:text-neutral-400"
           style={fadeStyle(400)}
         >
           Still have questions?{" "}

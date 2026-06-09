@@ -228,12 +228,14 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
 
         <div className="w-full mt-6 grid grid-cols-2 gap-3 text-[10px] text-neutral-500 font-mono border-t border-white/5 pt-4">
           <div className="flex items-center justify-between">
-            <span>Adjust SEO:</span>
+            <label htmlFor="seo-range" className="cursor-pointer">Adjust SEO:</label>
             <input
+              id="seo-range"
               type="range"
               min="50"
               max="100"
               value={lighthouseSEO}
+              aria-label="Adjust SEO score"
               onChange={(e) => {
                 const val = Number(e.target.value);
                 setLighthouseSEO(val);
@@ -243,12 +245,14 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
             />
           </div>
           <div className="flex items-center justify-between">
-            <span>Adjust Access:</span>
+            <label htmlFor="access-range" className="cursor-pointer">Adjust Access:</label>
             <input
+              id="access-range"
               type="range"
               min="50"
               max="100"
               value={lighthouseAccessibility}
+              aria-label="Adjust Accessibility score"
               onChange={(e) => {
                 const val = Number(e.target.value);
                 setLighthouseAccessibility(val);

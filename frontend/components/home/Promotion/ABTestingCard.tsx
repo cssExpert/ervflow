@@ -54,19 +54,19 @@ export default function ABTestingCard({
           <div className="flex items-center gap-3 bg-neutral-900 px-3 py-1 rounded-md border border-white/5">
             <button
               onClick={() => setAbActiveTab("Pages")}
-              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Pages" ? "bg-white/10 text-white" : "text-neutral-500 hover:text-neutral-300"}`}
+              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Pages" ? "bg-white/10 text-white" : "text-neutral-400 hover:text-neutral-200"}`}
             >
               Pages
             </button>
             <button
               onClick={() => setAbActiveTab("Layers")}
-              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Layers" ? "bg-white/10 text-white" : "text-neutral-500 hover:text-neutral-300"}`}
+              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Layers" ? "bg-white/10 text-white" : "text-neutral-400 hover:text-neutral-200"}`}
             >
               Layers
             </button>
             <button
               onClick={() => setAbActiveTab("Assets")}
-              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Assets" ? "bg-white/10 text-white" : "text-neutral-500 hover:text-neutral-300"}`}
+              className={`text-[10px] font-semibold tracking-wider uppercase transition-colors px-1.5 py-0.5 rounded ${abActiveTab === "Assets" ? "bg-white/10 text-white" : "text-neutral-400 hover:text-neutral-200"}`}
             >
               Assets
             </button>
@@ -82,17 +82,17 @@ export default function ABTestingCard({
           <div className="w-1/3 bg-neutral-950 p-3.5 border-r border-white/5 flex flex-col gap-2 font-mono overflow-y-auto">
             {abActiveTab === "Pages" && (
               <>
-                <div className="text-[10px] text-neutral-500 font-semibold mb-1 tracking-wider uppercase">
+                <div className="text-[10px] text-neutral-400 font-semibold mb-1 tracking-wider uppercase">
                   Active Tree
                 </div>
                 <div className="space-y-1 text-[11px]">
                   <div className="flex items-center gap-1.5 text-neutral-300 px-1 py-0.5">
-                    <span className="text-neutral-600">▾</span>{" "}
+                    <span className="text-neutral-400">▾</span>{" "}
                     <span>Home</span>
                   </div>
                   <button
                     onClick={() => setSelectedABVersion("A")}
-                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "A" ? "bg-blue-600/20 text-blue-400 font-bold border-l-2 border-blue-500" : "text-neutral-500 hover:bg-white/5"}`}
+                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "A" ? "bg-blue-600/20 text-blue-400 font-bold border-l-2 border-blue-500" : "text-neutral-400 hover:bg-white/5"}`}
                   >
                     <span>A: Control</span>
                     <span className="text-[9px] bg-neutral-900 border border-white/5 px-1 rounded">
@@ -101,7 +101,7 @@ export default function ABTestingCard({
                   </button>
                   <button
                     onClick={() => setSelectedABVersion("B")}
-                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "B" ? "bg-cyan-600/20 text-cyan-400 font-bold border-l-2 border-cyan-500" : "text-neutral-500 hover:bg-white/5"}`}
+                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "B" ? "bg-cyan-600/20 text-cyan-400 font-bold border-l-2 border-cyan-500" : "text-neutral-400 hover:bg-white/5"}`}
                   >
                     <span>B: Version B</span>
                     <span className="text-[9px] bg-cyan-500/20 text-cyan-400 px-1 rounded">
@@ -110,7 +110,7 @@ export default function ABTestingCard({
                   </button>
                   <button
                     onClick={() => setSelectedABVersion("C")}
-                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "C" ? "bg-purple-600/20 text-purple-400 font-bold border-l-2 border-purple-500" : "text-neutral-500 hover:bg-white/5"}`}
+                    className={`w-full text-left flex items-center justify-between pl-4 pr-1.5 py-1 rounded transition-all ${selectedABVersion === "C" ? "bg-purple-600/20 text-purple-400 font-bold border-l-2 border-purple-500" : "text-neutral-400 hover:bg-white/5"}`}
                   >
                     <span>C: Version C</span>
                     <span className="text-[9px] bg-neutral-900 border border-white/5 px-1 rounded">
@@ -146,7 +146,7 @@ export default function ABTestingCard({
           </div>
 
           <div className="w-2/3 bg-neutral-900 p-4 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex items-center justify-between text-[8px] text-neutral-500 font-mono bg-black/40 px-2 py-1 rounded border border-white/5">
+            <div className="flex items-center justify-between text-[8px] text-neutral-400 font-mono bg-black/40 px-2 py-1 rounded border border-white/5">
               <span className="truncate">
                 https://preview.voiceai.platform/
               </span>
@@ -156,7 +156,7 @@ export default function ABTestingCard({
             </div>
 
             <div className="my-auto space-y-1.5">
-              <div className="text-[10px] text-neutral-500 font-semibold uppercase tracking-wider">
+              <div className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">
                 Dynamic Sandbox Website
               </div>
 
@@ -187,7 +187,7 @@ export default function ABTestingCard({
             </div>
 
             <div className="absolute bottom-2 right-2 bg-neutral-950/90 border border-white/10 px-2 py-1 rounded text-[9px] font-mono flex items-center gap-1.5 shadow-md">
-              <span className="text-neutral-500">Conversion Rate:</span>
+              <span className="text-neutral-400">Conversion Rate:</span>
               {selectedABVersion === "A" && (
                 <span className="text-neutral-400">3.14%</span>
               )}

@@ -180,7 +180,7 @@ const Features = () => {
                       <div className="flex mb-auto md:mb-0 shrink-0 flex-col items-start justify-end text-left gap-8 md:gap-12 p-6 md:p-10 pb-12 md:pb-15 text-white">
                         <div className="flex max-w-70 md:max-w-85 lg:max-w-120 flex-col gap-3 md:gap-4">
                           <span
-                            className={`text-xs uppercase tracking-widest font-semibold opacity-75 ${titleColor}`}
+                            className={`text-xs uppercase tracking-widest font-semibold ${titleColor}`}
                           >
                             {badge}
                           </span>
@@ -189,7 +189,7 @@ const Features = () => {
                           >
                             {title}
                           </h3>
-                          <div className="text-sm md:text-base opacity-90">
+                          <div className="text-sm md:text-base">
                             {desc}
                           </div>
                         </div>

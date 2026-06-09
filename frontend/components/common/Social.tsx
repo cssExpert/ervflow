@@ -6,22 +6,22 @@ import Icon from "@/components/common/Icon";
 
 const socialLinks = [
   {
-    icon: <Icon name="GitHub" size="20" className="w-5 h-5" />,
+    icon: <Icon name="GitHub" size="20" className="w-5 h-5" role="presentation" />,
     href: "https://github.com/cssExpert",
     label: "GitHub",
   },
   {
-    icon: <Icon name="LinkedIn" size="16" className="w-4 h-4" />,
+    icon: <Icon name="LinkedIn" size="16" className="w-4 h-4" role="presentation" />,
     href: "https://www.linkedin.com/in/gr8ravi/",
     label: "LinkedIn",
   },
   {
-    icon: <Icon name="TwitterX" size="20" className="w-5 h-5" />,
+    icon: <Icon name="TwitterX" size="20" className="w-5 h-5" role="presentation" />,
     href: "https://x.com/2n2ngupta",
     label: "Twitter / X",
   },
   {
-    icon: <Mail size={18} />,
+    icon: <Mail size={18} aria-hidden="true" />,
     href: "mailto:ravigupta.exe@gmail.com",
     label: "Email",
   },

@@ -156,7 +156,7 @@ export default function AnalyticsCard({
 
           <div className="grid grid-cols-3 gap-4 mb-8">
             <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-xs text-neutral-500">
+              <div className="flex items-center gap-1.5 text-xs text-neutral-400">
                 <span>Live Visitors</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#1da1f2] inline-block animate-pulse" />
               </div>
@@ -165,13 +165,13 @@ export default function AnalyticsCard({
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-xs text-neutral-500">Unique Visitors</div>
+              <div className="text-xs text-neutral-400">Unique Visitors</div>
               <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-white font-mono">
                 1.7M
               </div>
             </div>
             <div className="space-y-1">
-              <div className="text-xs text-neutral-500">Total Pageviews</div>
+              <div className="text-xs text-neutral-400">Total Pageviews</div>
               <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-white font-mono">
                 3.2M
               </div>
@@ -180,7 +180,7 @@ export default function AnalyticsCard({
         </div>
 
         <div className="relative my-4 grow flex flex-col justify-end min-h-40">
-          <div className="absolute top-0 left-0 text-[11px] text-neutral-600 font-mono">
+          <div className="absolute top-0 left-0 text-[11px] text-neutral-400 font-mono">
             330k
           </div>
 
@@ -306,7 +306,7 @@ export default function AnalyticsCard({
                 bottom: "50px",
               }}
             >
-              <div className="text-[10px] text-neutral-500 mb-1.5">
+              <div className="text-[10px] text-neutral-400 mb-1.5">
                 {graphData[hoverIndex].label}, 2026
               </div>
               <div className="space-y-1">
@@ -344,7 +344,7 @@ export default function AnalyticsCard({
         <div className="mt-6 border-t border-white/5 pt-4">
           <div className="flex items-center justify-between mb-3 text-xs text-neutral-400">
             <span className="font-medium">Sources</span>
-            <span className="text-[10px] text-neutral-500">Referrer</span>
+            <span className="text-[10px] text-neutral-400">Referrer</span>
           </div>
           <div className="space-y-1.5">
             {referrers.map((ref, idx) => (

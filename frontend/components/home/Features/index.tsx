@@ -29,7 +29,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_01.png",
+      image: "/images/Features/Features_01.jpg",
     },
     {
       color: "#FFD104",
@@ -51,7 +51,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_02.png",
+      image: "/images/Features/Features_02.jpg",
     },
     {
       color: "#8A6EE4",
@@ -73,7 +73,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_03.png",
+      image: "/images/Features/Features_03.jpg",
     },
     {
       color: "#F76235",
@@ -95,7 +95,7 @@ const Features = () => {
           </Link>
         </div>
       ),
-      image: "/images/Features/Features_04.png",
+      image: "/images/Features/Features_04.jpg",
     },
   ];
 
@@ -201,10 +201,11 @@ const Features = () => {
                           <Image
                             src={image}
                             alt={title}
-                            priority
+                            priority={index === 0}
+                            loading={index === 0 ? "eager" : "lazy"}
                             fill
                             className="object-cover object-top-left inset-0"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                           />
                         </div>
                       </div>

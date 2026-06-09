@@ -1,12 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Hero from "@/components/home/Hero";
 import Features from "@/components/home/Features";
-import Testimonials from "@/components/home/Testimonials";
-import Promotion from "@/components/home/Promotion";
-import FAQ from "@/components/home/FAQ";
-import Resources from "@/components/home/Resources";
-import FreeTrial from "@/components/common/FreeTrial";
+
+const Testimonials = dynamic(() => import("@/components/home/Testimonials"));
+const Promotion = dynamic(() => import("@/components/home/Promotion"));
+const Resources = dynamic(() => import("@/components/home/Resources"));
+const FAQ = dynamic(() => import("@/components/home/FAQ"));
+const FreeTrial = dynamic(() => import("@/components/common/FreeTrial"));
 
 export default function HomePage() {
   return (

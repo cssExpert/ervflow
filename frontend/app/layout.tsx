@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 
-const interFont = Inter({ subsets: ["latin"] });
+const interFont = Inter({ subsets: ["latin"], display: "swap" });
 const merienda = Merienda({
   subsets: ["latin"],
   variable: "--font-merienda",
@@ -91,7 +91,7 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         interFont.className,
-        merienda.className,
+        merienda.variable,
       )}
       suppressHydrationWarning
     >

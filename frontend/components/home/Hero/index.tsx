@@ -79,16 +79,13 @@ const Hero = () => {
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               className="relative inline-flex rounded-full p-[2.5px] overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
             >
-              <motion.div
-                className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
+              {/* CSS-animated conic gradient border — avoids Framer Motion JS ticker */}
+              <span
+                className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none -translate-x-1/2 -translate-y-1/2 animate-spin-slow"
                 style={{
-                  x: "-50%",
-                  y: "-50%",
                   background:
                     "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
                 }}
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
               />
               <div className="relative z-10 flex items-center px-8 py-3.5 rounded-full text-base text-zinc-400 bg-black border border-zinc-900/60">
                 <span className="font-bold text-primary-300 hover:text-primary-500 tracking-tight">

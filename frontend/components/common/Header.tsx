@@ -12,7 +12,8 @@ import Social from "./Social";
 const Header = () => {
   const [sticky, setSticky] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.replace(/\/$/, "") || "/";
   const handleStickyNavbar = () => {
     if (window.scrollY >= 80) {
       setSticky(true);

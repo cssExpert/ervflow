@@ -483,9 +483,27 @@ export default function PricingPage() {
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
         aria-hidden="true"
       >
-        <div className="absolute -top-40 left-1/2 h-125 w-175 -translate-x-1/2 rounded-full bg-primary-500/8 blur-[120px]" />
-        <div className="absolute -top-10 -right-20 h-96 w-96 rounded-full bg-violet-500/8 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-blue-500/6 blur-[100px]" />
+        <div
+          className="absolute -top-40 left-1/2 -translate-x-1/2 w-175 h-125"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(247,98,53,0.125) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute -top-10 -right-20 w-96 h-96"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(139,92,246,0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-80 h-80"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(59,130,246,0.06) 0%, transparent 70%)",
+          }}
+        />
       </div>
 
       {/* ── Hero ─────────────────────────────────────────────── */}

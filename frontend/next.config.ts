@@ -2,21 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  trailingSlash: true,
   images: {
-    // formats: ["image/avif", "image/webp"],
-    // deviceSizes: [390, 768, 1024, 1280, 1440],
-    // minimumCacheTTL: 86400,
     unoptimized: true,
   },
-  // Strip unused locale / i18n overhead
   compress: true,
-  // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
   experimental: {
-    optimizeCss: true,
-    // Inline critical fonts to avoid render-blocking
+    // optimizeCss removed — critters strips CSS on inner pages with static export
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 };

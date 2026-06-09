@@ -41,9 +41,9 @@ const Hero = () => {
       >
         <motion.div
           variants={headerItemVariants}
-          className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-xs font-semibold px-4.5 py-3 rounded-full mb-8 uppercase tracking-widest"
+          className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-300 text-[10px] md:text-xs font-semibold px-4.5 py-3 rounded-full mb-8 uppercase tracking-widest"
         >
-          <Zap className="w-4 h-4 text-primary-500" />
+          <Zap className="hidden sm:block w-4 h-4 text-primary-500" />
           Next.js 15 · Tailwind · dnd-kit · Framer Motion
         </motion.div>
 

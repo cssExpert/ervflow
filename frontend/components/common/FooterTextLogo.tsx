@@ -14,12 +14,16 @@ function FooterTextLogo() {
   // Updated with your exact values
   const y = useTransform(scrollYProgress, [1, 1], ["10%", "-46.5%"]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.75, 1.05]);
-  const opacity = useTransform(scrollYProgress, [1, 1, 1], [0.25, 0.5, 1]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0.25, 0.75, 1],
+    [0.25, 0.5, 1],
+  );
 
   return (
     <div
       ref={containerRef}
-      className="w-full bg-primary overflow-hidden relative flex items-center justify-center z-0 pt-10"
+      className="w-full bg-black dark:bg-primary overflow-hidden relative flex items-center justify-center z-0 pt-10"
       style={{
         height: "25vw",
         minHeight: "100px",
@@ -27,7 +31,7 @@ function FooterTextLogo() {
       }}
     >
       <motion.div
-        className="text-black font-black select-none pointer-events-none tracking-tighter absolute"
+        className="text-white dark:text-black font-black select-none pointer-events-none tracking-tighter absolute transition-colors duration-300"
         style={{
           // PERFECT CENTERING COMBINATION:
           top: "60%",

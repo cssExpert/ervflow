@@ -154,7 +154,7 @@ const Header = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 flex md:hidden items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
               aria-label="Toggle Menu"
               suppressHydrationWarning
             >

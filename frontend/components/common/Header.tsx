@@ -41,7 +41,7 @@ const Header = () => {
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white dark:text-black transition-all"
+            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-black dark:text-white transition-all"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
               <Icon

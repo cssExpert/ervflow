@@ -1,11 +1,12 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import Icon from "@/components/common/Icon";
 import Social from "./Social";
+import FooterTextLogo from "./FooterTextLogo";
 
 const companyLinks = [
   {
@@ -73,7 +74,7 @@ const NAV_GROUPS = [
 const Footer = () => {
   return (
     <>
-      <footer className="w-full px-6 dark:border-zinc-800/60 pt-20 pb-10 bg-white dark:bg-black backdrop-blur-lg">
+      <footer className="w-full px-6 dark:border-zinc-800/60 py-20 bg-white dark:bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <div className="w-full grid gap-10 md:grid-cols-3">
             <div className="col-span-1 space-y-6">
@@ -121,7 +122,7 @@ const Footer = () => {
         </div>
       </footer>
 
-      <div className="w-full mx-auto relative min-h-21.75 border-zinc-300/20 dark:border-zinc-800/60 bg-zinc-100 dark:bg-black">
+      {/* <div className="w-full mx-auto relative min-h-21.75 border-zinc-300/20 dark:border-zinc-800/60 bg-zinc-100 dark:bg-black">
         <div
           className="relative -bottom-8.5 bg-zinc-100 dark:bg-black text-center uppercase text-[clamp(4rem,-1.5rem+21.5909vw,15.625rem)] leading-none font-black text-transparent font-sans"
           style={{
@@ -131,10 +132,10 @@ const Footer = () => {
         >
           ERVFlow
         </div>
-      </div>
+      </div> */}
 
       {/* Bottom bar */}
-      <div className="border-t border-black/10 dark:border-zinc-800/60 px-6 py-6 bg-white dark:bg-black backdrop-blur-lg">
+      <div className="border-t border-black/10 dark:border-zinc-800/60 px-6 py-4.5 md:py-6 bg-white dark:bg-black backdrop-blur-lg">
         <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p
             suppressHydrationWarning
@@ -155,6 +156,8 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      <FooterTextLogo />
     </>
   );
 };

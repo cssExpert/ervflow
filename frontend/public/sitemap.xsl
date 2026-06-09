@@ -13,9 +13,16 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta name="robots" content="noindex, follow"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"  crossorigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&amp;display=swap" rel="stylesheet" />
         <title>Sitemap — ERVFlow</title>
         <style>
           *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+          .font-merienda {
+            font-family: "Merienda", cursive;
+          }
 
           body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -51,8 +58,8 @@
           }
 
           .logo-mark svg {
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             fill: white;
           }
 
@@ -61,6 +68,9 @@
             font-weight: 700;
             color: #fff;
             letter-spacing: -0.02em;
+          }
+          .header-text h1 span.text-primary {
+            color: #f76235 !important;
           }
 
           .header-text p {
@@ -169,9 +179,9 @@
           }
 
           .url-icon svg {
-            width: 14px;
-            height: 14px;
-            stroke: #71717a;
+            width: 20px;
+            height: 20px;
+            stroke: #f76235;
           }
 
           .url-link {
@@ -248,11 +258,14 @@
           <div class="header">
             <div class="logo-mark">
               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                <path
+                  fill="currentColor"
+                  d="M11.982 0c.174.034 3.143 3.235 3.533 3.649.27.287.863 1.04 1.065 1.402.418.735.647 1.564.667 2.411.035 1.558-.443 2.446-1.441 3.573-.815.92-1.644 1.742-2.519 2.6q-.64.632-1.254 1.29c-.19-.147-.354-.355-.512-.497-3.373-3.031 1.23-3.929 1.909-6.63.22-.876-.872-2.041-1.395-2.74l-.14.129c-.103.098-.21.207-.309.31-1.108 1.142-2.267 2.232-3.369 3.38-.478.498-1.022 1.015-1.367 1.622-.454.8-.606 1.964-.153 2.798.412.647 1.154 1.368 1.693 1.931 1.195 1.25 2.431 2.455 3.62 3.714 1.638-1.707 3.354-3.411 5.015-5.1 2.01-2.111 2.547-3.006 2.539-5.975.247.324.392.62.575.978.51.963.812 1.822.856 2.926.106 2.652-1.391 4.343-3.107 6.136l-1.48 1.544A425 425 0 0 0 11.996 24c-.466-.569-1.459-1.526-2.001-2.083l-3.344-3.463c-1.762-1.806-3.51-3.477-3.643-6.181-.167-3.374 2.47-5.533 4.597-7.73l2.32-2.41c.693-.713 1.383-1.4 2.057-2.133"
+                />
               </svg>
             </div>
             <div class="header-text">
-              <h1>ERVFlow Sitemap</h1>
+              <h1><span class="font-merienda">ERV<span class="text-primary">Flow</span></span> Sitemap</h1>
               <p>All publicly indexed pages — updated regularly</p>
             </div>
           </div>
@@ -292,10 +305,7 @@
                     <td>
                       <div class="url-cell">
                         <div class="url-icon">
-                          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mouse-pointer-click-icon lucide-mouse-pointer-click"><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg>
                         </div>
                         <a class="url-link" href="{sitemap:loc}">
                           <xsl:value-of select="sitemap:loc"/>

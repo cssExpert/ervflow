@@ -64,6 +64,7 @@ const Header = () => {
                 <Link
                   key={link.href}
                   href={link.href}
+                  prefetch={false}
                   className={`relative px-4 py-2 text-sm font-sans font-semibold tracking-wide transition-colors duration-300 cursor-pointer ${
                     isActive
                       ? "text-primary"

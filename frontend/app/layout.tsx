@@ -15,18 +15,66 @@ const merienda = Merienda({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ervflow.com"),
   title: "ERVFlow — Build Beautiful Websites",
   description:
-    "A powerful drag-and-drop visual website builder with Tailwind CSS",
+    "ERVFlow is a modern AI-powered visual website builder with drag-and-drop editing, Tailwind CSS support, automation workflows, CMS tools, and Next.js-powered performance.",
+  keywords: [
+    "ERVFlow",
+    "website builder",
+    "AI website builder",
+    "visual editor",
+    "drag and drop builder",
+    "Next.js builder",
+    "Tailwind CSS editor",
+    "React website builder",
+    "TypeScript website builder",
+    "no-code platform",
+    "low-code platform",
+    "landing page builder",
+    "CMS platform",
+    "AI design platform",
+    "responsive website builder",
+    "workflow automation",
+    "design to code",
+    "frontend builder",
+    "visual development platform",
+    "website automation",
+    "website publishing platform",
+    "modern SaaS platform",
+    "smart CMS",
+    "online web editor",
+  ],
+  authors: [{ name: "ERVFlow", url: "https://ervflow.com" }],
+  creator: "ERVFlow",
+  publisher: "ERVFlow",
+  robots: { index: true, follow: true },
   openGraph: {
     title: "ERVFlow — Build Beautiful Websites",
     description:
-      "A powerful drag-and-drop visual website builder with Tailwind CSS",
+      "AI-powered visual website builder for modern teams using Next.js, Tailwind CSS, automation workflows, and drag-and-drop editing.",
+    url: "https://ervflow.com",
+    siteName: "ERVFlow",
+    images: [
+      { url: "/og-image.png", width: 1200, height: 630, alt: "ERVFlow" },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ERVFlow — Build Beautiful Websites",
+    description:
+      "AI-powered drag-and-drop visual website builder powered by Next.js and Tailwind CSS.",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
-  robots: { index: true, follow: true },
+  alternates: { canonical: "https://ervflow.com" },
+  category: "technology",
 };
 
 export default function RootLayout({

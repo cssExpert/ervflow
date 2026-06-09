@@ -1,7 +1,3 @@
-# *
-# * ERVFlow Robots Configuration
-# *
-
 User-agent: *
 Allow: /
 
@@ -15,13 +11,4 @@ Disallow: /settings/
 Disallow: /auth/
 Disallow: /private/
 
-# Allow assets
-Allow: /images/
-Allow: /fonts/
-Allow: /public/
-
-# Sitemap
 Sitemap: https://ervflow.com/sitemap.xml
-
-# Crawl delay (optional)
-Crawl-delay: 2

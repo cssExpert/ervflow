@@ -23,6 +23,7 @@ function FooterTextLogo() {
   return (
     <div
       ref={containerRef}
+      aria-hidden="true"
       className="w-full bg-black dark:bg-primary overflow-hidden relative flex items-center justify-center z-0 pt-10"
       style={{
         height: "25vw",
@@ -31,6 +32,7 @@ function FooterTextLogo() {
       }}
     >
       <motion.div
+        aria-hidden="true"
         className="text-white dark:text-black font-black select-none pointer-events-none tracking-tighter absolute transition-colors duration-300"
         style={{
           // PERFECT CENTERING COMBINATION:

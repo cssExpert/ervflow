@@ -78,8 +78,12 @@
   }
 
   @keyframes spin-slow {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to   { transform: translate(-50%, -50%) rotate(360deg); }
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
   }
 
   /* will-change promotes to own GPU layer — compositor-only, no repaint */
@@ -90,8 +94,14 @@
 
   /* Hero CSS entrance animations — replaces Framer Motion on critical path */
   @keyframes hero-fade-up {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .hero-item {
@@ -104,15 +114,28 @@
     transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
   }
-  .cta-btn:hover  { transform: scale(1.03) translateY(-2px); }
-  .cta-btn:active { transform: scale(0.97); }
+  .cta-btn:hover {
+    transform: scale(1.03) translateY(-2px);
+  }
+  .cta-btn:active {
+    transform: scale(0.97);
+  }
 
   /* Respect OS reduced-motion preference */
   @media (prefers-reduced-motion: reduce) {
-    .hero-item       { animation: none; opacity: 1; }
-    .animate-spin-slow  { animation: none; }
-    .animate-gradient-flow { animation: none; }
-    .cta-btn         { transition: none; }
+    .hero-item {
+      animation: none;
+      opacity: 1;
+    }
+    .animate-spin-slow {
+      animation: none;
+    }
+    .animate-gradient-flow {
+      animation: none;
+    }
+    .cta-btn {
+      transition: none;
+    }
   }
 
   /* Subtle background grid pattern for visual depth */

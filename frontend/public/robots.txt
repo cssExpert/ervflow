@@ -1,4 +1,3 @@
-```txt
 # *
 # * ERVFlow Robots Configuration
 # *
@@ -26,4 +25,3 @@ Sitemap: https://ervflow.com/sitemap.xml
 
 # Crawl delay (optional)
 Crawl-delay: 2
-```

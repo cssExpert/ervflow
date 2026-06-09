@@ -124,13 +124,14 @@ const Header = () => {
               </motion.div>
             </Link>
 
+            {/* Theme Switcher */}
             <button
               suppressHydrationWarning
               onClick={() =>
                 setTheme(resolvedTheme === "dark" ? "light" : "dark")
               }
               aria-label="Toggle Theme"
-              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -153,7 +154,7 @@ const Header = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 cursor-pointer lg:hidden flex items-center justify-center transition-all duration-500 bg-black light:bg-dark/10 rounded-md border border-zinc-800 text-muted-foreground hover:bg-primary hover:text-white"
+              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
               aria-label="Toggle Menu"
               suppressHydrationWarning
             >
@@ -211,7 +212,7 @@ const Header = () => {
                 </motion.a>
               ))}
             </nav>
-            <div className="mt-auto px-6 pb-8">
+            <div className="mt-auto px-6 pb-8 space-y-5">
               {/* Social icons */}
               <Social />
               <Link

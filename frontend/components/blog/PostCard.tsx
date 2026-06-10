@@ -31,10 +31,6 @@ function Cover({
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        <span className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent"></span>
-        <span className="absolute bottom-1 left-4 font-black text-4xl sm:text-5xl text-white/15 select-none tracking-tight whitespace-nowrap">
-          {post.category}
-        </span>
       </div>
     );
   }

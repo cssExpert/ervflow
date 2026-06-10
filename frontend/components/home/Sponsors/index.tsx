@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 const SPONSOR_LOGOS = [
-  { src: "/images/Sponsors/logo-pink1.png", alt: "Partner logo 1" },
-  { src: "/images/Sponsors/logo-pink2.png", alt: "Partner logo 2" },
-  { src: "/images/Sponsors/logo-pink3.png", alt: "Partner logo 3" },
-  { src: "/images/Sponsors/logo-pink4.png", alt: "Partner logo 4" },
-  { src: "/images/Sponsors/logo-pink5.png", alt: "Partner logo 5" },
-  { src: "/images/Sponsors/logo-pink6.png", alt: "Partner logo 6" },
+  { src: "/images/Sponsors/logo-light1.png", alt: "Partner logo 1" },
+  { src: "/images/Sponsors/logo-light2.png", alt: "Partner logo 2" },
+  { src: "/images/Sponsors/logo-light3.png", alt: "Partner logo 3" },
+  { src: "/images/Sponsors/logo-light4.png", alt: "Partner logo 4" },
+  { src: "/images/Sponsors/logo-light5.png", alt: "Partner logo 5" },
+  { src: "/images/Sponsors/logo-light6.png", alt: "Partner logo 6" },
 ];
 
 function SponsorLogo({
@@ -35,7 +35,7 @@ function SponsorLogo({
         src={src}
         alt={isDuplicate ? "" : alt}
         fill
-        className={`object-contain transition-opacity duration-500 ${
+        className={`object-contain transition-all duration-500 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
         sizes="100px"
@@ -47,10 +47,10 @@ function SponsorLogo({
 
 export default function Sponsors() {
   return (
-    <section className="py-20 md:py-30 px-6 text-start">
+    <section className="py-20 md:py-30 px-6 text-center md:text-start">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-end gap-8 md:gap-15 items-center border-y border-border py-10">
-          <div className="w-full max-w-[220px] flex items-center">
+          <div className="w-full max-w-[220px] flex items-center justify-center md:justify-start">
             <h3 className="text-black dark:text-white text-lg md:text-xl font-bold whitespace-nowrap">
               Investment &amp;
               <br />

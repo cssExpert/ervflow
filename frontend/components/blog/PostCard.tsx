@@ -25,7 +25,7 @@ function Cover({
       <div className={`relative overflow-hidden ${className}`}>
         <Image
           src={post.featuredImage}
-          alt=""
+          alt={`${post.title} — featured image`}
           fill
           priority={priority}
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"

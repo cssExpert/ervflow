@@ -14,10 +14,13 @@ function FooterTextLogo() {
   // Updated with your exact values
   const y = useTransform(scrollYProgress, [1, 1], ["10%", "-46.5%"]);
   const scale = useTransform(scrollYProgress, [0, 1], [0.75, 1.05]);
+  // Floor of 0.6 keeps the fade-in while staying above the 3:1 contrast
+  // ratio required for large text in both modes (white/black @60% ≈ 7.4:1
+  // on black, ≈ 3.8:1 on primary)
   const opacity = useTransform(
     scrollYProgress,
     [0.25, 0.75, 1],
-    [0.25, 0.5, 1],
+    [0.6, 0.8, 1],
   );
 
   return (

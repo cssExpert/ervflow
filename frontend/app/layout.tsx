@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Merienda } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -97,11 +98,9 @@ export default function RootLayout({
     >
       <head>
         {/* Runs before React hydration to prevent flash of wrong theme */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light')document.documentElement.classList.add('dark')}catch(e){}})()`,
-          }}
-        />
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var t=localStorage.getItem('theme');if(t!=='light')document.documentElement.classList.add('dark')}catch(e){}})()`}
+        </Script>
       </head>
       <body className="h-full">
         <ThemeProvider>

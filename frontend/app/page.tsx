@@ -9,6 +9,7 @@ const Promotion = dynamic(() => import("@/components/home/Promotion"));
 const Resources = dynamic(() => import("@/components/home/Resources"));
 const FAQ = dynamic(() => import("@/components/home/FAQ"));
 const FreeTrial = dynamic(() => import("@/components/common/FreeTrial"));
+const Sponsors = dynamic(() => import("@/components/home/Sponsors"));
 
 export default function HomePage() {
   return (
@@ -48,6 +49,7 @@ export default function HomePage() {
       </div>
 
       <Hero />
+      <Sponsors />
       <Features />
       <Testimonials />
       <Promotion />

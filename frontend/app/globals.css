@@ -121,11 +121,28 @@
     transform: scale(0.97);
   }
 
+  /* Sponsors logo marquee — track rendered twice, -50% loops seamlessly */
+  @keyframes sponsors-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .sponsors-track {
+    animation: sponsors-marquee 25s linear infinite;
+  }
+
   /* Respect OS reduced-motion preference */
   @media (prefers-reduced-motion: reduce) {
     .hero-item {
       animation: none;
       opacity: 1;
+    }
+    .sponsors-track {
+      animation: none;
     }
     .animate-spin-slow {
       animation: none;

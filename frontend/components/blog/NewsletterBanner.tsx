@@ -38,7 +38,7 @@ export default function NewsletterBanner() {
                 e.preventDefault();
                 setSubmitted(true);
               }}
-              className="flex flex-col sm:flex-row gap-2 sm:gap-0 sm:bg-white sm:rounded-full p-1.5 md:p-2"
+              className="flex flex-col sm:flex-row gap-2 sm:gap-0 sm:bg-white sm:rounded-sm p-1.5 md:p-2"
             >
               <label htmlFor="newsletter-email" className="sr-only">
                 Email address
@@ -52,7 +52,7 @@ export default function NewsletterBanner() {
               />
               <button
                 type="submit"
-                className="px-6 py-2.5 md:py-3.5 md:px-8 text-sm md:text-base font-bold text-white bg-zinc-900 hover:bg-primary shadow-md rounded-full transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="px-6 py-2.5 md:py-3.5 md:px-8 text-sm md:text-base font-bold text-white bg-zinc-900 hover:bg-primary shadow-md rounded-sm transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 Sign Up
               </button>

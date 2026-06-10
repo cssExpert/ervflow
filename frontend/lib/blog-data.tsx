@@ -30,7 +30,7 @@ export const POSTS: Post[] = [
   {
     id: "nextjs-perf",
     featuredImage:
-      "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.png",
+      "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.webp",
     title: "Building Blazing-Fast Next.js 15 Apps",
     excerpt:
       "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
@@ -86,7 +86,7 @@ export const POSTS: Post[] = [
   },
   {
     id: "ai-ui",
-    featuredImage: "/images/Blogs/ERVFlow-0_EjoXjdr_rQouVfTz.jpg",
+    featuredImage: "/images/Blogs/ERVFlow-AI-Driven-UI-Generation.webp",
     title: "AI-Driven UI Generation",
     excerpt:
       "LLMs can now produce production-quality component code. Here's the workflow we use at ERVFlow.",
@@ -121,7 +121,7 @@ export const POSTS: Post[] = [
   },
   {
     id: "design-tokens",
-    featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.png",
+    featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.webp",
     title: "Design Tokens at Scale",
     excerpt:
       "How to architect a token system that survives a 10x team and a brand refresh.",
@@ -152,7 +152,7 @@ export const POSTS: Post[] = [
   {
     id: "typescript-patterns",
     featuredImage:
-      "/images/Blogs/ERVFlow-TypeScript-Patterns-Youll-Actually-Use.png",
+      "/images/Blogs/ERVFlow-TypeScript-Patterns-Youll-Actually-Use.webp",
     title: "TypeScript Patterns You'll Actually Use",
     excerpt:
       "Skip the theory. These five patterns have saved our codebase from 90% of runtime errors.",
@@ -223,7 +223,7 @@ export const POSTS: Post[] = [
   {
     id: "devops-scale",
     featuredImage:
-      "/images/Blogs/ERVFlow-Zero-Downtime-Deploys-On-A-Budget.jpg",
+      "/images/Blogs/ERVFlow-Zero-Downtime-Deploys-On-A-Budget.webp",
     title: "Zero-Downtime Deploys on a Budget",
     excerpt:
       "CI/CD, blue-green deployments, and health checks — without the enterprise price tag.",

@@ -29,7 +29,8 @@ export interface Post {
 export const POSTS: Post[] = [
   {
     id: "nextjs-perf",
-    featuredImage: "/images/Blogs/ERVFlow-1_ZlCsH4m7UvjPtkOQjBlL4A.png",
+    featuredImage:
+      "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.png",
     title: "Building Blazing-Fast Next.js 15 Apps",
     excerpt:
       "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
@@ -120,7 +121,7 @@ export const POSTS: Post[] = [
   },
   {
     id: "design-tokens",
-    featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.jpg",
+    featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.png",
     title: "Design Tokens at Scale",
     excerpt:
       "How to architect a token system that survives a 10x team and a brand refresh.",

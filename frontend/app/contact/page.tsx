@@ -5,6 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import { Mail, MapPin, Clock, Send, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Social from "@/components/common/Social";
+import GlowBlob from "@/components/common/GlowBlob";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -44,7 +45,9 @@ function InfoCard({
         <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 dark:text-neutral-400">
           {label}
         </p>
-        <p className="mt-1 text-sm font-medium text-slate-900 dark:text-white">{value}</p>
+        <p className="mt-1 text-sm font-medium text-slate-900 dark:text-white">
+          {value}
+        </p>
       </div>
     </div>
   );
@@ -128,33 +131,8 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen relative px-6 overflow-hidden bg-white dark:bg-black text-slate-900 dark:text-white z-2">
-      {/* Ambient glows */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-        aria-hidden
-      >
-        <div
-          className="absolute -top-40 left-1/2 -translate-x-1/2 w-175 h-120"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(247,98,53,0.125) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute top-1/3 -right-32 w-80 h-80"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(139,92,246,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 -left-20 w-96 h-96"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(59,130,246,0.06) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+      {/* Background glows */}
+      <GlowBlob />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 text-center">
@@ -274,19 +252,35 @@ export default function ContactPage() {
                 required
                 className={`${inputClass} cursor-pointer`}
               >
-                <option value="" disabled className="bg-white dark:bg-neutral-900">
+                <option
+                  value=""
+                  disabled
+                  className="bg-white dark:bg-neutral-900"
+                >
                   Select a topic…
                 </option>
-                <option value="project" className="bg-white dark:bg-neutral-900">
+                <option
+                  value="project"
+                  className="bg-white dark:bg-neutral-900"
+                >
                   New project
                 </option>
-                <option value="freelance" className="bg-white dark:bg-neutral-900">
+                <option
+                  value="freelance"
+                  className="bg-white dark:bg-neutral-900"
+                >
                   Freelance inquiry
                 </option>
-                <option value="partnership" className="bg-white dark:bg-neutral-900">
+                <option
+                  value="partnership"
+                  className="bg-white dark:bg-neutral-900"
+                >
                   Partnership
                 </option>
-                <option value="support" className="bg-white dark:bg-neutral-900">
+                <option
+                  value="support"
+                  className="bg-white dark:bg-neutral-900"
+                >
                   Support
                 </option>
                 <option value="other" className="bg-white dark:bg-neutral-900">

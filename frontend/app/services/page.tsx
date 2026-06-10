@@ -21,6 +21,7 @@ import {
 import Link from "next/link";
 import SectionReady from "@/components/common/SectionReady";
 import { useTheme } from "@/components/ThemeProvider";
+import GlowBlob from "@/components/common/GlowBlob";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -273,33 +274,8 @@ export default function ServicesPage() {
 
   return (
     <main className="min-h-screen relative px-6 overflow-hidden bg-white dark:bg-black text-slate-800 dark:text-white z-2">
-      {/* Ambient glows */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-        aria-hidden
-      >
-        <div
-          className="absolute -top-40 left-1/2 -translate-x-1/2 w-175 h-120"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(247,98,53,0.125) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute top-1/3 -right-32 w-80 h-80"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(139,92,246,0.08) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 -left-20 w-96 h-96"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(59,130,246,0.06) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+      {/* Background glows */}
+      <GlowBlob />
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-50 md:pt-70 pb-16 text-center">

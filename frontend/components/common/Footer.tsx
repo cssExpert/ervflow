@@ -36,7 +36,7 @@ const productLinks = [
 
 const resourcesLinks = [
   {
-    href: "/",
+    href: "/blog",
     label: "Blog",
   },
   {

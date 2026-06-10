@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Clock } from "lucide-react";
+import { MoveRight, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog-data";
 import Icon from "@/components/common/Icon";
 
@@ -9,8 +10,31 @@ export type PostCardVariant = "featured" | "half" | "third";
 
 const spring = { type: "spring", damping: 30, stiffness: 300 } as const;
 
-/* Gradient cover art — stands in for a post thumbnail */
-function Cover({ post, className }: { post: Post; className: string }) {
+/* Post thumbnail — featured image when set, gradient art as fallback */
+function Cover({
+  post,
+  className,
+  priority = false,
+}: {
+  post: Post;
+  className: string;
+  priority?: boolean;
+}) {
+  if (post.featuredImage) {
+    return (
+      <div className={`relative overflow-hidden ${className}`}>
+        <Image
+          src={post.featuredImage}
+          alt=""
+          fill
+          priority={priority}
+          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`relative overflow-hidden bg-linear-to-br ${post.gradient} ${className}`}
@@ -80,9 +104,9 @@ function AuthorChip({ post }: { post: Post }) {
 
 function ReadMore() {
   return (
-    <span className="inline-flex items-center gap-1.5 px-5 py-2 text-sm font-bold rounded-full border border-black/10 dark:border-white/15 text-zinc-700 dark:text-neutral-200 group-hover:bg-primary-600 group-hover:border-primary-600 group-hover:text-white transition-colors duration-200 flex-shrink-0">
+    <span className="inline-flex items-center gap-1.5 px-4 py-2.5 text-sm font-bold rounded-full border border-black/10 dark:border-white/15 text-zinc-700 dark:text-neutral-200 group-hover:bg-primary-500 group-hover:border-primary-500 group-hover:text-white transition-colors duration-200 flex-shrink-0">
       Read More
-      <ArrowRight size={14} aria-hidden="true" />
+      <MoveRight size={14} aria-hidden="true" />
     </span>
   );
 }
@@ -118,11 +142,16 @@ export default function PostCard({ post, index, variant, onSelect }: Props) {
           bg-white dark:bg-white/3
           border border-black/8 dark:border-white/8
           shadow-xs hover:shadow-xs transition-shadow duration-300"
+        style={{ borderRadius: 16 }}
         transition={spring}
       >
         {isFeatured ? (
           <div className="flex flex-col lg:flex-row flex-1">
-            <Cover post={post} className="h-64 md:h-80 lg:h-auto lg:w-1/2" />
+            <Cover
+              post={post}
+              priority
+              className="h-65 md:h-85 lg:h-auto lg:w-1/2"
+            />
             <div className="flex flex-col flex-1 p-6 sm:p-8 lg:p-12">
               <MetaRow post={post} />
               <motion.h2
@@ -146,7 +175,7 @@ export default function PostCard({ post, index, variant, onSelect }: Props) {
           <>
             <Cover
               post={post}
-              className={isHalf ? "h-56 md:h-64" : "h-44 md:h-48"}
+              className={isHalf ? "h-60 md:h-75" : "h-50 md:h-60"}
             />
             <div className="flex flex-col flex-1 p-6">
               <MetaRow post={post} />

@@ -21,6 +21,7 @@ export interface Post {
   readTime: string;
   author: string;
   authorRole: string;
+  featuredImage: string;
   tags: string[];
   size: PostSize;
 }
@@ -28,19 +29,46 @@ export interface Post {
 export const POSTS: Post[] = [
   {
     id: "nextjs-perf",
+    featuredImage: "/images/Blogs/ERVFlow-1_ZlCsH4m7UvjPtkOQjBlL4A.png",
     title: "Building Blazing-Fast Next.js 15 Apps",
-    excerpt: "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
+    excerpt:
+      "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
     sections: [
       { type: "h2", text: "The New Caching Model" },
-      { type: "p", text: "Next.js 15 fundamentally rethinks caching. Gone are the days of aggressive automatic caching — now you opt in explicitly, giving you predictable, understandable behavior." },
-      { type: "code", text: "const data = await fetch('/api/posts', {\n  cache: 'force-cache',\n  next: { revalidate: 3600 }\n});" },
+      {
+        type: "p",
+        text: "Next.js 15 fundamentally rethinks caching. Gone are the days of aggressive automatic caching — now you opt in explicitly, giving you predictable, understandable behavior.",
+      },
+      {
+        type: "code",
+        text: "const data = await fetch('/api/posts', {\n  cache: 'force-cache',\n  next: { revalidate: 3600 }\n});",
+      },
       { type: "h2", text: "Server Components First" },
-      { type: "p", text: "Moving data fetching to the server eliminates client-side waterfalls. Each Server Component fetches its own data in parallel, reducing total load time dramatically." },
+      {
+        type: "p",
+        text: "Moving data fetching to the server eliminates client-side waterfalls. Each Server Component fetches its own data in parallel, reducing total load time dramatically.",
+      },
       { type: "h2", text: "Partial Prerendering" },
-      { type: "p", text: "PPR lets you mix static shells with dynamic islands on the same page — the shell is served from the CDN in milliseconds while dynamic content streams in behind it." },
-      { type: "quote", text: "\"Ship the shell, stream the rest.\" — The PPR mantra." },
+      {
+        type: "p",
+        text: "PPR lets you mix static shells with dynamic islands on the same page — the shell is served from the CDN in milliseconds while dynamic content streams in behind it.",
+      },
+      {
+        type: "quote",
+        text: '"Ship the shell, stream the rest." — The PPR mantra.',
+      },
       { type: "h2", text: "Practical Checklist" },
-      { type: "ul", text: "", items: ["Use Server Components for all data fetching", "Reserve Client Components for interactivity only", "Enable `experimental.ppr` in next.config.ts", "Profile with Chrome DevTools → Performance panel", "Set correct Cache-Control headers on the edge"] },
+      {
+        type: "ul",
+        text: "",
+        items: [
+          "Use Server Components for all data fetching",
+          "Reserve Client Components for interactivity only",
+          "Enable `experimental.ppr` in next.config.ts",
+          "Profile with Chrome DevTools → Performance panel",
+          "Set correct Cache-Control headers on the edge",
+        ],
+      },
     ],
     category: "Performance",
     categoryText: "text-blue-600 dark:text-blue-400",
@@ -57,14 +85,25 @@ export const POSTS: Post[] = [
   },
   {
     id: "ai-ui",
+    featuredImage: "/images/Blogs/ERVFlow-0_EjoXjdr_rQouVfTz.jpg",
     title: "AI-Driven UI Generation",
-    excerpt: "LLMs can now produce production-quality component code. Here's the workflow we use at ERVFlow.",
+    excerpt:
+      "LLMs can now produce production-quality component code. Here's the workflow we use at ERVFlow.",
     sections: [
       { type: "h2", text: "The Prompt Architecture" },
-      { type: "p", text: "Good AI UI generation starts with a well-structured prompt. We pass in the design system tokens, component conventions, and TypeScript strict mode requirements as system context." },
+      {
+        type: "p",
+        text: "Good AI UI generation starts with a well-structured prompt. We pass in the design system tokens, component conventions, and TypeScript strict mode requirements as system context.",
+      },
       { type: "h2", text: "Streaming UI Patterns" },
-      { type: "p", text: "Using the Vercel AI SDK's `useChat` with `renderTool` callbacks, you can stream UI components directly into the page as the model generates them — no round-trips required." },
-      { type: "quote", text: "\"The model writes the scaffold. You write the soul.\"" },
+      {
+        type: "p",
+        text: "Using the Vercel AI SDK's `useChat` with `renderTool` callbacks, you can stream UI components directly into the page as the model generates them — no round-trips required.",
+      },
+      {
+        type: "quote",
+        text: '"The model writes the scaffold. You write the soul."',
+      },
     ],
     category: "AI",
     categoryText: "text-amber-600 dark:text-amber-400",
@@ -81,12 +120,20 @@ export const POSTS: Post[] = [
   },
   {
     id: "design-tokens",
+    featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.jpg",
     title: "Design Tokens at Scale",
-    excerpt: "How to architect a token system that survives a 10x team and a brand refresh.",
+    excerpt:
+      "How to architect a token system that survives a 10x team and a brand refresh.",
     sections: [
       { type: "h2", text: "Three Layers of Tokens" },
-      { type: "p", text: "Effective token systems use three layers: primitive (raw values), semantic (roles), and component (local overrides). Each layer references the one below it — never skip layers." },
-      { type: "code", text: "/* Primitive */\n--blue-500: #3b82f6;\n\n/* Semantic */\n--color-action: var(--blue-500);\n\n/* Component */\n--btn-bg: var(--color-action);" },
+      {
+        type: "p",
+        text: "Effective token systems use three layers: primitive (raw values), semantic (roles), and component (local overrides). Each layer references the one below it — never skip layers.",
+      },
+      {
+        type: "code",
+        text: "/* Primitive */\n--blue-500: #3b82f6;\n\n/* Semantic */\n--color-action: var(--blue-500);\n\n/* Component */\n--btn-bg: var(--color-action);",
+      },
     ],
     category: "Design",
     categoryText: "text-violet-600 dark:text-violet-400",
@@ -103,14 +150,26 @@ export const POSTS: Post[] = [
   },
   {
     id: "typescript-patterns",
+    featuredImage:
+      "/images/Blogs/ERVFlow-TypeScript-Patterns-Youll-Actually-Use.png",
     title: "TypeScript Patterns You'll Actually Use",
-    excerpt: "Skip the theory. These five patterns have saved our codebase from 90% of runtime errors.",
+    excerpt:
+      "Skip the theory. These five patterns have saved our codebase from 90% of runtime errors.",
     sections: [
       { type: "h2", text: "Discriminated Unions" },
-      { type: "p", text: "The most powerful TypeScript pattern for modelling state. Instead of optional fields that may or may not exist, each variant of your union carries exactly the data it needs." },
-      { type: "code", text: "type Result<T> =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: T }\n  | { status: 'error'; error: string };" },
+      {
+        type: "p",
+        text: "The most powerful TypeScript pattern for modelling state. Instead of optional fields that may or may not exist, each variant of your union carries exactly the data it needs.",
+      },
+      {
+        type: "code",
+        text: "type Result<T> =\n  | { status: 'idle' }\n  | { status: 'loading' }\n  | { status: 'success'; data: T }\n  | { status: 'error'; error: string };",
+      },
       { type: "h2", text: "Branded Types" },
-      { type: "p", text: "Prevent passing a `UserId` where a `PostId` is expected, even though both are strings. Brands make the type system enforce your domain semantics." },
+      {
+        type: "p",
+        text: "Prevent passing a `UserId` where a `PostId` is expected, even though both are strings. Brands make the type system enforce your domain semantics.",
+      },
     ],
     category: "TypeScript",
     categoryText: "text-rose-600 dark:text-rose-400",
@@ -127,14 +186,25 @@ export const POSTS: Post[] = [
   },
   {
     id: "css-architecture",
+    featuredImage: "/images/Blogs/ERVFlow-CSS-Architecture-For-Large-Apps.webp",
     title: "CSS Architecture for Large Apps",
-    excerpt: "Tailwind v4, CSS Layers, and the cascade — used intentionally instead of fought against.",
+    excerpt:
+      "Tailwind v4, CSS Layers, and the cascade — used intentionally instead of fought against.",
     sections: [
       { type: "h2", text: "Layers Over Specificity Wars" },
-      { type: "p", text: "CSS Cascade Layers give you explicit ordering without increasing specificity. Utilities always win, but you control the order of everything below them." },
-      { type: "code", text: "@layer base, components, utilities;\n\n@layer components {\n  .card { ... }\n}" },
+      {
+        type: "p",
+        text: "CSS Cascade Layers give you explicit ordering without increasing specificity. Utilities always win, but you control the order of everything below them.",
+      },
+      {
+        type: "code",
+        text: "@layer base, components, utilities;\n\n@layer components {\n  .card { ... }\n}",
+      },
       { type: "h2", text: "Tailwind v4 & Lightning CSS" },
-      { type: "p", text: "Tailwind v4 ships with Lightning CSS as its transform engine, enabling native CSS nesting, modern color spaces, and 100× faster builds over the PostCSS pipeline." },
+      {
+        type: "p",
+        text: "Tailwind v4 ships with Lightning CSS as its transform engine, enabling native CSS nesting, modern color spaces, and 100× faster builds over the PostCSS pipeline.",
+      },
     ],
     category: "CSS",
     categoryText: "text-emerald-600 dark:text-emerald-400",
@@ -151,14 +221,23 @@ export const POSTS: Post[] = [
   },
   {
     id: "devops-scale",
+    featuredImage:
+      "/images/Blogs/ERVFlow-Zero-Downtime-Deploys-On-A-Budget.jpg",
     title: "Zero-Downtime Deploys on a Budget",
-    excerpt: "CI/CD, blue-green deployments, and health checks — without the enterprise price tag.",
+    excerpt:
+      "CI/CD, blue-green deployments, and health checks — without the enterprise price tag.",
     sections: [
       { type: "h2", text: "Blue-Green with Coolify" },
-      { type: "p", text: "Coolify gives you blue-green deployments on a single $6/mo VPS. Two containers run simultaneously; health checks gate traffic switching; rollback is one click." },
+      {
+        type: "p",
+        text: "Coolify gives you blue-green deployments on a single $6/mo VPS. Two containers run simultaneously; health checks gate traffic switching; rollback is one click.",
+      },
       { type: "h2", text: "GitHub Actions Pipeline" },
-      { type: "p", text: "A lean GitHub Actions workflow: lint → test → build Docker image → push to registry → trigger Coolify webhook. Total time: under 90 seconds for a Next.js app." },
-      { type: "quote", text: "\"Deploy fearlessly. Roll back instantly.\"" },
+      {
+        type: "p",
+        text: "A lean GitHub Actions workflow: lint → test → build Docker image → push to registry → trigger Coolify webhook. Total time: under 90 seconds for a Next.js app.",
+      },
+      { type: "quote", text: '"Deploy fearlessly. Roll back instantly."' },
     ],
     category: "DevOps",
     categoryText: "text-cyan-600 dark:text-cyan-400",

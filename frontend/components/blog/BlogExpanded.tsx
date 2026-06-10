@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { X, Clock, Calendar, Tag } from "lucide-react";
 import type { Post, PostSection } from "@/lib/blog-data";
@@ -10,7 +11,7 @@ function renderSection(s: PostSection, i: number) {
     return (
       <h2
         key={i}
-        className="text-xl font-bold text-zinc-800 dark:text-white mt-8 mb-3"
+        className="text-xl md:text-2xl font-bold text-zinc-800 dark:text-white mt-8 mb-3"
       >
         {s.text}
       </h2>
@@ -46,14 +47,14 @@ function renderSection(s: PostSection, i: number) {
     return (
       <pre
         key={i}
-        className="bg-zinc-100 dark:bg-white/[0.04] border border-black/8 dark:border-white/8 rounded-2xl p-4 my-5 overflow-x-auto text-sm font-mono text-zinc-800 dark:text-neutral-200 leading-relaxed whitespace-pre"
+        className="bg-zinc-100 dark:bg-white/4 border border-black/8 dark:border-white/8 rounded-2xl p-4 my-5 overflow-x-auto text-sm font-mono text-zinc-800 dark:text-neutral-200 leading-relaxed whitespace-pre"
       >
         {s.text}
       </pre>
     );
   if (s.type === "ul")
     return (
-      <ul key={i} className="list-none space-y-2.5 mb-5">
+      <ul key={i} className="list-none space-y-2 mb-5 pl-5">
         {(s.items ?? []).map((item, j) => (
           <li
             key={j}
@@ -86,11 +87,13 @@ export default function BlogExpanded({ post, onClose }: Props) {
     };
   }, [onClose]);
 
-  return (
+  /* Portaled to <body> so the sticky header's stacking context (z-9999)
+     and the page wrapper's own z-index can't sit above the modal */
+  return createPortal(
     <>
       {/* Backdrop */}
       <motion.div
-        className="fixed inset-0 z-99 bg-black/50 backdrop-blur-sm"
+        className="fixed inset-0 z-99998 bg-black/50 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -113,7 +116,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
           {/* Top accent line */}
           <motion.div
             layoutId={`blog-header-${post.id}`}
-            className="h-[3px] w-full shrink-0"
+            className="h-0.75 w-full shrink-0"
             style={{
               background: `linear-gradient(90deg, ${post.glow}, transparent)`,
             }}
@@ -135,7 +138,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
                 {/* Title */}
                 <motion.h1
                   layoutId={`blog-title-${post.id}`}
-                  className="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
+                  className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
                 >
                   {post.title}
@@ -145,7 +148,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="flex flex-wrap items-center gap-3 text-xs text-zinc-500 dark:text-neutral-500 pt-1"
+                  className="flex flex-wrap items-center gap-2 text-xs text-zinc-500 dark:text-neutral-500 pt-1"
                 >
                   <span className="flex items-center gap-1.5">
                     <Calendar size={12} />
@@ -155,9 +158,11 @@ export default function BlogExpanded({ post, onClose }: Props) {
                     <Clock size={12} />
                     {post.readTime} read
                   </span>
+                  <span>&bull;</span>
                   <span className="font-medium text-zinc-700 dark:text-neutral-300">
                     {post.author}
                   </span>
+                  <span>&bull;</span>
                   <span className="text-zinc-400 dark:text-neutral-600">
                     {post.authorRole}
                   </span>
@@ -167,7 +172,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
               <button
                 onClick={onClose}
                 aria-label="Close article"
-                className="shrink-0 w-9 h-9 rounded-full border border-black/8 dark:border-white/8 bg-black/4 dark:bg-white/5 hover:bg-black/8 dark:hover:bg-white/10 text-zinc-600 dark:text-neutral-400 flex items-center justify-center transition-colors mt-0.5"
+                className="absolute right-10 shrink-0 w-9 h-9 rounded-full border border-black/8 dark:border-white/8 bg-black/4 dark:bg-white/5 hover:bg-black/8 dark:hover:bg-white/10 text-zinc-600 dark:text-neutral-400 flex items-center justify-center transition-colors mt-0.5"
               >
                 <X size={15} strokeWidth={2.5} />
               </button>
@@ -176,7 +181,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
 
           {/* Scrollable body */}
           <div className="flex-1 overflow-y-auto">
-            <div className="max-w-2xl mx-auto px-6 sm:px-8 py-8">
+            <div className="max-w-2xl mx-auto px-6 sm:px-0 pt-8">
               {/* Excerpt */}
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
@@ -201,7 +206,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
-                className="flex flex-wrap gap-2 mt-10 pt-6 border-t border-black/6 dark:border-white/6"
+                className="sticky bottom-0 flex flex-wrap gap-2 mt-10 py-4 border-t border-black/6 dark:border-white/6 bg-white/30 dark:bg-[#0a0a0a]/50 backdrop-blur-md"
               >
                 <Tag
                   size={13}
@@ -220,6 +225,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
           </div>
         </div>
       </motion.div>
-    </>
+    </>,
+    document.body,
   );
 }

@@ -9,8 +9,6 @@ import NewsletterBanner from "@/components/blog/NewsletterBanner";
 import BlogExpanded from "@/components/blog/BlogExpanded";
 import GlowBlob from "@/components/common/GlowBlob";
 
-const ALL_CATS = ["All", ...Array.from(new Set(POSTS.map((p) => p.category)))];
-
 /* Shuffle-style slots: 1 featured, 2 half-width, rest one-third */
 function variantFor(index: number): PostCardVariant {
   if (index === 0) return "featured";
@@ -20,7 +18,7 @@ function variantFor(index: number): PostCardVariant {
 
 export default function BlogPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory] = useState("All");
 
   const filtered =
     activeCategory === "All"

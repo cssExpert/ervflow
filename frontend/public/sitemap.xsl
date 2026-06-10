@@ -278,7 +278,7 @@
             </div>
             <div class="stat-pill">
               <span class="dot"></span>
-              Last updated <strong>2026-06-09</strong>
+              Last updated <strong><xsl:for-each select="sitemap:urlset/sitemap:url"><xsl:sort select="sitemap:lastmod" order="descending"/><xsl:if test="position() = 1"><xsl:value-of select="sitemap:lastmod"/></xsl:if></xsl:for-each></strong>
             </div>
             <div class="stat-pill">
               <span class="dot"></span>

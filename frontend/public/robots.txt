@@ -1,7 +1,7 @@
 User-agent: *
+
 Allow: /
 
-# Block internal/system routes
 Disallow: /api/
 Disallow: /admin/
 Disallow: /dashboard/
@@ -10,5 +10,7 @@ Disallow: /editor/
 Disallow: /settings/
 Disallow: /auth/
 Disallow: /private/
+Disallow: /preview/
+Disallow: /draft/
 
 Sitemap: https://ervflow.com/sitemap.xml

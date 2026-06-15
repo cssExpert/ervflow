@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
-import { Mail, MapPin, Clock, Send, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Clock, Send, ArrowRight, Inbox } from "lucide-react";
 import Link from "next/link";
 import Social from "@/components/common/Social";
 import GlowBlob from "@/components/common/GlowBlob";
@@ -147,6 +147,7 @@ export default function ContactPage() {
             variants={itemVariants}
             className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
           >
+            <Inbox className="w-3.5 h-3.5" aria-hidden="true" />
             Contact
           </motion.span>
           <motion.h1

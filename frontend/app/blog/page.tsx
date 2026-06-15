@@ -9,7 +9,10 @@ import NewsletterBanner from "@/components/blog/NewsletterBanner";
 import BlogExpanded from "@/components/blog/BlogExpanded";
 import GlowBlob from "@/components/common/GlowBlob";
 
-const CATEGORIES = ["All", ...Array.from(new Set(POSTS.map((p) => p.category)))];
+const CATEGORIES = [
+  "All",
+  ...Array.from(new Set(POSTS.map((p) => p.category))),
+];
 
 function variantFor(index: number): PostCardVariant {
   if (index === 0) return "featured";
@@ -23,14 +26,17 @@ export default function BlogPage() {
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
-    let posts = activeCategory === "All" ? POSTS : POSTS.filter((p) => p.category === activeCategory);
+    let posts =
+      activeCategory === "All"
+        ? POSTS
+        : POSTS.filter((p) => p.category === activeCategory);
     const q = search.trim().toLowerCase();
     if (q) {
       posts = posts.filter(
         (p) =>
           p.title.toLowerCase().includes(q) ||
           p.excerpt.toLowerCase().includes(q) ||
-          p.tags.some((t) => t.toLowerCase().includes(q))
+          p.tags.some((t) => t.toLowerCase().includes(q)),
       );
     }
     return posts;
@@ -52,7 +58,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
+            className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-2"
           >
             <Zap className="w-3.5 h-3.5" aria-hidden="true" />
             ERVFlow Blog · Ideas &amp; Insights
@@ -73,10 +79,15 @@ export default function BlogPage() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.55,
+              delay: 0.16,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             className="mb-6 text-lg text-slate-800 dark:text-neutral-300"
           >
-            Deep dives into Next.js, TypeScript, AI integration, and modern DevOps — straight from the team building ERVFlow.
+            Deep dives into Next.js, TypeScript, AI integration, and modern
+            DevOps — straight from the team building ERVFlow.
           </motion.p>
 
           {/* Search */}
@@ -86,7 +97,11 @@ export default function BlogPage() {
             transition={{ duration: 0.5, delay: 0.22 }}
             className="relative max-w-md mx-auto"
           >
-            <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" aria-hidden="true" />
+            <Search
+              size={14}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none"
+              aria-hidden="true"
+            />
             <input
               type="search"
               value={search}
@@ -140,14 +155,21 @@ export default function BlogPage() {
                 className="text-center py-24 text-zinc-400 dark:text-neutral-500"
               >
                 <p className="text-lg font-semibold mb-2">No articles found</p>
-                <p className="text-sm">Try a different search term or category</p>
+                <p className="text-sm">
+                  Try a different search term or category
+                </p>
               </motion.div>
             ) : (
               <>
                 <AnimatePresence mode="popLayout">
                   {featured && (
                     <div key={`featured-${featured.id}`} className="mb-8">
-                      <PostCard post={featured} index={0} variant="featured" onSelect={setSelectedId} />
+                      <PostCard
+                        post={featured}
+                        index={0}
+                        variant="featured"
+                        onSelect={setSelectedId}
+                      />
                     </div>
                   )}
                 </AnimatePresence>
@@ -156,7 +178,13 @@ export default function BlogPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <AnimatePresence mode="popLayout">
                       {halves.map((post, i) => (
-                        <PostCard key={post.id} post={post} index={i + 1} variant={variantFor(i + 1)} onSelect={setSelectedId} />
+                        <PostCard
+                          key={post.id}
+                          post={post}
+                          index={i + 1}
+                          variant={variantFor(i + 1)}
+                          onSelect={setSelectedId}
+                        />
                       ))}
                     </AnimatePresence>
                   </div>
@@ -170,7 +198,13 @@ export default function BlogPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode="popLayout">
                       {thirds.map((post, i) => (
-                        <PostCard key={post.id} post={post} index={i + 3} variant={variantFor(i + 3)} onSelect={setSelectedId} />
+                        <PostCard
+                          key={post.id}
+                          post={post}
+                          index={i + 3}
+                          variant={variantFor(i + 3)}
+                          onSelect={setSelectedId}
+                        />
                       ))}
                     </AnimatePresence>
                   </div>
@@ -180,7 +214,12 @@ export default function BlogPage() {
           </div>
 
           <AnimatePresence>
-            {selectedPost && <BlogExpanded post={selectedPost} onClose={() => setSelectedId(null)} />}
+            {selectedPost && (
+              <BlogExpanded
+                post={selectedPost}
+                onClose={() => setSelectedId(null)}
+              />
+            )}
           </AnimatePresence>
         </LayoutGroup>
       </section>

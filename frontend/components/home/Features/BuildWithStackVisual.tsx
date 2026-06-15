@@ -187,7 +187,14 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
   }, []);
 
   return (
-    <div className="relative h-full w-full p-3 md:p-4 pb-0! overflow-hidden">
+    <div
+      className="relative h-full w-full p-3 md:p-5 pb-0! overflow-hidden"
+      style={{
+        backgroundImage:
+          "radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
+        backgroundSize: "12px 12px",
+      }}
+    >
       <div className="h-full rounded-2xl rounded-b-none flex flex-col overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_24px_64px_rgba(0,0,0,0.55)] bg-[#1e1e1e]">
         {/* Title bar */}
         <div className="flex items-center gap-0 bg-[#323233] border-b border-white/6 shrink-0">

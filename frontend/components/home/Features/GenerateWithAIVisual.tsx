@@ -76,7 +76,14 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
   const isAfterSitemap = phase === "preview" || phase === "idle";
 
   return (
-    <div className="relative h-full w-full p-3 md:p-4 pb-0! overflow-hidden">
+    <div
+      className="relative h-full w-full p-3 md:p-5 pb-0! overflow-hidden"
+      style={{
+        backgroundImage:
+          "radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+        backgroundSize: "12px 12px",
+      }}
+    >
       <div className="h-full rounded-2xl rounded-b-none flex flex-col overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_24px_64px_rgba(0,0,0,0.55)] bg-[#0d1117]">
         {/* Title bar */}
         <div className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.07] bg-[#161b22] shrink-0">
@@ -95,7 +102,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               ERVFlow AI Studio
             </span>
           </div>
-          <span className="ml-auto text-[9px] text-white/25 font-mono">
+          <span className="ml-auto text-[9px] text-white/45 font-mono">
             claude‑3.5‑sonnet
           </span>
         </div>
@@ -137,7 +144,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                     )}
                   </motion.div>
                   <span
-                    className={`text-[8px] font-mono ${active ? "text-[#FFD104]" : done ? "text-green-400" : "text-white/25"}`}
+                    className={`text-[8px] font-mono ${active ? "text-[#FFD104]" : done ? "text-green-400" : "text-white/45"}`}
                   >
                     {step.label}
                   </span>
@@ -215,7 +222,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                             className="w-1.5 h-1.5 rounded-full bg-violet-400"
                           />
                         ))}
-                        <span className="text-[9px] text-white/35 font-mono">
+                        <span className="text-[9px] text-white/55 font-mono">
                           Analyzing your request…
                         </span>
                       </div>
@@ -280,7 +287,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                                 <span className="text-[7px] text-white/55 font-mono text-center leading-tight">
                                   {page.label}
                                 </span>
-                                <span className="text-[6px] text-white/20 font-mono">
+                                <span className="text-[6px] text-white/40 font-mono">
                                   {page.sections}s
                                 </span>
                               </motion.div>
@@ -295,7 +302,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                           transition={{ duration: 0.3 }}
                           className="flex items-center gap-1 pl-1"
                         >
-                          <span className="text-[8px] text-white/20 font-mono shrink-0">
+                          <span className="text-[8px] text-white/40 font-mono shrink-0">
                             └─
                           </span>
                           {["Cleaning", "Whitening", "Implants"].map((s, i) => (
@@ -329,7 +336,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               transition={{ duration: 0.4 }}
               className="px-3 md:px-4 pb-3 md:pb-4 shrink-0"
             >
-              <p className="text-[8px] text-white/30 font-mono mb-2">
+              <p className="text-[8px] text-white/50 font-mono mb-2">
                 Page previews
               </p>
               <div className="flex gap-2">

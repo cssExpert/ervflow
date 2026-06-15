@@ -90,7 +90,14 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
   const isDragging = phase === "dragging";
 
   return (
-    <div className="relative h-full w-full p-3 md:p-4 pb-0! overflow-hidden">
+    <div
+      className="relative h-full w-full p-3 md:p-5 pb-0! overflow-hidden"
+      style={{
+        backgroundImage:
+          "radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px)",
+        backgroundSize: "12px 12px",
+      }}
+    >
       <div className="h-full rounded-2xl rounded-b-none flex flex-col overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_24px_64px_rgba(0,0,0,0.55)] bg-[#12121e]">
         {/* Title bar */}
         <div className="flex items-center gap-2 px-3 py-2 bg-[#1a1a2e] border-b border-white/6 shrink-0">
@@ -150,7 +157,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
         <div className="flex flex-1 min-h-0 overflow-hidden">
           {/* Blocks sidebar */}
           <div className="w-21 bg-[#0c0c1a] border-r border-white/6 shrink-0 py-2 overflow-hidden">
-            <p className="text-[7px] font-semibold text-white/20 uppercase tracking-widest px-2.5 mb-1.5">
+            <p className="text-[7px] font-semibold text-white/45 uppercase tracking-widest px-2.5 mb-1.5">
               Blocks
             </p>
             {BLOCKS.map((blk, i) => {
@@ -415,7 +422,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       >
                         {s.val}
                       </span>
-                      <span className="text-[7px] text-white/25 font-mono">
+                      <span className="text-[7px] text-white/45 font-mono">
                         {s.label}
                       </span>
                     </div>
@@ -509,7 +516,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
 
           {/* Style panel */}
           <div className="w-25 bg-[#0c0c1a] border-l border-white/6 shrink-0 py-2 overflow-hidden">
-            <p className="text-[7px] font-semibold text-white/20 uppercase tracking-widest px-2.5 mb-1.5">
+            <p className="text-[7px] font-semibold text-white/45 uppercase tracking-widest px-2.5 mb-1.5">
               Style
             </p>
             {STYLE_ROWS.map((row, i) => {
@@ -526,7 +533,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   }}
                   className="px-2.5 py-1.25"
                 >
-                  <p className="text-[7px] text-white/25 font-mono mb-0.5">
+                  <p className="text-[7px] text-white/50 font-mono mb-0.5">
                     {row.label}
                   </p>
                   <div className="flex items-center gap-1">

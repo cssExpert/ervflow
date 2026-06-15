@@ -212,7 +212,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Editor body */}
-        <div className="relative flex h-150 md:h-200">
+        <div className="relative flex h-125 md:h-150">
           {/* Left sidebar */}
           <div className="w-44 shrink-0 border-r border-black/8 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hidden sm:flex flex-col">
             <div className="px-3 pt-3 pb-2">

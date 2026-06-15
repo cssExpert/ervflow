@@ -76,8 +76,23 @@ export default function BlogPostClient({ post }: { post: Post }) {
         </Link>
       </motion.div>
 
-      {/* Cinematic full-viewport hero */}
+      {/* Cinematic full-viewport hero — always dark */}
       <ArticleHero post={post} />
+
+      {/* Bridge: hero #0A0A0B → body bg */}
+      <div
+        aria-hidden="true"
+        className="h-28 -mt-28 relative z-10 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, #0A0A0B, var(--bridge-end, #fff))",
+        }}
+      >
+        <style>{`
+          :root { --bridge-end: #ffffff; }
+          .dark { --bridge-end: #080808; }
+        `}</style>
+      </div>
 
       {/* Article body + sticky sidebar */}
       <div className="px-6 sm:px-10 py-20">

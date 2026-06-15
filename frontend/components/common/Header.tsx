@@ -85,16 +85,16 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`border-b border-white/10 dark:border-zinc-800/60 bg-brand-background/80 header top-0 left-0 z-40 px-3 flex w-full items-center py-2 lg:py-2.5 ${
+        className={`header top-0 left-0 z-40 px-3 flex w-full items-center py-2 lg:py-2.5 transition-all duration-300 ${
           sticky
-            ? "bg-white/80 dark:bg-black/80 dark:bg-gray-dark border-zinc-800/10 dark:shadow-sticky-dark shadow-sticky fixed z-9999 backdrop-blur-lg transition"
-            : "absolute bg-transparent"
+            ? "fixed z-[9999] bg-white/92 dark:bg-black/88 border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-sm dark:shadow-none backdrop-blur-xl"
+            : "absolute bg-transparent border-b border-transparent"
         }`}
       >
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white transition-all"
+            className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer transition-all"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
               <Icon
@@ -102,10 +102,10 @@ const Header = () => {
                 size="28"
                 fill="currentColor"
                 role="button"
-                className="w-7 h-7"
+                className="w-7 h-7 text-white"
               />
             </div>
-            <span className="text-md md:text-lg lg:text-xl font-extrabold font-merienda text-black dark:text-white whitespace-nowrap">
+            <span className={`text-md md:text-lg lg:text-xl font-extrabold font-merienda whitespace-nowrap ${sticky ? "text-zinc-900 dark:text-white" : "text-white"}`}>
               ERV<span className="text-primary">Flow</span>
             </span>
           </Link>
@@ -124,7 +124,9 @@ const Header = () => {
                   className={`relative px-4 py-2 text-sm font-sans font-semibold tracking-wide transition-colors duration-300 cursor-pointer ${
                     isActive
                       ? "text-primary"
-                      : "text-black dark:text-white/65 hover:text-primary"
+                      : sticky
+                        ? "text-zinc-700 dark:text-white/65 hover:text-primary"
+                        : "text-white/80 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -188,7 +190,7 @@ const Header = () => {
                 setTheme(resolvedTheme === "dark" ? "light" : "dark")
               }
               aria-label="Toggle Theme"
-              className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+              className={`w-10 h-10 flex items-center justify-center rounded-md border hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer ${sticky ? "bg-zinc-100 dark:bg-white/8 border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-white/70" : "bg-white/10 border-white/15 text-white/80"}`}
             >
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -211,7 +213,7 @@ const Header = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 flex md:hidden items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
+              className={`w-10 h-10 flex md:hidden items-center justify-center rounded-md border hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer ${sticky ? "bg-zinc-100 dark:bg-white/8 border-zinc-200 dark:border-zinc-800/60 text-zinc-700 dark:text-white/70" : "bg-white/10 border-white/15 text-white/80"}`}
               aria-label="Toggle Menu"
               suppressHydrationWarning
             >

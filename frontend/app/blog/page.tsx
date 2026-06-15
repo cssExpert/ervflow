@@ -6,7 +6,6 @@ import { Zap, Search, X } from "lucide-react";
 import { POSTS } from "@/lib/blog-data";
 import PostCard, { type PostCardVariant } from "@/components/blog/PostCard";
 import NewsletterBanner from "@/components/blog/NewsletterBanner";
-import BlogExpanded from "@/components/blog/BlogExpanded";
 import GlowBlob from "@/components/common/GlowBlob";
 
 const CATEGORIES = [
@@ -212,15 +211,6 @@ export default function BlogPage() {
               </>
             )}
           </div>
-
-          <AnimatePresence>
-            {selectedPost && (
-              <BlogExpanded
-                post={selectedPost}
-                onClose={() => setSelectedId(null)}
-              />
-            )}
-          </AnimatePresence>
         </LayoutGroup>
       </section>
     </main>

@@ -139,14 +139,14 @@ function PromptVisual({ inView }: { inView: boolean }) {
   }, [inView]);
 
   return (
-    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-4 space-y-3 shadow-xl shadow-[#CEFF00]/5">
+    <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-4 space-y-3 shadow-xl shadow-[#CEFF00]/5">
       <div className="flex items-center gap-2 pb-1">
-        <Sparkles className="w-3.5 h-3.5 text-[#CEFF00]-400 shrink-0" />
+        <Sparkles className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
         <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
           AI Prompt
         </span>
       </div>
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-3 min-h-[68px] text-xs text-zinc-300 leading-relaxed">
+      <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-3 min-h-[68px] text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
         {DEMO_PROMPT.slice(0, typed)}
         {/* Blinking cursor — always visible */}
         <span className="inline-block w-0.5 h-3.5 bg-blue-400 ml-0.5 align-middle animate-[blink_0.9s_step-end_infinite]" />
@@ -154,7 +154,7 @@ function PromptVisual({ inView }: { inView: boolean }) {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}
-        className="w-full flex items-center justify-center gap-2 bg-[#CEFF00] hover:bg-[#CEFF00]-600 text-black text-xs font-semibold py-2.5 rounded-md transition-colors"
+        className="w-full flex items-center justify-center gap-2 bg-[#CEFF00] text-black text-xs font-semibold py-2.5 rounded-md transition-colors"
       >
         <Send className="w-3 h-3" />
         Generate Website
@@ -194,7 +194,7 @@ function GenerateVisual({ inView }: { inView: boolean }) {
   }, [inView]);
 
   return (
-    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-4 shadow-xl shadow-violet-500/5">
+    <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-4 shadow-xl shadow-violet-500/5">
       <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider mb-3">
         Pages Generated
       </p>
@@ -203,36 +203,25 @@ function GenerateVisual({ inView }: { inView: boolean }) {
           <motion.div
             key={page}
             layout
-            animate={
-              i === dragging
-                ? {
-                    scale: 1.04,
-                    backgroundColor: "rgba(139,92,246,0.14)",
-                    borderColor: "rgba(139,92,246,0.45)",
-                    boxShadow: "0 8px 24px rgba(139,92,246,0.22)",
-                    zIndex: 10,
-                  }
-                : {
-                    scale: 1,
-                    backgroundColor: "rgba(24,24,27,1)",
-                    borderColor: "rgba(39,39,42,1)",
-                    boxShadow: "none",
-                    zIndex: 0,
-                  }
-            }
+            animate={{ scale: i === dragging ? 1.04 : 1 }}
+            style={{ zIndex: i === dragging ? 10 : 0 }}
             transition={{ type: "spring", stiffness: 320, damping: 28 }}
-            className="relative flex items-center gap-2 border rounded-lg px-3 py-1.5 cursor-grab"
+            className={`relative flex items-center gap-2 rounded-lg px-3 py-1.5 cursor-grab border transition-all duration-300 ${
+              i === dragging
+                ? "bg-violet-500/[0.14] border-violet-500/45 shadow-[0_8px_24px_rgba(139,92,246,0.22)]"
+                : "bg-white dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700"
+            }`}
           >
             <GripVertical
               className={`w-3 h-3 shrink-0 transition-colors duration-200 ${
-                i === dragging ? "text-violet-400" : "text-zinc-700"
+                i === dragging ? "text-violet-400" : "text-zinc-400 dark:text-zinc-600"
               }`}
             />
             <Check className="w-3 h-3 text-violet-400 shrink-0" />
-            <span className="text-xs text-zinc-300 flex-1">{page}</span>
+            <span className="text-xs text-zinc-700 dark:text-zinc-300 flex-1">{page}</span>
             <div className="flex gap-1">
-              <div className="w-8 h-1 bg-zinc-700 rounded-full" />
-              <div className="w-5 h-1 bg-zinc-800 rounded-full" />
+              <div className="w-8 h-1 bg-zinc-300 dark:bg-zinc-700 rounded-full" />
+              <div className="w-5 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
             </div>
           </motion.div>
         ))}
@@ -247,23 +236,23 @@ function CanvasContent({ tab }: { tab: number }) {
   if (tab === 0)
     return (
       <div className="p-3 space-y-2">
-        <div className="h-4 bg-zinc-700 rounded-md w-3/4 mx-auto" />
-        <div className="h-2 bg-zinc-800 rounded w-full" />
-        <div className="h-2 bg-zinc-800 rounded w-4/5 mx-auto" />
+        <div className="h-4 bg-zinc-300 dark:bg-zinc-700 rounded-md w-3/4 mx-auto" />
+        <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full" />
+        <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-4/5 mx-auto" />
         <div className="flex gap-2 mt-1.5">
           <div className="h-5 bg-primary-500/40 rounded-full flex-1" />
-          <div className="h-5 bg-zinc-700 rounded-full flex-1" />
+          <div className="h-5 bg-zinc-300 dark:bg-zinc-700 rounded-full flex-1" />
         </div>
       </div>
     );
   if (tab === 1)
     return (
       <div className="p-3 flex gap-2 items-start">
-        <div className="w-10 h-10 bg-zinc-700 rounded-lg shrink-0" />
+        <div className="w-10 h-10 bg-zinc-300 dark:bg-zinc-700 rounded-lg shrink-0" />
         <div className="flex-1 space-y-1.5 pt-1">
-          <div className="h-2.5 bg-zinc-700 rounded w-3/4" />
-          <div className="h-2 bg-zinc-800 rounded w-full" />
-          <div className="h-2 bg-zinc-800 rounded w-2/3" />
+          <div className="h-2.5 bg-zinc-300 dark:bg-zinc-700 rounded w-3/4" />
+          <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-full" />
+          <div className="h-2 bg-zinc-200 dark:bg-zinc-800 rounded w-2/3" />
         </div>
       </div>
     );
@@ -276,21 +265,21 @@ function CanvasContent({ tab }: { tab: number }) {
             className={`flex-1 rounded-md p-1.5 space-y-1 ${
               featured
                 ? "bg-primary-500/20 border border-primary-500/40"
-                : "bg-zinc-800"
+                : "bg-zinc-200 dark:bg-zinc-800"
             }`}
           >
             <div
               className={`h-1.5 rounded-full w-4/5 ${
-                featured ? "bg-primary-500/60" : "bg-zinc-700"
+                featured ? "bg-primary-500/60" : "bg-zinc-300 dark:bg-zinc-700"
               }`}
             />
             <div
               className={`h-3 rounded w-full ${
-                featured ? "bg-primary-500/40" : "bg-zinc-700"
+                featured ? "bg-primary-500/40" : "bg-zinc-300 dark:bg-zinc-700"
               }`}
             />
             {[0, 1].map((j) => (
-              <div key={j} className="h-1 bg-zinc-700 rounded w-full" />
+              <div key={j} className="h-1 bg-zinc-300 dark:bg-zinc-700 rounded w-full" />
             ))}
           </div>
         ))}
@@ -299,13 +288,13 @@ function CanvasContent({ tab }: { tab: number }) {
   // Footer
   return (
     <div className="p-3 space-y-2">
-      <div className="h-2.5 bg-zinc-700 rounded w-1/3" />
+      <div className="h-2.5 bg-zinc-300 dark:bg-zinc-700 rounded w-1/3" />
       <div className="flex gap-3">
         {[0, 1, 2].map((i) => (
           <div key={i} className="flex-1 space-y-1">
-            <div className="h-1.5 bg-zinc-600 rounded w-2/3" />
+            <div className="h-1.5 bg-zinc-400 dark:bg-zinc-600 rounded w-2/3" />
             {[0, 1, 2].map((j) => (
-              <div key={j} className="h-1 bg-zinc-800 rounded w-full" />
+              <div key={j} className="h-1 bg-zinc-200 dark:bg-zinc-800 rounded w-full" />
             ))}
           </div>
         ))}
@@ -324,20 +313,20 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
   }, [inView]);
 
   return (
-    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 overflow-hidden shadow-xl shadow-primary-500/5">
+    <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 overflow-hidden shadow-xl shadow-primary-500/5">
       {/* Titlebar */}
-      <div className="flex items-center gap-1.5 px-3 py-2 border-b border-zinc-800 bg-zinc-950/80">
-        <span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-        <span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-        <span className="ml-2 text-[9px] text-zinc-600 font-mono">
+      <div className="flex items-center gap-1.5 px-3 py-2 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-200/80 dark:bg-zinc-950/80">
+        <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+        <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+        <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+        <span className="ml-2 text-[9px] text-zinc-500 dark:text-zinc-600 font-mono">
           ERVFlow Editor
         </span>
       </div>
 
       <div className="flex h-36">
         {/* Sidebar tabs */}
-        <div className="w-20 border-r border-zinc-800 bg-zinc-900/60 p-1.5 space-y-0.5">
+        <div className="w-20 border-r border-zinc-200 dark:border-zinc-800 bg-zinc-200/60 dark:bg-zinc-900/60 p-1.5 space-y-0.5">
           {TAB_LABELS.map((label, i) => (
             <motion.div
               key={label}
@@ -345,11 +334,11 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
                 i === activeTab
                   ? {
                       backgroundColor: "rgba(247,98,53,0.15)",
-                      color: "rgba(251,146,60,0.9)",
+                      color: "rgba(247,98,53,0.9)",
                     }
                   : {
                       backgroundColor: "transparent",
-                      color: "rgba(82,82,91,1)",
+                      color: "rgba(113,113,122,1)",
                     }
               }
               transition={{ duration: 0.22 }}
@@ -362,7 +351,7 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
         </div>
 
         {/* Canvas — content switches with AnimatePresence */}
-        <div className="flex-1 relative overflow-hidden bg-zinc-950/40">
+        <div className="flex-1 relative overflow-hidden bg-white/60 dark:bg-zinc-950/40">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -385,7 +374,7 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
-                className="absolute right-2 bottom-2 border-2 border-dashed border-primary-500/70 bg-primary-500/10 rounded-lg px-2 py-0.5 text-[9px] text-primary-400 pointer-events-none whitespace-nowrap"
+                className="absolute right-2 bottom-2 border-2 border-dashed border-primary-500/70 bg-primary-500/10 rounded-lg px-2 py-0.5 text-[9px] text-primary-600 dark:text-primary-400 pointer-events-none whitespace-nowrap"
               >
                 Drop component
               </motion.div>
@@ -435,7 +424,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
   }, [inView]);
 
   return (
-    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-5 text-center shadow-xl shadow-emerald-500/5">
+    <div className="rounded-2xl bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 p-5 text-center shadow-xl shadow-emerald-500/5">
       {/* Rocket area */}
       <div className="relative h-16 flex items-center justify-center mb-3">
         <AnimatePresence mode="wait">
@@ -457,7 +446,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
                   ease: "easeInOut",
                 }}
               >
-                <Rocket className="w-6 h-6 text-emerald-400" />
+                <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
               </motion.div>
             </motion.div>
           )}
@@ -471,7 +460,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="w-14 h-14 rounded-full bg-emerald-500/25 border-2 border-emerald-400/70 flex items-center justify-center"
             >
-              <Rocket className="w-6 h-6 text-emerald-300" />
+              <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-300" />
             </motion.div>
           )}
 
@@ -484,7 +473,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               transition={{ type: "spring", stiffness: 320, damping: 18 }}
               className="relative w-14 h-14 rounded-full bg-emerald-500/20 border-2 border-emerald-500/60 flex items-center justify-center"
             >
-              <Check className="w-7 h-7 text-emerald-400" />
+              <Check className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
               {/* Confetti burst */}
               {CONFETTI_COLORS.map((color, i) => (
                 <motion.span
@@ -526,7 +515,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.2 }}
-          className="text-sm font-bold text-zinc-100 mb-0.5"
+          className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-0.5"
         >
           {phase === "published"
             ? "Published! 🎉"
@@ -535,7 +524,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               : "Ready to Launch"}
         </motion.p>
       </AnimatePresence>
-      <p className="text-[10px] text-zinc-600 font-mono mb-4">
+      <p className="text-[10px] text-zinc-500 dark:text-zinc-600 font-mono mb-4">
         mysite.ervflow.com
       </p>
 
@@ -543,8 +532,8 @@ function PublishVisual({ inView }: { inView: boolean }) {
         {["Custom Domain", "SSL Secured", "CDN Enabled", "SEO Ready"].map(
           (f) => (
             <div key={f} className="flex items-center gap-1.5">
-              <Check className="w-3 h-3 text-emerald-400 shrink-0" />
-              <span className="text-[10px] text-zinc-400">{f}</span>
+              <Check className="w-3 h-3 text-emerald-500 dark:text-emerald-400 shrink-0" />
+              <span className="text-[10px] text-zinc-600 dark:text-zinc-400">{f}</span>
             </div>
           ),
         )}

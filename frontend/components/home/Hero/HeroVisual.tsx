@@ -140,7 +140,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Secondary toolbar */}
-        <div className="flex items-center px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800/60 text-xs text-zinc-500">
+        <div className="flex items-center px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800/60 text-xs text-zinc-600 dark:text-zinc-400">
           {["Components", "Layers", "Assets", "Pages"].map((t, i) => (
             <button
               key={t}
@@ -161,7 +161,7 @@ export default function HeroVisual() {
                 <button
                   key={s}
                   onClick={() => setPreview(s)}
-                  className={`p-1.5 rounded transition-colors ${preview === s ? "bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-white" : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300"}`}
+                  className={`p-1.5 rounded transition-colors ${preview === s ? "bg-zinc-200 dark:bg-zinc-700 text-zinc-900 dark:text-white" : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"}`}
                 >
                   <Icon className="w-3.5 h-3.5" />
                 </button>
@@ -175,12 +175,12 @@ export default function HeroVisual() {
           {/* Left sidebar */}
           <div className="w-44 shrink-0 border-r border-black/8 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hidden sm:flex flex-col">
             <div className="px-3 pt-3 pb-2">
-              <div className="w-full bg-zinc-200 dark:bg-zinc-800 text-xs text-zinc-500 dark:text-zinc-600 rounded-md px-2.5 py-1.5">
+              <div className="w-full bg-zinc-200 dark:bg-zinc-800 text-xs text-zinc-600 dark:text-zinc-400 rounded-md px-2.5 py-1.5">
                 Search components…
               </div>
             </div>
             <div className="flex-1 overflow-hidden px-2 py-1">
-              <p className="text-[10px] text-zinc-400 dark:text-zinc-600 uppercase tracking-wider px-1 py-1.5 font-semibold">
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider px-1 py-1.5 font-semibold">
                 Sections
               </p>
               {SECTIONS.map((label, i) => (
@@ -188,26 +188,26 @@ export default function HeroVisual() {
                   key={label}
                   className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-xs transition-all cursor-pointer ${
                     i === active
-                      ? "bg-primary-500/15 text-primary-600 dark:text-primary-300 border border-primary-500/30"
-                      : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
+                      ? "bg-primary-500/15 text-primary-700 dark:text-primary-300 border border-primary-500/30"
+                      : "text-zinc-700 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
                   }`}
                 >
-                  <GripVertical className="w-3 h-3 text-zinc-400 dark:text-zinc-600 shrink-0" />
+                  <GripVertical className="w-3 h-3 text-zinc-500 dark:text-zinc-500 shrink-0" />
                   <span className="truncate">{label}</span>
                   {i === active && (
                     <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-400 shrink-0" />
                   )}
                 </div>
               ))}
-              <p className="text-[10px] text-zinc-400 dark:text-zinc-600 uppercase tracking-wider px-1 py-1.5 font-semibold mt-2">
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider px-1 py-1.5 font-semibold mt-2">
                 Elements
               </p>
               {ELEMENTS.map((label) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded-md text-xs text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 cursor-pointer transition-all"
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-md text-xs text-zinc-700 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800 cursor-pointer transition-all"
                 >
-                  <GripVertical className="w-3 h-3 text-zinc-400 dark:text-zinc-600 shrink-0" />
+                  <GripVertical className="w-3 h-3 text-zinc-500 dark:text-zinc-500 shrink-0" />
                   <span>{label}</span>
                 </div>
               ))}
@@ -275,7 +275,7 @@ export default function HeroVisual() {
             </div>
             <div className="flex-1 overflow-auto p-3 space-y-3">
               <div className="rounded-lg bg-zinc-200 dark:bg-zinc-800 p-2.5">
-                <p className="text-[10px] text-zinc-500 mb-1.5 font-medium uppercase tracking-wide">
+                <p className="text-[10px] text-zinc-600 dark:text-zinc-400 mb-1.5 font-medium uppercase tracking-wide">
                   Prompt
                 </p>
                 <p className="text-xs text-zinc-800 dark:text-zinc-200 leading-relaxed min-h-14">

@@ -213,15 +213,13 @@ function PricingCard({
   annual: boolean;
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.2 });
   const price = annual ? plan.annual : plan.monthly;
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
       whileHover={{ y: -4, transition: { duration: 0.2, ease: "easeOut" } }}
       className={`relative flex flex-col rounded-2xl border p-6 md:p-8 ${
@@ -261,7 +259,7 @@ function PricingCard({
               <span className="mb-1 text-2xl font-bold text-slate-800 dark:text-neutral-300">
                 $
               </span>
-              <AnimatePresence mode="wait" initial={false}>
+              <AnimatePresence initial={false}>
                 <motion.span
                   key={price}
                   initial={{ opacity: 0, y: -12 }}
@@ -279,18 +277,11 @@ function PricingCard({
             </>
           )}
         </div>
-        {annual && price > 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-1.5 text-xs text-slate-800 dark:text-neutral-300"
-          >
-            Billed annually · ${price * 12} / yr
-          </motion.p>
-        )}
-        {!annual && price > 0 && (
+        {price > 0 && (
           <p className="mt-1.5 text-xs text-slate-800 dark:text-neutral-300">
-            Switch to annual to save 20%
+            {annual
+              ? `Billed annually · $${price * 12} / yr`
+              : "Switch to annual to save 20%"}
           </p>
         )}
       </div>

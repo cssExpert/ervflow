@@ -79,7 +79,9 @@ export default function ArticleHero({ post }: { post: Post }) {
               onClick={() => setShareOpen(true)}
               aria-label="Share article"
               className={`w-10 h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-200 cursor-pointer ${
-                shareOpen ? "opacity-0 pointer-events-none scale-75" : "opacity-100 scale-100"
+                shareOpen
+                  ? "opacity-0 pointer-events-none scale-75"
+                  : "opacity-100 scale-100"
               }`}
             >
               <Share2 className="w-4 h-4" />
@@ -89,10 +91,10 @@ export default function ArticleHero({ post }: { post: Post }) {
             <AnimatePresence>
               {shareOpen && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.88 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.88 }}
-                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, scale: 0.88, x: 12 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.88, x: 12 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-0.5 bg-zinc-900 rounded-full px-2.5 py-1 shadow-xl z-20 whitespace-nowrap"
                 >
                   <a

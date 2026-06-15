@@ -11,6 +11,11 @@ export type PostCardVariant = "featured" | "half" | "third";
 
 const spring = { type: "spring", damping: 30, stiffness: 300 } as const;
 
+/* Derive thumbnail path — smaller webp for card use, original kept for hero */
+function thumbSrc(src: string): string {
+  return src.replace("/images/Blogs/", "/images/Blogs/thumbs/");
+}
+
 /* Post thumbnail — featured image when set, gradient art as fallback */
 function Cover({
   post,
@@ -25,12 +30,13 @@ function Cover({
     return (
       <div className={`relative overflow-hidden ${className}`}>
         <Image
-          src={post.featuredImage}
+          src={thumbSrc(post.featuredImage)}
           alt={`${post.title} — featured image`}
           fill
           priority={priority}
+          loading={priority ? "eager" : "lazy"}
           className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
         />
       </div>
     );

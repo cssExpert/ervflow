@@ -72,17 +72,28 @@ export default function ArticleHero({ post }: { post: Post }) {
               {post.readTime} read
             </span>
           </div>
-          {/* Share Block */}
-          <div className="absolute right-0 flex items-center">
-            <AnimatePresence mode="wait">
-              {shareOpen ? (
+          {/* Share Block — trigger stays in DOM; pill overlays absolutely (no layout shift) */}
+          <div className="relative w-10 h-10 shrink-0">
+            {/* Trigger button — always rendered, fades out when pill is open */}
+            <button
+              onClick={() => setShareOpen(true)}
+              aria-label="Share article"
+              className={`w-10 h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-all duration-200 cursor-pointer ${
+                shareOpen ? "opacity-0 pointer-events-none scale-75" : "opacity-100 scale-100"
+              }`}
+            >
+              <Share2 className="w-4 h-4" />
+            </button>
+
+            {/* Pill — absolute so it never affects layout */}
+            <AnimatePresence>
+              {shareOpen && (
                 <motion.div
-                  key="pill"
-                  initial={{ opacity: 0, scale: 0.88, x: 12 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.88, x: 12 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-0.5 bg-zinc-900 dark:bg-zinc-900 rounded-full px-2.5 py-1 shadow-xl"
+                  initial={{ opacity: 0, scale: 0.88 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.88 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-0.5 bg-zinc-900 rounded-full px-2.5 py-1 shadow-xl z-20 whitespace-nowrap"
                 >
                   <a
                     href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`}
@@ -120,19 +131,6 @@ export default function ArticleHero({ post }: { post: Post }) {
                     <X size={16} />
                   </button>
                 </motion.div>
-              ) : (
-                <motion.button
-                  key="trigger"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  onClick={() => setShareOpen(true)}
-                  aria-label="Share article"
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700/60 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors duration-200 cursor-pointer"
-                >
-                  <Share2 className="w-4 h-4" />
-                </motion.button>
               )}
             </AnimatePresence>
           </div>

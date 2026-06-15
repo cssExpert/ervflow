@@ -455,6 +455,47 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Status bar */}
+        <div className="flex items-center gap-2 px-3 py-2 bg-[#A38500] border-t border-white/6 shrink-0">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={phase}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center gap-1.5"
+            >
+              <motion.div
+                animate={{
+                  backgroundColor:
+                    phase === "thinking"
+                      ? "#a78bfa"
+                      : phase === "sitemap"
+                        ? "#3b82f6"
+                        : phase === "preview" || phase === "idle"
+                          ? "#22c55e"
+                          : "rgba(255,255,255,0.2)",
+                }}
+                transition={{ duration: 0.3 }}
+                className="w-1.5 h-1.5 rounded-full shrink-0"
+              />
+              <span className="text-[8.5px] font-mono text-white/75">
+                {phase === "typing" && "Generating prompt…"}
+                {phase === "thinking" && "Analyzing request…"}
+                {phase === "sitemap" &&
+                  `Mapping pages · ${visiblePages} / ${AI_PAGES.length}`}
+                {phase === "preview" && "Pages ready · preview"}
+                {phase === "idle" && "Ready to customize"}
+              </span>
+            </motion.div>
+          </AnimatePresence>
+          <div className="ml-auto text-[8px] font-mono text-white/75">
+            {(phase === "preview" || phase === "idle") && "5 pages"}
+            {phase === "sitemap" && `${visiblePages} pages`}
+          </div>
+        </div>
       </div>
 
       {/* "5 pages ready" floating badge */}

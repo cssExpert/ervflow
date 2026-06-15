@@ -10,22 +10,47 @@ import Social from "./Social";
 import { useTheme } from "@/components/ThemeProvider";
 
 const Header = () => {
-  const [sticky, setSticky] = useState(false);
+  const [sticky,     setSticky]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
   const rawPathname = usePathname();
   const pathname = rawPathname.replace(/\/$/, "") || "/";
+
   const handleStickyNavbar = () => {
-    if (window.scrollY >= 80) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
+    setSticky(window.scrollY >= 80);
   };
+
   useEffect(() => {
-    window.addEventListener("scroll", handleStickyNavbar);
-    return () => {
-      window.removeEventListener("scroll", handleStickyNavbar);
-    };
+    window.addEventListener("scroll", handleStickyNavbar, { passive: true });
+    return () => window.removeEventListener("scroll", handleStickyNavbar);
+  }, []);
+
+  // Track which hash-anchor section is in view
+  useEffect(() => {
+    const hashHrefs = navLinks
+      .filter((l) => l.href.startsWith("/#"))
+      .map((l) => l.href.slice(2)); // e.g. "features"
+
+    if (!hashHrefs.length) return;
+
+    const observers: IntersectionObserver[] = [];
+
+    hashHrefs.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveHash(id);
+          else setActiveHash((prev) => (prev === id ? "" : prev));
+        },
+        { threshold: 0.15 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const { resolvedTheme, setTheme } = useTheme();
@@ -60,7 +85,9 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = link.href.startsWith("/#")
+                ? pathname === "/" && activeHash === link.href.slice(2)
+                : pathname === link.href && (link.href !== "/" || activeHash === "");
               return (
                 <Link
                   key={link.href}
@@ -199,18 +226,27 @@ const Header = () => {
               </button>
             </div>
             <nav className="flex flex-col gap-1 p-6">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  href={link.href}
-                  className="text-left px-4 py-3 text-base font-sans font-medium text-white/85 hover:text-primary hover:bg-primary/15 rounded-lg transition-all duration-500"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isMobileActive = link.href.startsWith("/#")
+                  ? pathname === "/" && activeHash === link.href.slice(2)
+                  : pathname === link.href && (link.href !== "/" || activeHash === "");
+                return (
+                  <motion.a
+                    key={link.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    href={link.href}
+                    className={`text-left px-4 py-3 text-base font-sans font-medium rounded-lg transition-all duration-500 ${
+                      isMobileActive
+                        ? "text-primary bg-primary/15"
+                        : "text-white/85 hover:text-primary hover:bg-primary/15"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
             </nav>
             <div className="mt-auto px-6 pb-8 space-y-5">
               {/* Social icons */}

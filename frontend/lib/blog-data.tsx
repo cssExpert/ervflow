@@ -1,40 +1,38 @@
-export type PostSize = "hero" | "tall" | "wide" | "sm";
+export type { PostSize, FAQItem, StepItem, PostSection, Post } from "./blog-types";
+export { SIZE_CLASSES } from "./blog-types";
 
-export interface PostSection {
-  type: "h2" | "h3" | "p" | "code" | "quote" | "ul";
-  text: string;
-  items?: string[];
-}
-
-export interface Post {
-  id: string;
-  title: string;
-  excerpt: string;
-  sections: PostSection[];
-  category: string;
-  categoryText: string;
-  categoryBg: string;
-  gradient: string;
-  glow: string;
-  artColor: string;
-  date: string;
-  readTime: string;
-  author: string;
-  authorRole: string;
-  featuredImage: string;
-  tags: string[];
-  size: PostSize;
-}
+import type { Post } from "./blog-types";
 
 export const POSTS: Post[] = [
   {
     id: "nextjs-perf",
-    featuredImage:
-      "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.webp",
+    slug: "building-blazing-fast-nextjs-15-apps",
+    featuredImage: "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.webp",
     title: "Building Blazing-Fast Next.js 15 Apps",
-    excerpt:
-      "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
+    excerpt: "Deep dive into Server Components, Partial Prerendering, and the new caching model that separates good apps from great ones.",
+    category: "Performance",
+    categoryText: "text-blue-600 dark:text-blue-400",
+    categoryBg: "bg-blue-500/10 border-blue-500/20",
+    gradient: "from-blue-700 via-indigo-800 to-slate-900",
+    glow: "rgba(59,130,246,0.45)",
+    artColor: "#93c5fd",
+    date: "Jun 5, 2026",
+    readTime: "8 min",
+    author: "Ravi Gupta",
+    authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
+    tags: ["Next.js", "React", "Web Perf"],
+    size: "hero",
+    relatedIds: ["ai-ui", "devops-scale"],
     sections: [
+      {
+        type: "problem",
+        text: "Most Next.js apps ship slower than they should. Before v15, automatic caching was unpredictable — fetches were cached by default, invalidation was unclear, and client-side waterfalls crept in as apps grew. Teams spent days debugging stale data instead of shipping features.",
+      },
+      {
+        type: "solution",
+        text: "Next.js 15 hands control back to you. Explicit cache directives, Server Components that fetch their own data at the edge, and Partial Prerendering mean you can hit sub-200ms TTFB without fighting the framework.",
+      },
       { type: "h2", text: "The New Caching Model" },
       {
         type: "p",
@@ -58,7 +56,16 @@ export const POSTS: Post[] = [
         type: "quote",
         text: '"Ship the shell, stream the rest." — The PPR mantra.',
       },
-      { type: "h2", text: "Practical Checklist" },
+      {
+        type: "steps",
+        text: "How to Migrate Your App",
+        steps: [
+          { title: "Audit your fetch calls", description: "Run a global search for `fetch(` in your codebase. Add explicit `cache: 'force-cache'` or `cache: 'no-store'` to every call — no more implicit behavior." },
+          { title: "Move data to Server Components", description: "Identify every `useEffect` that fetches data and convert it to an async Server Component. Co-locate the fetch with the UI that needs it." },
+          { title: "Enable Partial Prerendering", description: "Add `experimental: { ppr: true }` to `next.config.ts` and wrap dynamic islands in `<Suspense>`. Your static shell ships from CDN instantly." },
+          { title: "Measure with Lighthouse CI", description: "Add Lighthouse CI to your GitHub Actions pipeline. Set performance budget gates to catch regressions before they reach production." },
+        ],
+      },
       {
         type: "ul",
         text: "",
@@ -70,42 +77,40 @@ export const POSTS: Post[] = [
           "Set correct Cache-Control headers on the edge",
         ],
       },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "Next.js 15 uses opt-in caching — every fetch call needs an explicit cache directive",
+          "Server Components eliminate client-side data waterfalls by moving fetches to the server",
+          "PPR lets you mix static CDN-served shells with dynamic streaming content on one route",
+          "Lighthouse CI in your pipeline catches performance regressions before users see them",
+          "Profile with Chrome DevTools' Performance panel to find the biggest bottlenecks first",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Is PPR production-ready in Next.js 15?", answer: "PPR is marked experimental but stable enough for production with careful testing. Next.js 15.1+ has made it significantly more robust — many teams use it in production today." },
+          { question: "Do I need to rewrite my entire app to use Server Components?", answer: "No — you can migrate incrementally. Start with leaf components that only fetch data, then work upward. Client Components remain for interactivity." },
+          { question: "Will ERVFlow-generated apps use these patterns automatically?", answer: "Yes. Every ERVFlow project is scaffolded with Server Components by default, explicit caching, and a PPR-ready route structure." },
+          { question: "How much faster can I expect my app to be?", answer: "Real-world results vary, but teams report 40–70% TTFB improvements after migrating to Server Components with proper caching strategies." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "Ready to build faster apps?",
+        cta: { label: "Try ERVFlow Free", href: "/signup" },
+      },
     ],
-    category: "Performance",
-    categoryText: "text-blue-600 dark:text-blue-400",
-    categoryBg: "bg-blue-500/10 border-blue-500/20",
-    gradient: "from-blue-700 via-indigo-800 to-slate-900",
-    glow: "rgba(59,130,246,0.45)",
-    artColor: "#93c5fd",
-    date: "Jun 5, 2026",
-    readTime: "8 min",
-    author: "Ravi Gupta",
-    authorRole: "Founder · ERVFlow",
-    tags: ["Next.js", "React", "Web Perf"],
-    size: "hero",
   },
   {
     id: "ai-ui",
+    slug: "ervflow-ai-driven-ui-generation",
     featuredImage: "/images/Blogs/ERVFlow-AI-Driven-UI-Generation.webp",
     title: "AI-Driven UI Generation",
-    excerpt:
-      "LLMs can now produce production-quality component code. Here's the workflow we use at ERVFlow.",
-    sections: [
-      { type: "h2", text: "The Prompt Architecture" },
-      {
-        type: "p",
-        text: "Good AI UI generation starts with a well-structured prompt. We pass in the design system tokens, component conventions, and TypeScript strict mode requirements as system context.",
-      },
-      { type: "h2", text: "Streaming UI Patterns" },
-      {
-        type: "p",
-        text: "Using the Vercel AI SDK's `useChat` with `renderTool` callbacks, you can stream UI components directly into the page as the model generates them — no round-trips required.",
-      },
-      {
-        type: "quote",
-        text: '"The model writes the scaffold. You write the soul."',
-      },
-    ],
+    excerpt: "LLMs can now produce production-quality component code. Here's the workflow we use at ERVFlow.",
     category: "AI",
     categoryText: "text-amber-600 dark:text-amber-400",
     categoryBg: "bg-amber-500/10 border-amber-500/20",
@@ -116,26 +121,75 @@ export const POSTS: Post[] = [
     readTime: "6 min",
     author: "Ravi Gupta",
     authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
     tags: ["AI", "LLMs", "Vercel AI SDK"],
     size: "tall",
+    relatedIds: ["nextjs-perf", "design-tokens"],
+    sections: [
+      {
+        type: "problem",
+        text: "Manually writing UI components is slow, repetitive, and inconsistent. Design handoffs break down, component APIs drift from the design system, and engineers spend hours on boilerplate instead of product logic.",
+      },
+      {
+        type: "solution",
+        text: "LLMs can generate production-quality component code when given the right context — your design system tokens, TypeScript conventions, and component patterns. At ERVFlow, AI writes the scaffold; engineers write the soul.",
+      },
+      { type: "h2", text: "The Prompt Architecture" },
+      {
+        type: "p",
+        text: "Good AI UI generation starts with a well-structured prompt. We pass in the design system tokens, component conventions, and TypeScript strict mode requirements as system context.",
+      },
+      { type: "h2", text: "Streaming UI Patterns" },
+      {
+        type: "p",
+        text: "Using the Vercel AI SDK's `streamUI` with `renderTool` callbacks, you can stream UI components directly into the page as the model generates them — no round-trips required.",
+      },
+      {
+        type: "quote",
+        text: '"The model writes the scaffold. You write the soul."',
+      },
+      {
+        type: "steps",
+        text: "The ERVFlow Workflow",
+        steps: [
+          { title: "Define your system context", description: "Feed the model your design tokens, Tailwind config, and 2–3 reference components as system context. Consistency comes from what you give the model, not from luck." },
+          { title: "Schema the output", description: "Use structured output (JSON schema or Zod) to constrain what the model returns — component name, props interface, JSX. Validate before writing to disk." },
+          { title: "Stream UI directly", description: "Use Vercel AI SDK's `streamUI` to render components as the model generates them. Users see progress; engineers see fast iteration." },
+          { title: "Human-in-the-loop review", description: "Never auto-merge AI-generated components. A 10-second review catches prop naming drift, missing aria labels, and off-brand spacing before they enter the system." },
+        ],
+      },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "System context (design tokens, conventions) is the difference between generic and on-brand output",
+          "Schema-constrained output gives you parseable, validatable component code",
+          "Streaming UI reduces perceived wait time and enables real-time iteration",
+          "Human review of AI output is non-negotiable — treat it like a junior dev's PR",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Which LLM produces the best UI code?", answer: "Claude Sonnet produces consistently well-structured TypeScript with correct Tailwind usage. GPT-4o is a close second. Always benchmark on your specific component types." },
+          { question: "Can AI generate accessible components?", answer: "Yes, if you specify it. Include aria requirements in your system prompt and validate with axe-core in CI. Don't assume accessibility — test it." },
+          { question: "Does ERVFlow use this approach internally?", answer: "Absolutely. ERVFlow's UI generation engine is built on this exact prompt-architecture-plus-streaming pattern, tuned for the ERVFlow design system." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "See AI UI generation in action",
+        cta: { label: "Generate Your First Website", href: "/signup" },
+      },
+    ],
   },
   {
     id: "design-tokens",
+    slug: "design-tokens-at-scale",
     featuredImage: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.webp",
     title: "Design Tokens at Scale",
-    excerpt:
-      "How to architect a token system that survives a 10x team and a brand refresh.",
-    sections: [
-      { type: "h2", text: "Three Layers of Tokens" },
-      {
-        type: "p",
-        text: "Effective token systems use three layers: primitive (raw values), semantic (roles), and component (local overrides). Each layer references the one below it — never skip layers.",
-      },
-      {
-        type: "code",
-        text: "/* Primitive */\n--blue-500: #3b82f6;\n\n/* Semantic */\n--color-action: var(--blue-500);\n\n/* Component */\n--btn-bg: var(--color-action);",
-      },
-    ],
+    excerpt: "How to architect a token system that survives a 10x team and a brand refresh.",
     category: "Design",
     categoryText: "text-violet-600 dark:text-violet-400",
     categoryBg: "bg-violet-500/10 border-violet-500/20",
@@ -146,17 +200,93 @@ export const POSTS: Post[] = [
     readTime: "5 min",
     author: "Ravi Gupta",
     authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
     tags: ["CSS", "Design Systems", "Tokens"],
     size: "sm",
+    relatedIds: ["ai-ui", "typescript-patterns"],
+    sections: [
+      {
+        type: "problem",
+        text: "Without a token system, CSS becomes tribal knowledge. One developer uses `#3b82f6`, another uses `blue-500`, a third hardcodes `rgba(59,130,246,1)`. A brand refresh means a global find-and-replace — and you'll still miss something.",
+      },
+      {
+        type: "solution",
+        text: "A three-layer token architecture gives you one source of truth. Change a primitive, and the semantic and component layers update automatically. Brand refreshes become a one-file edit.",
+      },
+      { type: "h2", text: "Three Layers of Tokens" },
+      {
+        type: "p",
+        text: "Effective token systems use three layers: primitive (raw values), semantic (roles), and component (local overrides). Each layer references the one below it — never skip layers.",
+      },
+      {
+        type: "code",
+        text: "/* Primitive */\n--blue-500: #3b82f6;\n\n/* Semantic */\n--color-action: var(--blue-500);\n\n/* Component */\n--btn-bg: var(--color-action);",
+      },
+      {
+        type: "steps",
+        text: "Building Your Token System",
+        steps: [
+          { title: "Define primitive tokens", description: "Primitive tokens are raw values — every color, spacing step, and type size your brand uses. Name them by value, not role: `--blue-500`, `--space-4`, `--text-sm`." },
+          { title: "Map semantic tokens", description: "Semantic tokens assign role to primitive values: `--color-action: var(--blue-500)`. These are what your UI actually consumes — and what you swap during a brand refresh." },
+          { title: "Add component tokens", description: "Component tokens are local overrides: `--btn-bg: var(--color-action)`. They isolate components so changing a semantic token doesn't break unexpected UI." },
+          { title: "Automate with Style Dictionary", description: "Use Style Dictionary to transform your JSON token source into CSS variables, Tailwind theme values, iOS Swift, and Android XML simultaneously." },
+        ],
+      },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "Never skip token layers — primitive → semantic → component is the critical chain",
+          "Semantic tokens are what you swap during brand refreshes, not primitives",
+          "Component tokens prevent cascade bleed between unrelated UI elements",
+          "Style Dictionary automates multi-platform token output from a single JSON source",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Should tokens live in CSS variables or JS constants?", answer: "Both — CSS variables for runtime theming, JS constants (via Style Dictionary output) for type-safe access in components. Generate both from the same JSON source." },
+          { question: "How many token levels is too many?", answer: "Three is the sweet spot. More layers add cognitive overhead without proportional benefit. Stop at component tokens." },
+          { question: "Does ERVFlow support custom design tokens?", answer: "Yes — ERVFlow's theme system is fully token-driven. You can customize the entire palette from the Settings panel without touching code." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "Built on a production token system",
+        cta: { label: "See ERVFlow in Action", href: "/demo" },
+      },
+    ],
   },
   {
     id: "typescript-patterns",
-    featuredImage:
-      "/images/Blogs/ERVFlow-TypeScript-Patterns-Youll-Actually-Use.webp",
+    slug: "typescript-patterns-youll-actually-use",
+    featuredImage: "/images/Blogs/ERVFlow-TypeScript-Patterns-Youll-Actually-Use.webp",
     title: "TypeScript Patterns You'll Actually Use",
-    excerpt:
-      "Skip the theory. These five patterns have saved our codebase from 90% of runtime errors.",
+    excerpt: "Skip the theory. These five patterns have saved our codebase from 90% of runtime errors.",
+    category: "TypeScript",
+    categoryText: "text-rose-600 dark:text-rose-400",
+    categoryBg: "bg-rose-500/10 border-rose-500/20",
+    gradient: "from-rose-600 via-pink-700 to-purple-950",
+    glow: "rgba(244,63,94,0.45)",
+    artColor: "#fda4af",
+    date: "May 8, 2026",
+    readTime: "7 min",
+    author: "Ravi Gupta",
+    authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
+    tags: ["TypeScript", "Patterns", "DX"],
+    size: "wide",
+    relatedIds: ["design-tokens", "css-architecture"],
     sections: [
+      {
+        type: "problem",
+        text: "Runtime errors don't come from nowhere — they come from types that are too loose. `string | undefined` everywhere, union-busting `as` casts, and `any` escape hatches that silently spread through a codebase.",
+      },
+      {
+        type: "solution",
+        text: "Five TypeScript patterns eliminate entire categories of runtime errors: discriminated unions model state correctly, branded types prevent ID confusion, Zod validates at boundaries, const assertions lock down literals, and satisfies checks type without widening.",
+      },
       { type: "h2", text: "Discriminated Unions" },
       {
         type: "p",
@@ -171,27 +301,71 @@ export const POSTS: Post[] = [
         type: "p",
         text: "Prevent passing a `UserId` where a `PostId` is expected, even though both are strings. Brands make the type system enforce your domain semantics.",
       },
+      {
+        type: "steps",
+        text: "Adopting These Patterns",
+        steps: [
+          { title: "Replace optional fields with discriminated unions", description: "Instead of `{ status: string; data?: T; error?: string }`, use a union type per state. TypeScript now knows exactly what's available in each branch." },
+          { title: "Brand your ID types", description: "Create `type UserId = string & { readonly __brand: 'UserId' }`. Passing a `PostId` where a `UserId` is expected is now a compile-time error, not a runtime mystery." },
+          { title: "Add Zod at every boundary", description: "Parse external data (API responses, URL params, form inputs) with Zod schemas at the point of entry. Trust nothing from outside your type system." },
+          { title: "Enable strict mode in tsconfig", description: "Add `\"strict\": true` to tsconfig.json. Fix every error it surfaces — each one is a latent bug. Don't silence with `as` or `!`." },
+        ],
+      },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "Discriminated unions eliminate impossible state by making invalid combinations unrepresentable",
+          "Branded types enforce domain semantics the compiler can't otherwise see",
+          "Zod bridges the gap between runtime data and TypeScript's static type system",
+          "Strict mode is not optional for production codebases — it's the minimum viable safety net",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Is strict mode worth the migration pain?", answer: "Yes — every error strict mode surfaces is a real bug. Migrate incrementally with `// @ts-strict-ignore` on files you haven't touched yet." },
+          { question: "When should I use `as` casting?", answer: "Almost never. The only legitimate use is when you're certain the type is correct and there's no better way to express it — and that's rare. Every `as` is technical debt." },
+          { question: "Does ERVFlow generate TypeScript code?", answer: "All ERVFlow-generated code is TypeScript-first with strict mode enabled. Generated APIs include Zod schemas for all inputs and outputs." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "ERVFlow generates type-safe code by default",
+        cta: { label: "Book a Demo", href: "/contact" },
+      },
     ],
-    category: "TypeScript",
-    categoryText: "text-rose-600 dark:text-rose-400",
-    categoryBg: "bg-rose-500/10 border-rose-500/20",
-    gradient: "from-rose-600 via-pink-700 to-purple-950",
-    glow: "rgba(244,63,94,0.45)",
-    artColor: "#fda4af",
-    date: "May 8, 2026",
-    readTime: "7 min",
-    author: "Ravi Gupta",
-    authorRole: "Founder · ERVFlow",
-    tags: ["TypeScript", "Patterns", "DX"],
-    size: "wide",
   },
   {
     id: "css-architecture",
+    slug: "css-architecture-for-large-apps",
     featuredImage: "/images/Blogs/ERVFlow-CSS-Architecture-For-Large-Apps.webp",
     title: "CSS Architecture for Large Apps",
-    excerpt:
-      "Tailwind v4, CSS Layers, and the cascade — used intentionally instead of fought against.",
+    excerpt: "Tailwind v4, CSS Layers, and the cascade — used intentionally instead of fought against.",
+    category: "CSS",
+    categoryText: "text-emerald-600 dark:text-emerald-400",
+    categoryBg: "bg-emerald-500/10 border-emerald-500/20",
+    gradient: "from-emerald-700 via-teal-800 to-cyan-950",
+    glow: "rgba(16,185,129,0.45)",
+    artColor: "#6ee7b7",
+    date: "Apr 30, 2026",
+    readTime: "9 min",
+    author: "Ravi Gupta",
+    authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
+    tags: ["CSS", "Tailwind v4", "Architecture"],
+    size: "wide",
+    relatedIds: ["typescript-patterns", "nextjs-perf"],
     sections: [
+      {
+        type: "problem",
+        text: "CSS specificity wars are avoidable but endemic. !important flags multiply, utility classes fight component styles, and nobody remembers which rule wins. Adding a new feature breaks something three screens away.",
+      },
+      {
+        type: "solution",
+        text: "CSS Cascade Layers give you explicit ordering without specificity games. Combined with Tailwind v4's Lightning CSS engine, you get predictable styles at 100x the build speed.",
+      },
       { type: "h2", text: "Layers Over Specificity Wars" },
       {
         type: "p",
@@ -206,28 +380,71 @@ export const POSTS: Post[] = [
         type: "p",
         text: "Tailwind v4 ships with Lightning CSS as its transform engine, enabling native CSS nesting, modern color spaces, and 100× faster builds over the PostCSS pipeline.",
       },
+      {
+        type: "steps",
+        text: "Restructuring Your CSS",
+        steps: [
+          { title: "Define your layer order", description: "Declare `@layer base, components, utilities;` at the top of your stylesheet. This one line makes the cascade explicit — utilities always win, in a way everyone can read." },
+          { title: "Migrate to Tailwind v4", description: "Swap PostCSS for Lightning CSS in your Tailwind config. You get native CSS nesting, container queries, and modern color spaces out of the box — no plugins." },
+          { title: "Put component styles in @layer components", description: "Move all hand-written component CSS into `@layer components`. It loses specificity battles with utilities by design, eliminating the need for `!important`." },
+          { title: "Document your naming conventions", description: "Create a `STYLES.md` that explains your layer order and naming conventions. CSS architecture is only as durable as the docs that explain it to the next engineer." },
+        ],
+      },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "CSS Layers make the cascade explicit — no more specificity archaeology",
+          "Utilities beat component styles by layer order, not by specificity value",
+          "Tailwind v4 + Lightning CSS eliminates the entire PostCSS plugin chain",
+          "Documentation prevents layer order from becoming tribal knowledge",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Can I use CSS Layers with existing Tailwind v3 projects?", answer: "Yes — `@layer` is a native CSS feature. You can adopt it incrementally alongside your existing Tailwind v3 setup before migrating to v4." },
+          { question: "Does Tailwind v4 break existing utility classes?", answer: "Some class names changed (gradient syntax, for example). Run the official Tailwind v4 upgrade codemod first — it catches most renames automatically." },
+          { question: "Does ERVFlow use Tailwind v4 internally?", answer: "Yes. All ERVFlow projects are scaffolded with Tailwind v4 and a pre-configured @layer architecture out of the box." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "ERVFlow ships with Tailwind v4 and CSS Layers configured",
+        cta: { label: "Try ERVFlow Free", href: "/signup" },
+      },
     ],
-    category: "CSS",
-    categoryText: "text-emerald-600 dark:text-emerald-400",
-    categoryBg: "bg-emerald-500/10 border-emerald-500/20",
-    gradient: "from-emerald-700 via-teal-800 to-cyan-950",
-    glow: "rgba(16,185,129,0.45)",
-    artColor: "#6ee7b7",
-    date: "Apr 30, 2026",
-    readTime: "9 min",
-    author: "Ravi Gupta",
-    authorRole: "Founder · ERVFlow",
-    tags: ["CSS", "Tailwind v4", "Architecture"],
-    size: "wide",
   },
   {
     id: "devops-scale",
-    featuredImage:
-      "/images/Blogs/ERVFlow-Zero-Downtime-Deploys-On-A-Budget.webp",
+    slug: "zero-downtime-deploys-on-a-budget",
+    featuredImage: "/images/Blogs/ERVFlow-Zero-Downtime-Deploys-On-A-Budget.webp",
     title: "Zero-Downtime Deploys on a Budget",
-    excerpt:
-      "CI/CD, blue-green deployments, and health checks — without the enterprise price tag.",
+    excerpt: "CI/CD, blue-green deployments, and health checks — without the enterprise price tag.",
+    category: "DevOps",
+    categoryText: "text-cyan-600 dark:text-cyan-400",
+    categoryBg: "bg-cyan-500/10 border-cyan-500/20",
+    gradient: "from-cyan-700 via-sky-800 to-blue-950",
+    glow: "rgba(6,182,212,0.45)",
+    artColor: "#67e8f9",
+    date: "Apr 22, 2026",
+    readTime: "6 min",
+    author: "Ravi Gupta",
+    authorRole: "Founder · ERVFlow",
+    bio: "Ravi builds ERVFlow — an AI-powered platform that generates production-ready Next.js apps in seconds. Previously led frontend at two YC startups.",
+    tags: ["DevOps", "CI/CD", "Docker"],
+    size: "sm",
+    relatedIds: ["nextjs-perf", "css-architecture"],
     sections: [
+      {
+        type: "problem",
+        text: "Zero-downtime deployments feel like enterprise territory — load balancers, orchestration platforms, expensive PaaS tiers. Most teams deploy by restarting a container and hoping users don't notice the 10-second gap.",
+      },
+      {
+        type: "solution",
+        text: "Coolify on a $6/mo VPS gives you blue-green deployments, health-check-gated traffic switching, and one-click rollback — without Kubernetes or a platform bill that scales with your success.",
+      },
       { type: "h2", text: "Blue-Green with Coolify" },
       {
         type: "p",
@@ -239,25 +456,40 @@ export const POSTS: Post[] = [
         text: "A lean GitHub Actions workflow: lint → test → build Docker image → push to registry → trigger Coolify webhook. Total time: under 90 seconds for a Next.js app.",
       },
       { type: "quote", text: '"Deploy fearlessly. Roll back instantly."' },
+      {
+        type: "steps",
+        text: "Setting Up Zero-Downtime Deploys",
+        steps: [
+          { title: "Provision Coolify on a VPS", description: "Spin up a $6/mo DigitalOcean Droplet or Hetzner CX11 and run the Coolify install script. You'll have a self-hosted PaaS with UI in under 10 minutes." },
+          { title: "Configure blue-green environments", description: "In Coolify, create two identical app environments — blue and green. Deploy new versions to the inactive slot while the active slot serves traffic." },
+          { title: "Write your GitHub Actions pipeline", description: "lint → test → build Docker image → push to registry → POST to Coolify's deploy webhook. Total pipeline time: under 90 seconds for a Next.js app." },
+          { title: "Add health checks and rollback", description: "Configure Coolify's health check to hit `/api/health` before switching traffic. If the check fails, traffic stays on the current slot — automatic rollback, zero user impact." },
+        ],
+      },
+      {
+        type: "takeaways",
+        text: "",
+        items: [
+          "Blue-green deployments require two environments, not two servers — Coolify handles this on one VPS",
+          "Health-check-gated traffic switching is the key to zero-downtime — never skip it",
+          "A 90-second CI pipeline is fast enough that deploys stop feeling like events",
+          "Self-hosting with Coolify saves $200–$500/month vs equivalent managed PaaS tiers",
+        ],
+      },
+      {
+        type: "faq",
+        text: "",
+        faqs: [
+          { question: "Is Coolify production-ready?", answer: "Yes — Coolify v4 is actively maintained and used in production by thousands of teams. It supports Docker, Docker Compose, and Nixpacks out of the box." },
+          { question: "What's the minimum VPS spec for this setup?", answer: "2 vCPU / 2GB RAM handles a Next.js app with blue-green. Add RAM for database co-location (4GB+) or multiple apps on the same server." },
+          { question: "Does ERVFlow recommend self-hosting or Vercel?", answer: "Both. Vercel is zero-ops for early-stage projects. Coolify makes sense when your platform bill exceeds your VPS cost — usually at meaningful scale." },
+        ],
+      },
+      {
+        type: "cta",
+        text: "ERVFlow apps ship with a production-ready CI/CD pipeline",
+        cta: { label: "Book a Demo", href: "/contact" },
+      },
     ],
-    category: "DevOps",
-    categoryText: "text-cyan-600 dark:text-cyan-400",
-    categoryBg: "bg-cyan-500/10 border-cyan-500/20",
-    gradient: "from-cyan-700 via-sky-800 to-blue-950",
-    glow: "rgba(6,182,212,0.45)",
-    artColor: "#67e8f9",
-    date: "Apr 22, 2026",
-    readTime: "6 min",
-    author: "Ravi Gupta",
-    authorRole: "Founder · ERVFlow",
-    tags: ["DevOps", "CI/CD", "Docker"],
-    size: "sm",
   },
 ];
-
-export const SIZE_CLASSES: Record<PostSize, string> = {
-  hero: "md:col-span-2 lg:col-span-2 lg:row-span-2",
-  tall: "md:col-span-1 lg:col-span-1 lg:row-span-2",
-  wide: "md:col-span-2 lg:col-span-2 lg:row-span-1",
-  sm: "md:col-span-1 lg:col-span-1 lg:row-span-1",
-};

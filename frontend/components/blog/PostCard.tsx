@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { MoveRight, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog-data";
@@ -118,92 +119,93 @@ interface Props {
   onSelect: (id: string) => void;
 }
 
-export default function PostCard({ post, index, variant, onSelect }: Props) {
+export default function PostCard({ post, index, variant }: Props) {
   const isFeatured = variant === "featured";
   const isHalf = variant === "half";
 
   return (
-    <motion.div
-      className="group h-full cursor-pointer"
-      initial={{ opacity: 0, y: 28 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97 }}
-      transition={{
-        duration: 0.5,
-        delay: index * 0.06,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      whileHover={{ y: -4 }}
-      onClick={() => onSelect(post.id)}
-    >
-      <motion.article
-        layoutId={`blog-card-${post.id}`}
-        className="relative h-full flex flex-col overflow-hidden rounded-2xl
+    <Link href={`/blog/${post.slug}`} className="block h-full">
+      <motion.div
+        className="group h-full cursor-pointer"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.97 }}
+        transition={{
+          duration: 0.5,
+          delay: index * 0.06,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        whileHover={{ y: -4 }}
+      >
+        <motion.article
+          layoutId={`blog-card-${post.id}`}
+          className="relative h-full flex flex-col overflow-hidden rounded-2xl
           bg-white dark:bg-white/3
           border border-black/8 dark:border-white/8
           shadow-xs hover:shadow-xs transition-shadow duration-300"
-        style={{ borderRadius: 16 }}
-        transition={spring}
-      >
-        {isFeatured ? (
-          <div className="flex flex-col lg:flex-row flex-1">
-            <Cover
-              post={post}
-              priority
-              className="h-65 md:h-85 lg:h-auto lg:w-1/2"
-            />
-            <div className="flex flex-col flex-1 p-6 sm:p-8 lg:p-12">
-              <MetaRow post={post} />
-              <motion.h2
-                layoutId={`blog-title-${post.id}`}
-                className="my-4 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
-                transition={spring}
-              >
-                {post.title}
-              </motion.h2>
-              <p className="text-zinc-600 dark:text-neutral-300 leading-relaxed mb-8 max-w-lg">
-                {post.excerpt}
-              </p>
-              <div className="flex-1" />
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <AuthorChip post={post} />
-                <ReadMore />
+          style={{ borderRadius: 16 }}
+          transition={spring}
+        >
+          {isFeatured ? (
+            <div className="flex flex-col lg:flex-row flex-1">
+              <Cover
+                post={post}
+                priority
+                className="h-65 md:h-85 lg:h-auto lg:w-1/2"
+              />
+              <div className="flex flex-col flex-1 p-6 sm:p-8 lg:p-12">
+                <MetaRow post={post} />
+                <motion.h2
+                  layoutId={`blog-title-${post.id}`}
+                  className="my-4 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
+                  transition={spring}
+                >
+                  {post.title}
+                </motion.h2>
+                <p className="text-zinc-600 dark:text-neutral-300 leading-relaxed mb-8 max-w-lg">
+                  {post.excerpt}
+                </p>
+                <div className="flex-1" />
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <AuthorChip post={post} />
+                  <ReadMore />
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <>
-            <Cover
-              post={post}
-              className={isHalf ? "h-60 md:h-75" : "h-50 md:h-60"}
-            />
-            <div className="flex flex-col flex-1 p-6">
-              <MetaRow post={post} />
-              <motion.h2
-                layoutId={`blog-title-${post.id}`}
-                className={`my-3 font-extrabold tracking-tight leading-snug text-zinc-800 dark:text-white ${
-                  isHalf ? "text-xl sm:text-2xl" : "text-lg"
-                }`}
-                transition={spring}
-              >
-                {post.title}
-              </motion.h2>
-              <p
-                className={`text-sm text-zinc-600 dark:text-neutral-300 leading-relaxed ${
-                  isHalf ? "line-clamp-3" : "line-clamp-2"
-                }`}
-              >
-                {post.excerpt}
-              </p>
-              <div className="flex-1" />
-              <div className="flex flex-wrap items-center justify-between gap-3 mt-6">
-                <AuthorChip post={post} />
-                {isHalf && <ReadMore />}
+          ) : (
+            <>
+              <Cover
+                post={post}
+                className={isHalf ? "h-60 md:h-75" : "h-50 md:h-60"}
+              />
+              <div className="flex flex-col flex-1 p-6">
+                <MetaRow post={post} />
+                <motion.h2
+                  layoutId={`blog-title-${post.id}`}
+                  className={`my-3 font-extrabold tracking-tight leading-snug text-zinc-800 dark:text-white ${
+                    isHalf ? "text-xl sm:text-2xl" : "text-lg"
+                  }`}
+                  transition={spring}
+                >
+                  {post.title}
+                </motion.h2>
+                <p
+                  className={`text-sm text-zinc-600 dark:text-neutral-300 leading-relaxed ${
+                    isHalf ? "line-clamp-3" : "line-clamp-2"
+                  }`}
+                >
+                  {post.excerpt}
+                </p>
+                <div className="flex-1" />
+                <div className="flex flex-wrap items-center justify-between gap-3 mt-6">
+                  <AuthorChip post={post} />
+                  {isHalf && <ReadMore />}
+                </div>
               </div>
-            </div>
-          </>
-        )}
-      </motion.article>
-    </motion.div>
+            </>
+          )}
+        </motion.article>
+      </motion.div>
+    </Link>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { Check, X, Minus, MoveRight, Gem, Zap } from "lucide-react";
 import Link from "next/link";
 import SectionReady from "@/components/common/SectionReady";
@@ -259,18 +259,15 @@ function PricingCard({
               <span className="mb-1 text-2xl font-bold text-slate-800 dark:text-neutral-300">
                 $
               </span>
-              <AnimatePresence initial={false}>
-                <motion.span
-                  key={price}
-                  initial={{ opacity: 0, y: -12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 12 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="text-5xl font-black text-slate-700 dark:text-white leading-none"
-                >
-                  {price}
-                </motion.span>
-              </AnimatePresence>
+              <motion.span
+                key={price}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.15 }}
+                className="text-5xl font-black text-slate-700 dark:text-white leading-none tabular-nums"
+              >
+                {price}
+              </motion.span>
               <span className="mb-1.5 text-sm text-slate-700 dark:text-neutral-300">
                 / mo
               </span>
@@ -354,14 +351,11 @@ function Cell({
 
 /* ── Comparison table ────────────────────────────────────────────── */
 function ComparisonTable({ annual }: { annual: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 32 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.65, ease: EASE }}
       className=""
     >
@@ -473,8 +467,6 @@ const headerItemVariants = {
 /* ── Page ────────────────────────────────────────────────────────── */
 export default function PricingPage() {
   const [annual, setAnnual] = useState(true);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const isHeroInView = useInView(heroRef, { once: true, amount: 0.4 });
 
   return (
     <main className="min-h-screen relative bg-white dark:bg-black text-black dark:text-white z-2">
@@ -484,10 +476,10 @@ export default function PricingPage() {
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 px-6 text-center">
         <motion.div
-          ref={heroRef}
           variants={headerVariants}
           initial="hidden"
-          animate={isHeroInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
           className="mx-auto max-w-3xl"
         >
           <motion.span

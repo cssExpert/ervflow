@@ -10,7 +10,7 @@ import Social from "./Social";
 import { useTheme } from "@/components/ThemeProvider";
 
 const Header = () => {
-  const [sticky,     setSticky]     = useState(false);
+  const [sticky, setSticky] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
   const rawPathname = usePathname();
@@ -44,7 +44,7 @@ const Header = () => {
           if (entry.isIntersecting) setActiveHash(id);
           else setActiveHash((prev) => (prev === id ? "" : prev));
         },
-        { threshold: 0.15 }
+        { threshold: 0.15 },
       );
       obs.observe(el);
       observers.push(obs);
@@ -54,6 +54,33 @@ const Header = () => {
   }, []);
 
   const { resolvedTheme, setTheme } = useTheme();
+
+  const menuListVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.045,
+        delayChildren: 0.08,
+      },
+    },
+  };
+
+  const menuItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: -28,
+      filter: "blur(16px)",
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 1,
+        ease: [0.15, 1, 0.25, 1] as const,
+      },
+    },
+  };
 
   return (
     <>
@@ -87,7 +114,8 @@ const Header = () => {
             {navLinks.map((link) => {
               const isActive = link.href.startsWith("/#")
                 ? pathname === "/" && activeHash === link.href.slice(2)
-                : pathname === link.href && (link.href !== "/" || activeHash === "");
+                : pathname === link.href &&
+                  (link.href !== "/" || activeHash === "");
               return (
                 <Link
                   key={link.href}
@@ -101,7 +129,10 @@ const Header = () => {
                 >
                   {link.label}
                   <motion.span
-                    animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0 }}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      scale: isActive ? 1 : 0,
+                    }}
                     transition={{ duration: 0.2 }}
                     className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
                   />
@@ -224,68 +255,82 @@ const Header = () => {
                 <X size={20} />
               </button>
             </div>
-            <nav className="flex flex-col gap-1 p-6">
-              {navLinks.map((link, i) => {
+            <motion.nav
+              className="flex flex-col gap-1 p-6"
+              variants={menuListVariants}
+              initial="hidden"
+              animate="show"
+            >
+              {navLinks.map((link) => {
                 const isMobileActive = link.href.startsWith("/#")
                   ? pathname === "/" && activeHash === link.href.slice(2)
-                  : pathname === link.href && (link.href !== "/" || activeHash === "");
+                  : pathname === link.href &&
+                    (link.href !== "/" || activeHash === "");
+
                 return (
-                  <motion.a
-                    key={link.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    href={link.href}
-                    className={`text-left px-4 py-3 text-base font-sans font-medium rounded-lg transition-all duration-500 ${
-                      isMobileActive
-                        ? "text-primary bg-primary/15"
-                        : "text-white/85 hover:text-primary hover:bg-primary/15"
-                    }`}
-                  >
-                    {link.label}
-                  </motion.a>
+                  <motion.div key={link.href} variants={menuItemVariants}>
+                    <Link
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block text-left px-4 py-3 text-base font-sans font-medium rounded-lg transition-colors duration-300 ${
+                        isMobileActive
+                          ? "text-primary bg-primary/15"
+                          : "text-white/85 hover:text-primary hover:bg-primary/15"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
                 );
               })}
-            </nav>
+            </motion.nav>
             <div className="mt-auto px-6 pb-8 space-y-5">
+              <div className="flex flex-1 items-center gap-2">
+                <Link
+                  href="/"
+                  className="inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-4.5 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
+                >
+                  <span className="font-bold tracking-tight">Login</span>
+                </Link>
+                <Link
+                  className="group inline-flex text-indigo-300 hover:text-primary-400"
+                  href="/"
+                >
+                  <motion.div
+                    // Framer Motion spring physics handle hover and tap smoothly!
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    className="relative inline-flex rounded-full p-0.5 overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
+                  >
+                    {/* 1. ROTATING GLOW BEAM */}
+                    <motion.div
+                      className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
+                      style={{
+                        x: "-50%",
+                        y: "-50%",
+                        background:
+                          "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
+                      }}
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 4,
+                        ease: "linear",
+                      }}
+                    />
+
+                    {/* 2. INNER CONTENT CARD */}
+                    <div className="relative z-10 flex items-center px-6 py-2.5 rounded-full text-sm text-zinc-400 bg-black border border-zinc-900/60">
+                      <span className="font-bold text-primary-300 hover:text-primary-500 tracking-tight">
+                        Request Demo
+                      </span>
+                    </div>
+                  </motion.div>
+                </Link>
+              </div>
               {/* Social icons */}
               <Social />
-              <Link
-                className="group inline-flex text-indigo-300 hover:text-primary-400"
-                href="/"
-              >
-                <motion.div
-                  // Framer Motion spring physics handle hover and tap smoothly!
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className="relative inline-flex rounded-full p-0.5 overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
-                >
-                  {/* 1. ROTATING GLOW BEAM */}
-                  <motion.div
-                    className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
-                    style={{
-                      x: "-50%",
-                      y: "-50%",
-                      background:
-                        "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
-                    }}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 4,
-                      ease: "linear",
-                    }}
-                  />
-
-                  {/* 2. INNER CONTENT CARD */}
-                  <div className="relative z-10 flex items-center px-6 py-2.5 rounded-full text-sm text-zinc-400 bg-black border border-zinc-900/60">
-                    <span className="font-bold text-primary-300 hover:text-primary-500 tracking-tight">
-                      Get Started — Save 50%
-                    </span>
-                  </div>
-                </motion.div>
-              </Link>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Merienda } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -21,9 +22,16 @@ export const metadata: Metadata = {
   description:
     "ERVFlow is a modern AI-powered visual website builder with drag-and-drop editing, Tailwind CSS support, automation workflows, CMS tools, and Next.js-powered performance.",
   keywords: [
-    "ERVFlow", "website builder", "AI website builder", "visual editor",
-    "drag and drop builder", "Next.js builder", "Tailwind CSS editor",
-    "no-code platform", "low-code platform", "landing page builder",
+    "ERVFlow",
+    "website builder",
+    "AI website builder",
+    "visual editor",
+    "drag and drop builder",
+    "Next.js builder",
+    "Tailwind CSS editor",
+    "no-code platform",
+    "low-code platform",
+    "landing page builder",
   ],
   authors: [{ name: "ERVFlow", url: "https://ervflow.com" }],
   creator: "ERVFlow",
@@ -31,17 +39,21 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   openGraph: {
     title: "ERVFlow — Build Beautiful Websites",
-    description: "AI-powered visual website builder for modern teams using Next.js, Tailwind CSS, automation workflows, and drag-and-drop editing.",
+    description:
+      "AI-powered visual website builder for modern teams using Next.js, Tailwind CSS, automation workflows, and drag-and-drop editing.",
     url: "https://ervflow.com",
     siteName: "ERVFlow",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "ERVFlow" }],
+    images: [
+      { url: "/og-image.png", width: 1200, height: 630, alt: "ERVFlow" },
+    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "ERVFlow — Build Beautiful Websites",
-    description: "AI-powered drag-and-drop visual website builder powered by Next.js and Tailwind CSS.",
+    description:
+      "AI-powered drag-and-drop visual website builder powered by Next.js and Tailwind CSS.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -53,11 +65,19 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={cn("h-full antialiased", interFont.className, merienda.variable)}
+      className={cn(
+        "h-full antialiased",
+        interFont.className,
+        merienda.variable,
+      )}
       suppressHydrationWarning
     >
       <head>
@@ -68,7 +88,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         {/* Loader styles injected into <head> so they render before any JS */}
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           #ervflow-loader {
             position: fixed;
             inset: 0;
@@ -81,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gap: 24px;
             transition: opacity 0.45s ease, visibility 0.45s ease;
           }
-          #ervflow-loader.done {
+          #ervflow-loader.is-hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
@@ -113,12 +135,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             50%  { transform: translateX(0%); }
             100% { transform: translateX(100%); }
           }
-        ` }} />
+        `,
+          }}
+        />
       </head>
       <body className="h-full">
         {/* Pure-HTML loader — visible before any JS runs */}
         <div id="ervflow-loader" aria-hidden="true">
-          <div id="ervflow-loader-wordmark">ERV<span>Flow</span></div>
+          <div id="ervflow-loader-wordmark">
+            ERV<span>Flow</span>
+          </div>
           <div id="ervflow-loader-track">
             <div id="ervflow-loader-bar" />
           </div>
@@ -128,11 +154,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LoaderDismiss />
 
         <ThemeProvider>
-          <TooltipProvider>
-            <Header />
-            {children}
-            <Footer />
-          </TooltipProvider>
+          <SmoothScroll>
+            <TooltipProvider>
+              <Header />
+              {children}
+              <Footer />
+            </TooltipProvider>
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

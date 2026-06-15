@@ -53,7 +53,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
         {/* Eyebrow badge */}
         <div
-          className="hero-item inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-300 text-[9px] md:text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest"
+          className="hero-item inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest"
           style={{ animationDelay: "0ms" }}
         >
           <span
@@ -69,7 +69,7 @@ const Hero = () => {
           style={{ animationDelay: "120ms" }}
         >
           Build Production-Ready <br className="hidden md:inline" />
-          <span className="bg-linear-to-r from-fuchsia-500 via-primary-500 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
+          <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
             Websites with AI
           </span>
         </h1>
@@ -91,7 +91,7 @@ const Hero = () => {
           {/* Primary — rotating glow motion button */}
           <Link
             href="/"
-            className="cta-btn inline-flex items-center justify-center gap-2 px-5 md:px-7 py-3 rounded-full bg-primary dark:bg-primary-600 hover:border-primary-600 dark:hover:border-primary-700 text-white dark:text-zinc-100 font-semibold text-sm md:text-base transition-all duration-300"
+            className="cta-btn inline-flex items-center justify-center gap-2 px-5 md:px-7 py-3 rounded-full bg-primary dark:bg-primary-600 hover:border-primary-600 dark:hover:border-primary-700 text-white dark:text-zinc-100 font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25"
           >
             Start Building Free
           </Link>
@@ -99,7 +99,7 @@ const Hero = () => {
           {/* Secondary */}
           <Link
             href="/"
-            className="cta-btn inline-flex items-center justify-center gap-2 px-3 md:px-7 py-3 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-300"
+            className="cta-btn inline-flex items-center justify-center gap-2 px-3 md:px-7 py-3 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25"
           >
             <Play
               className="w-4 h-4 fill-current text-primary-400 dark:text-primary-400"

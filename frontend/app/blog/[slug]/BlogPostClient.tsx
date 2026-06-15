@@ -80,7 +80,7 @@ export default function BlogPostClient({ post }: { post: Post }) {
       <ArticleHero post={post} />
 
       {/* Bridge: hero #0A0A0B → body bg */}
-      <div
+      {/* <div
         aria-hidden="true"
         className="h-28 -mt-28 relative z-10 pointer-events-none"
         style={{
@@ -92,7 +92,7 @@ export default function BlogPostClient({ post }: { post: Post }) {
           :root { --bridge-end: #ffffff; }
           .dark { --bridge-end: #080808; }
         `}</style>
-      </div>
+      </div> */}
 
       {/* Article body + sticky sidebar */}
       <div className="px-6 sm:px-10 py-20">

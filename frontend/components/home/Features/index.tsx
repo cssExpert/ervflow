@@ -216,7 +216,7 @@ const Features = () => {
                             loading={index === 0 ? "eager" : "lazy"}
                             fill
                             className="object-cover object-top-left inset-0"
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
                           />
                         </div>
                       </div>

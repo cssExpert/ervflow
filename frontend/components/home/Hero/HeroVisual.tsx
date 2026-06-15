@@ -287,7 +287,7 @@ export default function HeroVisual() {
               </div>
               {stage === "generating" && (
                 <div className="space-y-1.5">
-                  <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-wide">
+                  <p className="text-[10px] text-zinc-600 dark:text-zinc-400 font-medium uppercase tracking-wide">
                     Generating
                   </p>
                   {GENERATING_STEPS.map(({ label, done }) => (
@@ -312,7 +312,7 @@ export default function HeroVisual() {
             </div>
             <div className="p-3 border-t border-black/8 dark:border-zinc-800 shrink-0">
               <div className="flex items-center gap-2 bg-zinc-200 dark:bg-zinc-800 rounded-lg px-2.5 py-2">
-                <span className="text-[10px] text-zinc-500 dark:text-zinc-600 flex-1 truncate">
+                <span className="text-[10px] text-zinc-600 dark:text-zinc-400 flex-1 truncate">
                   Ask AI to modify…
                 </span>
                 <Sparkles className="w-3 h-3 text-primary-400 shrink-0" />
@@ -322,7 +322,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Status bar */}
-        <div className="flex items-center gap-4 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-t border-black/8 dark:border-zinc-800 text-[10px] text-zinc-500">
+        <div className="flex items-center gap-4 px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-t border-black/8 dark:border-zinc-800 text-[10px] text-zinc-600 dark:text-zinc-400">
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
             Ready

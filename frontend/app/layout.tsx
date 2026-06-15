@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Merienda } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
-import SmoothScroll from "@/components/SmoothScroll";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -154,13 +153,11 @@ export default function RootLayout({
         <LoaderDismiss />
 
         <ThemeProvider>
-          <SmoothScroll>
-            <TooltipProvider>
-              <Header />
-              {children}
-              <Footer />
-            </TooltipProvider>
-          </SmoothScroll>
+          <TooltipProvider>
+            <Header />
+            {children}
+            <Footer />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>

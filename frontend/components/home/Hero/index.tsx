@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Play } from "lucide-react";
-import { motion } from "framer-motion";
 
 const HeroVisual = dynamic(() => import("./HeroVisual"), {
   ssr: false,
@@ -13,15 +12,16 @@ const HeroVisual = dynamic(() => import("./HeroVisual"), {
 });
 
 const TRUST_BADGES = [
-  "AI-Powered",
-  "Visual Editor",
-  "Next.js Export",
-  "Tailwind CSS",
+  "Generate in 60 Seconds",
+  "Export Clean Code",
+  "Responsive by Default",
+  // "No Design Experience Needed",
+  "Next.js & Tailwind Ready",
 ];
 
 const Hero = () => {
   return (
-    <section className="relative pt-30 md:pt-36 pb-0 px-4 sm:px-6 text-center overflow-hidden">
+    <section className="relative pt-26 md:pt-35 pb-0 px-4 sm:px-6 text-center overflow-hidden">
       {/* Background glows */}
       <div
         className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
@@ -50,10 +50,10 @@ const Hero = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+      <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
         {/* Eyebrow badge */}
         <div
-          className="hero-item inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-300 text-[10px] md:text-xs font-semibold px-4 py-2.5 rounded-full uppercase tracking-widest"
+          className="hero-item inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-300 text-[9px] md:text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest"
           style={{ animationDelay: "0ms" }}
         >
           <span
@@ -65,10 +65,10 @@ const Hero = () => {
 
         {/* Headline */}
         <h1
-          className="hero-item text-5xl md:text-7xl lg:text-[5.25rem] font-extrabold leading-[1.05] tracking-tight text-zinc-900 dark:text-white text-balance"
+          className="w-full max-w-4xl mx-auto hero-item text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.2] md:leading-[1.05] tracking-tight text-zinc-900 dark:text-white text-balance"
           style={{ animationDelay: "120ms" }}
         >
-          Build Production-Ready{" "}
+          Build Production-Ready <br className="hidden md:inline" />
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-500 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
             Websites with AI
           </span>
@@ -76,59 +76,33 @@ const Hero = () => {
 
         {/* Subheadline */}
         <p
-          className="hero-item text-lg md:text-xl text-zinc-500 dark:text-zinc-300 max-w-2xl leading-relaxed"
+          className="hero-item text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl leading-relaxed"
           style={{ animationDelay: "240ms" }}
         >
-          Generate layouts, customize visually, and export clean Next.js and
-          Tailwind code — all from a single platform.
+          Generate layouts with AI, customize visually, and export clean Next.js
+          and Tailwind code—all from a single platform.
         </p>
 
         {/* CTAs */}
         <div
-          className="hero-item flex gap-4 justify-center flex-wrap"
+          className="hero-item flex gap-1 sm:gap-2 md:gap-4 justify-center flex-wrap mb-2"
           style={{ animationDelay: "360ms" }}
         >
           {/* Primary — rotating glow motion button */}
           <Link
-            className="group hidden sm:inline-flex text-indigo-300 hover:text-primary-400"
             href="/"
+            className="cta-btn inline-flex items-center justify-center gap-2 px-5 md:px-7 py-3 rounded-full bg-primary dark:bg-primary-600 hover:border-primary-600 dark:hover:border-primary-700 text-white dark:text-zinc-100 font-semibold text-sm md:text-base transition-all duration-300"
           >
-            <motion.div
-              // Framer Motion spring physics handle hover and tap smoothly!
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-              className="relative group inline-flex rounded-full p-0.75 overflow-hidden bg-white dark:bg-zinc-800/40 shadow-lg cursor-pointer select-none"
-            >
-              {/* 1. ROTATING GLOW BEAM */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
-                style={{
-                  x: "-50%",
-                  y: "-50%",
-                  background:
-                    "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-              />
-
-              {/* 2. INNER CONTENT CARD */}
-              <div className="relative z-10 flex items-center px-10 py-3.5 rounded-full text-sm md:text-base text-zinc-400 bg-white dark:bg-black border group-hover:bg-primary-50 dark:group-hover:bg-black border-black/5 dark:border-zinc-900/60">
-                <span className="font-bold text-slate-700 dark:text-primary-500 hover:text-primary-600 group-hover:text-primary-600 dark:hover:text-primary-500 dark:group-hover:text-primary-500 tracking-tight">
-                  Start Building Free
-                </span>
-              </div>
-            </motion.div>
+            Start Building Free
           </Link>
 
           {/* Secondary */}
           <Link
             href="/"
-            className="cta-btn inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border-2 border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:border-primary-500 dark:hover:border-primary-500 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-300"
+            className="cta-btn inline-flex items-center justify-center gap-2 px-3 md:px-7 py-3 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-300"
           >
             <Play
-              className="w-4 h-4 fill-current text-primary-500"
+              className="w-4 h-4 fill-current text-primary-400 dark:text-primary-400"
               aria-hidden="true"
             />
             Watch Demo
@@ -143,7 +117,7 @@ const Hero = () => {
           {TRUST_BADGES.map((badge) => (
             <span
               key={badge}
-              className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-zinc-700 dark:text-zinc-400"
+              className="inline-flex items-center gap-1.5 text-xs md:text-sm font-medium text-zinc-800 dark:text-zinc-200"
             >
               <svg
                 className="w-3.5 h-3.5 text-primary-500 shrink-0"
@@ -165,24 +139,22 @@ const Hero = () => {
           ))}
         </div>
 
+        {/* Social proof */}
+        <p
+          className="hero-item text-xs text-zinc-500 dark:text-zinc-400 -mt-1"
+          style={{ animationDelay: "380ms" }}
+        >
+          Built for agencies, startups, and creators
+        </p>
+
         {/* Hero Visual */}
         <div
           className="hero-item w-full mt-4"
-          style={{ animationDelay: "400ms" }}
+          style={{ animationDelay: "420ms" }}
         >
-          <div style={{ perspective: "1400px" }}>
-            <div
-              style={{
-                transform: "rotateX(0deg)",
-                transformOrigin: "top center",
-              }}
-              className="transition-transform duration-700 ease-out hover:transform-[rotateX(0deg)]"
-            >
-              <HeroVisual />
-            </div>
-          </div>
-          {/* Bleed into next section */}
-          <div className="relative -mt-40 h-40 pointer-events-none bg-linear-to-b from-transparent to-white dark:to-black" />
+          <HeroVisual />
+          {/* Soft bleed — reduced so more of the editor body is visible above the fold */}
+          <div className="relative -mt-16 h-16 pointer-events-none bg-linear-to-b from-transparent to-white dark:to-black" />
         </div>
       </div>
     </section>

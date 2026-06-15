@@ -20,7 +20,7 @@ type Preview = "desktop" | "tablet" | "mobile";
 
 const PROMPT =
   "Build a SaaS pricing section — 3 tiers, highlight Pro plan, monthly/annual toggle";
-const STAGE_MS = 3600;
+const STAGE_MS = 6000;
 
 const SECTIONS = [
   "Hero",
@@ -55,8 +55,24 @@ export default function HeroVisual() {
   const [typed, setTyped] = useState(0);
   const [preview, setPreview] = useState<Preview>("desktop");
   const [active, setActive] = useState(0);
-  const [manualCode, setManualCode] = useState(false);
+  const [showCode, setShowCode] = useState(false);
+  const [publishPulse, setPublishPulse] = useState(false);
 
+  // Publish button pulse: first at 4s, then every 7s
+  useEffect(() => {
+    const trigger = () => {
+      setPublishPulse(true);
+      setTimeout(() => setPublishPulse(false), 700);
+    };
+    const initial = setTimeout(trigger, 4000);
+    const id = setInterval(trigger, 7000);
+    return () => {
+      clearTimeout(initial);
+      clearInterval(id);
+    };
+  }, []);
+
+  // Stage auto-cycle: editor → ai → generating (no code in cycle)
   useEffect(() => {
     const id = setInterval(() => {
       setStage((s) => {
@@ -75,13 +91,33 @@ export default function HeroVisual() {
     return () => clearTimeout(id);
   }, [stage, typed]);
 
+  // Canvas section cycling every 1.8s
   useEffect(() => {
     const id = setInterval(() => setActive((n) => (n + 1) % 4), 1800);
     return () => clearInterval(id);
   }, []);
 
+  // Auto Visual↔Code toggle: show code for 3.5s every ~11.5s
+  useEffect(() => {
+    let showTimer: ReturnType<typeof setTimeout>;
+    let hideTimer: ReturnType<typeof setTimeout>;
+    const schedule = () => {
+      showTimer = setTimeout(() => {
+        setShowCode(true);
+        hideTimer = setTimeout(() => {
+          setShowCode(false);
+          schedule();
+        }, 3500);
+      }, 8000);
+    };
+    schedule();
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
+
   const showAI = stage === "ai" || stage === "generating";
-  const showCode = manualCode;
 
   return (
     <div className="relative w-full">
@@ -97,7 +133,7 @@ export default function HeroVisual() {
       {/* Editor shell — intentionally always dark (simulates a real app like VS Code / Figma) */}
       <div className="w-full rounded-xl overflow-hidden bg-white dark:bg-zinc-900 border border-black/15 dark:border-zinc-800 shadow-2xl shadow-zinc-400/25 dark:shadow-black/70 ring-1 ring-inset ring-white/4">
         {/* Traffic lights + URL bar */}
-        <div className="flex items-center gap-2 px-3 py-3 bg-muted-foreground/10 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800">
+        <div className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 bg-muted-foreground/10 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800">
           <div className="hidden sm:inline-flex gap-1.5">
             <span className="w-3 h-3 rounded-full bg-red-500/80" />
             <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -105,46 +141,51 @@ export default function HeroVisual() {
           </div>
 
           <div className="sm:flex-1 mx-0 sm:mx-3 flex justify-start sm:justify-center">
-            <div className="flex items-center gap-2 min-h-7 bg-zinc-800/10 dark:bg-zinc-800 rounded-sm px-3 py-1 text-xs text-zinc-900 dark:text-zinc-400 font-mono truncate">
+            <div className="flex items-center gap-1 min-h-7 bg-zinc-800/10 dark:bg-zinc-800 rounded-sm px-3 py-1 text-[10px] sm:text-xs text-zinc-900 dark:text-zinc-400 font-mono truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 dark:bg-green-400 shrink-0" />
               app.ervflow.com/editor
+              <span className="inline-block sm:hidden w-px h-3 bg-zinc-500 dark:bg-zinc-400 animate-[blink_1.2s_step-end_infinite] shrink-0" />
             </div>
           </div>
 
-          {/* Mode switcher */}
-          <div className="flex items-center gap-0.5 bg-zinc-800/10 dark:bg-zinc-800 rounded-sm p-0.5">
-            {(
-              [
-                ["visual", "Visual", Eye],
-                ["code", "Code", Code2],
-              ] as const
-            ).map(([s, label, Icon]) => (
-              <button
-                key={s}
-                onClick={() => setManualCode(s === "code")}
-                className={`flex items-center gap-1.5 px-2 py-1.5 rounded-sm text-xs font-medium transition-all ${
-                  (s === "code" && showCode) || (s === "visual" && !showCode)
-                    ? "bg-zinc-800/20 dark:bg-zinc-700 text-zinc-950 dark:text-white"
-                    : "text-zinc-900 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-300"
-                }`}
-              >
-                <Icon className="w-3 h-3" />
-                <span className="hidden md:inline">{label}</span>
-              </button>
-            ))}
-          </div>
+          <div className="inline-flex items-center gap-2 ml-auto">
+            {/* Mode switcher */}
+            <div className="flex items-center gap-0.5 bg-zinc-800/10 dark:bg-zinc-800 rounded-sm p-0.5">
+              {(
+                [
+                  ["visual", "Visual", Eye],
+                  ["code", "Code", Code2],
+                ] as const
+              ).map(([s, label, Icon]) => (
+                <button
+                  key={s}
+                  onClick={() => setShowCode(s === "code")}
+                  className={`flex items-center gap-1.5 px-2 py-1.5 rounded-sm text-xs font-medium transition-all ${
+                    (s === "code" && showCode) || (s === "visual" && !showCode)
+                      ? "bg-zinc-800/20 dark:bg-zinc-700 text-zinc-950 dark:text-white"
+                      : "text-zinc-900 dark:text-zinc-500 hover:text-zinc-950 dark:hover:text-zinc-300"
+                  }`}
+                >
+                  <Icon className="w-3 h-3" />
+                  <span className="hidden md:inline">{label}</span>
+                </button>
+              ))}
+            </div>
 
-          <button className="flex items-center gap-1.5 bg-primary-500 hover:bg-primary-600 text-white text-xs font-semibold px-3 py-1.5 rounded-sm transition-colors ml-1 sm:min-h-8">
-            <Play className="hidden sm:inline w-3 h-3 fill-current" /> Publish
-          </button>
+            <button
+              className={`flex items-center gap-1.5 bg-primary-500 hover:bg-primary-600 text-white text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-sm sm:ml-1 sm:min-h-8 transition-all duration-300 ${publishPulse ? "shadow-[0_0_0_5px_rgba(247,98,53,0.25)]" : ""}`}
+            >
+              <Play className="hidden sm:inline w-3 h-3 fill-current" /> Publish
+            </button>
+          </div>
         </div>
 
         {/* Secondary toolbar */}
-        <div className="flex items-center px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800/60 text-xs text-zinc-600 dark:text-zinc-400">
+        <div className="flex items-center px-4 py-2 bg-zinc-50 dark:bg-zinc-900 border-b border-black/8 dark:border-zinc-800/60 text-[10px] sm:text-xs text-zinc-600 dark:text-zinc-400">
           {["Components", "Layers", "Assets", "Pages"].map((t, i) => (
             <button
               key={t}
-              className={`mr-4 transition-colors ${i === 0 ? "text-zinc-900 dark:text-white font-medium" : "hover:text-zinc-900 dark:hover:text-white"}`}
+              className={`mr-2 sm:mr-3 transition-colors ${i === 0 ? "text-zinc-900 dark:text-white font-medium" : "hover:text-zinc-900 dark:hover:text-white"}`}
             >
               {t}
             </button>
@@ -171,7 +212,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Editor body */}
-        <div className="flex h-105 md:h-115">
+        <div className="relative flex h-150 md:h-200">
           {/* Left sidebar */}
           <div className="w-44 shrink-0 border-r border-black/8 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hidden sm:flex flex-col">
             <div className="px-3 pt-3 pb-2">
@@ -215,12 +256,18 @@ export default function HeroVisual() {
           </div>
 
           {/* Canvas */}
-          <div className="@container flex-1 bg-zinc-100 dark:bg-zinc-950 overflow-auto flex flex-col items-center">
-            {showCode ? (
-              <div className="w-full h-full">
-                <CodeView />
-              </div>
-            ) : (
+          <div className="@container relative flex-1 bg-zinc-100 dark:bg-zinc-950 overflow-hidden">
+            {/* Code view — fades in when active */}
+            <div
+              className={`absolute inset-0 bg-zinc-950 transition-opacity duration-300 ${showCode ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"}`}
+            >
+              <CodeView />
+            </div>
+
+            {/* Visual canvas — fades out when code is active */}
+            <div
+              className={`absolute inset-0 overflow-auto flex flex-col items-center transition-opacity duration-300 ${showCode ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            >
               <div
                 className={`transition-all duration-500 ease-in-out w-full p-4 flex flex-col gap-3 ${
                   preview !== "desktop"
@@ -250,23 +297,27 @@ export default function HeroVisual() {
                 ].map(({ label, content }, i) => (
                   <div
                     key={label}
-                    className={`rounded-lg border-2 transition-all duration-400 ${
+                    className={`rounded-lg border-2 transition-all duration-500 ${
                       i === active
-                        ? "border-primary-500 shadow-md shadow-primary-500/20"
-                        : "border-transparent"
+                        ? "border-primary-500 shadow-md shadow-primary-500/20 opacity-100"
+                        : "border-transparent opacity-40 dark:opacity-30"
                     }`}
                   >
-                    <div className="bg-white dark:bg-zinc-900 rounded-lg p-4 border border-zinc-200 dark:border-transparent shadow-sm dark:shadow-none">{content}</div>
+                    <div className="bg-white dark:bg-zinc-900 rounded-lg p-4 border border-zinc-200 dark:border-transparent shadow-sm dark:shadow-none">
+                      {content}
+                    </div>
                     {i === active && <SelectionBadge label={label} />}
                   </div>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
-          {/* AI Panel */}
+          {/* AI Panel — absolute overlay on mobile, flex sibling on sm+ */}
           <div
-            className={`border-l border-black/8 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 flex flex-col transition-all duration-500 overflow-hidden ${showAI ? "w-52 opacity-100" : "w-0 opacity-0"}`}
+            className={`flex flex-col bg-zinc-50 dark:bg-zinc-900 border-l border-black/8 dark:border-zinc-800 transition-all duration-500 overflow-hidden
+              absolute inset-y-0 right-0 z-20 sm:relative sm:inset-auto sm:z-auto
+              ${showAI ? "w-[min(13rem,80%)] opacity-100 sm:w-52" : "w-0 opacity-0"}`}
           >
             <div className="px-3 pt-3 pb-2 border-b border-black/8 dark:border-zinc-800 shrink-0">
               <div className="flex items-center gap-2 text-xs font-semibold text-zinc-900 dark:text-white">
@@ -301,7 +352,11 @@ export default function HeroVisual() {
                         <Loader2 className="w-3 h-3 text-primary-400 animate-spin shrink-0" />
                       )}
                       <span
-                        className={done ? "text-zinc-600 dark:text-zinc-300" : "text-zinc-500 dark:text-zinc-400"}
+                        className={
+                          done
+                            ? "text-zinc-600 dark:text-zinc-300"
+                            : "text-zinc-500 dark:text-zinc-400"
+                        }
                       >
                         {label}
                       </span>

@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <>
       <nav
-        className={`border-b border-white/10 dark:border-zinc-800/60 bg-brand-background/80 header top-0 left-0 z-40 px-3 flex w-full items-center py-3 lg:py-3 ${
+        className={`border-b border-white/10 dark:border-zinc-800/60 bg-brand-background/80 header top-0 left-0 z-40 px-3 flex w-full items-center py-2 lg:py-2.5 ${
           sticky
             ? "bg-white/80 dark:bg-black/80 dark:bg-gray-dark border-zinc-800/10 dark:shadow-sticky-dark shadow-sticky fixed z-9999 backdrop-blur-lg transition"
             : "absolute bg-transparent"
@@ -44,13 +44,13 @@ const Header = () => {
             href="/"
             className="flex items-center justify-center rounded-md gap-2.5 cursor-pointer text-white transition-all"
           >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-primary shadow-glow-brand">
               <Icon
                 name="Logo"
-                size="32"
+                size="28"
                 fill="currentColor"
                 role="button"
-                className="w-8 h-8"
+                className="w-7 h-7"
               />
             </div>
             <span className="text-md md:text-lg lg:text-xl font-extrabold font-merienda text-black dark:text-white whitespace-nowrap">
@@ -87,7 +87,7 @@ const Header = () => {
           <div className="inline-flex items-center gap-2.5">
             <Link
               href="/"
-              className="inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
+              className="hidden md:inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
             >
               <span className="font-bold tracking-tight">Login</span>
             </Link>
@@ -118,7 +118,7 @@ const Header = () => {
                 {/* 2. INNER CONTENT CARD */}
                 <div className="relative z-10 flex items-center px-6 py-2.5 rounded-full text-sm text-zinc-400 bg-slate-100 dark:bg-black border group-hover:bg-primary-50 dark:group-hover:bg-black border-black/5 dark:border-zinc-900/60">
                   <span className="font-bold text-slate-800 dark:text-primary-300 hover:text-primary-600 group-hover:text-primary-600 dark:hover:text-primary-500 dark:group-hover:text-primary-500 tracking-tight">
-                    Get Started — Save 50%
+                    Request Demo
                   </span>
                 </div>
               </motion.div>

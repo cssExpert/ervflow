@@ -77,6 +77,11 @@
     animation: gradient-shift var(--anim-duration, 5s) ease infinite;
   }
 
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
   @keyframes spin-slow {
     from {
       transform: translate(-50%, -50%) rotate(0deg);

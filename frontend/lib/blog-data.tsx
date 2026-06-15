@@ -42,10 +42,24 @@ export const POSTS: Post[] = [
         type: "code",
         text: "const data = await fetch('/api/posts', {\n  cache: 'force-cache',\n  next: { revalidate: 3600 }\n});",
       },
+      {
+        type: "image",
+        text: "",
+        src: "/images/Blogs/ERVFlow-Building-Blazing-Fast-Next.js-15-Apps.webp",
+        caption: "Next.js 15 caching model — opt-in by default, predictable at scale",
+        wide: true,
+      },
       { type: "h2", text: "Server Components First" },
       {
         type: "p",
         text: "Moving data fetching to the server eliminates client-side waterfalls. Each Server Component fetches its own data in parallel, reducing total load time dramatically.",
+      },
+      {
+        type: "image",
+        text: "",
+        src: "/images/Blogs/ERVFlow-Design-Tokens-At-Scale.webp",
+        caption: "Server Component data-flow — no client-side waterfalls",
+        wide: false,
       },
       { type: "h2", text: "Partial Prerendering" },
       {

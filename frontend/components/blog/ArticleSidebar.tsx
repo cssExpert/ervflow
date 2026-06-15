@@ -77,7 +77,7 @@ function TOC({ sections }: { sections: PostSection[] }) {
                   href={`#${id}`}
                   className={`block text-xs md:text-sm py-1.5 pl-3 leading-snug transition-all duration-200 cursor-pointer rounded-sm ${
                     isActive
-                      ? "text-primary-600 dark:text-primary-400 font-semibold"
+                      ? "text-primary dark:text-primary-400 font-semibold"
                       : "text-zinc-500 dark:text-neutral-500 hover:text-zinc-800 dark:hover:text-neutral-200"
                   }`}
                 >
@@ -155,67 +155,18 @@ function CTAWidget() {
         <div className="space-y-2">
           <Link
             href="/signup"
-            className="flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-white text-zinc-900 font-bold text-xs hover:bg-white/90 transition-all hover:scale-[1.02] cursor-pointer"
+            className="flex items-center justify-between w-full px-4 py-2.5 rounded-sm bg-white text-zinc-900 font-bold text-xs hover:bg-white/90 transition-all hover:scale-[1.02] cursor-pointer"
           >
             Try ERVFlow Free <ChevronRight size={12} aria-hidden="true" />
           </Link>
           <Link
             href="/contact"
-            className="flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-white/10 text-white font-semibold text-xs border border-white/15 hover:bg-white/18 transition-colors cursor-pointer"
+            className="flex items-center justify-between w-full px-4 py-2.5 rounded-sm bg-white/10 text-white font-semibold text-xs border border-white/15 hover:bg-white/18 transition-colors cursor-pointer"
           >
             Book a Demo <ChevronRight size={12} aria-hidden="true" />
           </Link>
         </div>
       </div>
-    </div>
-  );
-}
-
-function NewsletterWidget() {
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
-  return (
-    <div className="rounded-2xl border border-zinc-200 dark:border-white/6 bg-white dark:bg-white/[0.025] shadow-sm dark:shadow-none p-5">
-      <div className="flex items-center gap-2 mb-3">
-        <Mail size={16} className="text-primary-500" aria-hidden="true" />
-        <p className="text-sm font-bold uppercase tracking-[0.05rem] text-zinc-500 dark:text-neutral-500">
-          Newsletter
-        </p>
-      </div>
-      <p className="text-sm font-bold text-zinc-800 dark:text-white mb-1">
-        Get articles like this
-      </p>
-      <p className="text-xs text-zinc-500 dark:text-neutral-500 mb-4 leading-relaxed">
-        No spam, unsubscribe anytime.
-      </p>
-      {sent ? (
-        <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
-          You&apos;re in — check your inbox!
-        </p>
-      ) : (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (email) setSent(true);
-          }}
-          className="space-y-2"
-        >
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-            className="w-full px-3 py-2 text-xs rounded-sm bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/50 text-zinc-800 dark:text-white placeholder-zinc-400 outline-none transition-[border-color,box-shadow] focus:border-primary focus:ring-2 focus:ring-primary/15"
-          />
-          <button
-            type="submit"
-            className="w-full py-2 rounded-sm bg-primary-500 text-white text-xs font-bold hover:bg-primary-600 transition-colors cursor-pointer"
-          >
-            Subscribe
-          </button>
-        </form>
-      )}
     </div>
   );
 }
@@ -226,7 +177,6 @@ export default function ArticleSidebar({ post }: { post: Post }) {
       <TOC sections={post.sections} />
       <AuthorCard post={post} />
       <CTAWidget />
-      <NewsletterWidget />
     </div>
   );
 }

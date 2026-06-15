@@ -10,6 +10,7 @@ import ArticleSidebar from "@/components/blog/ArticleSidebar";
 import ArticleFooter from "@/components/blog/ArticleFooter";
 import { POSTS } from "@/lib/blog-data";
 import type { Post } from "@/lib/blog-types";
+import GlowBlob from "@/components/common/GlowBlob";
 
 function useReadingProgress() {
   const [progress, setProgress] = useState(0);
@@ -43,7 +44,10 @@ export default function BlogPostClient({ post }: { post: Post }) {
   ).slice(0, 3);
 
   return (
-    <main className="relative bg-white dark:bg-[#080808] text-black dark:text-white">
+    <main className="min-h-screen relative bg-white dark:bg-black text-black dark:text-white z-2">
+      {/* Background glows */}
+      <GlowBlob />
+
       {/* Reading progress — colour-matched glowing rule */}
       <div className="fixed top-0 left-0 right-0 h-0.75 z-999999">
         <div
@@ -76,27 +80,11 @@ export default function BlogPostClient({ post }: { post: Post }) {
         </Link>
       </motion.div>
 
-      {/* Cinematic full-viewport hero — always dark */}
       <ArticleHero post={post} />
-
-      {/* Bridge: hero #0A0A0B → body bg */}
-      {/* <div
-        aria-hidden="true"
-        className="h-28 -mt-28 relative z-10 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, #0A0A0B, var(--bridge-end, #fff))",
-        }}
-      >
-        <style>{`
-          :root { --bridge-end: #ffffff; }
-          .dark { --bridge-end: #080808; }
-        `}</style>
-      </div> */}
 
       {/* Article body + sticky sidebar */}
       <div className="px-6 sm:px-10 py-20">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="flex gap-12 xl:gap-20">
             <article className="w-full flex-1 min-w-0">
               <ArticleContent sections={post.sections} />

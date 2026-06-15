@@ -17,11 +17,7 @@ function FooterTextLogo() {
   // Floor of 0.6 keeps the fade-in while staying above the 3:1 contrast
   // ratio required for large text in both modes (white/black @60% ≈ 7.4:1
   // on black, ≈ 3.8:1 on primary)
-  const opacity = useTransform(
-    scrollYProgress,
-    [0.25, 0.75, 1],
-    [0.6, 0.8, 1],
-  );
+  const opacity = useTransform(scrollYProgress, [0.25, 0.75, 1], [0.6, 0.8, 1]);
 
   return (
     <div
@@ -46,7 +42,7 @@ function FooterTextLogo() {
 
           scale,
           opacity,
-          fontSize: "30.5vw",
+          fontSize: "25.75vw",
           lineHeight: 0.8,
           letterSpacing: "-0.085em",
           whiteSpace: "nowrap",

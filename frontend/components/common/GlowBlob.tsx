@@ -3,7 +3,8 @@
 const GlowBlob = () => {
   return (
     <div
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      className="pointer-events-none fixed inset-0 overflow-hidden"
+      style={{ zIndex: -1 }}
       aria-hidden="true"
     >
       <div

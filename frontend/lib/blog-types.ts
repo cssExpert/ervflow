@@ -23,12 +23,16 @@ export interface PostSection {
     | "steps"
     | "takeaways"
     | "faq"
-    | "cta";
+    | "cta"
+    | "image";
   text: string;
   items?: string[];
   steps?: StepItem[];
   faqs?: FAQItem[];
   cta?: { label: string; href: string };
+  src?: string;
+  caption?: string;
+  wide?: boolean;
 }
 
 export interface Post {

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import {
   AlertCircle,
@@ -93,7 +94,7 @@ function FAQItem({
 function FAQGroup({ faqs }: { faqs: { question: string; answer: string }[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   return (
-    <div className="rounded-2xl border border-zinc-200 dark:border-white/6 bg-white dark:bg-white/[0.02] shadow-sm dark:shadow-none px-5 divide-y divide-zinc-200 dark:divide-white/6">
+    <div className="rounded-2xl border border-zinc-200 dark:border-white/6 bg-white dark:bg-white/2 shadow-sm dark:shadow-none px-5 divide-y divide-zinc-200 dark:divide-white/6">
       {faqs.map((faq, j) => (
         <FAQItem
           key={j}
@@ -190,7 +191,7 @@ export default function ArticleContent({
                       />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-red-600 dark:text-red-400 uppercase tracking-[0.15em] mb-2">
+                      <p className="text-xs md:text-sm lg:text-base font-bold text-red-600 dark:text-red-400 uppercase tracking-wide mb-2">
                         The Problem
                       </p>
                       <p className="text-sm text-red-800/90 dark:text-red-200/80 leading-relaxed">
@@ -219,7 +220,7 @@ export default function ArticleContent({
                       />
                     </div>
                     <div>
-                      <p className="text-[10px] font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-[0.15em] mb-2">
+                      <p className="text-xs md:text-sm lg:text-base font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide mb-2">
                         The Solution
                       </p>
                       <p className="text-sm text-emerald-900/80 dark:text-emerald-200/80 leading-relaxed">
@@ -495,6 +496,33 @@ export default function ArticleContent({
                 </div>
               </Reveal>
             );
+
+          case "image":
+            return s.src ? (
+              <Reveal key={i}>
+                <figure className={`my-10 ${s.wide ? "mx-auto" : ""}`}>
+                  <div
+                    className={`relative overflow-hidden ${s.wide ? "rounded-none sm:rounded-2xl" : "rounded-2xl"} bg-zinc-100 dark:bg-zinc-900`}
+                    style={{ aspectRatio: s.wide ? "21/9" : "16/9" }}
+                  >
+                    <Image
+                      src={s.src}
+                      alt={s.caption ?? ""}
+                      fill
+                      className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                      sizes={
+                        s.wide ? "100vw" : "(max-width: 768px) 100vw, 65vw"
+                      }
+                    />
+                  </div>
+                  {s.caption && (
+                    <figcaption className="mt-3 text-center text-xs text-zinc-400 dark:text-neutral-500 font-mono tracking-wide">
+                      {s.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              </Reveal>
+            ) : null;
 
           default:
             return null;

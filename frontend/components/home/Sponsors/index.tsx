@@ -44,6 +44,7 @@ function SponsorLogo({
         alt={isDuplicate ? "" : alt}
         fill
         draggable={false}
+        loading="lazy"
         className={`object-contain pointer-events-none transition-all duration-500 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}

@@ -509,9 +509,12 @@ export default function ArticleContent({
                       src={s.src}
                       alt={s.caption ?? ""}
                       fill
+                      loading="lazy"
                       className="object-cover transition-transform duration-700 hover:scale-[1.02]"
                       sizes={
-                        s.wide ? "100vw" : "(max-width: 768px) 100vw, 65vw"
+                        s.wide
+                          ? "(max-width: 768px) 100vw, 90vw"
+                          : "(max-width: 768px) 100vw, 65vw"
                       }
                     />
                   </div>

@@ -64,11 +64,10 @@ export default function NewsletterBanner() {
           <Image
             src="/images/ervflow_blogging.svg"
             alt="Stay updated with our content"
-            priority
             fill
-            loading="eager"
+            loading="lazy"
             className="pointer-events-none object-cover object-top-left"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
       </div>

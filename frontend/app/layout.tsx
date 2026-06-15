@@ -8,11 +8,18 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import LoaderDismiss from "@/components/common/LoaderDismiss";
 
-const interFont = Inter({ subsets: ["latin"], display: "swap" });
+const interFont = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  preload: true,
+});
 const merienda = Merienda({
   subsets: ["latin"],
+  weight: ["700", "800", "900"],
   variable: "--font-merienda",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {

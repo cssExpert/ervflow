@@ -204,7 +204,7 @@ const Features = () => {
                     </div>
                     {/* Right graphic */}
                     <div className="relative -mr-1 h-[40%] max-h-125 w-full min-w-0 px-0 md:h-full md:min-w-0 md:flex-1 md:basis-0 md:p-0">
-                      <div className="relative w-full h-70 md:h-full max-h-125">
+                      <div className="relative w-full h-70 md:h-full max-h-125" aria-hidden="true">
                         {customVisual === "stack"     && <BuildWithStackVisual isActive={isActive} />}
                         {customVisual === "generate"  && <GenerateWithAIVisual isActive={isActive} />}
                         {customVisual === "customize" && <CustomizeVisual      isActive={isActive} />}

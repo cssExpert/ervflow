@@ -8,24 +8,25 @@ const Features = () => {
   const features = [
     {
       color: "#2073E6",
-      badge: "Step 1 of 4",
-      title: "Select your favorite front-end technology",
+      badge: "NEXT.JS + TAILWIND",
+      title: "Build with Your Stack",
       titleColor: "#FFFFFF",
       desc: (
         <div>
-          <p className="mb-2">
-            Demonstrate to your team the efficiency and adaptability you bring
-            by working seamlessly across different front-end technologies.
+          <p className="mb-4">
+            Create websites using modern frameworks and export clean,
+            production-ready code.
           </p>
           <ul className="list-disc pl-10 space-y-1 mb-5">
-            <li>Tailwind CSS</li>
-            <li>Bootstrap</li>
+            <li>Next.js Export</li>
+            <li>Tailwind Native</li>
+            <li>Clean React Code</li>
           </ul>
           <Link
             href="/"
             className="inline-flex items-center border-[1.5px] border-white text-black bg-white hover:border-primary-600 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm md:text-md font-semibold transition-all shadow-md"
           >
-            Try Demo
+            Explore Integrations
           </Link>
         </div>
       ),
@@ -33,21 +34,25 @@ const Features = () => {
     },
     {
       color: "#FFD104",
-      badge: "Step 2 of 4",
-      title: "Pick UI components or create new with AI",
+      badge: "AI BUILDER",
+      title: "Generate with AI",
       titleColor: "text-black",
       desc: (
         <div>
           <p className="text-black mb-4">
-            Shuffle offloads your company&rsquo;s design team. Build layouts
-            from 13,400+ UI components grouped into categories such as
-            navigations, headers, features, and more.
+            Turn simple prompts into layouts, pages, and reusable components in
+            seconds.
           </p>
+          <ul className="list-disc pl-10 space-y-1 text-black mb-5">
+            <li>Smart Prompts</li>
+            <li>Auto Layouts</li>
+            <li>Reusable Blocks</li>
+          </ul>
           <Link
             href="/"
             className="inline-flex items-center border-[1.5px] border-black text-white bg-black hover:border-primary-600 hover:text-white hover:bg-primary px-6 min-h-11 rounded-full text-sm md:text-md font-semibold transition-all shadow-md"
           >
-            Try Demo
+            Try AI Builder
           </Link>
         </div>
       ),
@@ -55,21 +60,25 @@ const Features = () => {
     },
     {
       color: "#7558D4",
-      badge: "Step 3 of 4",
-      title: "Customize styles",
+      badge: "VISUAL EDITOR",
+      title: "Customize Without Limits",
       titleColor: "#FFFFFF",
       desc: (
         <div>
-          <p className="mb-5">
-            A client asks to make the logo bigger? Don&rsquo;t worry! You will
-            get a lot of configuration options to help you customize your
-            templates.
+          <p className="mb-4">
+            Adjust layouts, typography, spacing, and interactions with real-time
+            visual editing.
           </p>
+          <ul className="list-disc pl-10 space-y-1 mb-5">
+            <li>Drag & Drop</li>
+            <li>Responsive Preview</li>
+            <li>Visual + Code</li>
+          </ul>
           <Link
             href="/"
             className="inline-flex items-center border-[1.5px] border-white text-black bg-white hover:border-primary-600 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm md:text-md font-semibold transition-all shadow-md"
           >
-            Try Demo
+            Open Editor
           </Link>
         </div>
       ),
@@ -77,21 +86,25 @@ const Features = () => {
     },
     {
       color: "#C94D1F",
-      badge: "Step 4 of 4",
-      title: "Publish anywhere or download the source code",
+      badge: "EXPORT + PUBLISH",
+      title: "Launch Anywhere",
       titleColor: "#FFFFFF",
       desc: (
         <div>
-          <p className="mb-5">
-            Click export and download the project with all sources. There are no
-            external dependencies and no vendor lock-in. You can also deploy
-            code to Git or via SSH if needed!
+          <p className="mb-4">
+            Publish instantly or export clean code to your preferred hosting
+            platform.
           </p>
+          <ul className="list-disc pl-10 space-y-1 mb-5">
+            <li>One-Click Deploy</li>
+            <li>Custom Domains</li>
+            <li>Git Integration</li>
+          </ul>
           <Link
             href="/"
-            className="inline-flex items-center border-[1.5px] border-black text-white bg-black hover:border-primary-600 hover:text-white hover:bg-primary px-6 min-h-11 rounded-full text-sm md:text-md font-semibold transition-all shadow-md"
+            className="inline-flex items-center border-[1.5px] border-black text-white bg-black/90 hover:border-white/90 hover:text-black hover:bg-white px-6 min-h-11 rounded-full text-sm md:text-md font-semibold transition-all shadow-md"
           >
-            Try Demo
+            Publish Now
           </Link>
         </div>
       ),
@@ -131,25 +144,25 @@ const Features = () => {
   }, []);
 
   return (
-    <section id="features" className="pt-16 px-6">
+    <section id="features" className="pt-12 px-6">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-24 max-w-3xl mx-auto">
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight text-balance text-zinc-800 dark:text-white">
-            Build{" "}
-            <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
-              stunning
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5">
+            Build Faster.{" "}
+            <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
+              Launch Smarter.
             </span>{" "}
-            layouts quickly
           </h2>
-          <p className="text-base md:text-lg text-zinc-600 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-            Speed up your workflow in a few simple steps.
+          <p className="text-base sm:text-lg text-zinc-800 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10">
+            AI-powered generation, visual editing, and clean code export—all the
+            tools you need to create production-ready websites.
           </p>
         </div>
 
         {/* CONTAINER HOLDING THE STACK CANVAS */}
         <div
           ref={containerRef}
-          className="w-full flex flex-col items-center gap-y-40 pb-30"
+          className="w-full flex flex-col items-center gap-y-30 pb-30"
         >
           {features.map(
             ({ color, badge, title, titleColor, desc, image }, index) => {

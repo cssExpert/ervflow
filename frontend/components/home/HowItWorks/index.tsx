@@ -17,6 +17,10 @@ import {
   GripVertical,
   Rocket,
   Zap,
+  TimerReset,
+  MonitorSmartphone,
+  CodeXml,
+  ListTodo,
 } from "lucide-react";
 
 /* ── Constants ── */
@@ -28,10 +32,10 @@ const PAGES = ["Home", "About", "Services", "Pricing", "Contact"];
 const TAB_LABELS = ["Hero", "About", "Pricing", "Footer"];
 
 const METRICS = [
-  { value: "< 60s", label: "to generate" },
-  { value: "100%", label: "responsive" },
-  { value: "Zero", label: "lock-in" },
-  { value: "SEO", label: "optimized" },
+  { value: "Generate in Seconds", Icon: TimerReset },
+  { value: "Fully Responsive", Icon: MonitorSmartphone },
+  { value: "No Coding Required", Icon: CodeXml },
+  { value: "SEO Ready", Icon: ListTodo },
 ];
 
 type StepMeta = {
@@ -50,12 +54,11 @@ const STEPS: StepMeta[] = [
     number: "01",
     badge: "⚡ 30 Seconds",
     badgeClass:
-      "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/25",
-    numberClass: "text-blue-500 border-blue-500/30 bg-blue-500/5",
-    glowClass: "bg-blue-500/8 dark:bg-blue-500/12",
+      "bg-[#CEFF00]/10 text-[#546800] dark:text-[#CEFF00] border-[#546800]/25 dark:border-[#CEFF00]/25",
+    numberClass: "text-[#CEFF00] border-[#CEFF00]/30 bg-[#CEFF00]/5",
+    glowClass: "bg-[#CEFF00]/8 dark:bg-[#CEFF00]/12",
     title: "Describe Your Website",
-    description:
-      "Tell ERVFlow what you want to build in plain English. No technical knowledge required.",
+    description: "Tell ERVFlow what you want to build in plain English.",
   },
   {
     number: "02",
@@ -65,8 +68,7 @@ const STEPS: StepMeta[] = [
     numberClass: "text-violet-500 border-violet-500/30 bg-violet-500/5",
     glowClass: "bg-violet-500/8 dark:bg-violet-500/12",
     title: "Generate Complete Pages",
-    description:
-      "ERVFlow creates your sitemap, layouts, content structure, and responsive pages instantly.",
+    description: "Instantly create layouts, pages, and content structure.",
   },
   {
     number: "03",
@@ -75,9 +77,8 @@ const STEPS: StepMeta[] = [
       "bg-primary-500/10 text-primary-600 dark:text-primary-400 border-primary-500/25",
     numberClass: "text-primary-500 border-primary-500/30 bg-primary-500/5",
     glowClass: "bg-primary-500/8 dark:bg-primary-500/12",
-    title: "Edit Everything Visually",
-    description:
-      "Drag, drop, customize styles, update content, and fine-tune every detail without writing a line of code.",
+    title: "Customize Visually",
+    description: "Edit layouts, styles, and components without writing code.",
     features: [
       "Component library",
       "Responsive preview",
@@ -92,9 +93,8 @@ const STEPS: StepMeta[] = [
       "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25",
     numberClass: "text-emerald-500 border-emerald-500/30 bg-emerald-500/5",
     glowClass: "bg-emerald-500/8 dark:bg-emerald-500/12",
-    title: "Launch Anywhere",
-    description:
-      "Publish instantly or export clean Next.js and Tailwind code to your preferred workflow.",
+    title: "Publish Anywhere",
+    description: "Launch instantly or export clean Next.js and Tailwind code.",
     features: ["Custom domains", "Next.js export", "Tailwind CSS", "SEO ready"],
   },
 ];
@@ -105,7 +105,7 @@ type TypingPhase = "idle" | "typing" | "pausing" | "deleting";
 
 function PromptVisual({ inView }: { inView: boolean }) {
   const [typed, setTyped] = useState(0);
-  const [phase, setPhase] = useState<TypingPhase>("idle");
+  const [, setPhase] = useState<TypingPhase>("idle");
 
   useEffect(() => {
     if (!inView) return;
@@ -139,9 +139,9 @@ function PromptVisual({ inView }: { inView: boolean }) {
   }, [inView]);
 
   return (
-    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-4 space-y-3 shadow-xl shadow-blue-500/5">
+    <div className="rounded-2xl bg-zinc-950 border border-zinc-800 p-4 space-y-3 shadow-xl shadow-[#CEFF00]/5">
       <div className="flex items-center gap-2 pb-1">
-        <Sparkles className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+        <Sparkles className="w-3.5 h-3.5 text-[#CEFF00]-400 shrink-0" />
         <span className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wider">
           AI Prompt
         </span>
@@ -154,7 +154,7 @@ function PromptVisual({ inView }: { inView: boolean }) {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}
-        className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold py-2.5 rounded-xl transition-colors"
+        className="w-full flex items-center justify-center gap-2 bg-[#CEFF00] hover:bg-[#CEFF00]-600 text-black text-xs font-semibold py-2.5 rounded-md transition-colors"
       >
         <Send className="w-3 h-3" />
         Generate Website
@@ -512,7 +512,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               initial={{ opacity: 0, scaleY: 0 }}
               animate={{ opacity: [0, 0.8, 0], scaleY: [0, 1, 0] }}
               transition={{ duration: 0.55 }}
-              className="absolute top-10 w-1.5 h-8 bg-gradient-to-b from-yellow-400/80 to-transparent rounded-full origin-top pointer-events-none"
+              className="absolute top-10 w-1.5 h-8 bg-linear-to-b from-yellow-400/80 to-transparent rounded-full origin-top pointer-events-none"
             />
           )}
         </AnimatePresence>
@@ -557,10 +557,28 @@ const VISUALS = [PromptVisual, GenerateVisual, CustomizeVisual, PublishVisual];
 
 /* ── Step Card ── */
 
+// Per-step accent RGBA used for the interior spotlight
+const STEP_ACCENT_RGBA = [
+  "rgba(206,255,0,0.07)", // 01 lime
+  "rgba(139,92,246,0.08)", // 02 violet
+  "rgba(247,98,53,0.07)", // 03 primary
+  "rgba(16,185,129,0.07)", // 04 emerald
+];
+
 function StepCard({ step, index }: { step: StepMeta; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const Visual = VISUALS[index];
+  const accentRgba = STEP_ACCENT_RGBA[index];
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mouse-x", `${e.clientX - r.left}px`);
+    el.style.setProperty("--mouse-y", `${e.clientY - r.top}px`);
+  };
 
   return (
     <motion.div
@@ -568,17 +586,41 @@ function StepCard({ step, index }: { step: StepMeta; index: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
-      className="group h-full"
+      className="group/step h-full"
     >
       <motion.div
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
         whileHover={{ y: -6 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden p-5 shadow-sm hover:shadow-lg dark:hover:shadow-black/30 transition-shadow duration-300"
+        className="relative h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden p-6 shadow-sm hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300"
       >
+        {/* Interior spotlight — follows cursor, per-step accent */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-0 group-hover/step:opacity-100 transition-opacity duration-500 z-0"
+          style={{
+            background: `radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${accentRgba}, transparent 70%)`,
+          }}
+        />
+
+        {/* Border glow — mask technique same as TiltCard */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-0 group-hover/step:opacity-100 transition-opacity duration-500 z-0"
+          style={{
+            background: `radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.14), transparent 50%)`,
+            padding: "1px",
+            borderRadius: "inherit",
+            WebkitMask:
+              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+            WebkitMaskComposite: "xor",
+            maskComposite: "exclude",
+          }}
+        />
+
         {/* Ghost number */}
         <span
           aria-hidden="true"
-          className="pointer-events-none select-none absolute -top-3 -right-1 text-[88px] font-black leading-none text-zinc-900/[0.04] dark:text-white/[0.05]"
+          className="pointer-events-none select-none absolute -top-4 -right-2 text-[100px] font-black leading-none text-zinc-900/5 dark:text-white/6"
         >
           {step.number}
         </span>
@@ -659,17 +701,17 @@ export default function HowItWorks() {
       {/* Parallax background orbs */}
       <motion.div
         style={{ y: orb1Y }}
-        className="pointer-events-none absolute top-10 left-[5%] w-[500px] h-[500px] rounded-full bg-blue-500/6 dark:bg-blue-500/10 blur-[120px] -z-10"
+        className="pointer-events-none absolute top-10 left-[5%] w-125 h-125 rounded-full bg-[#CEFF00]/6 dark:bg-[#CEFF00]/10 blur-[120px] -z-10"
       />
       <motion.div
         style={{ y: orb2Y }}
-        className="pointer-events-none absolute bottom-20 right-[5%] w-[400px] h-[400px] rounded-full bg-violet-500/6 dark:bg-violet-500/10 blur-[100px] -z-10"
+        className="pointer-events-none absolute bottom-20 right-[5%] w-100 h-100 rounded-full bg-violet-500/6 dark:bg-violet-500/10 blur-[100px] -z-10"
       />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-primary-500/4 dark:bg-primary-500/6 blur-[140px] -z-10" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 rounded-full bg-primary-500/4 dark:bg-primary-500/6 blur-[140px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div ref={headerRef} className="text-center mb-20">
+        <div ref={headerRef} className="text-center max-w-6xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -686,8 +728,8 @@ export default function HowItWorks() {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5"
           >
-            Turn Idea into{" "}
-            <span className="bg-linear-to-r from-blue-500 via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
+            Turn Your Idea into a{" "}
+            <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
               Live Website
             </span>{" "}
             in Minutes
@@ -697,31 +739,63 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, delay: 0.2 }}
-            className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10"
+            className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10"
           >
             Describe your vision, let AI generate your website, customize
             everything visually, and publish with confidence.
           </motion.p>
 
-          {/* Workflow pills */}
+          {/* Workflow timeline */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex items-center justify-center flex-wrap gap-2"
+            className="inline-flex items-start justify-center flex-wrap sm:flex-nowrap gap-0"
           >
-            {["Prompt", "Generate", "Customize", "Publish"].map(
-              (label, i, arr) => (
-                <span key={label} className="inline-flex items-center gap-2">
-                  <span className="px-4 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm font-medium border border-zinc-200 dark:border-zinc-700">
+            {[
+              { label: "Prompt", dot: "bg-[#CEFF00]" },
+              { label: "Generate", dot: "bg-violet-500" },
+              { label: "Customize", dot: "bg-primary-500" },
+              { label: "Publish", dot: "bg-emerald-500" },
+            ].map(({ label, dot }, i, arr) => (
+              <span key={label} className="inline-flex items-start">
+                {/* Dot + label */}
+                <span className="flex flex-col items-center gap-1.5 px-4 sm:px-5">
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full ${dot} ring-4 ring-current/10`}
+                  />
+                  <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 whitespace-nowrap">
                     {label}
                   </span>
-                  {i < arr.length - 1 && (
-                    <span className="w-1.5 h-1.5 shrink-0 inline-flex rounded-full bg-zinc-400 dark:bg-zinc-600 text-sm font-light"></span>
-                  )}
                 </span>
-              ),
-            )}
+                {/* Arrow connector */}
+                {i < arr.length - 1 && (
+                  <span className="hidden sm:flex items-center mt-1">
+                    <motion.span
+                      initial={{ scaleX: 0 }}
+                      animate={headerInView ? { scaleX: 1 } : {}}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.45 + i * 0.1,
+                        ease: "easeOut",
+                      }}
+                      className="block h-px w-10 md:w-14 bg-zinc-300 dark:bg-zinc-700 origin-left"
+                    />
+                    <svg
+                      viewBox="0 0 8 8"
+                      className="w-2 h-2 text-zinc-400 dark:text-zinc-600 -ml-px shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="2,1 6,4 2,7" />
+                    </svg>
+                  </span>
+                )}
+              </span>
+            ))}
           </motion.div>
         </div>
 
@@ -737,9 +811,9 @@ export default function HowItWorks() {
           ref={metricsRef}
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3"
         >
-          {METRICS.map(({ value, label }, i) => (
+          {METRICS.map(({ value, Icon }, i) => (
             <motion.div
-              key={label}
+              key={value}
               initial={{ opacity: 0, y: 24 }}
               animate={metricsInView ? { opacity: 1, y: 0 } : {}}
               transition={{
@@ -747,13 +821,13 @@ export default function HowItWorks() {
                 delay: i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/60 backdrop-blur-sm p-6 text-center group hover:-translate-y-1 transition-transform duration-300"
+              className="rounded-2xl space-y-3 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-900/60 backdrop-blur-sm p-6 text-center group hover:-translate-y-1 transition-transform duration-300"
             >
-              <p className="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors duration-300">
+              <div className="flex items-center justify-center">
+                <Icon className="w-8 h-8 mx-auto text-primary" />
+              </div>
+              <p className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors duration-300">
                 {value}
-              </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
-                {label}
               </p>
             </motion.div>
           ))}
@@ -767,17 +841,17 @@ export default function HowItWorks() {
           className="mt-20 text-center"
         >
           <div className="flex items-center gap-4 mb-10 max-w-xs mx-auto">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-zinc-300 dark:to-zinc-700" />
+            <div className="flex-1 h-px bg-linear-to-r from-transparent to-zinc-300 dark:to-zinc-700" />
             <Zap className="w-4 h-4 text-primary-500 shrink-0" />
-            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-zinc-300 dark:to-zinc-700" />
+            <div className="flex-1 h-px bg-linear-to-l from-transparent to-zinc-300 dark:to-zinc-700" />
           </div>
 
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-white tracking-tight mb-4 text-balance">
             Ready to Build Your Next Website?
           </h3>
           <p className="text-base text-zinc-500 dark:text-zinc-400 mb-10 max-w-md mx-auto">
-            Join thousands of designers and developers who ship faster with
-            ERVFlow.
+            Join the beta and start creating production-ready websites today —
+            no credit card required.
           </p>
 
           <div className="flex items-center justify-center gap-3 flex-wrap">
@@ -790,10 +864,9 @@ export default function HowItWorks() {
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-200 hover:scale-105"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-700 dark:text-zinc-200 font-semibold text-sm md:text-base transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary-500/25"
             >
-              <Play className="w-4 h-4 fill-current text-primary-500" />
-              Watch Demo
+              Explore Templates
             </Link>
           </div>
         </motion.div>

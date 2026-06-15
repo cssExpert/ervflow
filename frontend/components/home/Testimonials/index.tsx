@@ -385,16 +385,16 @@ export default function Testimonials() {
           Testimonials
         </span>
         <h2
-          className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-800 dark:text-white"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5"
           style={fadeStyle(130)}
         >
           Loved by builders{" "}
-          <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
+          <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
             worldwide
           </span>
         </h2>
         <p
-          className="text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
+          className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10"
           style={fadeStyle(260)}
         >
           Join thousands of designers and developers who ship faster with

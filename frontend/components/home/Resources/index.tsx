@@ -154,7 +154,7 @@ function CustomTicker({
             onClick={() => {
               alert("alert");
             }}
-            className="inline-flex items-center border-[1.5px] gap-1.5 border-white text-black bg-white hover:border-primary-600 hover:text-white hover:bg-primary-600 px-6 min-h-11 rounded-full text-[13px] transition-all shadow-md"
+            className="inline-flex items-center gap-1.5 border-[1.5px] border-white text-black bg-white hover:border-primary hover:bg-primary! hover:text-white px-6 min-h-11 rounded-full text-[13px] transition-all shadow-md"
           >
             <LayoutPanelTop className="w-4 h-4" />
             View Template
@@ -216,16 +216,16 @@ export default function Resources() {
   return (
     <section className="overflow-x-hidden max-w-full mx-auto py-12 md:pt-16 md:pb-24">
       <div className="max-w-4xl text-center mx-auto mb-10">
-        <h3 className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-balance text-zinc-800 dark:text-white">
-          Launch{" "}
-          <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
-            Faster
+        <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5">
+          Build Faster with{" "}
+          <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
+            Ready-Made
           </span>{" "}
-          with community resources
+          Templates
         </h3>
-        <p className="text-xl text-zinc-600 dark:text-neutral-200 mb-10 max-w-3xl mx-auto leading-relaxed">
-          Accelerate development using ready-made sections, templates,
-          components, and shared assets from the editor community.
+        <p className="text-base sm:text-lg text-zinc-800 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10">
+          Discover professionally designed templates, reusable components, and
+          shared assets to launch websites in minutes.
         </p>
       </div>
       {/* Ticker stage */}

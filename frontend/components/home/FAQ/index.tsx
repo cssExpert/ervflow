@@ -67,7 +67,12 @@ function FAQItem({
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold: 0.3 },
     );
     observer.observe(el);
@@ -89,7 +94,9 @@ function FAQItem({
         className="flex w-full items-center justify-between gap-6 py-5 text-left"
         aria-expanded={open}
       >
-        <span className={`text-base font-medium text-zinc-800 dark:text-white md:text-lg ${open ? "text-primary!" : ""}`}>
+        <span
+          className={`text-base font-medium text-zinc-800 dark:text-white md:text-lg ${open ? "text-primary!" : ""}`}
+        >
           {question}
         </span>
         {/* CSS rotate — replaces motion.div animate rotate */}
@@ -127,7 +134,12 @@ export default function FAQ() {
     const el = headerRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setHeaderVisible(true); observer.disconnect(); } },
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeaderVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold: 0.5 },
     );
     observer.observe(el);
@@ -150,23 +162,27 @@ export default function FAQ() {
       <div className="pt-30 md:pt-35 pb-16 px-6 text-center relative z-10 max-w-5xl mx-auto">
         <div className="w-full max-w-3xl mx-auto">
           <div ref={headerRef} className="mb-14 text-center">
-            <span className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-primary-500" style={fadeStyle(0)}>
+            <span
+              className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-primary-500"
+              style={fadeStyle(0)}
+            >
               FAQ
             </span>
             <h2
               className="mb-5 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-800 dark:text-white"
               style={fadeStyle(130)}
             >
-              Got questions?{" "}
-              <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
+              Got Questions?{" "}
+              <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
                 We&apos;ve got answers.
               </span>
             </h2>
             <p
-              className="mx-auto max-w-xl text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
+              className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10"
               style={fadeStyle(260)}
             >
-              Everything you need to know before you start building with ERVFlow.
+              Explore answers to common questions about building, customizing,
+              and publishing with ERVFlow.
             </p>
           </div>
         </div>

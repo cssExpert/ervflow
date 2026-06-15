@@ -100,12 +100,11 @@ const Header = () => {
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="navActive"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
-                    />
-                  )}
+                  <motion.span
+                    animate={{ opacity: isActive ? 1 : 0, scale: isActive ? 1 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
+                  />
                 </Link>
               );
             })}

@@ -43,7 +43,7 @@ export default function BlogPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-700 dark:text-primary-300 text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest"
+            className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
           >
             <Zap className="w-3.5 h-3.5" aria-hidden="true" />
             ERVFlow Blog · Ideas &amp; Insights

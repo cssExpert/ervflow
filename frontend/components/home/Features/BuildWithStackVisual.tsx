@@ -209,7 +209,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               className={`flex items-center gap-1.5 px-3 py-2 border-r border-white/6 text-[10px] font-mono shrink-0 ${
                 i === 0
                   ? "bg-[#1e1e1e] text-white/90"
-                  : "text-white/35 bg-transparent"
+                  : "text-white/70 bg-transparent"
               }`}
             >
               {i === 0 && (
@@ -229,7 +229,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
         <div className="flex flex-1 min-h-0 overflow-hidden">
           {/* Sidebar */}
           <div className="w-28 bg-[#252526] border-r border-white/6 shrink-0 overflow-hidden py-2">
-            <p className="text-[8px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
+            <p className="text-[8px] font-semibold text-white/60 uppercase tracking-widest px-3 mb-2">
               Explorer
             </p>
             {FILE_TREE.map((f, i) => (
@@ -243,7 +243,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                       ? "rgba(255,255,255,0.9)"
                       : f.active
                         ? "rgba(255,255,255,0.65)"
-                        : "rgba(255,255,255,0.3)",
+                        : "rgba(255,255,255,0.55)",
                 }}
                 transition={{ duration: 0.25 }}
                 className="flex items-center gap-1 px-2 py-0.75 text-[9px] font-mono cursor-default"
@@ -274,18 +274,18 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
           {/* Code pane */}
           <div className="flex-1 overflow-hidden relative">
             <div className="flex items-center gap-1 px-4 py-1.5 border-b border-white/5 bg-[#1e1e1e]">
-              <span className="text-[9px] text-white/25 font-mono">src</span>
-              <span className="text-[9px] text-white/20 font-mono">/</span>
-              <span className="text-[9px] text-white/25 font-mono">
+              <span className="text-[9px] text-white/55 font-mono">src</span>
+              <span className="text-[9px] text-white/50 font-mono">/</span>
+              <span className="text-[9px] text-white/55 font-mono">
                 components
               </span>
-              <span className="text-[9px] text-white/20 font-mono">/</span>
+              <span className="text-[9px] text-white/50 font-mono">/</span>
               <span className="text-[9px] text-white/60 font-mono">
                 Hero.tsx
               </span>
             </div>
             <div className="flex overflow-hidden h-full">
-              <div className="select-none w-8 shrink-0 text-right pr-3 pt-2 text-[8.5px] font-mono leading-[1.7] text-white/20">
+              <div className="select-none w-8 shrink-0 text-right pr-3 pt-2 text-[8.5px] font-mono leading-[1.7] text-white/50">
                 {CODE_LINES.map((_, i) => (
                   <div key={i}>{i < lines ? i + 1 : ""}</div>
                 ))}

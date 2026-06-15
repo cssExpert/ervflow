@@ -261,7 +261,7 @@ function PricingCard({
               <span className="mb-1 text-2xl font-bold text-slate-800 dark:text-neutral-300">
                 $
               </span>
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                   key={price}
                   initial={{ opacity: 0, y: -12 }}
@@ -501,26 +501,27 @@ export default function PricingPage() {
         >
           <motion.span
             variants={headerItemVariants}
-            className="mb-5 inline-flex items-center gap-1 rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-400"
+            className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
           >
             <Gem className="w-3.5 h-3.5" />
             Pricing
           </motion.span>
           <motion.h1
             variants={headerItemVariants}
-            className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-800 dark:text-white"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5"
           >
-            One platform. All your{" "}
-            <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
-              business needs
+            Simple, Transparent{" "}
+            <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
+              Pricing
             </span>
             .
           </motion.h1>
           <motion.p
             variants={headerItemVariants}
-            className="mb-10 text-lg text-slate-800 dark:text-neutral-300"
+            className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Start free, scale when you need to. No hidden fees, no surprises.
+            Choose the plan that fits your workflow—from solo creators to
+            growing teams.
           </motion.p>
           <motion.div
             variants={headerItemVariants}
@@ -528,6 +529,12 @@ export default function PricingPage() {
           >
             <BillingToggle annual={annual} onChange={setAnnual} />
           </motion.div>
+          <motion.p
+            variants={headerItemVariants}
+            className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mt-4"
+          >
+            No credit card required • Own your code • No vendor lock-in
+          </motion.p>
         </motion.div>
       </section>
 
@@ -552,7 +559,7 @@ export default function PricingPage() {
             <h3 className="text-3xl font-bold tracking-tight text-slate-800 dark:text-white md:text-4xl">
               Compare all features
             </h3>
-            <p className="mt-3 text-slate-600 dark:text-neutral-300">
+            <p className="text-base sm:text-lg text-slate-600 dark:text-neutral-300 max-w-2xl mx-auto leading-relaxed mt-3">
               Everything you need to make the right choice.
             </p>
           </div>

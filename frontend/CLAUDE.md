@@ -26,14 +26,6 @@
 - [Where models/types live]
 - [Where tests live]
 
-## Code Style
-- [Rule 1 — be specific]
-- [Rule 2 - make change what is prompted for ]
-- [Rule 3 - always follow the folder/file structure and use the already available components ]
-
-## Rules - Core
-- ALWAYS run tests after changes
-- ALWAYS use TypeScript strict mode
-- NEVER commit directly to main
-- Keep files under 300 lines — split if larger
-- ALWAYS check for Color Contrast ratio and make it positive
+# ERVFlow Development Rules
+See also:
+- RULES.md

@@ -52,7 +52,7 @@ function FooterTextLogo() {
           whiteSpace: "nowrap",
         }}
       >
-        ervflow
+        ERVFlow
       </motion.div>
     </div>
   );

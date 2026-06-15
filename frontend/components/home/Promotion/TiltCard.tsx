@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useCallback, type ReactNode } from "react";
 
 interface TiltCardProps {

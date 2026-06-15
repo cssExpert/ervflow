@@ -10,7 +10,7 @@ const TESTIMONIALS = [
     company: "Stripe",
     initials: "SC",
     content:
-      "Ervflow cut our prototyping time in half. The component library is incredibly well-organized and the Tailwind integration feels completely native to our workflow.",
+      "ERVFlow cut our prototyping time in half. The component library is incredibly well-organized and the Tailwind integration feels completely native to our workflow.",
     rating: 5,
   },
   {
@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     company: "Linear",
     initials: "MW",
     content:
-      "Nothing comes close to the flexibility and speed of Ervflow. Our team shipped 3× faster last quarter.",
+      "Nothing comes close to the flexibility and speed of ERVFlow. Our team shipped 3× faster last quarter.",
     rating: 5,
   },
   {
@@ -46,7 +46,7 @@ const TESTIMONIALS = [
     company: "Figma",
     initials: "LM",
     content:
-      "The design-to-code workflow is flawless. I import my Figma designs and Ervflow handles the rest with zero handoff friction.",
+      "The design-to-code workflow is flawless. I import my Figma designs and ERVFlow handles the rest with zero handoff friction.",
     rating: 5,
   },
 ];
@@ -260,7 +260,7 @@ export default function Testimonials() {
           <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">worldwide</span>
         </h2>
         <p className="text-base text-zinc-500 dark:text-neutral-400 md:text-lg" style={fadeStyle(260)}>
-          Join thousands of designers and developers who ship faster with Ervflow.
+          Join thousands of designers and developers who ship faster with ERVFlow.
         </p>
       </div>
 

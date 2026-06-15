@@ -6,9 +6,9 @@ import Blob from "@/components/common/Blob";
 
 const FAQS = [
   {
-    question: "What front-end technologies does Ervflow support?",
+    question: "What front-end technologies does ERVFlow support?",
     answer:
-      "Ervflow supports Tailwind CSS and Bootstrap out of the box, with more frameworks on the roadmap. You can switch between them at any point without losing your layout structure.",
+      "ERVFlow supports Tailwind CSS and Bootstrap out of the box, with more frameworks on the roadmap. You can switch between them at any point without losing your layout structure.",
   },
   {
     question: "Can I export and own the source code?",
@@ -21,19 +21,19 @@ const FAQS = [
       "Describe what you need in plain language — 'a pricing table with a monthly/yearly toggle' — and the AI drafts the component using your active design system and theme. You can refine it with follow-up prompts or edit the output directly in the canvas.",
   },
   {
-    question: "Is Ervflow suitable for production applications?",
+    question: "Is ERVFlow suitable for production applications?",
     answer:
-      "Absolutely. The exported code follows semantic HTML, accessibility best practices, and is optimised for performance. Teams at Stripe, Linear, and Shopify use Ervflow to prototype and ship production interfaces.",
+      "Absolutely. The exported code follows semantic HTML, accessibility best practices, and is optimised for performance. Teams at Stripe, Linear, and Shopify use ERVFlow to prototype and ship production interfaces.",
   },
   {
     question: "Can I bring in my own custom components?",
     answer:
-      "Yes. You can import your own React components, register them in the component library, and use them in any layout alongside Ervflow's built-in blocks.",
+      "Yes. You can import your own React components, register them in the component library, and use them in any layout alongside ERVFlow's built-in blocks.",
   },
   {
     question: "What hosting options are available?",
     answer:
-      "Export and deploy to any host — Vercel, Netlify, AWS, your own server via SSH or Git. Ervflow also supports one-click deploys directly from the editor for Vercel and Netlify.",
+      "Export and deploy to any host — Vercel, Netlify, AWS, your own server via SSH or Git. ERVFlow also supports one-click deploys directly from the editor for Vercel and Netlify.",
   },
   {
     question: "Is there a free plan?",
@@ -166,7 +166,7 @@ export default function FAQ() {
               className="mx-auto max-w-xl text-base text-zinc-500 dark:text-neutral-400 md:text-lg"
               style={fadeStyle(260)}
             >
-              Everything you need to know before you start building with Ervflow.
+              Everything you need to know before you start building with ERVFlow.
             </p>
           </div>
         </div>

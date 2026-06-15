@@ -25,7 +25,7 @@ const SectionReady = () => {
           Ready to start building?
         </h2>
         <p className="mb-8 text-neutral-600 dark:text-neutral-400">
-          Join 40,000+ developers and designers who ship faster with Ervflow.
+          Join 40,000+ developers and designers who ship faster with ERVFlow.
           Free plan available forever.
         </p>
         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">

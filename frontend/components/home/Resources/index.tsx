@@ -214,7 +214,10 @@ export default function Resources() {
   const [theme] = useState<Theme>("modern");
 
   return (
-    <section className="overflow-x-hidden max-w-full mx-auto py-12 md:pt-16 md:pb-24">
+    <section
+      id="templates"
+      className="overflow-x-hidden max-w-full mx-auto py-12 md:pt-16 md:pb-24"
+    >
       <div className="max-w-4xl text-center mx-auto mb-10">
         <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5">
           Build Faster with{" "}

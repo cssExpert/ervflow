@@ -35,7 +35,7 @@ export default function PolicyCard({
           </span>
         )}
       </div>
-      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-50 transition-colors">
+      <h3 className="text-xl sm:text-xl md:text-2xl font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-700 dark:group-hover:text-zinc-50 transition-colors">
         {title}
       </h3>
       <p className="mt-1.5 text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">

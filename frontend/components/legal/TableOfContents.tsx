@@ -69,7 +69,10 @@ export default function TableOfContents({
 
           <div className="relative">
             {/* Search icon — decorative, contrast not required */}
-            <Search className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500 dark:text-zinc-400" aria-hidden />
+            <Search
+              className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500 dark:text-zinc-400"
+              aria-hidden
+            />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -112,14 +115,16 @@ export default function TableOfContents({
       <div className="lg:hidden w-full sticky top-16 z-30 mb-0 bg-zinc-50 dark:bg-zinc-950 pb-3 pt-2 print:hidden">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-zinc-800 dark:text-zinc-200"
+          className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-sm text-sm font-medium text-zinc-800 dark:text-zinc-200"
           aria-expanded={mobileOpen}
         >
           <span className="flex items-center gap-2 min-w-0">
-            <span className="shrink-0 text-zinc-800 dark:text-zinc-200">Contents</span>
+            <span className="shrink-0 text-zinc-800 dark:text-zinc-200">
+              Contents
+            </span>
             {activeLabel && (
-              <span className="text-xs text-zinc-600 dark:text-zinc-400 truncate">
-                · {activeLabel}
+              <span className="text-sm text-primary dark:primary truncate">
+                &bull; {activeLabel}
               </span>
             )}
           </span>

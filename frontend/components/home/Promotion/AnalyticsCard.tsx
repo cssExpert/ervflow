@@ -110,11 +110,11 @@ export default function AnalyticsCard({
       ),
     },
     {
-      name: "x.com",
-      count: "49K",
+      name: "linkedin.com",
+      count: "37K",
       icon: (
         <Icon
-          name="TwitterX"
+          name="LinkedIn"
           size="20"
           fill="currentColor"
           role="button"
@@ -123,11 +123,11 @@ export default function AnalyticsCard({
       ),
     },
     {
-      name: "x.com",
-      count: "49K",
+      name: "github.com",
+      count: "28K",
       icon: (
         <Icon
-          name="TwitterX"
+          name="GitHub"
           size="20"
           fill="currentColor"
           role="button"
@@ -136,11 +136,11 @@ export default function AnalyticsCard({
       ),
     },
     {
-      name: "x.com",
-      count: "49K",
+      name: "facebook.com",
+      count: "21K",
       icon: (
         <Icon
-          name="TwitterX"
+          name="Facebook"
           size="20"
           fill="currentColor"
           role="button"

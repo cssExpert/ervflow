@@ -237,7 +237,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 key={i}
                 animate={{
                   backgroundColor:
-                    i === litFile ? "rgba(255,255,255,0.07)" : "transparent",
+                    i === litFile ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.001)",
                   color:
                     i === litFile
                       ? "rgba(255,255,255,0.9)"

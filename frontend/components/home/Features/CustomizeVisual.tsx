@@ -115,7 +115,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                 key={v}
                 animate={{
                   backgroundColor:
-                    viewport === v ? "rgba(255,255,255,0.14)" : "transparent",
+                    viewport === v ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.001)",
                 }}
                 transition={{ duration: 0.25 }}
                 className="flex items-center justify-center w-6 h-5 rounded-md"
@@ -169,7 +169,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   animate={{
                     backgroundColor: blockActive
                       ? "rgba(255,255,255,0.07)"
-                      : "transparent",
+                      : "rgba(255,255,255,0.001)",
                   }}
                   transition={{ duration: 0.2 }}
                   className="flex items-center gap-1.5 px-2 py-1.25"
@@ -529,7 +529,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   animate={{
                     backgroundColor: rowActive
                       ? "rgba(255,255,255,0.05)"
-                      : "transparent",
+                      : "rgba(255,255,255,0.001)",
                   }}
                   className="px-2.5 py-1.25"
                 >

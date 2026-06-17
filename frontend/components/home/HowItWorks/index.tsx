@@ -214,11 +214,15 @@ function GenerateVisual({ inView }: { inView: boolean }) {
           >
             <GripVertical
               className={`w-3 h-3 shrink-0 transition-colors duration-200 ${
-                i === dragging ? "text-violet-400" : "text-zinc-400 dark:text-zinc-600"
+                i === dragging
+                  ? "text-violet-400"
+                  : "text-zinc-400 dark:text-zinc-600"
               }`}
             />
             <Check className="w-3 h-3 text-violet-400 shrink-0" />
-            <span className="text-xs text-zinc-700 dark:text-zinc-300 flex-1">{page}</span>
+            <span className="text-xs text-zinc-700 dark:text-zinc-300 flex-1">
+              {page}
+            </span>
             <div className="flex gap-1">
               <div className="w-8 h-1 bg-zinc-300 dark:bg-zinc-700 rounded-full" />
               <div className="w-5 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
@@ -279,7 +283,10 @@ function CanvasContent({ tab }: { tab: number }) {
               }`}
             />
             {[0, 1].map((j) => (
-              <div key={j} className="h-1 bg-zinc-300 dark:bg-zinc-700 rounded w-full" />
+              <div
+                key={j}
+                className="h-1 bg-zinc-300 dark:bg-zinc-700 rounded w-full"
+              />
             ))}
           </div>
         ))}
@@ -294,7 +301,10 @@ function CanvasContent({ tab }: { tab: number }) {
           <div key={i} className="flex-1 space-y-1">
             <div className="h-1.5 bg-zinc-400 dark:bg-zinc-600 rounded w-2/3" />
             {[0, 1, 2].map((j) => (
-              <div key={j} className="h-1 bg-zinc-200 dark:bg-zinc-800 rounded w-full" />
+              <div
+                key={j}
+                className="h-1 bg-zinc-200 dark:bg-zinc-800 rounded w-full"
+              />
             ))}
           </div>
         ))}
@@ -337,7 +347,7 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
                       color: "rgba(247,98,53,0.9)",
                     }
                   : {
-                      backgroundColor: "transparent",
+                      backgroundColor: "rgba(0,0,0,0.001)",
                       color: "rgba(113,113,122,1)",
                     }
               }
@@ -533,7 +543,9 @@ function PublishVisual({ inView }: { inView: boolean }) {
           (f) => (
             <div key={f} className="flex items-center gap-1.5">
               <Check className="w-3 h-3 text-emerald-500 dark:text-emerald-400 shrink-0" />
-              <span className="text-[10px] text-zinc-600 dark:text-zinc-400">{f}</span>
+              <span className="text-[10px] text-zinc-600 dark:text-zinc-400">
+                {f}
+              </span>
             </div>
           ),
         )}

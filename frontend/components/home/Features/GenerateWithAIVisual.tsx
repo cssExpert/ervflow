@@ -102,7 +102,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               ERVFlow AI Studio
             </span>
           </div>
-          <span className="ml-auto text-[9px] text-white/45 font-mono">
+          <span className="ml-auto text-[9px] text-white/70 font-mono">
             claude‑3.5‑sonnet
           </span>
         </div>
@@ -144,7 +144,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                     )}
                   </m.div>
                   <span
-                    className={`text-[8px] font-mono ${active ? "text-[#FFD104]" : done ? "text-green-400" : "text-white/45"}`}
+                    className={`text-[8px] font-mono ${active ? "text-[#FFD104]" : done ? "text-green-400" : "text-white/65"}`}
                   >
                     {step.label}
                   </span>
@@ -254,7 +254,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                   )}
                   {(phase === "sitemap" || isAfterSitemap) && (
                     <div className="flex flex-col gap-2">
-                      <p className="text-[8.5px] text-white/40 font-mono">
+                      <p className="text-[8.5px] text-white/65 font-mono">
                         Generated sitemap —{" "}
                         <span className="text-green-400">
                           {Math.min(visiblePages, AI_PAGES.length)} of{" "}
@@ -287,7 +287,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                                 <span className="text-[7px] text-white/55 font-mono text-center leading-tight">
                                   {page.label}
                                 </span>
-                                <span className="text-[6px] text-white/40 font-mono">
+                                <span className="text-[6px] text-white/65 font-mono">
                                   {page.sections}s
                                 </span>
                               </m.div>
@@ -302,7 +302,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                           transition={{ duration: 0.3 }}
                           className="flex items-center gap-1 pl-1"
                         >
-                          <span className="text-[8px] text-white/40 font-mono shrink-0">
+                          <span className="text-[8px] text-white/65 font-mono shrink-0">
                             └─
                           </span>
                           {["Cleaning", "Whitening", "Implants"].map((s, i) => (

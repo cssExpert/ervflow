@@ -211,23 +211,6 @@
   }
 }
 
-.header.fixed {
-  @apply py-3 lg:py-4;
-  animation: fadeInDown 0.7s ease-in-out 0s 1 normal none running;
-  transition: all 0.3s ease 0s;
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-}
-
 /* Class-based dark mode for Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -258,16 +241,16 @@ button {
 
 .header.fixed {
   @apply py-3 lg:py-4;
-  animation: fadeInDown 0.7s ease-in-out 0s 1 normal none running;
-  transition: all 0.3s ease 0s;
+  animation: fadeInDown 0.7s ease-in-out both;
+  transition: padding 0.3s ease;
 }
 
 @keyframes fadeInDown {
-  0% {
+  from {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
-  100% {
+  to {
     opacity: 1;
     transform: translateZ(0);
   }

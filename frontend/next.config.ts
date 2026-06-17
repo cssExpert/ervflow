@@ -15,9 +15,8 @@ const nextConfig: NextConfig = {
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
+      "@base-ui/react",
       "class-variance-authority",
-      "@radix-ui/react-tooltip",
-      "@radix-ui/react-slot",
     ],
   },
 };

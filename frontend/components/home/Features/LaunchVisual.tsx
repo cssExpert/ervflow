@@ -104,7 +104,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
           </div>
-          <span className="text-[10px] font-semibold text-white/45 font-mono ml-1">
+          <span className="text-[10px] font-semibold text-white/70 font-mono ml-1">
             Deploy Studio
           </span>
           <div className="ml-auto flex items-center gap-1.5">
@@ -216,7 +216,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   </span>
                 </m.div>
 
-                <div className="flex items-center gap-2 text-[8px] font-mono text-white/40">
+                <div className="flex items-center gap-2 text-[8px] font-mono text-white/65">
                   <svg
                     className="w-3 h-3"
                     viewBox="0 0 16 16"
@@ -294,7 +294,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                               />
                             )}
                             <span
-                              className={`text-[8.5px] ${i < logLines - 1 ? "text-white/40" : "text-white/70"}`}
+                              className={`text-[8.5px] ${i < logLines - 1 ? "text-white/60" : "text-white/70"}`}
                             >
                               {log.text}
                             </span>
@@ -379,7 +379,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <p className="text-[8px] text-white/45 font-mono uppercase tracking-widest">
+                  <p className="text-[8px] text-white/65 font-mono uppercase tracking-widest">
                     DNS Records
                   </p>
                   {DOMAIN_ROWS.map((row, i) => (
@@ -394,7 +394,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                         <span className="text-[8px] font-mono text-white/60 truncate">
                           {row.host}
                         </span>
-                        <span className="text-[7px] font-mono text-white/45 truncate">
+                        <span className="text-[7px] font-mono text-white/65 truncate">
                           {row.value}
                         </span>
                       </div>
@@ -557,7 +557,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                     >
                       <path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Z" />
                     </svg>
-                    <span className="text-[9px] font-mono text-white/40 flex-1 truncate">
+                    <span className="text-[9px] font-mono text-white/65 flex-1 truncate">
                       https://mydentalclinic.com
                     </span>
                   </div>

@@ -106,7 +106,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
           </div>
-          <span className="text-[10px] font-semibold text-white/45 font-mono ml-1">
+          <span className="text-[10px] font-semibold text-white/70 font-mono ml-1">
             Visual Editor
           </span>
           <div className="ml-auto flex items-center bg-white/6 rounded-lg p-0.5 gap-0.5">
@@ -157,7 +157,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
         <div className="flex flex-1 min-h-0 overflow-hidden">
           {/* Blocks sidebar */}
           <div className="w-21 bg-[#0c0c1a] border-r border-white/6 shrink-0 py-2 overflow-hidden">
-            <p className="text-[7px] font-semibold text-white/45 uppercase tracking-widest px-2.5 mb-1.5">
+            <p className="text-[7px] font-semibold text-white/65 uppercase tracking-widest px-2.5 mb-1.5">
               Blocks
             </p>
             {BLOCKS.map((blk, i) => {
@@ -198,7 +198,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                     style={{
                       color: blockActive
                         ? "rgba(255,255,255,0.8)"
-                        : "rgba(255,255,255,0.35)",
+                        : "rgba(255,255,255,0.65)",
                     }}
                   >
                     {blk.label}
@@ -409,7 +409,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                 >
                   {[
                     { val: "98%", label: "Uptime", accent: "#22c55e" },
-                    { val: "2.4k", label: "Projects", accent: "#6366f1" },
+                    { val: "2.4k", label: "Projects", accent: "#818cf8" },
                     { val: "50+", label: "Templates", accent: "#f59e0b" },
                   ].map((s, i) => (
                     <div
@@ -422,7 +422,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       >
                         {s.val}
                       </span>
-                      <span className="text-[7px] text-white/45 font-mono">
+                      <span className="text-[7px] text-white/65 font-mono">
                         {s.label}
                       </span>
                     </div>
@@ -516,7 +516,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
 
           {/* Style panel */}
           <div className="w-25 bg-[#0c0c1a] border-l border-white/6 shrink-0 py-2 overflow-hidden">
-            <p className="text-[7px] font-semibold text-white/45 uppercase tracking-widest px-2.5 mb-1.5">
+            <p className="text-[7px] font-semibold text-white/65 uppercase tracking-widest px-2.5 mb-1.5">
               Style
             </p>
             {STYLE_ROWS.map((row, i) => {
@@ -533,7 +533,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   }}
                   className="px-2.5 py-1.25"
                 >
-                  <p className="text-[7px] text-white/50 font-mono mb-0.5">
+                  <p className="text-[7px] text-white/65 font-mono mb-0.5">
                     {row.label}
                   </p>
                   <div className="flex items-center gap-1">
@@ -548,7 +548,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           animate={{
                             color: rowActive
                               ? "rgba(255,255,255,0.8)"
-                              : "rgba(255,255,255,0.35)",
+                              : "rgba(255,255,255,0.65)",
                           }}
                           className="text-[7.5px] font-mono truncate"
                         >
@@ -567,7 +567,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           style={{
                             color: rowActive
                               ? "#a78bfa"
-                              : "rgba(167,139,250,0.5)",
+                              : "rgba(167,139,250,0.9)",
                           }}
                         >
                           {showB ? row.b : row.a}
@@ -604,7 +604,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
               <div
                 className={`w-1.5 h-1.5 rounded-full ${phase === "dropped" || phase === "styling" ? "bg-blue-400" : phase === "responsive" ? "bg-violet-400" : "bg-white/20"}`}
               />
-              <span className="text-white/45">
+              <span className="text-white/70">
                 {phase === "hover" && "Hover to drag a block"}
                 {phase === "dragging" && "Dragging Card…"}
                 {phase === "dropped" && "Card selected"}
@@ -614,7 +614,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
               </span>
             </m.div>
           </AnimatePresence>
-          <div className="ml-auto flex items-center gap-1 text-[8px] font-mono text-white/50">
+          <div className="ml-auto flex items-center gap-1 text-[8px] font-mono text-white/65">
             {viewport !== "desktop" && (
               <span className="text-violet-400">
                 {viewport === "tablet" ? "768px" : "375px"}

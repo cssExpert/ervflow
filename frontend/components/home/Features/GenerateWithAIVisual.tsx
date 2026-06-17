@@ -457,7 +457,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
         </AnimatePresence>
 
         {/* Status bar */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-[#A38500] border-t border-white/6 shrink-0">
+        <div className="flex items-center gap-2 px-3 py-2 bg-[#897000] border-t border-white/6 shrink-0">
           <AnimatePresence mode="wait">
             <m.div
               key={phase}

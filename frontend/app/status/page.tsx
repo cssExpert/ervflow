@@ -637,9 +637,9 @@ export default function StatusPage() {
               delay: 0.44,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="mt-8 w-full max-w-sm sm:max-w-none sm:w-auto mx-auto grid grid-cols-3 sm:inline-flex sm:items-center sm:gap-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-sm shadow-sm dark:shadow-none overflow-hidden"
+            className="mt-8 w-full max-w-sm sm:max-w-none sm:w-auto mx-auto px-3 md:px-5 grid grid-cols-3 sm:inline-flex sm:items-center sm:gap-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-sm shadow-sm dark:shadow-none overflow-hidden"
           >
-            <div className="flex justify-center py-4 sm:py-0 sm:px-0 border-r border-zinc-200 dark:border-zinc-800 sm:border-0">
+            <div className="flex justify-center py-4 sm:py-5 sm:px-0 border-r border-zinc-200 dark:border-zinc-800 sm:border-0">
               <StatPill
                 icon={
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
@@ -649,7 +649,7 @@ export default function StatusPage() {
               />
             </div>
             <div className="flex justify-center py-4 sm:py-0 sm:px-0 border-r border-zinc-200 dark:border-zinc-800 sm:border-0 sm:contents">
-              <div className="hidden sm:block w-px h-8 bg-zinc-200 dark:bg-zinc-800" />
+              <div className="hidden sm:block w-px h-19 bg-zinc-200 dark:bg-zinc-800" />
               <StatPill
                 icon={
                   <Activity className="w-4 h-4 text-blue-500 dark:text-blue-400" />
@@ -659,7 +659,7 @@ export default function StatusPage() {
               />
             </div>
             <div className="flex justify-center py-4 sm:py-0 sm:contents">
-              <div className="hidden sm:block w-px h-8 bg-zinc-200 dark:bg-zinc-800" />
+              <div className="hidden sm:block w-px h-19 bg-zinc-200 dark:bg-zinc-800" />
               <StatPill
                 icon={
                   <Zap className="w-4 h-4 text-amber-500 dark:text-amber-400" />

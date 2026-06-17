@@ -109,15 +109,25 @@
     }
   }
 
+  /* LCP-safe title animation: stays at opacity:1, only slides up */
+  @keyframes hero-slide-up {
+    from { transform: translateY(20px); }
+    to   { transform: translateY(0); }
+  }
+
   .hero-item {
     opacity: 0;
     animation: hero-fade-up 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  /* Used on the h1 LCP element — never opacity:0 so Lighthouse can measure it */
+  .hero-title {
+    animation: hero-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
   /* CTA button hover — CSS replaces motion.div whileHover/whileTap */
   .cta-btn {
     transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
   }
   .cta-btn:hover {
     transform: scale(1.03) translateY(-2px);
@@ -131,6 +141,9 @@
     .hero-item {
       animation: none;
       opacity: 1;
+    }
+    .hero-title {
+      animation: none;
     }
     .animate-spin-slow {
       animation: none;

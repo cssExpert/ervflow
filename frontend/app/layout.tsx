@@ -150,7 +150,7 @@ export default function RootLayout({
             to { opacity: 0; visibility: hidden; pointer-events: none; }
           }
           #ervflow-loader {
-            animation: loaderFadeOut 0.35s ease 0.55s forwards;
+            animation: loaderFadeOut 0.25s ease 0.35s forwards;
           }
         `,
           }}

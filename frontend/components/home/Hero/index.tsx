@@ -63,10 +63,9 @@ const Hero = () => {
           Now in Beta — Try for free
         </div>
 
-        {/* Headline */}
+        {/* Headline — uses hero-title (not hero-item) so it's never opacity:0, keeping LCP fast */}
         <h1
-          className="w-full max-w-4xl mx-auto hero-item text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.2] md:leading-[1.05] tracking-tight text-zinc-900 dark:text-white text-balance"
-          style={{ animationDelay: "120ms" }}
+          className="w-full max-w-4xl mx-auto hero-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.2] md:leading-[1.05] tracking-tight text-zinc-900 dark:text-white text-balance"
         >
           Build Production-Ready <br className="hidden md:inline" />
           <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">

@@ -481,7 +481,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                 transition={{ duration: 0.3 }}
                 className="w-1.5 h-1.5 rounded-full shrink-0"
               />
-              <span className="text-[8.5px] font-mono text-white/75">
+              <span className="text-[8.5px] font-mono text-white">
                 {phase === "typing" && "Generating prompt…"}
                 {phase === "thinking" && "Analyzing request…"}
                 {phase === "sitemap" &&
@@ -491,7 +491,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               </span>
             </m.div>
           </AnimatePresence>
-          <div className="ml-auto text-[8px] font-mono text-white/75">
+          <div className="ml-auto text-[8px] font-mono text-white">
             {(phase === "preview" || phase === "idle") && "5 pages"}
             {phase === "sitemap" && `${visiblePages} pages`}
           </div>
@@ -521,7 +521,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               <p className="text-[10px] font-bold text-zinc-900 leading-tight">
                 5 pages generated
               </p>
-              <p className="text-[8px] text-zinc-400 leading-tight">
+              <p className="text-[8px] text-zinc-600 leading-tight">
                 Ready to customize
               </p>
             </div>

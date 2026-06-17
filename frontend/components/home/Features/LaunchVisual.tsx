@@ -602,7 +602,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -3 }}
               transition={{ duration: 0.2 }}
-              className="text-[8.5px] font-mono text-white/70"
+              className="text-[8.5px] font-mono text-white"
             >
               {phase === "configure" && "Ready to deploy"}
               {phase === "building" && "Building…"}

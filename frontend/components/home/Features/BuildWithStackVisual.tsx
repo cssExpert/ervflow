@@ -237,7 +237,9 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 key={i}
                 animate={{
                   backgroundColor:
-                    i === litFile ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.001)",
+                    i === litFile
+                      ? "rgba(255,255,255,0.07)"
+                      : "rgba(255,255,255,0.001)",
                   color:
                     i === litFile
                       ? "rgba(255,255,255,0.9)"
@@ -275,17 +277,17 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
           <div className="flex-1 overflow-hidden relative">
             <div className="flex items-center gap-1 px-4 py-1.5 border-b border-white/5 bg-[#1e1e1e]">
               <span className="text-[9px] text-white/55 font-mono">src</span>
-              <span className="text-[9px] text-white/50 font-mono">/</span>
+              <span className="text-[9px] ext-white/80 font-mono">/</span>
               <span className="text-[9px] text-white/55 font-mono">
                 components
               </span>
-              <span className="text-[9px] text-white/50 font-mono">/</span>
+              <span className="text-[9px] ext-white/80 font-mono">/</span>
               <span className="text-[9px] text-white/60 font-mono">
                 Hero.tsx
               </span>
             </div>
             <div className="flex overflow-hidden h-full">
-              <div className="select-none w-8 shrink-0 text-right pr-3 pt-2 text-[8.5px] font-mono leading-[1.7] text-white/50">
+              <div className="select-none w-8 shrink-0 text-right pr-3 pt-2 text-[8.5px] font-mono leading-[1.7] ext-white/80">
                 {CODE_LINES.map((_, i) => (
                   <div key={i}>{i < lines ? i + 1 : ""}</div>
                 ))}
@@ -347,7 +349,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
             <svg className="w-3 h-3 fill-white/70" viewBox="0 0 16 16">
               <path d="M8 .25a7.75 7.75 0 1 0 0 15.5A7.75 7.75 0 0 0 8 .25Zm1.75 10.75a.25.25 0 0 1-.25.25h-3a.25.25 0 0 1-.25-.25v-1.5a.25.25 0 0 1 .25-.25H7v-2.5h-.5a.25.25 0 0 1-.25-.25v-1.5A.25.25 0 0 1 6.5 5H8a.25.25 0 0 1 .25.25V9.5h.75a.25.25 0 0 1 .25.25v1.25Z" />
             </svg>
-            <span className="text-[8px] text-white/70 font-mono">main</span>
+            <span className="text-[8px] text-white font-mono">main</span>
           </div>
           <AnimatePresence mode="wait">
             <m.span
@@ -356,7 +358,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.2 }}
-              className="text-[8px] text-white/80 font-mono ml-auto"
+              className="text-[8px] text-white font-mono ml-auto"
             >
               {phase === "typing" && "TypeScript · Hero.tsx"}
               {phase === "building" && "⚡ Compiling…"}
@@ -365,7 +367,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               {phase === "exporting" && "✓ Exported · Next.js + Tailwind"}
             </m.span>
           </AnimatePresence>
-          <div className="flex items-center gap-1 text-[8px] text-white/50 font-mono">
+          <div className="flex items-center gap-1 text-[8px] ext-white/80 font-mono">
             <span>Ln {Math.min(lines, CODE_LINES.length)}</span>
             <span>·</span>
             <span>UTF-8</span>
@@ -401,7 +403,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 <div className="text-[11px] font-bold text-zinc-900 leading-tight mb-1">
                   Build Faster
                 </div>
-                <div className="text-[8px] text-zinc-400 leading-tight mb-2">
+                <div className="text-[8px] text-zinc-600 leading-tight mb-2">
                   AI-powered websites in seconds.
                 </div>
                 <div className="inline-flex items-center gap-0.5 bg-blue-600 text-white text-[7px] font-semibold px-2 py-1 rounded-full">
@@ -449,14 +451,14 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               <p className="text-[10px] font-bold text-zinc-900 leading-tight">
                 Pushed to GitHub
               </p>
-              <p className="text-[8px] text-zinc-400 mt-0.5 leading-tight">
+              <p className="text-[8px] text-zinc-600 mt-0.5 leading-tight">
                 Clean Next.js + Tailwind code
               </p>
               <div className="flex items-center gap-1 mt-1.5">
                 <NextLogo size={9} />
                 <TailwindLogo size={9} />
                 <ReactLogo size={9} />
-                <span className="text-[7px] text-zinc-400 ml-0.5 font-mono">
+                <span className="text-[7px] text-zinc-600 ml-0.5 font-mono">
                   v1.0.0
                 </span>
               </div>

@@ -10,7 +10,12 @@ const METRICS = [
   { value: 50, suffix: "+", label: "Global Experts" },
 ];
 
-const PERKS = ["Set your own rates", "Choose your projects", "Get ERVFlow certified", "Join a top community"];
+const PERKS = [
+  "Set your own rates",
+  "Choose your projects",
+  "Get ERVFlow certified",
+  "Join a top community",
+];
 
 export default function ExpertMetrics() {
   return (
@@ -30,7 +35,11 @@ export default function ExpertMetrics() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
             {METRICS.map((m, i) => (
               <SectionReveal key={m.label} delay={i * 0.1}>
-                <StatCounter value={m.value} suffix={m.suffix} label={m.label} />
+                <StatCounter
+                  value={m.value}
+                  suffix={m.suffix}
+                  label={m.label}
+                />
               </SectionReveal>
             ))}
           </div>
@@ -38,7 +47,10 @@ export default function ExpertMetrics() {
       </section>
 
       {/* Become an Expert */}
-      <section id="become-expert" className="py-20 sm:py-28 bg-zinc-900/40 border-y border-zinc-800">
+      <section
+        id="become-expert"
+        className="py-20 sm:py-28 bg-zinc-900/40 border-y border-zinc-800"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl border border-zinc-800 bg-zinc-900 p-8 sm:p-12 lg:p-16 overflow-hidden">
             {/* Glow */}
@@ -64,8 +76,9 @@ export default function ExpertMetrics() {
                   Become a certified ERVFlow Expert
                 </h2>
                 <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
-                  Help businesses succeed while growing your own. Access exclusive projects,
-                  platform tools, and a thriving community of top-tier professionals.
+                  Help businesses succeed while growing your own. Access
+                  exclusive projects, platform tools, and a thriving community
+                  of top-tier professionals.
                 </p>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {PERKS.map((p) => (
@@ -82,7 +95,7 @@ export default function ExpertMetrics() {
               <div className="shrink-0">
                 <Link
                   href="#"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-xl transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
                 >
                   Apply Now
                   <ArrowRight className="w-4 h-4" />

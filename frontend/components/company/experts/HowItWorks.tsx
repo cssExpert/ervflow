@@ -1,8 +1,17 @@
 "use client";
 import { useRef } from "react";
-import { ClipboardList, UserCheck, Rocket } from "lucide-react";
+import {
+  ClipboardList,
+  UserCheck,
+  Rocket,
+  MoveRight,
+  FileCheck2,
+  Code2,
+} from "lucide-react";
 import { motion, useInView } from "framer-motion";
-import SectionReveal from "@/components/company/shared/SectionReveal";
+import Link from "next/link";
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const STEPS = [
   {
@@ -17,113 +26,201 @@ const STEPS = [
     icon: UserCheck,
     title: "Get Matched",
     description:
-      "We analyze your needs and connect you with the best-fit certified expert from our vetted network.",
+      "We analyze your needs and connect you with the best-fit certified expert from our vetted network within 24 hours.",
   },
   {
     num: "03",
-    icon: Rocket,
-    title: "Collaborate & Launch",
+    icon: FileCheck2,
+    title: "Scope & Kickoff",
     description:
-      "Work directly with your expert using built-in collaboration tools to bring your vision to life.",
+      "Your expert reviews the brief, finalises a clear scope of work, and schedules a kickoff call to align on deliverables.",
+  },
+  {
+    num: "04",
+    icon: Code2,
+    title: "Build & Iterate",
+    description:
+      "Work progresses in focused sprints with milestone check-ins, live previews, and a built-in feedback loop.",
+  },
+  {
+    num: "05",
+    icon: Rocket,
+    title: "Launch & Handover",
+    description:
+      "Go live with confidence. Receive full handover documentation, assets, and optional post-launch support.",
   },
 ];
 
-export default function HowItWorks() {
-  const lineRef = useRef<HTMLDivElement>(null);
-  const lineInView = useInView(lineRef, { once: true, margin: "-100px" });
-
-  const stepsRef = useRef<HTMLDivElement>(null);
-  const stepsInView = useInView(stepsRef, { once: true, margin: "-80px" });
+/* ── Vertical timeline card ────────────────────────────── */
+function TimelineCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 sm:py-28 bg-zinc-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionReveal className="text-center mb-16">
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
-            Process
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-zinc-100 tracking-tight">
-            How it works
-          </h2>
-          <p className="mt-4 text-base text-zinc-400 max-w-md mx-auto">
-            From brief to launch in three straightforward steps.
-          </p>
-        </SectionReveal>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: -44 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.75, ease: EASE }}
+      className="h-full flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden"
+    >
+      {/* Card header */}
+      <div className="px-6 py-4 border-b border-zinc-800 flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-primary-500" aria-hidden />
+        <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
+          Your Journey
+        </span>
+      </div>
 
-        <div ref={lineRef} className="relative">
-          {/* Animated connecting line */}
+      {/* Timeline body */}
+      <div className="px-6 py-7 flex-1 relative">
+        {/* Animated vertical line */}
+        <div
+          className="absolute left-[2.35rem] top-7 bottom-7 w-px bg-zinc-800 overflow-hidden"
+          aria-hidden
+        >
           <motion.div
-            aria-hidden
-            initial={{ scaleX: 0 }}
-            animate={lineInView ? { scaleX: 1 } : {}}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className="hidden lg:block absolute top-10 left-[calc(16.67%+1.5rem)] right-[calc(16.67%+1.5rem)] h-px origin-left"
+            className="w-full"
             style={{
               background:
-                "linear-gradient(to right, #27272A, rgba(247,98,53,0.5), #27272A)",
+                "linear-gradient(to bottom, rgba(247,98,53,0.8), rgba(247,98,53,0.15))",
             }}
+            initial={{ height: 0 }}
+            animate={inView ? { height: "100%" } : {}}
+            transition={{ duration: 1.3, ease: EASE, delay: 0.3 }}
           />
+        </div>
 
-          <motion.div
-            ref={stepsRef}
-            initial="hidden"
-            animate={stepsInView ? "visible" : "hidden"}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-0"
-          >
-            {STEPS.map((step, i) => (
+        <div className="space-y-6">
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, x: -18 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{
+                duration: 0.55,
+                ease: EASE,
+                delay: 0.28 + i * 0.16,
+              }}
+              className="flex gap-4 relative"
+            >
+              {/* Step icon */}
               <motion.div
-                key={step.num}
-                variants={{
-                  hidden: { opacity: 0, y: 40 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-                  },
+                initial={{ scale: 0, opacity: 0 }}
+                animate={inView ? { scale: 1, opacity: 1 } : {}}
+                transition={{
+                  delay: 0.35 + i * 0.16,
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 18,
                 }}
+                whileHover={{ scale: 1.1, rotate: 8 }}
+                className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex flex-col items-center justify-center shrink-0 z-10 cursor-default"
               >
-                <div className="flex flex-col items-center text-center px-4 lg:px-6">
-                  {/* Step icon box with hover + entrance scale pop */}
-                  <motion.div
-                    initial={{ scale: 0.5, opacity: 0 }}
-                    animate={stepsInView ? { scale: 1, opacity: 1 } : {}}
-                    transition={{
-                      delay: 0.45 + i * 0.18,
-                      type: "spring",
-                      stiffness: 280,
-                      damping: 16,
-                    }}
-                    whileHover={{ scale: 1.1, rotate: 6 }}
-                    className="relative w-20 h-20 rounded-2xl bg-zinc-900 border border-zinc-800 flex flex-col items-center justify-center mb-6 z-10 cursor-default"
-                  >
-                    <span className="text-[10px] font-mono text-primary-500/70 mb-1">
-                      {step.num}
-                    </span>
-                    <step.icon className="w-6 h-6 text-primary-400" />
-                  </motion.div>
-
-                  <motion.h3
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
-                    }}
-                    className="text-base font-semibold text-zinc-100 mb-2"
-                  >
-                    {step.title}
-                  </motion.h3>
-                  <motion.p
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: { opacity: 1, transition: { duration: 0.4, delay: 0.15 } },
-                    }}
-                    className="text-sm text-zinc-400 leading-relaxed max-w-xs"
-                  >
-                    {step.description}
-                  </motion.p>
-                </div>
+                <span className="text-[9px] font-mono text-primary-500/60 leading-none">
+                  {step.num}
+                </span>
+                <step.icon className="w-4 h-4 text-primary-400 mt-0.5" />
               </motion.div>
-            ))}
+
+              {/* Step text */}
+              <div className="pt-0.5">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-zinc-100 mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Card footer */}
+      <div className="px-6 py-4 border-t border-zinc-800 flex items-center justify-between">
+        <span className="text-[11px] text-zinc-600">
+          Avg. time to first delivery: 48–72h
+        </span>
+        <div className="flex items-center gap-1.5">
+          <span
+            className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
+            aria-hidden
+          />
+          <span className="text-[11px] text-zinc-500">Experts online now</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Main export ─────────────────────────────────────────── */
+export default function HowItWorks() {
+  const textRef = useRef<HTMLDivElement>(null);
+  const textInView = useInView(textRef, { once: true, margin: "-80px" });
+
+  return (
+    <section className="py-20 sm:py-28 bg-zinc-950 border-y border-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+          {/* Left — vertical timeline card */}
+          <TimelineCard />
+
+          {/* Right — text content */}
+          <motion.div
+            ref={textRef}
+            initial={{ opacity: 0, x: 44 }}
+            animate={textInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.75, ease: EASE }}
+          >
+            <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
+              Process
+            </span>
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 tracking-tight leading-[1.1]">
+              From brief to launch in three steps.
+            </h2>
+            <p className="mt-5 text-base text-zinc-400 leading-relaxed">
+              Getting expert help shouldn&apos;t be complicated. Our streamlined
+              matching process connects you with the right professional in hours
+              — not weeks.
+            </p>
+            <p className="mt-4 text-base text-zinc-400 leading-relaxed">
+              From the moment you submit your brief to your final delivery, your
+              assigned expert handles everything with full transparency and
+              built-in collaboration tools.
+            </p>
+
+            {/* Mini stats */}
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              {[
+                { value: "<5 min", label: "to submit a brief" },
+                { value: "24h", label: "to get matched" },
+                { value: "48–72h", label: "avg. first delivery" },
+                { value: "100%", label: "satisfaction guarantee" },
+              ].map(({ value, label }) => (
+                <div
+                  key={label}
+                  className="p-4 rounded-xl border border-zinc-800 bg-zinc-900"
+                >
+                  <p className="text-lg font-bold text-zinc-100">{value}</p>
+                  <p className="text-xs text-zinc-500 mt-0.5">{label}</p>
+                </div>
+              ))}
+            </div>
+
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="mt-8 inline-block"
+            >
+              <Link
+                href="#directory"
+                className="inline-flex items-center gap-2 px-5 py-4 text-sm font-semibold text-zinc-100 hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
+              >
+                Find an Expert Now
+                <MoveRight className="w-4 h-4" />
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

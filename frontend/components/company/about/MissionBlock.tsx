@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, MoveRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 
@@ -71,7 +71,9 @@ function BeliefsPanel() {
             <div className="w-5 h-5 rounded-full bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shrink-0 mt-0.5">
               <CheckCircle2 className="w-3 h-3 text-primary-400" />
             </div>
-            <span className="text-sm text-zinc-300 leading-relaxed">{belief}</span>
+            <span className="text-sm text-zinc-300 leading-relaxed">
+              {belief}
+            </span>
           </motion.li>
         ))}
       </ul>
@@ -81,7 +83,9 @@ function BeliefsPanel() {
         {MISSION_STATS.map(({ value, label }) => (
           <div key={label} className="px-4 py-4 text-center">
             <p className="text-2xl font-bold text-zinc-100">{value}</p>
-            <p className="text-[11px] text-zinc-500 mt-0.5 leading-tight">{label}</p>
+            <p className="text-[11px] text-zinc-500 mt-0.5 leading-tight">
+              {label}
+            </p>
           </div>
         ))}
       </div>
@@ -111,7 +115,9 @@ function ComparisonPanel() {
         ].map(({ value, label }) => (
           <div key={label} className="px-4 py-5 text-center">
             <p className="text-xl font-bold text-zinc-100">{value}</p>
-            <p className="text-[11px] text-zinc-500 mt-1 leading-tight">{label}</p>
+            <p className="text-[11px] text-zinc-500 mt-1 leading-tight">
+              {label}
+            </p>
           </div>
         ))}
       </div>
@@ -126,13 +132,19 @@ function ComparisonPanel() {
 
             {/* Traditional row */}
             <div className="flex items-center gap-3 mb-1.5">
-              <span className="w-24 shrink-0 text-xs text-zinc-500">Traditional</span>
+              <span className="w-24 shrink-0 text-xs text-zinc-500">
+                Traditional
+              </span>
               <div className="flex-1 h-2 rounded-full bg-zinc-800 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full bg-zinc-600"
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${traditional.pct}%` } : {}}
-                  transition={{ duration: 1.1, ease: EASE, delay: 0.3 + i * 0.12 }}
+                  transition={{
+                    duration: 1.1,
+                    ease: EASE,
+                    delay: 0.3 + i * 0.12,
+                  }}
                 />
               </div>
               <span className="w-20 shrink-0 text-right text-xs text-zinc-500">
@@ -142,13 +154,19 @@ function ComparisonPanel() {
 
             {/* ERVFlow row */}
             <div className="flex items-center gap-3">
-              <span className="w-24 shrink-0 text-xs font-semibold text-zinc-200">ERVFlow</span>
+              <span className="w-24 shrink-0 text-xs font-semibold text-zinc-200">
+                ERVFlow
+              </span>
               <div className="flex-1 h-2 rounded-full bg-zinc-800 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full bg-primary-500"
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${ervflow.pct}%` } : {}}
-                  transition={{ duration: 0.9, ease: EASE, delay: 0.45 + i * 0.12 }}
+                  transition={{
+                    duration: 0.9,
+                    ease: EASE,
+                    delay: 0.45 + i * 0.12,
+                  }}
                 />
               </div>
               <span className="w-20 shrink-0 text-right text-xs font-semibold text-primary-400">
@@ -161,8 +179,9 @@ function ComparisonPanel() {
 
       {/* Disclaimer */}
       <p className="px-6 pb-5 text-[11px] text-zinc-600 leading-relaxed border-t border-zinc-800/60 pt-4">
-        Estimates based on median agency project data. ERVFlow includes AI generation,
-        visual editing, and one-click publishing in a single platform.
+        Estimates based on median agency project data. ERVFlow includes AI
+        generation, visual editing, and one-click publishing in a single
+        platform.
       </p>
     </motion.div>
   );
@@ -171,10 +190,16 @@ function ComparisonPanel() {
 /* ── Main Export ─────────────────────────────────────── */
 export default function MissionBlock() {
   const missionTextRef = useRef<HTMLDivElement>(null);
-  const missionInView = useInView(missionTextRef, { once: true, margin: "-80px" });
+  const missionInView = useInView(missionTextRef, {
+    once: true,
+    margin: "-80px",
+  });
 
   const problemTextRef = useRef<HTMLDivElement>(null);
-  const problemInView = useInView(problemTextRef, { once: true, margin: "-80px" });
+  const problemInView = useInView(problemTextRef, {
+    once: true,
+    margin: "-80px",
+  });
 
   return (
     <>
@@ -196,9 +221,10 @@ export default function MissionBlock() {
                 Making web creation fast, collaborative, and accessible.
               </h2>
               <p className="mt-5 text-base text-zinc-400 leading-relaxed">
-                We believe professional websites should be within reach for every team —
-                not just those with large budgets or deep technical expertise. ERVFlow
-                bridges design, content, and engineering in one AI-powered platform.
+                We believe professional websites should be within reach for
+                every team — not just those with large budgets or deep technical
+                expertise. ERVFlow bridges design, content, and engineering in
+                one AI-powered platform.
               </p>
               <motion.div
                 whileHover={{ scale: 1.03 }}
@@ -207,10 +233,10 @@ export default function MissionBlock() {
               >
                 <Link
                   href="/signup"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100 rounded-xl transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-100 hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
                 >
                   Start for free
-                  <ArrowRight className="w-4 h-4" />
+                  <MoveRight className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -242,13 +268,15 @@ export default function MissionBlock() {
                 Traditional website creation is broken.
               </h2>
               <p className="mt-5 text-base text-zinc-400 leading-relaxed">
-                Teams spend months juggling designers, developers, and half a dozen tools
-                that don&apos;t talk to each other. Projects blow budgets, timelines slip, and
-                the result still needs constant maintenance.
+                Teams spend months juggling designers, developers, and half a
+                dozen tools that don&apos;t talk to each other. Projects blow
+                budgets, timelines slip, and the result still needs constant
+                maintenance.
               </p>
               <p className="mt-4 text-base text-zinc-400 leading-relaxed">
-                ERVFlow replaces the entire fragmented stack — from design and content to
-                development and publishing — in a single AI-accelerated platform.
+                ERVFlow replaces the entire fragmented stack — from design and
+                content to development and publishing — in a single
+                AI-accelerated platform.
               </p>
               <motion.div
                 whileHover={{ scale: 1.03 }}
@@ -257,10 +285,10 @@ export default function MissionBlock() {
               >
                 <Link
                   href="/signup"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100 rounded-xl transition-colors duration-200"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-100 hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
                 >
                   See how it works
-                  <ArrowRight className="w-4 h-4" />
+                  <MoveRight className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>

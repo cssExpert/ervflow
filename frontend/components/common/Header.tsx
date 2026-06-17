@@ -229,7 +229,7 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed inset-y-0 right-0 z-52 w-72 bg-black/75 border-l border-zinc-800/60 lg:hidden flex flex-col"
+            className="fixed inset-y-0 right-0 w-72 bg-black/75 border-l border-zinc-800/60 lg:hidden flex flex-col z-99999"
           >
             <div className="flex items-center justify-between px-6 py-5 border-b border-zinc-800/60">
               <div className="flex shrink-0 items-center justify-center gap-2">
@@ -344,7 +344,7 @@ const Header = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-9999 bg-black/60 backdrop-blur-sm lg:hidden"
           />
         )}
       </AnimatePresence>

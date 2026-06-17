@@ -814,154 +814,90 @@ export default function WorkflowTimeline() {
           </div>
         </div>
 
-        {/* ── Tablet (md–lg): compact nodes row + animated card ── */}
-        <div className="hidden md:block lg:hidden">
-          {/* Node row */}
-          <div className="flex items-center justify-between mb-6">
-            {STEPS.map((step, i) => {
-              const isActive = activeStep === i;
-              const isPast = i < activeStep;
-              return (
-                <div key={step.num} className="flex items-center flex-1">
-                  <button
-                    onClick={() => setActiveStep(i)}
-                    className="flex flex-col items-center gap-1.5 group"
+        {/* ── Tablet (md–lg): compact node row only ── */}
+        <div className="hidden md:flex lg:hidden items-center justify-between mb-6">
+          {STEPS.map((step, i) => {
+            const isActive = activeStep === i;
+            const isPast = i < activeStep;
+            return (
+              <div key={step.num} className="flex items-center flex-1">
+                <button
+                  onClick={() => setActiveStep(i)}
+                  className="flex flex-col items-center gap-1.5"
+                >
+                  <div
+                    className={`w-11 h-11 rounded-xl flex flex-col items-center justify-center transition-all duration-300 ${
+                      isActive
+                        ? "bg-primary-500 shadow-md shadow-primary-500/30"
+                        : isPast
+                          ? "bg-primary-900 border border-primary-500/25"
+                          : "bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700"
+                    }`}
                   >
-                    <div
-                      className={`relative w-11 h-11 rounded-xl flex flex-col items-center justify-center transition-all duration-300 ${
-                        isActive
-                          ? "bg-primary-500 shadow-md shadow-primary-500/30"
-                          : isPast
-                            ? "bg-primary-900 border border-primary-500/25"
-                            : "bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700"
-                      }`}
-                    >
-                      <span
-                        className={`text-[8px] font-mono leading-none mb-0.5 ${isActive ? "text-white/60" : isPast ? "text-primary-400/60" : "text-zinc-400 dark:text-zinc-500"}`}
-                      >
-                        {step.num}
-                      </span>
-                      <step.icon
-                        className={`w-4 h-4 ${isActive ? "text-white" : isPast ? "text-primary-400" : "text-zinc-500 dark:text-zinc-400"}`}
-                      />
-                    </div>
-                    <span
-                      className={`text-[10px] font-medium ${isActive ? "text-primary-500" : "text-zinc-500 dark:text-zinc-400"}`}
-                    >
-                      {step.title}
+                    <span className={`text-[8px] font-mono leading-none mb-0.5 ${isActive ? "text-white/60" : isPast ? "text-primary-400/60" : "text-zinc-400 dark:text-zinc-500"}`}>
+                      {step.num}
                     </span>
-                  </button>
-                  {i < STEPS.length - 1 && (
-                    <div className="flex-1 mx-1.5 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                      <motion.div
-                        className="absolute inset-y-0 left-0 bg-primary-500/50"
-                        animate={{ width: i < activeStep ? "100%" : "0%" }}
-                        transition={{ duration: 0.4, ease: EASE }}
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Animated detail card */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStep}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5"
-            >
-              {(() => {
-                const TabletIcon = STEPS[activeStep].icon;
-                return (
-                  <div className="flex gap-4 items-start">
-                    <div className="w-10 h-10 rounded-xl bg-primary-500 flex flex-col items-center justify-center shrink-0 shadow-md shadow-primary-500/20">
-                      <span className="text-[8px] font-mono text-white/60 leading-none">
-                        {STEPS[activeStep].num}
-                      </span>
-                      <TabletIcon className="w-4 h-4 text-white mt-0.5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1">
-                        {STEPS[activeStep].title}
-                      </h3>
-                      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
-                        {STEPS[activeStep].desc}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {STEPS[activeStep].tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-500 border border-primary-500/20"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                    <step.icon className={`w-4 h-4 ${isActive ? "text-white" : isPast ? "text-primary-400" : "text-zinc-500 dark:text-zinc-400"}`} />
                   </div>
-                );
-              })()}
-              {/* Progress bar */}
-              <div className="mt-4 h-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                <motion.div
-                  key={`tablet-bar-${activeStep}-${loopCount}`}
-                  className="h-full bg-primary-500/60 rounded-full"
-                  initial={{ width: "0%" }}
-                  animate={paused ? {} : { width: "100%" }}
-                  transition={{ duration: STEP_MS / 1000, ease: "linear" }}
-                />
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* ── Mobile (<md): vertical timeline ── */}
-        <div className="md:hidden space-y-0">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.num}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.55, ease: EASE, delay: i * 0.08 }}
-              className="flex gap-4"
-            >
-              <div className="flex flex-col items-center">
-                <div className="w-10 h-10 rounded-xl bg-primary-500 flex flex-col items-center justify-center shrink-0 shadow-md shadow-primary-500/20">
-                  <span className="text-[8px] font-mono text-white/60 leading-none">
-                    {step.num}
+                  <span className={`text-[10px] font-medium ${isActive ? "text-primary-500" : "text-zinc-500 dark:text-zinc-400"}`}>
+                    {step.title}
                   </span>
-                  <step.icon className="w-4 h-4 text-white mt-0.5" />
-                </div>
+                </button>
                 {i < STEPS.length - 1 && (
-                  <div className="w-px flex-1 mt-2 bg-zinc-200 dark:bg-zinc-800 min-h-8" />
+                  <div className="flex-1 mx-1.5 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
+                    <motion.div
+                      className="absolute inset-y-0 left-0 bg-primary-500/50"
+                      animate={{ width: isPast ? "100%" : "0%" }}
+                      transition={{ duration: 0.4, ease: EASE }}
+                    />
+                  </div>
                 )}
               </div>
-              <div className="pb-5 pt-0.5 flex-1">
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
-                  {step.title}
-                </h3>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
-                  {step.desc}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {step.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-500 border border-primary-500/20"
-                    >
-                      {tag}
+            );
+          })}
+        </div>
+
+        {/* ── Mobile (<md): compact horizontal node strip ── */}
+        <div className="md:hidden flex items-center justify-between mb-4">
+          {STEPS.map((step, i) => {
+            const isActive = activeStep === i;
+            const isPast = i < activeStep;
+            return (
+              <div key={step.num} className="flex items-center flex-1">
+                <button
+                  onClick={() => setActiveStep(i)}
+                  className="flex flex-col items-center gap-1"
+                >
+                  <div
+                    className={`w-9 h-9 rounded-xl flex flex-col items-center justify-center transition-all duration-300 ${
+                      isActive
+                        ? "bg-primary-500 shadow-sm shadow-primary-500/30"
+                        : isPast
+                          ? "bg-primary-900 border border-primary-500/25"
+                          : "bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700"
+                    }`}
+                  >
+                    <span className={`text-[7px] font-mono leading-none mb-0.5 ${isActive ? "text-white/60" : isPast ? "text-primary-400/60" : "text-zinc-400 dark:text-zinc-500"}`}>
+                      {step.num}
                     </span>
-                  ))}
-                </div>
+                    <step.icon className={`w-3 h-3 ${isActive ? "text-white" : isPast ? "text-primary-400" : "text-zinc-500 dark:text-zinc-400"}`} />
+                  </div>
+                  <span className={`text-[9px] font-medium ${isActive ? "text-primary-500" : "text-zinc-500 dark:text-zinc-400"}`}>
+                    {step.title}
+                  </span>
+                </button>
+                {i < STEPS.length - 1 && (
+                  <div className="flex-1 mx-1 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden mb-4">
+                    <motion.div
+                      className="absolute inset-y-0 left-0 bg-primary-500/50"
+                      animate={{ width: isPast ? "100%" : "0%" }}
+                      transition={{ duration: 0.4, ease: EASE }}
+                    />
+                  </div>
+                )}
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ── Browser UI card ── */}
@@ -987,8 +923,8 @@ export default function WorkflowTimeline() {
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
 
-              {/* Active tab */}
-              <div className="flex items-end gap-px ml-2">
+              {/* Active tab — hidden on mobile */}
+              <div className="hidden sm:flex items-end gap-px ml-2">
                 <div className="flex items-center gap-2 bg-zinc-800 border border-zinc-700 border-b-0 rounded-t-lg px-3 py-1.5 -mb-px">
                   {(() => {
                     const TabIcon = STEPS[activeStep].icon;
@@ -1064,7 +1000,7 @@ export default function WorkflowTimeline() {
             </div>
 
             {/* Panel content */}
-            <div className="h-64">
+            <div className="h-52 sm:h-64">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`panel-${activeStep}`}

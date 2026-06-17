@@ -1,10 +1,10 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 /* ── Animated blob ──────────────────────────────────────────────────── */
-type MotionDivProps = ComponentProps<typeof motion.div>;
+type MotionDivProps = ComponentProps<typeof m.div>;
 
 function Blob({
   className,
@@ -16,7 +16,7 @@ function Blob({
   transition: MotionDivProps["transition"];
 }) {
   return (
-    <motion.div
+    <m.div
       aria-hidden="true"
       className={`pointer-events-none absolute blur-[120px] ${className}`}
       animate={animate}

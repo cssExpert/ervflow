@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown, Search, X, MoveLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -88,7 +88,7 @@ export default function TableOfContents({
           </div>
 
           <nav className="space-y-0.5" aria-label="Document sections">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 px-2 mb-2">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 px-2 mb-2">
               Contents
             </p>
             {filtered.map((item) => (
@@ -123,18 +123,18 @@ export default function TableOfContents({
               </span>
             )}
           </span>
-          <motion.span
+          <m.span
             animate={{ rotate: mobileOpen ? 180 : 0 }}
             transition={{ duration: 0.2 }}
             className="shrink-0 ml-2"
           >
             <ChevronDown className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
-          </motion.span>
+          </m.span>
         </button>
 
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -156,7 +156,7 @@ export default function TableOfContents({
                   </button>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

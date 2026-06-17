@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useInView,
@@ -200,19 +200,19 @@ function ServiceCard({ service }: { service: Service }) {
       className="flex min-h-screen items-center pt-20 md:pt-30 pb-16"
     >
       <div className="mx-auto w-full max-w-6xl">
-        <motion.div
+        <m.div
           style={{ opacity, scale, borderColor, boxShadow }}
           className="grid gap-10 rounded-3xl border bg-white/50 dark:bg-white/[0.025] p-0 backdrop-blur-sm md:p-14 lg:grid-cols-2"
         >
           {/* ── Left: text content ─────────────────────────────── */}
           <div className="flex flex-col justify-center gap-6">
             <div className="flex items-center gap-4">
-              <motion.span
+              <m.span
                 style={{ opacity: numOpacity }}
                 className="font-mono text-6xl font-black leading-none text-primary-500/70 md:text-7xl"
               >
                 {service.id}
-              </motion.span>
+              </m.span>
               <span className="rounded-full border border-black/8 dark:border-white/10 bg-black/5 dark:bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-neutral-400">
                 {service.category}
               </span>
@@ -248,7 +248,7 @@ function ServiceCard({ service }: { service: Service }) {
 
           {/* ── Right: icon visual ─────────────────────────────── */}
           <div className="flex items-center justify-center">
-            <motion.div
+            <m.div
               style={{ scale: iconScale }}
               className={`flex h-56 w-56 items-center justify-center rounded-3xl bg-linear-to-br ${service.accent} md:h-72 md:w-72`}
             >
@@ -259,9 +259,9 @@ function ServiceCard({ service }: { service: Service }) {
                   className={`h-12 w-12 ${service.iconColor} md:h-16 md:w-16`}
                 />
               </div>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );
@@ -279,20 +279,20 @@ export default function ServicesPage() {
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-50 md:pt-70 pb-16 text-center">
-        <motion.div
+        <m.div
           ref={heroRef}
           variants={headerVariants}
           initial="hidden"
           animate={isHeroInView ? "visible" : "hidden"}
           className="mx-auto max-w-3xl"
         >
-          <motion.span
+          <m.span
             variants={headerItemVariants}
             className="mb-5 inline-block rounded-full border border-primary-500/30 bg-primary-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400"
           >
             Services
-          </motion.span>
-          <motion.h1
+          </m.span>
+          <m.h1
             variants={headerItemVariants}
             className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-800 dark:text-white"
           >
@@ -300,23 +300,23 @@ export default function ServicesPage() {
             <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
               for Growth
             </span>
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             variants={headerItemVariants}
             className="text-lg text-slate-600 dark:text-neutral-300"
           >
             Scroll through to explore our services — each card highlights as it
             reaches the center of your view.
-          </motion.p>
+          </m.p>
 
           {/* Scroll indicator */}
-          <motion.div
+          <m.div
             variants={headerItemVariants}
             className="mt-10 flex justify-center"
             aria-hidden
           >
             <div className="flex h-10 w-6 items-start justify-center rounded-full border border-slate-300 dark:border-white/20 p-1.5">
-              <motion.div
+              <m.div
                 animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }}
                 transition={{
                   repeat: Infinity,
@@ -326,8 +326,8 @@ export default function ServicesPage() {
                 className="h-2 w-1 rounded-full bg-slate-500 dark:bg-white/60"
               />
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </section>
 
       {/* ── Scroll-highlight service cards ───────────────────────── */}

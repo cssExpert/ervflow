@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import Icon from "@/components/common/Icon";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { navLinks } from "@/lib/data";
 import Social from "./Social";
 import { useTheme } from "@/components/ThemeProvider";
@@ -128,7 +128,7 @@ const Header = () => {
                   }`}
                 >
                   {link.label}
-                  <motion.span
+                  <m.span
                     animate={{
                       opacity: isActive ? 1 : 0,
                       scale: isActive ? 1 : 0,
@@ -152,7 +152,7 @@ const Header = () => {
               className="group hidden sm:inline-flex text-indigo-300 hover:text-primary-400"
               href="/"
             >
-              <motion.div
+              <m.div
                 // Framer Motion spring physics handle hover and tap smoothly!
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
@@ -160,7 +160,7 @@ const Header = () => {
                 className="relative group inline-flex rounded-full p-0.75 overflow-hidden bg-white dark:bg-zinc-800/40 shadow-sm cursor-pointer select-none"
               >
                 {/* 1. ROTATING GLOW BEAM */}
-                <motion.div
+                <m.div
                   className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
                   style={{
                     x: "-50%",
@@ -178,7 +178,7 @@ const Header = () => {
                     Request Demo
                   </span>
                 </div>
-              </motion.div>
+              </m.div>
             </Link>
 
             {/* Theme Switcher */}
@@ -191,7 +191,7 @@ const Header = () => {
               className="w-10 h-10 flex items-center justify-center rounded-md bg-white/10 border border-black/10 dark:border-zinc-800/60 text-muted-foreground hover:text-primary hover:border-primary/40 transition-all duration-300 cursor-pointer"
             >
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span
+                <m.span
                   key={resolvedTheme}
                   initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
                   animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -204,7 +204,7 @@ const Header = () => {
                   ) : (
                     <Sun size={20} />
                   )}
-                </motion.span>
+                </m.span>
               </AnimatePresence>
             </button>
 
@@ -224,7 +224,7 @@ const Header = () => {
       {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
@@ -255,7 +255,7 @@ const Header = () => {
                 <X size={20} />
               </button>
             </div>
-            <motion.nav
+            <m.nav
               className="flex flex-col gap-1 p-6"
               variants={menuListVariants}
               initial="hidden"
@@ -268,7 +268,7 @@ const Header = () => {
                     (link.href !== "/" || activeHash === "");
 
                 return (
-                  <motion.div key={link.href} variants={menuItemVariants}>
+                  <m.div key={link.href} variants={menuItemVariants}>
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
@@ -280,10 +280,10 @@ const Header = () => {
                     >
                       {link.label}
                     </Link>
-                  </motion.div>
+                  </m.div>
                 );
               })}
-            </motion.nav>
+            </m.nav>
             <div className="mt-auto px-6 pb-8 space-y-5">
               <div className="flex flex-1 items-center gap-2">
                 <Link
@@ -296,7 +296,7 @@ const Header = () => {
                   className="group inline-flex text-indigo-300 hover:text-primary-400"
                   href="/"
                 >
-                  <motion.div
+                  <m.div
                     // Framer Motion spring physics handle hover and tap smoothly!
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.97 }}
@@ -304,7 +304,7 @@ const Header = () => {
                     className="relative inline-flex rounded-full p-0.5 overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
                   >
                     {/* 1. ROTATING GLOW BEAM */}
-                    <motion.div
+                    <m.div
                       className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
                       style={{
                         x: "-50%",
@@ -326,20 +326,20 @@ const Header = () => {
                         Request Demo
                       </span>
                     </div>
-                  </motion.div>
+                  </m.div>
                 </Link>
               </div>
               {/* Social icons */}
               <Social />
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Mobile backdrop */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

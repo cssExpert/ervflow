@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import ArticleHero from "@/components/blog/ArticleHero";
@@ -61,7 +61,7 @@ export default function BlogPostClient({ post }: { post: Post }) {
       </div>
 
       {/* Floating back button */}
-      <motion.div
+      <m.div
         initial={false}
         animate={
           showNav
@@ -78,7 +78,7 @@ export default function BlogPostClient({ post }: { post: Post }) {
           <ArrowLeft size={12} aria-hidden="true" />
           All Articles
         </Link>
-      </motion.div>
+      </m.div>
 
       <ArticleHero post={post} />
 

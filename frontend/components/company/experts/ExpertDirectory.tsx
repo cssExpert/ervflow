@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Star, ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 interface Expert {
@@ -94,7 +94,7 @@ const EXPERTS: Expert[] = [
 
 function ExpertCard({ expert }: { expert: Expert }) {
   return (
-    <motion.article
+    <m.article
       whileHover={{
         y: -6,
         borderColor: "rgba(247,98,53,0.2)",
@@ -105,14 +105,14 @@ function ExpertCard({ expert }: { expert: Expert }) {
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <motion.div
+          <m.div
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300, damping: 14 }}
             className={`w-12 h-12 rounded-xl bg-gradient-to-br ${expert.gradient} flex items-center justify-center text-sm font-bold text-white shrink-0 cursor-default`}
             aria-hidden
           >
             {expert.initials}
-          </motion.div>
+          </m.div>
           <div>
             <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               {expert.name}
@@ -131,7 +131,7 @@ function ExpertCard({ expert }: { expert: Expert }) {
         >
           {expert.available ? (
             <span className="flex items-center gap-1">
-              <motion.span
+              <m.span
                 aria-hidden
                 animate={expert.available ? { scale: [1, 1.5, 1] } : {}}
                 transition={{ duration: 2, repeat: Infinity }}
@@ -196,7 +196,7 @@ function ExpertCard({ expert }: { expert: Expert }) {
         <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
           {expert.rate}
         </span>
-        <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.15 }}>
+        <m.div whileHover={{ x: 2 }} transition={{ duration: 0.15 }}>
           <Link
             href="#"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-400 hover:text-primary-300 transition-colors"
@@ -205,9 +205,9 @@ function ExpertCard({ expert }: { expert: Expert }) {
             View Profile
             <ExternalLink className="w-3 h-3" />
           </Link>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -240,7 +240,7 @@ export default function ExpertDirectory() {
         </div>
 
         <SectionReveal delay={0.2} className="text-center mt-10">
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+          <m.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
               href="#"
               className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-100 dark:text-zinc-100 hover:text-zinc-200 dark:hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
@@ -248,7 +248,7 @@ export default function ExpertDirectory() {
               View all experts
               <ExternalLink className="w-3.5 h-3.5" />
             </Link>
-          </motion.div>
+          </m.div>
         </SectionReveal>
       </div>
     </section>

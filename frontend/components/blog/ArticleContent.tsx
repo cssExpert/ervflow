@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { m, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -32,14 +32,14 @@ function Reveal({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-8% 0px" });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -74,7 +74,7 @@ function FAQItem({
       </button>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -84,7 +84,7 @@ function FAQItem({
             <p className="pb-5 text-sm text-zinc-600 dark:text-neutral-400 leading-relaxed">
               {answer}
             </p>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -366,7 +366,7 @@ export default function ArticleContent({
                   )}
                   <div className="space-y-3">
                     {s.steps?.map((step, j) => (
-                      <motion.div
+                      <m.div
                         key={j}
                         className="flex gap-4 group"
                         initial={{ opacity: 0, x: -20 }}
@@ -406,7 +406,7 @@ export default function ArticleContent({
                             </p>
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     ))}
                   </div>
                 </div>

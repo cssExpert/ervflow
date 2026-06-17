@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 import {
-  motion,
+  m,
   useAnimationFrame,
   useMotionValue,
   useReducedMotion,
@@ -100,7 +100,7 @@ export default function Sponsors() {
               }}
             >
               {/* Track is rendered twice; x wraps every half-width for a seamless loop */}
-              <motion.div
+              <m.div
                 ref={trackRef}
                 className="sponsors-logo flex w-max items-center select-none cursor-grab active:cursor-grabbing"
                 style={{ x }}
@@ -117,7 +117,7 @@ export default function Sponsors() {
                     isDuplicate={index >= SPONSOR_LOGOS.length}
                   />
                 ))}
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </div>

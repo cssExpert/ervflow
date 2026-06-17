@@ -4,7 +4,7 @@ import Image from "next/image";
 import { LayoutPanelTop } from "lucide-react";
 import React, { useState, useLayoutEffect, useRef } from "react";
 import {
-  motion,
+  m,
   useMotionValue,
   useAnimationFrame,
   useReducedMotion,
@@ -185,7 +185,7 @@ function CustomTicker({
       <div className="absolute inset-y-0 left-0 w-40 bg-linear-to-r from-white dark:from-black to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-40 bg-linear-to-l from-white dark:from-black to-transparent z-10 pointer-events-none" />
 
-      <motion.div className="flex items-center" style={{ x }}>
+      <m.div className="flex items-center" style={{ x }}>
         {/* Primary set — its measured width drives the seamless loop distance */}
         <div
           ref={firstSetRef}
@@ -201,7 +201,7 @@ function CustomTicker({
         >
           {items.map((item) => renderCard(item, "b"))}
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

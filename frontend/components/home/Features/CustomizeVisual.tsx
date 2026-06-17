@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const BLOCKS = [
   { label: "Hero", color: "#6366f1" },
@@ -111,7 +111,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
           </span>
           <div className="ml-auto flex items-center bg-white/6 rounded-lg p-0.5 gap-0.5">
             {(["desktop", "tablet", "mobile"] as const).map((v) => (
-              <motion.div
+              <m.div
                 key={v}
                 animate={{
                   backgroundColor:
@@ -148,7 +148,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                     <path d="M2 0C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2H2Zm0 1.5h6a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V2A.5.5 0 0 1 2 1.5ZM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z" />
                   </svg>
                 )}
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
               const blockActive =
                 i === hovered && (phase === "hover" || phase === "dragging");
               return (
-                <motion.div
+                <m.div
                   key={blk.label}
                   animate={{
                     backgroundColor: blockActive
@@ -174,7 +174,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   transition={{ duration: 0.2 }}
                   className="flex items-center gap-1.5 px-2 py-1.25"
                 >
-                  <motion.div
+                  <m.div
                     animate={
                       blockActive && phase === "hover"
                         ? { scale: [1, 1.15, 1] }
@@ -192,7 +192,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                     }}
                   >
                     {blk.label[0]}
-                  </motion.div>
+                  </m.div>
                   <span
                     className="text-[8.5px] font-mono truncate"
                     style={{
@@ -204,7 +204,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                     {blk.label}
                   </span>
                   {blockActive && phase === "hover" && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="ml-auto flex flex-col gap-0.5] shrink-0"
@@ -215,16 +215,16 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           className="w-2.5 h-[1.5px] rounded-full bg-white/20"
                         />
                       ))}
-                    </motion.div>
+                    </m.div>
                   )}
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
 
           {/* Canvas */}
           <div className="flex-1 bg-[#0f0f1e] overflow-hidden relative flex items-start justify-center p-2">
-            <motion.div
+            <m.div
               animate={{ width: canvasW }}
               transition={{ type: "spring", stiffness: 180, damping: 26 }}
               className="rounded-lg border border-white/[0.07] bg-[#1a1a2e] overflow-hidden h-full"
@@ -258,7 +258,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                 <div className="relative">
                   <AnimatePresence>
                     {isDragging && !cardOnCanvas && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -267,12 +267,12 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                         <span className="text-[8px] text-blue-400/70 font-mono">
                           Drop here
                         </span>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                   <AnimatePresence>
                     {cardOnCanvas && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, y: -8, scale: 0.94 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
@@ -292,7 +292,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                                 "-bottom-0.75 -left-0.75 cursor-sw-resize",
                                 "-bottom-0.75 -right-0.75 cursor-se-resize",
                               ].map((cls, i) => (
-                                <motion.div
+                                <m.div
                                   key={cls}
                                   initial={{ opacity: 0, scale: 0 }}
                                   animate={{ opacity: 1, scale: 1 }}
@@ -310,7 +310,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                                 "-top-0.75 left-1/2 -translate-x-1/2 cursor-n-resize",
                                 "-bottom-0.75 left-1/2 -translate-x-1/2 cursor-s-resize",
                               ].map((cls, i) => (
-                                <motion.div
+                                <m.div
                                   key={cls}
                                   initial={{ opacity: 0, scale: 0 }}
                                   animate={{ opacity: 1, scale: 1 }}
@@ -325,7 +325,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                             </>
                           )}
                         </AnimatePresence>
-                        <motion.div
+                        <m.div
                           animate={{
                             borderColor:
                               phase === "styling" && rowUpdated
@@ -334,7 +334,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           }}
                           className="h-16 rounded-md border bg-white/4 flex flex-col justify-center px-3 gap-1.5"
                         >
-                          <motion.div
+                          <m.div
                             animate={{
                               backgroundColor:
                                 phase === "styling" &&
@@ -348,7 +348,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           <div className="h-1 w-full rounded-full bg-white/8" />
                           <div className="h-1 w-3/4 rounded-full bg-white/8" />
                           <div className="flex gap-1 mt-0.5">
-                            <motion.div
+                            <m.div
                               animate={{
                                 backgroundColor:
                                   phase === "styling" &&
@@ -361,14 +361,14 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                             />
                             <div className="h-2.5 w-8 rounded-full bg-white/8" />
                           </div>
-                        </motion.div>
-                      </motion.div>
+                        </m.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>
 
                 {/* Features grid */}
-                <motion.div
+                <m.div
                   animate={{
                     gridTemplateColumns:
                       viewport === "mobile" ? "1fr" : "1fr 1fr 1fr",
@@ -397,10 +397,10 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       <div className="h-0.75 rounded-full bg-white/8 w-3/4" />
                     </div>
                   ))}
-                </motion.div>
+                </m.div>
 
                 {/* Stats */}
-                <motion.div
+                <m.div
                   animate={{
                     flexDirection: viewport === "mobile" ? "column" : "row",
                   }}
@@ -427,7 +427,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       </span>
                     </div>
                   ))}
-                </motion.div>
+                </m.div>
 
                 {/* Testimonial */}
                 <div className="rounded-md bg-white/3 border border-white/6 px-3 py-2 flex flex-col gap-1 shrink-0">
@@ -473,12 +473,12 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Drag ghost */}
             <AnimatePresence>
               {isDragging && (
-                <motion.div
+                <m.div
                   initial={{
                     opacity: 0,
                     x: -70,
@@ -509,7 +509,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       <div className="h-2.5 w-8 rounded-full bg-white/10" />
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
@@ -524,7 +524,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
               const isDone = phase === "styling" && activeRow > i;
               const showB = (rowActive && rowUpdated) || isDone;
               return (
-                <motion.div
+                <m.div
                   key={row.label}
                   animate={{
                     backgroundColor: rowActive
@@ -539,12 +539,12 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   <div className="flex items-center gap-1">
                     {row.label === "Color" ? (
                       <>
-                        <motion.div
+                        <m.div
                           animate={{ backgroundColor: showB ? row.b : row.a }}
                           transition={{ duration: 0.35 }}
                           className="w-3 h-3 rounded-0.75 shrink-0"
                         />
-                        <motion.span
+                        <m.span
                           animate={{
                             color: rowActive
                               ? "rgba(255,255,255,0.8)"
@@ -553,11 +553,11 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           className="text-[7.5px] font-mono truncate"
                         >
                           {showB ? row.b : row.a}
-                        </motion.span>
+                        </m.span>
                       </>
                     ) : (
                       <AnimatePresence mode="wait">
-                        <motion.span
+                        <m.span
                           key={showB ? "b" : "a"}
                           initial={{ opacity: 0, y: 4 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -571,12 +571,12 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                           }}
                         >
                           {showB ? row.b : row.a}
-                        </motion.span>
+                        </m.span>
                       </AnimatePresence>
                     )}
                   </div>
                   {rowActive && (
-                    <motion.div
+                    <m.div
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 0.65, ease: "easeInOut" }}
@@ -584,7 +584,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                       className="h-[1.5px] w-full bg-linear-to-r from-violet-500 to-pink-500 rounded-full mt-1"
                     />
                   )}
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -593,7 +593,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
         {/* Status bar */}
         <div className="flex items-center gap-2 px-3 py-2 bg-[#452B9A] border-t border-white/6 shrink-0">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={phase}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
@@ -612,7 +612,7 @@ export default function CustomizeVisual({}: { isActive: boolean }) {
                   `Editing · ${STYLE_ROWS[Math.max(activeRow, 0)].label}`}
                 {phase === "responsive" && `Preview · ${viewport}`}
               </span>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
           <div className="ml-auto flex items-center gap-1 text-[8px] font-mono text-white/50">
             {viewport !== "desktop" && (

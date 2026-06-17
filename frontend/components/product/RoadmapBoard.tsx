@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Clock, Loader2, CheckCircle2 } from "lucide-react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
@@ -129,7 +129,7 @@ export default function RoadmapBoard() {
             const items = ITEMS.filter((item) => item.status === col.status);
 
             return (
-              <motion.div
+              <m.div
                 key={col.status}
                 initial={{ opacity: 0, y: 28 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -157,7 +157,7 @@ export default function RoadmapBoard() {
                 {/* Cards */}
                 <div className="flex flex-col gap-3 p-3 flex-1">
                   {items.map((item, ii) => (
-                    <motion.div
+                    <m.div
                       key={item.title}
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -184,10 +184,10 @@ export default function RoadmapBoard() {
                       <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
                         {item.desc}
                       </p>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

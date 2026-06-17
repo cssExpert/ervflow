@@ -9,7 +9,7 @@ import {
   GraduationCap,
   MoveRight,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import Link from "next/link";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
@@ -89,7 +89,7 @@ function ScorecardPanel() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: 44 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -117,17 +117,17 @@ function ScorecardPanel() {
               <span className="text-xs text-zinc-600 dark:text-zinc-400">
                 {label}
               </span>
-              <motion.span
+              <m.span
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
                 transition={{ delay: 0.4 + i * 0.1 }}
                 className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 tabular-nums"
               >
                 {score}%
-              </motion.span>
+              </m.span>
             </div>
             <div className="h-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-              <motion.div
+              <m.div
                 className="h-full rounded-full"
                 style={{
                   background: "linear-gradient(to right, #c2440f, #f97316)",
@@ -158,7 +158,7 @@ function ScorecardPanel() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -191,7 +191,7 @@ export default function ServicesSection() {
             </p>
           </SectionReveal>
 
-          <motion.div
+          <m.div
             ref={gridRef}
             variants={GRID}
             initial="hidden"
@@ -199,7 +199,7 @@ export default function ServicesSection() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {SERVICES.map((svc) => (
-              <motion.div
+              <m.div
                 key={svc.title}
                 variants={CARD}
                 whileHover={{
@@ -208,22 +208,22 @@ export default function ServicesSection() {
                 }}
                 className="group h-full p-5 sm:p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-700 transition-colors duration-300"
               >
-                <motion.div
+                <m.div
                   whileHover={{ scale: 1.1, rotate: 6 }}
                   transition={{ type: "spring", stiffness: 350, damping: 14 }}
                   className={`w-10 h-10 rounded-xl border ${svc.iconBg} flex items-center justify-center mb-4`}
                 >
                   <svc.icon className={`w-5 h-5 ${svc.iconColor}`} />
-                </motion.div>
+                </m.div>
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">
                   {svc.title}
                 </h3>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {svc.desc}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -232,7 +232,7 @@ export default function ServicesSection() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left — text */}
-            <motion.div
+            <m.div
               ref={benefitsTextRef}
               initial={{ opacity: 0, x: -44 }}
               animate={benefitsTextInView ? { opacity: 1, x: 0 } : {}}
@@ -253,7 +253,7 @@ export default function ServicesSection() {
                 Every expert is hand-screened, ERVFlow-certified, and matched
                 precisely to your project type and goals.
               </p>
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="mt-8 inline-block"
@@ -265,8 +265,8 @@ export default function ServicesSection() {
                   Browse Experts
                   <MoveRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* Right — impact scorecard */}
             <ScorecardPanel />

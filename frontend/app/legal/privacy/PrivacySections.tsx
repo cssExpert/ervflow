@@ -253,7 +253,7 @@ export default function PrivacySections() {
             >
               privacy@ervflow.com
             </Link>
-            <p className="text-xs text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
               We aim to respond within 5 business days.
             </p>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { NextLogo, TailwindLogo, ReactLogo, GitHubLogo } from "./FeatureLogos";
 
 const KW = "#569CD6";
@@ -56,7 +56,7 @@ const CODE_LINES: Line[] = [
   ],
   [
     { t: DEF, c: "      " },
-    { t: TYP, c: "<motion.h1" },
+    { t: TYP, c: "<m.h1" },
   ],
   [
     { t: DEF, c: "        " },
@@ -94,7 +94,7 @@ const CODE_LINES: Line[] = [
     { t: DEF, c: "      " },
     { t: TYP, c: ">" },
     { t: DEF, c: "Build Faster" },
-    { t: TYP, c: "</motion.h1>" },
+    { t: TYP, c: "</m.h1>" },
   ],
   [
     { t: DEF, c: "      " },
@@ -233,7 +233,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               Explorer
             </p>
             {FILE_TREE.map((f, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 animate={{
                   backgroundColor:
@@ -267,7 +267,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                   </svg>
                 )}
                 <span className="truncate">{f.label}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
@@ -292,7 +292,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               </div>
               <div className="flex-1 overflow-hidden pt-2 pr-2">
                 {CODE_LINES.map((line, li) => (
-                  <motion.div
+                  <m.div
                     key={li}
                     initial={{ opacity: 0, x: -8 }}
                     animate={
@@ -321,7 +321,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                         }}
                       />
                     )}
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
@@ -329,7 +329,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
         </div>
 
         {/* Status bar */}
-        <motion.div
+        <m.div
           animate={{
             backgroundColor:
               phase === "building"
@@ -350,7 +350,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
             <span className="text-[8px] text-white/70 font-mono">main</span>
           </div>
           <AnimatePresence mode="wait">
-            <motion.span
+            <m.span
               key={phase}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
@@ -363,20 +363,20 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
               {(phase === "preview" || phase === "idle") &&
                 "✓ Build successful · 847ms"}
               {phase === "exporting" && "✓ Exported · Next.js + Tailwind"}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
           <div className="flex items-center gap-1 text-[8px] text-white/50 font-mono">
             <span>Ln {Math.min(lines, CODE_LINES.length)}</span>
             <span>·</span>
             <span>UTF-8</span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Floating live preview */}
       <AnimatePresence>
         {showPrev && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
@@ -393,7 +393,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 </span>
                 <span className="ml-auto w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
               </div>
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -414,7 +414,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                     <path d="M8.22 2.97a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.042-1.06l2.97-2.97H3.75a.75.75 0 0 1 0-1.5h7.44L8.22 4.03a.75.75 0 0 1 0-1.06Z" />
                   </svg>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 border-t border-green-100">
               <svg
@@ -428,14 +428,14 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 Live Preview
               </span>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* GitHub export notification */}
       <AnimatePresence>
         {showNotif && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 24, y: -4 }}
             animate={{ opacity: 1, x: 0, y: 0 }}
             exit={{ opacity: 0, x: 16 }}
@@ -461,7 +461,7 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

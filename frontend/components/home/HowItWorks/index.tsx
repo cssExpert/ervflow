@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  motion,
+  m,
   AnimatePresence,
   useInView,
   useScroll,
@@ -151,14 +151,14 @@ function PromptVisual({ inView }: { inView: boolean }) {
         {/* Blinking cursor — always visible */}
         <span className="inline-block w-0.5 h-3.5 bg-blue-400 ml-0.5 align-middle animate-[blink_0.9s_step-end_infinite]" />
       </div>
-      <motion.button
+      <m.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}
         className="w-full flex items-center justify-center gap-2 bg-[#CEFF00] text-black text-xs font-semibold py-2.5 rounded-md transition-colors"
       >
         <Send className="w-3 h-3" />
         Generate Website
-      </motion.button>
+      </m.button>
     </div>
   );
 }
@@ -200,7 +200,7 @@ function GenerateVisual({ inView }: { inView: boolean }) {
       </p>
       <div className="space-y-1.5">
         {pages.map((page, i) => (
-          <motion.div
+          <m.div
             key={page}
             layout
             animate={{ scale: i === dragging ? 1.04 : 1 }}
@@ -227,7 +227,7 @@ function GenerateVisual({ inView }: { inView: boolean }) {
               <div className="w-8 h-1 bg-zinc-300 dark:bg-zinc-700 rounded-full" />
               <div className="w-5 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full" />
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>
@@ -338,7 +338,7 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
         {/* Sidebar tabs */}
         <div className="w-20 border-r border-zinc-200 dark:border-zinc-800 bg-zinc-200/60 dark:bg-zinc-900/60 p-1.5 space-y-0.5">
           {TAB_LABELS.map((label, i) => (
-            <motion.div
+            <m.div
               key={label}
               animate={
                 i === activeTab
@@ -356,14 +356,14 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
             >
               <GripVertical className="w-2 h-2 shrink-0 opacity-60" />
               {label}
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Canvas — content switches with AnimatePresence */}
         <div className="flex-1 relative overflow-hidden bg-white/60 dark:bg-zinc-950/40">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={activeTab}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -372,13 +372,13 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
               className="absolute inset-0"
             >
               <CanvasContent tab={activeTab} />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           {/* Drop zone — only visible on Pricing tab */}
           <AnimatePresence>
             {activeTab === 2 && (
-              <motion.div
+              <m.div
                 key="drop"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -387,7 +387,7 @@ function CustomizeVisual({ inView }: { inView: boolean }) {
                 className="absolute right-2 bottom-2 border-2 border-dashed border-primary-500/70 bg-primary-500/10 rounded-lg px-2 py-0.5 text-[9px] text-primary-600 dark:text-primary-400 pointer-events-none whitespace-nowrap"
               >
                 Drop component
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -440,7 +440,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
         <AnimatePresence mode="wait">
           {/* Ready: gentle hover-bounce */}
           {phase === "ready" && (
-            <motion.div
+            <m.div
               key="ready"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -448,7 +448,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               transition={{ duration: 0.3 }}
               className="w-14 h-14 rounded-full bg-emerald-500/15 border-2 border-emerald-500/40 flex items-center justify-center"
             >
-              <motion.div
+              <m.div
                 animate={{ y: [0, -5, 0] }}
                 transition={{
                   repeat: Infinity,
@@ -457,13 +457,13 @@ function PublishVisual({ inView }: { inView: boolean }) {
                 }}
               >
                 <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           )}
 
           {/* Launching: rocket fires up */}
           {phase === "launching" && (
-            <motion.div
+            <m.div
               key="launching"
               initial={{ y: 0, opacity: 1, scale: 1 }}
               animate={{ y: -55, opacity: 0, scale: 0.5 }}
@@ -471,12 +471,12 @@ function PublishVisual({ inView }: { inView: boolean }) {
               className="w-14 h-14 rounded-full bg-emerald-500/25 border-2 border-emerald-400/70 flex items-center justify-center"
             >
               <Rocket className="w-6 h-6 text-emerald-600 dark:text-emerald-300" />
-            </motion.div>
+            </m.div>
           )}
 
           {/* Published: checkmark + confetti burst */}
           {phase === "published" && (
-            <motion.div
+            <m.div
               key="published"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -486,7 +486,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
               <Check className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
               {/* Confetti burst */}
               {CONFETTI_COLORS.map((color, i) => (
-                <motion.span
+                <m.span
                   key={i}
                   initial={{ scale: 0, x: 0, y: 0, opacity: 1 }}
                   animate={{
@@ -499,14 +499,14 @@ function PublishVisual({ inView }: { inView: boolean }) {
                   className={`absolute w-2 h-2 rounded-full ${color}`}
                 />
               ))}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Flame trail during launch */}
         <AnimatePresence>
           {phase === "launching" && (
-            <motion.div
+            <m.div
               key="flame"
               initial={{ opacity: 0, scaleY: 0 }}
               animate={{ opacity: [0, 0.8, 0], scaleY: [0, 1, 0] }}
@@ -519,7 +519,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
 
       {/* Status text */}
       <AnimatePresence mode="wait">
-        <motion.p
+        <m.p
           key={phase}
           initial={{ opacity: 0, y: 4 }}
           animate={{ opacity: 1, y: 0 }}
@@ -532,7 +532,7 @@ function PublishVisual({ inView }: { inView: boolean }) {
             : phase === "launching"
               ? "Launching…"
               : "Ready to Launch"}
-        </motion.p>
+        </m.p>
       </AnimatePresence>
       <p className="text-[10px] text-zinc-500 dark:text-zinc-600 font-mono mb-4">
         mysite.ervflow.com
@@ -582,14 +582,14 @@ function StepCard({ step, index }: { step: StepMeta; index: number }) {
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
       className="group/step h-full"
     >
-      <motion.div
+      <m.div
         ref={cardRef}
         onMouseMove={handleMouseMove}
         whileHover={{ y: -6 }}
@@ -670,8 +670,8 @@ function StepCard({ step, index }: { step: StepMeta; index: number }) {
             ))}
           </div>
         )}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 }
 
@@ -700,11 +700,11 @@ export default function HowItWorks() {
       className="relative py-28 px-4 sm:px-6 overflow-hidden"
     >
       {/* Parallax background orbs */}
-      <motion.div
+      <m.div
         style={{ y: orb1Y }}
         className="pointer-events-none absolute top-10 left-[5%] w-125 h-125 rounded-full bg-[#CEFF00]/6 dark:bg-[#CEFF00]/10 blur-[120px] -z-10"
       />
-      <motion.div
+      <m.div
         style={{ y: orb2Y }}
         className="pointer-events-none absolute bottom-20 right-[5%] w-100 h-100 rounded-full bg-violet-500/6 dark:bg-violet-500/10 blur-[100px] -z-10"
       />
@@ -713,7 +713,7 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div ref={headerRef} className="text-center max-w-6xl mx-auto mb-20">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
@@ -721,9 +721,9 @@ export default function HowItWorks() {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" />
             How It Works
-          </motion.div>
+          </m.div>
 
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 28 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -734,9 +734,9 @@ export default function HowItWorks() {
               Live Website
             </span>{" "}
             in Minutes
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, delay: 0.2 }}
@@ -744,10 +744,10 @@ export default function HowItWorks() {
           >
             Describe your vision, let AI generate your website, customize
             everything visually, and publish with confidence.
-          </motion.p>
+          </m.p>
 
           {/* Workflow timeline */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -772,7 +772,7 @@ export default function HowItWorks() {
                 {/* Arrow connector */}
                 {i < arr.length - 1 && (
                   <span className="hidden sm:flex items-center mt-1">
-                    <motion.span
+                    <m.span
                       initial={{ scaleX: 0 }}
                       animate={headerInView ? { scaleX: 1 } : {}}
                       transition={{
@@ -797,7 +797,7 @@ export default function HowItWorks() {
                 )}
               </span>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Steps grid */}
@@ -813,7 +813,7 @@ export default function HowItWorks() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3"
         >
           {METRICS.map(({ value, Icon }, i) => (
-            <motion.div
+            <m.div
               key={value}
               initial={{ opacity: 0, y: 24 }}
               animate={metricsInView ? { opacity: 1, y: 0 } : {}}
@@ -830,12 +830,12 @@ export default function HowItWorks() {
               <p className="text-xl md:text-2xl font-black text-zinc-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors duration-300">
                 {value}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Final CTA */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 36 }}
           animate={metricsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.75, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -870,7 +870,7 @@ export default function HowItWorks() {
               Explore Templates
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

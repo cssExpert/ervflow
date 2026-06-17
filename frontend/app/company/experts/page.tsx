@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: "Connect with certified ERVFlow professionals for your next project.",
     type: "website",
   },
+  alternates: { canonical: "/company/experts" },
 };
 
 const JSON_LD = {

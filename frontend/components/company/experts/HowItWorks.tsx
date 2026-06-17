@@ -8,7 +8,7 @@ import {
   FileCheck2,
   Code2,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import Link from "next/link";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -57,7 +57,7 @@ function TimelineCard() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: -44 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -79,7 +79,7 @@ function TimelineCard() {
           className="absolute left-[2.35rem] top-7 bottom-7 w-px bg-zinc-100 dark:bg-zinc-800 overflow-hidden"
           aria-hidden
         >
-          <motion.div
+          <m.div
             className="w-full"
             style={{
               background:
@@ -93,7 +93,7 @@ function TimelineCard() {
 
         <div className="space-y-6">
           {STEPS.map((step, i) => (
-            <motion.div
+            <m.div
               key={step.num}
               initial={{ opacity: 0, x: -18 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -105,7 +105,7 @@ function TimelineCard() {
               className="flex gap-4 relative"
             >
               {/* Step icon */}
-              <motion.div
+              <m.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={inView ? { scale: 1, opacity: 1 } : {}}
                 transition={{
@@ -121,7 +121,7 @@ function TimelineCard() {
                   {step.num}
                 </span>
                 <step.icon className="w-4 h-4 text-primary-400 mt-0.5" />
-              </motion.div>
+              </m.div>
 
               {/* Step text */}
               <div className="pt-0.5">
@@ -132,7 +132,7 @@ function TimelineCard() {
                   {step.description}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>
@@ -152,7 +152,7 @@ function TimelineCard() {
           </span>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -169,7 +169,7 @@ export default function HowItWorks() {
           <TimelineCard />
 
           {/* Right — text content */}
-          <motion.div
+          <m.div
             ref={textRef}
             initial={{ opacity: 0, x: 44 }}
             animate={textInView ? { opacity: 1, x: 0 } : {}}
@@ -214,7 +214,7 @@ export default function HowItWorks() {
               ))}
             </div>
 
-            <motion.div
+            <m.div
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="mt-8 inline-block"
@@ -226,8 +226,8 @@ export default function HowItWorks() {
                 Find an Expert Now
                 <MoveRight className="w-4 h-4" />
               </Link>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
     </section>

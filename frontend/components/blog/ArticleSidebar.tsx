@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { BookOpen, Sparkles, Mail, ChevronRight, User } from "lucide-react";
 import type { Post, PostSection } from "@/lib/blog-types";
 import { slugify } from "./ArticleContent";
@@ -63,7 +63,7 @@ function TOC({ sections }: { sections: PostSection[] }) {
               >
                 <AnimatePresence>
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="toc-pill"
                       className="absolute left-0 top-0 bottom-0 w-0.5 rounded-full bg-primary-500"
                       initial={{ opacity: 0 }}

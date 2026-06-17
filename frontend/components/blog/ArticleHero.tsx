@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   AnimatePresence,
@@ -41,7 +41,7 @@ export default function ArticleHero({ post }: { post: Post }) {
       {/* ── Text block ─────────────────────────────────────────── */}
       <div className="max-w-6xl mx-auto px-6 sm:px-10 md:px-16 pb-12">
         {/* Meta row */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -90,7 +90,7 @@ export default function ArticleHero({ post }: { post: Post }) {
             {/* Pill — absolute so it never affects layout */}
             <AnimatePresence>
               {shareOpen && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.88, x: 12 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.88, x: 12 }}
@@ -132,11 +132,11 @@ export default function ArticleHero({ post }: { post: Post }) {
                   >
                     <X size={16} />
                   </button>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Top rule */}
         <div className="h-px bg-zinc-100 dark:bg-white/6 mb-10" />
@@ -145,7 +145,7 @@ export default function ArticleHero({ post }: { post: Post }) {
         <div className="mb-10 overflow-hidden">
           {[line1, line2].filter(Boolean).map((line, li) => (
             <div key={li} className="overflow-hidden">
-              <motion.h1
+              <m.h1
                 initial={{ y: "105%" }}
                 animate={{ y: 0 }}
                 transition={{
@@ -157,13 +157,13 @@ export default function ArticleHero({ post }: { post: Post }) {
                 // style={{ fontSize: "clamp(2.8rem, 5vw, 7rem)" }}
               >
                 {line}
-              </motion.h1>
+              </m.h1>
             </div>
           ))}
         </div>
 
         {/* ── Excerpt + author ── */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.75, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
@@ -196,18 +196,18 @@ export default function ArticleHero({ post }: { post: Post }) {
               </p>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ── Full-bleed image — clean, no overlays ─────────────── */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
         ref={imgRef}
         className="relative w-full max-w-7xl rounded-0 lg:rounded-2xl mx-auto overflow-hidden aspect-4/3 lg:aspect-21/9"
       >
-        <motion.div
+        <m.div
           className="absolute inset-0"
           style={{
             y: imgY,
@@ -229,8 +229,8 @@ export default function ArticleHero({ post }: { post: Post }) {
           ) : (
             <div className={`w-full h-full bg-linear-to-br ${post.gradient}`} />
           )}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

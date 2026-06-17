@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { Zap, Paintbrush, Code2, Users } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const FEATURES = [
@@ -70,7 +70,7 @@ export default function DifferentiatorGrid() {
           </p>
         </SectionReveal>
 
-        <motion.div
+        <m.div
           ref={gridRef}
           variants={GRID_CONTAINER}
           initial="hidden"
@@ -78,7 +78,7 @@ export default function DifferentiatorGrid() {
           className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         >
           {FEATURES.map((f) => (
-            <motion.div
+            <m.div
               key={f.title}
               variants={GRID_CARD}
               whileHover={{
@@ -87,22 +87,22 @@ export default function DifferentiatorGrid() {
               }}
               className="group h-full p-6 sm:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-600 cursor-default transition-colors duration-300"
             >
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.12, rotate: 8 }}
                 transition={{ type: "spring", stiffness: 350, damping: 14 }}
                 className={`w-12 h-12 rounded-xl border ${f.iconBg} flex items-center justify-center mb-5`}
               >
                 <f.icon className={`w-6 h-6 ${f.iconColor}`} />
-              </motion.div>
+              </m.div>
               <h3 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
                 {f.title}
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 {f.description}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

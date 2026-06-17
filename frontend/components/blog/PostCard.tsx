@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { MoveRight, Clock } from "lucide-react";
 import type { Post } from "@/lib/blog-data";
 import Icon from "@/components/common/Icon";
@@ -64,13 +64,13 @@ function Cover({
 function MetaRow({ post }: { post: Post }) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <motion.span
+      <m.span
         layoutId={`blog-badge-${post.id}`}
         className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${post.categoryBg} ${post.categoryText}`}
         transition={spring}
       >
         {post.category}
-      </motion.span>
+      </m.span>
       <span className="mr-auto text-xs text-zinc-600 dark:text-neutral-400">
         {post.date}
       </span>
@@ -131,7 +131,7 @@ export default function PostCard({ post, index, variant }: Props) {
 
   return (
     <Link href={`/blog/${post.slug}`} className="block h-full">
-      <motion.div
+      <m.div
         className="group h-full cursor-pointer"
         initial={{ opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ export default function PostCard({ post, index, variant }: Props) {
         }}
         whileHover={{ y: -4 }}
       >
-        <motion.article
+        <m.article
           layoutId={`blog-card-${post.id}`}
           className="relative h-full flex flex-col overflow-hidden rounded-2xl
           bg-white dark:bg-white/3
@@ -161,13 +161,13 @@ export default function PostCard({ post, index, variant }: Props) {
               />
               <div className="flex flex-col flex-1 p-6 sm:p-8 lg:p-12">
                 <MetaRow post={post} />
-                <motion.h2
+                <m.h2
                   layoutId={`blog-title-${post.id}`}
                   className="my-4 text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
                   transition={spring}
                 >
                   {post.title}
-                </motion.h2>
+                </m.h2>
                 <p className="text-zinc-600 dark:text-neutral-300 leading-relaxed mb-8 max-w-lg">
                   {post.excerpt}
                 </p>
@@ -186,7 +186,7 @@ export default function PostCard({ post, index, variant }: Props) {
               />
               <div className="flex flex-col flex-1 p-6">
                 <MetaRow post={post} />
-                <motion.h2
+                <m.h2
                   layoutId={`blog-title-${post.id}`}
                   className={`my-3 font-extrabold tracking-tight leading-snug text-zinc-800 dark:text-white ${
                     isHalf ? "text-xl sm:text-2xl" : "text-lg"
@@ -194,7 +194,7 @@ export default function PostCard({ post, index, variant }: Props) {
                   transition={spring}
                 >
                   {post.title}
-                </motion.h2>
+                </m.h2>
                 <p
                   className={`text-sm text-zinc-600 dark:text-neutral-300 leading-relaxed ${
                     isHalf ? "line-clamp-3" : "line-clamp-2"
@@ -210,8 +210,8 @@ export default function PostCard({ post, index, variant }: Props) {
               </div>
             </>
           )}
-        </motion.article>
-      </motion.div>
+        </m.article>
+      </m.div>
     </Link>
   );
 }

@@ -1,14 +1,7 @@
 Options -Indexes
 RewriteEngine On
 
-# 1. Remove trailing slash — redirect /blog/ → /blog (skip root /)
-RewriteCond %{REQUEST_URI} ^/(.+)/$
-RewriteRule ^(.+)/$ /$1 [R=301,L]
-
-# 2. Serve clean URL as .html file (e.g. /company/about → company/about.html)
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
-RewriteRule ^(.*)$ $1.html [L]
-
-# 3. For clean paths that map to a directory with index.html
+# Serve index.html for clean directory URLs (e.g. /company/about → company/about/index.html)
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
 RewriteRule ^(.*)$ $1/index.html [L]

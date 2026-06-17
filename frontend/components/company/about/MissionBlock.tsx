@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { CheckCircle2, MoveRight } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import Link from "next/link";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -43,7 +43,7 @@ function BeliefsPanel() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: 40 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -61,7 +61,7 @@ function BeliefsPanel() {
       {/* Beliefs list */}
       <ul className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
         {BELIEFS.map((belief, i) => (
-          <motion.li
+          <m.li
             key={i}
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -74,7 +74,7 @@ function BeliefsPanel() {
             <span className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               {belief}
             </span>
-          </motion.li>
+          </m.li>
         ))}
       </ul>
 
@@ -91,7 +91,7 @@ function BeliefsPanel() {
           </div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -101,7 +101,7 @@ function ComparisonPanel() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: -40 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -140,7 +140,7 @@ function ComparisonPanel() {
                 Traditional
               </span>
               <div className="flex-1 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                <motion.div
+                <m.div
                   className="h-full rounded-full bg-zinc-300 dark:bg-zinc-600"
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${traditional.pct}%` } : {}}
@@ -162,7 +162,7 @@ function ComparisonPanel() {
                 ERVFlow
               </span>
               <div className="flex-1 h-2 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
-                <motion.div
+                <m.div
                   className="h-full rounded-full bg-primary-500"
                   initial={{ width: 0 }}
                   animate={inView ? { width: `${ervflow.pct}%` } : {}}
@@ -187,7 +187,7 @@ function ComparisonPanel() {
         generation, visual editing, and one-click publishing in a single
         platform.
       </p>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -212,7 +212,7 @@ export default function MissionBlock() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left — text */}
-            <motion.div
+            <m.div
               ref={missionTextRef}
               initial={{ opacity: 0, x: -40 }}
               animate={missionInView ? { opacity: 1, x: 0 } : {}}
@@ -230,7 +230,7 @@ export default function MissionBlock() {
                 expertise. ERVFlow bridges design, content, and engineering in
                 one AI-powered platform.
               </p>
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="mt-8 inline-block"
@@ -242,8 +242,8 @@ export default function MissionBlock() {
                   Start for free
                   <MoveRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
 
             {/* Right — beliefs panel */}
             <BeliefsPanel />
@@ -259,7 +259,7 @@ export default function MissionBlock() {
             <ComparisonPanel />
 
             {/* Right — text */}
-            <motion.div
+            <m.div
               ref={problemTextRef}
               initial={{ opacity: 0, x: 40 }}
               animate={problemInView ? { opacity: 1, x: 0 } : {}}
@@ -282,7 +282,7 @@ export default function MissionBlock() {
                 content to development and publishing — in a single
                 AI-accelerated platform.
               </p>
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="mt-8 inline-block"
@@ -294,8 +294,8 @@ export default function MissionBlock() {
                   See how it works
                   <MoveRight className="w-4 h-4" />
                 </Link>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           </div>
         </div>
       </section>

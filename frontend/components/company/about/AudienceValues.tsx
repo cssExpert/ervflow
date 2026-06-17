@@ -8,7 +8,7 @@ import {
   Store,
   Layers,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const AUDIENCES = [
@@ -68,7 +68,7 @@ export default function AudienceValues() {
             </p>
           </SectionReveal>
 
-          <motion.div
+          <m.div
             ref={pillsRef}
             initial="hidden"
             animate={pillsInView ? "visible" : "hidden"}
@@ -81,7 +81,7 @@ export default function AudienceValues() {
             className="flex flex-wrap justify-center gap-3"
           >
             {AUDIENCES.map(({ label, icon: Icon }) => (
-              <motion.div
+              <m.div
                 key={label}
                 variants={{
                   hidden: { opacity: 0, scale: 0.75, y: 12 },
@@ -101,9 +101,9 @@ export default function AudienceValues() {
               >
                 <Icon className="w-4 h-4 text-primary-500 shrink-0" />
                 {label}
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -119,7 +119,7 @@ export default function AudienceValues() {
             </h2>
           </SectionReveal>
 
-          <motion.div
+          <m.div
             ref={valuesRef}
             initial="hidden"
             animate={valuesInView ? "visible" : "hidden"}
@@ -132,7 +132,7 @@ export default function AudienceValues() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
           >
             {VALUES.map((v) => (
-              <motion.div
+              <m.div
                 key={v.title}
                 variants={{
                   hidden: { opacity: 0, y: 32 },
@@ -148,7 +148,7 @@ export default function AudienceValues() {
                 }}
                 className="h-full p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-primary-500/25 dark:hover:border-primary-500/25 bg-white dark:bg-zinc-900 transition-colors duration-200"
               >
-                <motion.div
+                <m.div
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 12 }}
                   className="w-10 h-10 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mb-4"
@@ -156,16 +156,16 @@ export default function AudienceValues() {
                   <span className="text-xs md:text-sm font-bold text-primary-400 font-mono">
                     {v.num}
                   </span>
-                </motion.div>
+                </m.div>
                 <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">
                   {v.title}
                 </h3>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {v.desc}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </>

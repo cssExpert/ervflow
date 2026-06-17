@@ -15,6 +15,7 @@ export const metadata: Metadata = {
       "Every release, improvement, and what's coming next — all in one place.",
     type: "website",
   },
+  alternates: { canonical: "/product/updates" },
 };
 
 export default function UpdatesPage() {

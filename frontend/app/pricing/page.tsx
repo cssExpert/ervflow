@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Check, X, Minus, MoveRight, Gem, Zap } from "lucide-react";
 import Link from "next/link";
 import SectionReady from "@/components/common/SectionReady";
@@ -216,7 +216,7 @@ function PricingCard({
   const price = annual ? plan.annual : plan.monthly;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -259,7 +259,7 @@ function PricingCard({
               <span className="mb-1 text-2xl font-bold text-slate-800 dark:text-neutral-300">
                 $
               </span>
-              <motion.span
+              <m.span
                 key={price}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -267,7 +267,7 @@ function PricingCard({
                 className="text-5xl font-black text-slate-700 dark:text-white leading-none tabular-nums"
               >
                 {price}
-              </motion.span>
+              </m.span>
               <span className="mb-1.5 text-sm text-slate-700 dark:text-neutral-300">
                 / mo
               </span>
@@ -308,7 +308,7 @@ function PricingCard({
         {plan.cta}
         <MoveRight className="h-4 w-4" />
       </Link>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -352,7 +352,7 @@ function Cell({
 /* ── Comparison table ────────────────────────────────────────────── */
 function ComparisonTable({ annual }: { annual: boolean }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -450,7 +450,7 @@ function ComparisonTable({ annual }: { annual: boolean }) {
           </tr>
         </tbody>
       </table>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -475,21 +475,21 @@ export default function PricingPage() {
 
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 px-6 text-center">
-        <motion.div
+        <m.div
           variants={headerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
           className="mx-auto max-w-3xl"
         >
-          <motion.span
+          <m.span
             variants={headerItemVariants}
             className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
           >
             <Gem className="w-3.5 h-3.5" />
             Pricing
-          </motion.span>
-          <motion.h1
+          </m.span>
+          <m.h1
             variants={headerItemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-zinc-900 dark:text-white leading-[1.05] text-balance mb-5"
           >
@@ -498,27 +498,27 @@ export default function PricingPage() {
               Pricing
             </span>
             .
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             variants={headerItemVariants}
             className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-10"
           >
             Choose the plan that fits your workflow—from solo creators to
             growing teams.
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             variants={headerItemVariants}
             className="flex justify-center"
           >
             <BillingToggle annual={annual} onChange={setAnnual} />
-          </motion.div>
-          <motion.p
+          </m.div>
+          <m.p
             variants={headerItemVariants}
             className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed mt-4"
           >
             No credit card required • Own your code • No vendor lock-in
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </section>
 
       {/* ── Pricing cards ────────────────────────────────────── */}

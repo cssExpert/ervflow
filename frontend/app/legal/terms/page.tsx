@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Terms of Service — ERVFlow",
   description:
     "These terms govern your use of ERVFlow and outline the responsibilities of both users and the platform.",
+  alternates: { canonical: "/legal/terms" },
 };
 
 const TOC: TocItem[] = [

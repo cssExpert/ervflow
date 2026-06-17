@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   useInView,
   useScroll,
   useTransform,
@@ -265,7 +265,7 @@ function Reveal({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -273,7 +273,7 @@ function Reveal({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -290,7 +290,7 @@ function UptimeBar({
   return (
     <div className="flex gap-0.5 md:gap-1 items-end h-4 mt-2">
       {history.map((val, i) => (
-        <motion.div
+        <m.div
           key={i}
           initial={{ scaleY: 0, opacity: 0 }}
           animate={
@@ -319,7 +319,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
   const Icon = service.icon;
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -361,18 +361,18 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
               {cfg.label}
             </span>
           </div>
-          <motion.div
+          <m.div
             animate={{ rotate: expanded ? 180 : 0 }}
             transition={{ duration: 0.25 }}
             className="shrink-0 text-zinc-400 dark:text-zinc-600"
           >
             <ChevronDown className="w-4 h-4" />
-          </motion.div>
+          </m.div>
         </div>
 
         <AnimatePresence>
           {expanded && (
-            <motion.div
+            <m.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
@@ -398,11 +398,11 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -550,9 +550,9 @@ export default function StatusPage() {
         ref={heroRef}
         className="relative z-10 flex flex-col items-center justify-center min-h-[88vh] pt-30 sm:pt-28 pb-16 sm:pb-20 px-4 sm:px-6 text-center"
       >
-        <motion.div style={{ y: heroY, opacity: heroOpacity }}>
+        <m.div style={{ y: heroY, opacity: heroOpacity }}>
           {/* Live badge */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -564,10 +564,10 @@ export default function StatusPage() {
             </span>
             Live · Updated {formattedTime}
             <RefreshCw className="w-3 h-3 ml-0.5" />
-          </motion.div>
+          </m.div>
 
           {/* Status orb */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -593,10 +593,10 @@ export default function StatusPage() {
             >
               <CheckCircle2 className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Headline */}
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
@@ -609,9 +609,9 @@ export default function StatusPage() {
             <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
               Operational
             </span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -626,10 +626,10 @@ export default function StatusPage() {
               {overallUptime}%
             </span>{" "}
             average uptime · 0 active incidents
-          </motion.p>
+          </m.p>
 
           {/* Stat pills */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -668,11 +668,11 @@ export default function StatusPage() {
                 sublabel="30-day uptime"
               />
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Scroll cue */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
@@ -681,13 +681,13 @@ export default function StatusPage() {
           <span className="text-[11px] text-zinc-400 dark:text-zinc-600 tracking-widest uppercase font-mono">
             Status
           </span>
-          <motion.div
+          <m.div
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
           >
             <ChevronDown className="w-4 h-4 text-zinc-400 dark:text-zinc-700" />
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </section>
 
       {/* Content */}
@@ -886,7 +886,7 @@ export default function StatusPage() {
 
               <AnimatePresence mode="wait">
                 {!subscribed ? (
-                  <motion.form
+                  <m.form
                     key="form"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0, y: -8 }}
@@ -904,17 +904,17 @@ export default function StatusPage() {
                       placeholder="you@company.com"
                       className="grow px-5 py-2.5 text-md text-zinc-800 dark:text-zinc-300 placeholder:text-zinc-500 bg-white/0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ring-0!"
                     />
-                    <motion.button
+                    <m.button
                       whileHover={{ scale: 1 }}
                       whileTap={{ scale: 1 }}
                       type="submit"
                       className="px-6 py-2.5 md:py-3.5 md:px-8 text-sm md:text-base font-bold text-white bg-black dark:text-black dark:bg-white hover:bg-primary hover:text-white shadow-md rounded-sm transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                     >
                       Subscribe
-                    </motion.button>
-                  </motion.form>
+                    </m.button>
+                  </m.form>
                 ) : (
-                  <motion.div
+                  <m.div
                     key="success"
                     initial={{ opacity: 0, y: 8, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -923,7 +923,7 @@ export default function StatusPage() {
                   >
                     <CheckCircle2 className="w-5 h-5" />
                     You&apos;re subscribed. We&apos;ll keep you posted.
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
@@ -1036,7 +1036,7 @@ function GlobalUptimeBar({ services }: { services: Service[] }) {
   return (
     <div ref={ref} className="flex gap-[2px] items-end h-8">
       {merged.map((val, i) => (
-        <motion.div
+        <m.div
           key={i}
           initial={{ scaleY: 0, opacity: 0 }}
           animate={inView ? { scaleY: 1, opacity: 1 } : {}}

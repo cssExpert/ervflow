@@ -11,7 +11,7 @@ import {
   Globe,
   Wifi,
 } from "lucide-react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { m, useInView, AnimatePresence } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -94,7 +94,7 @@ function DescribePanel({ active }: { active: boolean }) {
         <span className="text-sm text-zinc-100 leading-relaxed font-mono whitespace-pre-wrap">
           {displayed}
         </span>
-        <motion.span
+        <m.span
           animate={{ opacity: [1, 0, 1] }}
           transition={{ duration: 0.9, repeat: Infinity }}
           className="inline-block w-0.5 h-4 bg-primary-500 ml-0.5 align-middle"
@@ -110,7 +110,7 @@ function DescribePanel({ active }: { active: boolean }) {
           "Clinic",
           "Agency",
         ].map((t, i) => (
-          <motion.div
+          <m.div
             key={t}
             initial={{ opacity: 0, y: 8 }}
             animate={active ? { opacity: 1, y: 0 } : {}}
@@ -122,10 +122,10 @@ function DescribePanel({ active }: { active: boolean }) {
             }`}
           >
             {t}
-          </motion.div>
+          </m.div>
         ))}
       </div>
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={active ? { opacity: 1, scale: 1 } : {}}
         transition={{ delay: 0.9, duration: 0.4, ease: EASE }}
@@ -133,7 +133,7 @@ function DescribePanel({ active }: { active: boolean }) {
       >
         <Zap className="w-4 h-4" />
         Generate Website
-      </motion.div>
+      </m.div>
     </div>
   );
 }
@@ -167,13 +167,13 @@ function GeneratePanel({ active }: { active: boolean }) {
               {row.label}
             </span>
             <div className="relative flex-1 h-3 bg-zinc-800 rounded overflow-hidden">
-              <motion.div
+              <m.div
                 className="absolute inset-y-0 left-0 bg-zinc-700 rounded"
                 initial={{ width: 0 }}
                 animate={active ? { width: row.pct } : { width: 0 }}
                 transition={{ duration: 0.6, ease: EASE, delay: row.delay }}
               />
-              <motion.div
+              <m.div
                 className="absolute inset-y-0 w-12 bg-linear-to-r from-transparent via-white/6 to-transparent"
                 initial={{ x: -48 }}
                 animate={active ? { x: 300 } : { x: -48 }}
@@ -189,7 +189,7 @@ function GeneratePanel({ active }: { active: boolean }) {
       </div>
       <div className="w-40 flex flex-col gap-2.5 justify-center shrink-0">
         {STATS.map((item, i) => (
-          <motion.div
+          <m.div
             key={item.label}
             initial={{ opacity: 0, x: 12 }}
             animate={active ? { opacity: 1, x: 0 } : {}}
@@ -202,7 +202,7 @@ function GeneratePanel({ active }: { active: boolean }) {
             >
               {item.done ? item.value : "..."}
             </span>
-          </motion.div>
+          </m.div>
         ))}
         <div className="mt-3 pt-3 border-t border-zinc-800">
           <div className="flex justify-between text-[9px] mb-1">
@@ -210,7 +210,7 @@ function GeneratePanel({ active }: { active: boolean }) {
             <span className="text-primary-400 font-mono">62%</span>
           </div>
           <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <motion.div
+            <m.div
               className="h-full rounded-full"
               style={{
                 background: "linear-gradient(to right, #c2440f, #f97316)",
@@ -267,7 +267,7 @@ function CustomizePanel({ active }: { active: boolean }) {
           </div>
         </div>
         {/* Hero — selected with handles */}
-        <motion.div
+        <m.div
           className="relative rounded border-2 p-4 flex-1 flex flex-col justify-center gap-2"
           style={{ borderColor: "rgba(59,130,246,0.7)", borderStyle: "dashed" }}
           animate={
@@ -303,7 +303,7 @@ function CustomizePanel({ active }: { active: boolean }) {
           <div className="mt-1 w-16 h-5 bg-primary-500/70 rounded flex items-center justify-center">
             <span className="text-[8px] text-white font-bold">Book Now</span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
       {/* Properties panel */}
       <div className="w-36 border-l border-zinc-800 p-3 flex flex-col gap-3 shrink-0">
@@ -314,7 +314,7 @@ function CustomizePanel({ active }: { active: boolean }) {
           <div className="text-[8px] text-zinc-600 mb-1">Font Size</div>
           <div className="flex items-center gap-1.5">
             <div className="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <motion.div
+              <m.div
                 className="h-full bg-primary-500 rounded-full"
                 initial={{ width: 0 }}
                 animate={active ? { width: "70%" } : { width: 0 }}
@@ -390,7 +390,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
   return (
     <div className="flex h-full">
       <div className="flex-1 p-4 flex flex-col">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -8 }}
           animate={active ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.4, ease: EASE }}
@@ -411,7 +411,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
         {/* Wireframe canvas */}
         <div className="relative flex-1 bg-zinc-800/50 rounded-xl border border-zinc-700 overflow-hidden p-3">
           <div className="space-y-1.5">
@@ -424,7 +424,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
             </div>
           </div>
           {CURSORS.map((c) => (
-            <motion.div
+            <m.div
               key={c.name}
               className="absolute pointer-events-none"
               style={{ left: c.x, top: c.y }}
@@ -444,10 +444,10 @@ function CollaboratePanel({ active }: { active: boolean }) {
               >
                 {c.name}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={active ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.5, duration: 0.4, ease: EASE }}
@@ -462,7 +462,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
               make the hero taller on mobile? 📱
             </span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
       {/* Approval sidebar */}
       <div className="w-36 border-l border-zinc-800 p-3 flex flex-col gap-2 shrink-0">
@@ -486,7 +486,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
             c: "text-zinc-500 bg-zinc-800 border-zinc-700",
           },
         ].map((item, i) => (
-          <motion.div
+          <m.div
             key={item.label}
             initial={{ opacity: 0, x: 10 }}
             animate={active ? { opacity: 1, x: 0 } : {}}
@@ -501,7 +501,7 @@ function CollaboratePanel({ active }: { active: boolean }) {
             >
               {item.s}
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>
@@ -513,13 +513,13 @@ function PublishPanel({ active }: { active: boolean }) {
   return (
     <div className="flex h-full">
       <div className="flex-1 p-4 flex flex-col">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={active ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.2, type: "spring", stiffness: 280 }}
           className="flex items-center gap-2.5 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-4 py-2.5 mb-4"
         >
-          <motion.div
+          <m.div
             animate={active ? { scale: [1, 1.4, 1] } : {}}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="w-2 h-2 rounded-full bg-emerald-500 shrink-0"
@@ -533,7 +533,7 @@ function PublishPanel({ active }: { active: boolean }) {
             </div>
           </div>
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-        </motion.div>
+        </m.div>
         {/* Site preview */}
         <div className="flex-1 bg-white rounded-xl overflow-hidden border border-zinc-700 relative">
           <div className="h-6 bg-zinc-100 border-b border-zinc-200 flex items-center px-3 gap-3">
@@ -563,7 +563,7 @@ function PublishPanel({ active }: { active: boolean }) {
               </div>
             ))}
           </div>
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -6, scale: 0.8 }}
             animate={active ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ delay: 0.9, type: "spring", stiffness: 300 }}
@@ -571,7 +571,7 @@ function PublishPanel({ active }: { active: boolean }) {
           >
             <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             LIVE
-          </motion.div>
+          </m.div>
         </div>
       </div>
       <div className="w-36 border-l border-zinc-800 p-3 flex flex-col gap-2 shrink-0">
@@ -583,19 +583,19 @@ function PublishPanel({ active }: { active: boolean }) {
           { label: "LCP", value: "0.8s" },
           { label: "CLS", value: "0.01" },
           { label: "FID", value: "9ms" },
-        ].map((m, i) => (
-          <motion.div
-            key={m.label}
+        ].map((metric, i) => (
+          <m.div
+            key={metric.label}
             initial={{ opacity: 0, x: 10 }}
             animate={active ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.4 + i * 0.12, duration: 0.4, ease: EASE }}
             className="flex items-center justify-between bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-1.5"
           >
-            <span className="text-[9px] text-zinc-500">{m.label}</span>
+            <span className="text-[9px] text-zinc-500">{metric.label}</span>
             <span className="text-[10px] font-bold font-mono text-emerald-400">
-              {m.value}
+              {metric.value}
             </span>
-          </motion.div>
+          </m.div>
         ))}
         <div className="mt-auto pt-2 border-t border-zinc-800">
           <div className="text-[8px] text-zinc-600 mb-1 font-mono">
@@ -658,7 +658,7 @@ function BorderProgress({
         strokeWidth="2.5"
       />
       {/* Animated fill */}
-      <motion.rect
+      <m.rect
         key={animKey}
         x="8"
         y="8"
@@ -742,7 +742,7 @@ export default function WorkflowTimeline() {
           {/* Timeline nodes + line */}
           <div className="relative mb-8">
             <div className="absolute top-10 left-[9%] right-[9%] h-0.5 bg-zinc-300 dark:bg-zinc-700" />
-            <motion.div
+            <m.div
               className="absolute top-10 left-[9%] h-0.5"
               style={{
                 right: "9%",
@@ -758,7 +758,7 @@ export default function WorkflowTimeline() {
                 const isActive = activeStep === i;
                 const isPast = i < activeStep;
                 return (
-                  <motion.button
+                  <m.button
                     key={step.num}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -780,7 +780,7 @@ export default function WorkflowTimeline() {
                           stepMs={STEP_MS}
                         />
                       )}
-                      <motion.div
+                      <m.div
                         animate={{ scale: isActive ? 1.06 : 1 }}
                         transition={{ duration: 0.35, ease: EASE }}
                         className={`absolute inset-2 rounded-2xl flex items-center justify-center border-2 transition-all duration-300 ${
@@ -800,14 +800,14 @@ export default function WorkflowTimeline() {
                         <step.icon
                           className={`w-5 h-5 ${isActive ? "text-white" : isPast ? "text-primary-400" : "text-primary-400/70 group-hover/node:text-primary-400"}`}
                         />
-                      </motion.div>
+                      </m.div>
                     </div>
                     <span
                       className={`text-sm font-semibold transition-colors duration-300 ${isActive ? "text-primary-500" : isPast ? "text-zinc-400 dark:text-zinc-600" : "text-zinc-600 dark:text-zinc-400 group-hover/node:text-zinc-900 dark:group-hover/node:text-zinc-100"}`}
                     >
                       {step.title}
                     </span>
-                  </motion.button>
+                  </m.button>
                 );
               })}
             </div>
@@ -845,7 +845,7 @@ export default function WorkflowTimeline() {
                 </button>
                 {i < STEPS.length - 1 && (
                   <div className="flex-1 mx-1.5 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                    <motion.div
+                    <m.div
                       className="absolute inset-y-0 left-0 bg-primary-500/50"
                       animate={{ width: isPast ? "100%" : "0%" }}
                       transition={{ duration: 0.4, ease: EASE }}
@@ -888,7 +888,7 @@ export default function WorkflowTimeline() {
                 </button>
                 {i < STEPS.length - 1 && (
                   <div className="flex-1 mx-1 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden mb-4">
-                    <motion.div
+                    <m.div
                       className="absolute inset-y-0 left-0 bg-primary-500/50"
                       animate={{ width: isPast ? "100%" : "0%" }}
                       transition={{ duration: 0.4, ease: EASE }}
@@ -902,7 +902,7 @@ export default function WorkflowTimeline() {
 
         {/* ── Browser UI card ── */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeStep}
             initial={{ opacity: 0, y: 14, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -985,7 +985,7 @@ export default function WorkflowTimeline() {
             <div className="h-0.5 bg-zinc-800 relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {!paused && inView && (
-                  <motion.div
+                  <m.div
                     key={`prog-${activeStep}`}
                     className="absolute inset-y-0 left-0 w-full origin-left"
                     style={{
@@ -1002,7 +1002,7 @@ export default function WorkflowTimeline() {
             {/* Panel content */}
             <div className="h-52 sm:h-64">
               <AnimatePresence mode="wait">
-                <motion.div
+                <m.div
                   key={`panel-${activeStep}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -1014,10 +1014,10 @@ export default function WorkflowTimeline() {
                     const Panel = PANELS[activeStep];
                     return <Panel active={inView} />;
                   })()}
-                </motion.div>
+                </m.div>
               </AnimatePresence>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </section>

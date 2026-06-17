@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const AI_PROMPT = "Create a website for a dental clinic in Texas.";
 const AI_STEPS = [
@@ -93,7 +93,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
             <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
           </div>
           <div className="flex items-center gap-1.5 ml-1">
-            <motion.div
+            <m.div
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="w-1.5 h-1.5 rounded-full bg-violet-400"
@@ -115,7 +115,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
             return (
               <div key={step.id} className="flex items-center">
                 <div className="flex items-center gap-1">
-                  <motion.div
+                  <m.div
                     animate={{
                       backgroundColor: done
                         ? "#22c55e"
@@ -142,7 +142,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                         {i + 1}
                       </span>
                     )}
-                  </motion.div>
+                  </m.div>
                   <span
                     className={`text-[8px] font-mono ${active ? "text-[#FFD104]" : done ? "text-green-400" : "text-white/45"}`}
                   >
@@ -150,7 +150,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                   </span>
                 </div>
                 {i < AI_STEPS.length - 1 && (
-                  <motion.div
+                  <m.div
                     animate={{
                       backgroundColor: done
                         ? "#22c55e"
@@ -191,7 +191,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
           {/* AI bubble */}
           <AnimatePresence>
             {phase !== "typing" && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
@@ -211,7 +211,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
                         {[0, 1, 2].map((i) => (
-                          <motion.div
+                          <m.div
                             key={i}
                             animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
                             transition={{
@@ -226,7 +226,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                           Analyzing your request…
                         </span>
                       </div>
-                      <motion.div
+                      <m.div
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
                         transition={{ duration: 1.6, ease: "easeInOut" }}
@@ -235,7 +235,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                       />
                       <div className="flex gap-1 flex-wrap mt-0.5">
                         {AI_TAGS.map((tag, i) => (
-                          <motion.span
+                          <m.span
                             key={tag}
                             initial={{ opacity: 0, scale: 0.75 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -247,7 +247,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                             className="text-[8px] px-1.5 py-0.5 rounded-full bg-violet-500/15 text-violet-300 font-mono border border-violet-500/25"
                           >
                             #{tag}
-                          </motion.span>
+                          </m.span>
                         ))}
                       </div>
                     </div>
@@ -265,7 +265,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                         {AI_PAGES.map((page, i) => (
                           <AnimatePresence key={page.label}>
                             {i < visiblePages && (
-                              <motion.div
+                              <m.div
                                 initial={{ opacity: 0, scale: 0.7, y: 8 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{
@@ -290,13 +290,13 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                                 <span className="text-[6px] text-white/40 font-mono">
                                   {page.sections}s
                                 </span>
-                              </motion.div>
+                              </m.div>
                             )}
                           </AnimatePresence>
                         ))}
                       </div>
                       {visiblePages >= 3 && (
-                        <motion.div
+                        <m.div
                           initial={{ opacity: 0, y: 4 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3 }}
@@ -306,7 +306,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                             └─
                           </span>
                           {["Cleaning", "Whitening", "Implants"].map((s, i) => (
-                            <motion.span
+                            <m.span
                               key={s}
                               initial={{ opacity: 0, x: -4 }}
                               animate={{ opacity: 1, x: 0 }}
@@ -314,14 +314,14 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                               className="text-[7.5px] font-mono px-1.5 py-0.5 rounded-md bg-purple-500/15 text-purple-300 border border-purple-500/20"
                             >
                               {s}
-                            </motion.span>
+                            </m.span>
                           ))}
-                        </motion.div>
+                        </m.div>
                       )}
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
@@ -329,7 +329,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
         {/* Page preview strip */}
         <AnimatePresence>
           {(phase === "preview" || phase === "idle") && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
@@ -347,7 +347,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                 ].map((card, i) => (
                   <AnimatePresence key={card.title}>
                     {i < visibleCards && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, y: 14, scale: 0.88 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
@@ -447,19 +447,19 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                             </div>
                           )}
                         </div>
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Status bar */}
         <div className="flex items-center gap-2 px-3 py-2 bg-[#A38500] border-t border-white/6 shrink-0">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={phase}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
@@ -467,7 +467,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
               transition={{ duration: 0.2 }}
               className="flex items-center gap-1.5"
             >
-              <motion.div
+              <m.div
                 animate={{
                   backgroundColor:
                     phase === "thinking"
@@ -489,7 +489,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                 {phase === "preview" && "Pages ready · preview"}
                 {phase === "idle" && "Ready to customize"}
               </span>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
           <div className="ml-auto text-[8px] font-mono text-white/75">
             {(phase === "preview" || phase === "idle") && "5 pages"}
@@ -501,7 +501,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
       {/* "5 pages ready" floating badge */}
       <AnimatePresence>
         {showBadge && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.85, x: 16 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -525,7 +525,7 @@ export default function GenerateWithAIVisual({}: { isActive: boolean }) {
                 Ready to customize
               </p>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

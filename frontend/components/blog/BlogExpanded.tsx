@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { X, Clock, Calendar, Tag } from "lucide-react";
 import type { Post, PostSection } from "@/lib/blog-data";
 
@@ -92,7 +92,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
   return createPortal(
     <>
       {/* Backdrop */}
-      <motion.div
+      <m.div
         className="fixed inset-0 z-99998 bg-black/50 backdrop-blur-sm"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -102,7 +102,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
       />
 
       {/* Expanded card shell — uses same layoutId as grid card */}
-      <motion.div
+      <m.div
         layoutId={`blog-card-${post.id}`}
         className="fixed z-99999"
         style={{ inset: "16px", borderRadius: 28 }}
@@ -114,7 +114,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
           style={{ borderRadius: 28 }}
         >
           {/* Top accent line */}
-          <motion.div
+          <m.div
             layoutId={`blog-header-${post.id}`}
             className="h-0.75 w-full shrink-0"
             style={{
@@ -128,23 +128,23 @@ export default function BlogExpanded({ post, onClose }: Props) {
             <div className="flex items-start justify-between gap-4 max-w-2xl mx-auto">
               <div className="space-y-2 flex-1">
                 {/* Category */}
-                <motion.span
+                <m.span
                   layoutId={`blog-badge-${post.id}`}
                   className={`inline-flex text-xs font-semibold px-2.5 py-1 rounded-full border ${post.categoryBg} ${post.categoryText}`}
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
                 >
                   {post.category}
-                </motion.span>
+                </m.span>
                 {/* Title */}
-                <motion.h1
+                <m.h1
                   layoutId={`blog-title-${post.id}`}
                   className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-zinc-800 dark:text-white"
                   transition={{ type: "spring", damping: 30, stiffness: 300 }}
                 >
                   {post.title}
-                </motion.h1>
+                </m.h1>
                 {/* Meta */}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -166,7 +166,7 @@ export default function BlogExpanded({ post, onClose }: Props) {
                   <span className="text-zinc-400 dark:text-neutral-600">
                     {post.authorRole}
                   </span>
-                </motion.div>
+                </m.div>
               </div>
               {/* Close */}
               <button
@@ -183,26 +183,26 @@ export default function BlogExpanded({ post, onClose }: Props) {
           <div className="flex-1 overflow-y-auto">
             <div className="max-w-2xl mx-auto px-6 sm:px-0 pt-8">
               {/* Excerpt */}
-              <motion.p
+              <m.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.18 }}
                 className="text-base text-zinc-700 dark:text-neutral-200 leading-relaxed font-medium mb-8"
               >
                 {post.excerpt}
-              </motion.p>
+              </m.p>
 
               {/* Sections */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.24 }}
               >
                 {post.sections.map(renderSection)}
-              </motion.div>
+              </m.div>
 
               {/* Tags */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.32 }}
@@ -220,11 +220,11 @@ export default function BlogExpanded({ post, onClose }: Props) {
                     {tag}
                   </span>
                 ))}
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </>,
     document.body,
   );

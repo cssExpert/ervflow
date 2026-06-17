@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Zap, MoveRight } from "lucide-react";
 import Link from "next/link";
 
@@ -9,7 +9,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const SectionReady = () => {
   return (
     <section className="px-6 pb-28">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: EASE }}
@@ -43,7 +43,7 @@ const SectionReady = () => {
             Talk to sales
           </Link>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

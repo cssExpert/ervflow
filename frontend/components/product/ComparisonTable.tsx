@@ -1,7 +1,7 @@
 "use client";
 
 import { CheckCircle2, XCircle, MinusCircle } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
@@ -112,7 +112,7 @@ export default function ComparisonTable() {
           </p>
         </SectionReveal>
 
-        <motion.div
+        <m.div
           ref={ref}
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -136,7 +136,7 @@ export default function ComparisonTable() {
 
           {/* Rows */}
           {ROWS.map((row, i) => (
-            <motion.div
+            <m.div
               key={row.feature}
               initial={{ opacity: 0, x: -12 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -158,7 +158,7 @@ export default function ComparisonTable() {
               <div className="p-4 sm:p-5 flex items-center justify-center border-l border-zinc-100 dark:border-zinc-800/60">
                 <Cell value={row.traditional} />
               </div>
-            </motion.div>
+            </m.div>
           ))}
 
           {/* Legend */}
@@ -175,7 +175,7 @@ export default function ComparisonTable() {
               <XCircle className="w-3.5 h-3.5 text-zinc-400" /> Not available
             </span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

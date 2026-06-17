@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Mail, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
@@ -49,7 +49,7 @@ export default function SubscribeForm() {
 
         <AnimatePresence mode="wait">
           {status === "success" ? (
-            <motion.div
+            <m.div
               key="success"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -57,7 +57,7 @@ export default function SubscribeForm() {
               transition={{ duration: 0.5, ease: EASE }}
               className="flex flex-col items-center gap-3 py-8"
             >
-              <motion.div
+              <m.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{
@@ -69,16 +69,16 @@ export default function SubscribeForm() {
                 className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"
               >
                 <CheckCircle2 className="w-7 h-7 text-emerald-500" />
-              </motion.div>
+              </m.div>
               <p className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
                 You&apos;re on the list!
               </p>
               <p className="text-sm text-zinc-500 dark:text-zinc-400">
                 We&apos;ll send you an email when the next release ships.
               </p>
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.form
+            <m.form
               key="form"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,7 +109,7 @@ export default function SubscribeForm() {
                   </p>
                 )}
               </div>
-              <motion.button
+              <m.button
                 type="submit"
                 disabled={status === "loading"}
                 whileHover={status !== "loading" ? { scale: 1.02 } : {}}
@@ -127,8 +127,8 @@ export default function SubscribeForm() {
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
-              </motion.button>
-            </motion.form>
+              </m.button>
+            </m.form>
           )}
         </AnimatePresence>
 

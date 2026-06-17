@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       "AI generation, visual editor, CMS, and one-click publishing in one platform.",
     type: "website",
   },
+  alternates: { canonical: "/product" },
 };
 
 const JSON_LD = {

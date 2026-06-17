@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 
 function FooterTextLogo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ function FooterTextLogo() {
         maxHeight: "550px",
       }}
     >
-      <motion.div
+      <m.div
         aria-hidden="true"
         className="text-white dark:text-black font-black select-none pointer-events-none tracking-tighter absolute transition-colors duration-300"
         style={{
@@ -49,7 +49,7 @@ function FooterTextLogo() {
         }}
       >
         ERVFlow
-      </motion.div>
+      </m.div>
     </div>
   );
 }

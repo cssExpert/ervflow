@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 export default function NewsletterBanner() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <motion.section
+    <m.section
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -71,6 +71,6 @@ export default function NewsletterBanner() {
           />
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 }

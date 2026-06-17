@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { MoveLeft, Rss } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import BreadcrumbNav from "@/components/company/shared/BreadcrumbNav";
 
 const CRUMBS = [{ label: "Product", href: "/product" }, { label: "Updates" }];
@@ -38,7 +38,7 @@ export default function UpdatesHero() {
       />
 
       {/* Subtle glow */}
-      <motion.div
+      <m.div
         aria-hidden
         animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.1, 0.05] }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
@@ -46,45 +46,45 @@ export default function UpdatesHero() {
       />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
           <BreadcrumbNav crumbs={CRUMBS} />
-        </motion.div>
+        </m.div>
 
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-          <motion.div
+          <m.div
             variants={STAGGER}
             initial="hidden"
             animate="visible"
             className="max-w-2xl"
           >
-            <motion.span
+            <m.span
               variants={ITEM}
               className="text-xs font-semibold uppercase tracking-widest text-primary-500"
             >
               Changelog & Updates
-            </motion.span>
-            <motion.h1
+            </m.span>
+            <m.h1
               variants={ITEM}
               className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-[1.08]"
             >
               What&apos;s New in ERVFlow
-            </motion.h1>
-            <motion.p
+            </m.h1>
+            <m.p
               variants={ITEM}
               className="mt-5 text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed"
             >
               Every feature, improvement, and fix we ship — documented here.
               Stay up to date on what&apos;s changed and what&apos;s coming
               next.
-            </motion.p>
-          </motion.div>
+            </m.p>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.35 }}
@@ -105,7 +105,7 @@ export default function UpdatesHero() {
               <Rss className="w-3.5 h-3.5" />
               RSS Feed
             </Link>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

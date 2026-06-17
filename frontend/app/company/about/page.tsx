@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: "AI-powered website creation for modern teams.",
     type: "website",
   },
+  alternates: { canonical: "/company/about" },
 };
 
 const JSON_LD = {

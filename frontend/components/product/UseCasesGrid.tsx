@@ -8,7 +8,7 @@ import {
   Store,
   Layers,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
@@ -94,7 +94,7 @@ export default function UseCasesGrid() {
           </p>
         </SectionReveal>
 
-        <motion.div
+        <m.div
           ref={gridRef}
           variants={GRID}
           initial="hidden"
@@ -102,7 +102,7 @@ export default function UseCasesGrid() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {USE_CASES.map((uc) => (
-            <motion.div
+            <m.div
               key={uc.title}
               variants={CARD}
               whileHover={{
@@ -129,9 +129,9 @@ export default function UseCasesGrid() {
               <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed flex-1">
                 {uc.desc}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

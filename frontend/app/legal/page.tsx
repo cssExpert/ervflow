@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Legal & Compliance Center — ERVFlow",
   description:
     "Access ERVFlow's policies, terms, privacy practices, and compliance information in one place.",
+  alternates: { canonical: "/legal" },
 };
 
 const POLICIES = [
@@ -125,7 +126,7 @@ export default function LegalPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
         {/* Policy cards */}
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 mb-6">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-6">
             Quick Access
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -137,7 +138,7 @@ export default function LegalPage() {
 
         {/* Compliance badges */}
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 mb-6">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-6">
             Compliance &amp; Trust
           </h2>
           <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 p-6">

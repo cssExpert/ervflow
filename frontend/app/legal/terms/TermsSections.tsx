@@ -274,7 +274,7 @@ export default function TermsSections() {
             >
               legal@ervflow.com
             </Link>
-            <p className="text-xs text-zinc-500 mt-1">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">
               ERVFlow, Inc. · Wilmington, Delaware, USA
             </p>
           </div>

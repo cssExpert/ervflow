@@ -1,7 +1,7 @@
 "use client";
 
 import { Sparkles, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -26,7 +26,7 @@ export default function UpdateCard({
   href = "#",
 }: UpdateCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, ease: EASE }}
@@ -69,21 +69,21 @@ export default function UpdateCard({
           ))}
         </ul>
 
-        <motion.div initial="idle" whileHover="hover" className="inline-block">
+        <m.div initial="idle" whileHover="hover" className="inline-block">
           <Link
             href={href}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-500 hover:text-primary-400 transition-colors duration-200"
           >
             Read full release notes
-            <motion.span
+            <m.span
               variants={{ idle: { x: 0 }, hover: { x: 4 } }}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
             >
               <ArrowRight className="w-4 h-4" />
-            </motion.span>
+            </m.span>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

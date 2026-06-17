@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import LoaderDismiss from "@/components/common/LoaderDismiss";
+import MotionProvider from "@/components/providers/MotionProvider";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/apple-touch-icon.png",
   },
-  alternates: { canonical: "https://ervflow.com" },
+  alternates: { canonical: "/" },
   category: "technology",
 };
 
@@ -160,11 +161,13 @@ export default function RootLayout({
         <LoaderDismiss />
 
         <ThemeProvider>
-          <TooltipProvider>
-            <Header />
-            {children}
-            <Footer />
-          </TooltipProvider>
+          <MotionProvider>
+            <TooltipProvider>
+              <Header />
+              {children}
+              <Footer />
+            </TooltipProvider>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

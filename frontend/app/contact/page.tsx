@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView, type Variants } from "framer-motion";
+import { m, useInView, type Variants } from "framer-motion";
 import { Mail, MapPin, Clock, Send, ArrowRight, Inbox } from "lucide-react";
 import Link from "next/link";
 import Social from "@/components/common/Social";
@@ -53,7 +53,7 @@ function InfoCard({
   );
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: 24 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -73,7 +73,7 @@ function InfoCard({
           {content}
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -136,21 +136,21 @@ export default function ContactPage() {
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="pt-40 md:pt-50 pb-16 text-center">
-        <motion.div
+        <m.div
           ref={heroRef}
           variants={containerVariants}
           initial="hidden"
           animate={isHeroInView ? "visible" : "hidden"}
           className="mx-auto max-w-3xl"
         >
-          <motion.span
+          <m.span
             variants={itemVariants}
             className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/20 text-primary-600 dark:text-primary-400 text-[11px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest mb-5"
           >
             <Inbox className="w-3.5 h-3.5" aria-hidden="true" />
             Contact
-          </motion.span>
-          <motion.h1
+          </m.span>
+          <m.h1
             variants={itemVariants}
             className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white text-balance"
           >
@@ -159,22 +159,22 @@ export default function ContactPage() {
               Smarter Digital
             </span>{" "}
             Experiences
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             variants={itemVariants}
             className="text-lg text-slate-600 dark:text-neutral-400"
           >
             Have a project in mind or just want to say hello? We&apos;d love to
             hear from you.
-          </motion.p>
-        </motion.div>
+          </m.p>
+        </m.div>
       </section>
 
       {/* ── Main grid ────────────────────────────────────────────── */}
       <section className="px-6 pb-28 z-2">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-5">
           {/* ── Form (3 cols) ──────────────────────────────────── */}
-          <motion.form
+          <m.form
             ref={formRef}
             onSubmit={handleSubmit}
             onMouseMove={(e) => {
@@ -303,7 +303,7 @@ export default function ContactPage() {
             </Field>
 
             {/* Submit */}
-            <motion.button
+            <m.button
               type="submit"
               disabled={status !== "idle"}
               whileHover={status === "idle" ? { scale: 1.02 } : {}}
@@ -322,7 +322,7 @@ export default function ContactPage() {
               )}
               {status === "sending" && (
                 <>
-                  <motion.span
+                  <m.span
                     animate={{ rotate: 360 }}
                     transition={{
                       repeat: Infinity,
@@ -337,8 +337,8 @@ export default function ContactPage() {
               {status === "sent" && (
                 <>Message sent — we&rsquo;ll be in touch!</>
               )}
-            </motion.button>
-          </motion.form>
+            </m.button>
+          </m.form>
 
           {/* ── Info sidebar (2 cols) ───────────────────────────── */}
           <div className="lg:col-span-2 flex flex-col gap-5">
@@ -363,7 +363,7 @@ export default function ContactPage() {
             />
 
             {/* Social */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.34, ease: EASE }}
@@ -376,10 +376,10 @@ export default function ContactPage() {
               <div className="flex gap-3">
                 <Social />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Availability card */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.55, delay: 0.42, ease: EASE }}
@@ -404,7 +404,7 @@ export default function ContactPage() {
               >
                 View packages <ArrowRight className="h-3 w-3" />
               </Link>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>

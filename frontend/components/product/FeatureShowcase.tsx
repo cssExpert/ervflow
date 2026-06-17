@@ -11,7 +11,7 @@ import {
   TrendingUp,
   Zap,
 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef } from "react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
@@ -109,7 +109,7 @@ function MockCard({
   inView: boolean;
 }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 24, scale: 0.97 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.75, ease: EASE, delay: 0.15 }}
@@ -131,7 +131,7 @@ function MockCard({
         aria-hidden
       />
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -165,7 +165,7 @@ function AIMockup({ inView }: { inView: boolean }) {
           <span className="text-xs text-zinc-200 font-mono flex-1">
             Create a dental clinic website in Texas
           </span>
-          <motion.span
+          <m.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
             className="w-0.5 h-3 bg-primary-500 rounded"
@@ -178,7 +178,7 @@ function AIMockup({ inView }: { inView: boolean }) {
           {/* Task list */}
           <div className="flex-1 space-y-2">
             {TASKS.map((t, i) => (
-              <motion.div
+              <m.div
                 key={t.label}
                 initial={{ opacity: 0, x: -16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -189,7 +189,7 @@ function AIMockup({ inView }: { inView: boolean }) {
                 }}
                 className="flex items-center gap-2.5"
               >
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={inView ? { scale: 1 } : {}}
                   transition={{
@@ -207,7 +207,7 @@ function AIMockup({ inView }: { inView: boolean }) {
                   {t.done && (
                     <div className="w-1.5 h-1.5 rounded-full bg-primary-500" />
                   )}
-                </motion.div>
+                </m.div>
                 <span
                   className={`text-xs font-mono ${
                     t.done ? "text-zinc-300" : "text-zinc-600"
@@ -216,15 +216,15 @@ function AIMockup({ inView }: { inView: boolean }) {
                   {t.label}
                 </span>
                 {!t.done && (
-                  <motion.span
+                  <m.span
                     animate={{ opacity: [0.3, 1, 0.3] }}
                     transition={{ duration: 1.2, repeat: Infinity }}
                     className="text-[10px] text-primary-500"
                   >
                     generating...
-                  </motion.span>
+                  </m.span>
                 )}
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
@@ -234,7 +234,7 @@ function AIMockup({ inView }: { inView: boolean }) {
               Sitemap
             </div>
             {PAGES.map((p, i) => (
-              <motion.div
+              <m.div
                 key={p}
                 initial={{ opacity: 0, x: 8 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -247,7 +247,7 @@ function AIMockup({ inView }: { inView: boolean }) {
               >
                 <div className="w-1 h-1 rounded-full bg-primary-500/50 shrink-0" />
                 <span className="text-[10px] text-zinc-400">{p}</span>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -259,7 +259,7 @@ function AIMockup({ inView }: { inView: boolean }) {
             <span className="text-primary-400 font-mono">78%</span>
           </div>
           <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-            <motion.div
+            <m.div
               className="h-full rounded-full"
               style={{
                 background:
@@ -302,7 +302,7 @@ function EditorMockup({ inView }: { inView: boolean }) {
             </div>
 
             {/* Selected element */}
-            <motion.div
+            <m.div
               className="relative rounded-lg border-2 p-3 mb-3"
               style={{
                 borderColor: "rgba(59,130,246,0.8)",
@@ -343,7 +343,7 @@ function EditorMockup({ inView }: { inView: boolean }) {
               <div className="mt-2 inline-flex items-center bg-primary-500/90 text-white text-[9px] font-bold px-2 py-1 rounded">
                 Start Building →
               </div>
-            </motion.div>
+            </m.div>
 
             <div className="space-y-1.5">
               <div className="h-1.5 bg-zinc-800 rounded w-full" />
@@ -351,7 +351,7 @@ function EditorMockup({ inView }: { inView: boolean }) {
             </div>
 
             {/* Floating tooltip */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 6 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8, duration: 0.4, ease: EASE }}
@@ -359,7 +359,7 @@ function EditorMockup({ inView }: { inView: boolean }) {
             >
               <span className="text-blue-400">div</span>.hero-section{" "}
               <span className="text-zinc-600">· 1920×680</span>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right: properties panel */}
@@ -373,7 +373,7 @@ function EditorMockup({ inView }: { inView: boolean }) {
               <div className="text-[8px] text-zinc-600 mb-1.5">Font Size</div>
               <div className="flex items-center gap-1.5">
                 <div className="flex-1 h-1 bg-zinc-800 rounded-full overflow-hidden">
-                  <motion.div
+                  <m.div
                     className="h-full bg-primary-500 rounded-full"
                     initial={{ width: 0 }}
                     animate={inView ? { width: "65%" } : {}}
@@ -480,7 +480,7 @@ function CMSMockup({ inView }: { inView: boolean }) {
             Content
           </div>
           {["Pages", "Blog", "Media", "Settings"].map((item, i) => (
-            <motion.div
+            <m.div
               key={item}
               initial={{ opacity: 0, x: -10 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -495,7 +495,7 @@ function CMSMockup({ inView }: { inView: boolean }) {
                 className={`w-1.5 h-1.5 rounded-full shrink-0 ${i === 0 ? "bg-primary-500" : "bg-zinc-700"}`}
               />
               <span className="text-[10px] font-medium">{item}</span>
-            </motion.div>
+            </m.div>
           ))}
 
           {/* Media library thumb */}
@@ -508,7 +508,7 @@ function CMSMockup({ inView }: { inView: boolean }) {
                 "bg-amber-500/30",
                 "bg-rose-500/30",
               ].map((c, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -536,7 +536,7 @@ function CMSMockup({ inView }: { inView: boolean }) {
           {/* Page cards */}
           <div className="space-y-2">
             {PAGES.map((page, i) => (
-              <motion.div
+              <m.div
                 key={page.name}
                 initial={{ opacity: 0, x: 16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -579,7 +579,7 @@ function CMSMockup({ inView }: { inView: boolean }) {
                   <div className={`w-1 h-1 rounded-full ${page.dot}`} />
                   {page.status}
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -615,13 +615,13 @@ function DeployMockup({ inView }: { inView: boolean }) {
               main → production
             </div>
           </div>
-          <motion.div
+          <m.div
             initial={{ scale: 0, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ delay: 1.4, type: "spring", stiffness: 300 }}
             className="flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full px-3 py-1"
           >
-            <motion.div
+            <m.div
               animate={{ scale: [1, 1.4, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="w-1.5 h-1.5 rounded-full bg-emerald-500"
@@ -629,7 +629,7 @@ function DeployMockup({ inView }: { inView: boolean }) {
             <span className="text-[10px] font-semibold text-emerald-400">
               LIVE
             </span>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Pipeline stages */}
@@ -638,7 +638,7 @@ function DeployMockup({ inView }: { inView: boolean }) {
             <div key={stage.label} className="flex items-center flex-1">
               {/* Stage */}
               <div className="flex-1 flex flex-col items-center">
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={inView ? { scale: 1 } : {}}
                   transition={{
@@ -650,13 +650,13 @@ function DeployMockup({ inView }: { inView: boolean }) {
                   className={`w-9 h-9 rounded-xl ${stage.done ? stage.color : "bg-zinc-800"} flex items-center justify-center mb-1.5 shadow-lg`}
                 >
                   <CheckCircle2 className="w-4 h-4 text-white" />
-                </motion.div>
+                </m.div>
                 <span className="text-[10px] text-zinc-400 font-medium">
                   {stage.label}
                 </span>
                 {/* Progress bar */}
                 <div className="w-full mt-1.5 h-0.5 bg-zinc-800 rounded-full overflow-hidden">
-                  <motion.div
+                  <m.div
                     className={`h-full ${stage.color}`}
                     initial={{ width: 0 }}
                     animate={inView ? { width: `${stage.pct}%` } : {}}
@@ -670,7 +670,7 @@ function DeployMockup({ inView }: { inView: boolean }) {
               </div>
               {/* Connector arrow */}
               {i < STAGES.length - 1 && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scaleX: 0 }}
                   animate={inView ? { opacity: 1, scaleX: 1 } : {}}
                   transition={{
@@ -682,14 +682,14 @@ function DeployMockup({ inView }: { inView: boolean }) {
                   className="w-6 text-center text-zinc-600 text-xs pb-4"
                 >
                   →
-                </motion.div>
+                </m.div>
               )}
             </div>
           ))}
         </div>
 
         {/* Domain info */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1.1, duration: 0.5, ease: EASE }}
@@ -705,10 +705,10 @@ function DeployMockup({ inView }: { inView: boolean }) {
           <div className="text-[9px] text-zinc-500 font-mono">
             Deployed 12 seconds ago · CDN propagated
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Core Web Vitals */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.3, duration: 0.5 }}
@@ -727,7 +727,7 @@ function DeployMockup({ inView }: { inView: boolean }) {
               </div>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </MockCard>
   );
@@ -776,7 +776,7 @@ function CollabMockup({ inView }: { inView: boolean }) {
             </div>
           </div>
           <div className="flex items-center gap-1.5">
-            <motion.div
+            <m.div
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 1.8, repeat: Infinity }}
               className="w-1.5 h-1.5 rounded-full bg-emerald-500"
@@ -808,7 +808,7 @@ function CollabMockup({ inView }: { inView: boolean }) {
 
           {/* Live cursors */}
           {CURSORS.map(({ name, color, borderColor, x, y, delay }) => (
-            <motion.div
+            <m.div
               key={name}
               initial={{ opacity: 0, scale: 0 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -829,11 +829,11 @@ function CollabMockup({ inView }: { inView: boolean }) {
               >
                 {name}
               </div>
-            </motion.div>
+            </m.div>
           ))}
 
           {/* Comment bubble */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.8, y: 8 }}
             animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
             transition={{ delay: 1.4, duration: 0.45, ease: EASE }}
@@ -852,11 +852,11 @@ function CollabMockup({ inView }: { inView: boolean }) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Activity feed */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.6, duration: 0.4 }}
@@ -866,7 +866,7 @@ function CollabMockup({ inView }: { inView: boolean }) {
           <span className="text-[9px] text-zinc-500">
             Alex added a comment · just now
           </span>
-        </motion.div>
+        </m.div>
       </div>
     </MockCard>
   );
@@ -925,7 +925,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
         {/* Metric cards */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           {METRICS.map(({ label, value, change, up }, i) => (
-            <motion.div
+            <m.div
               key={label}
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -941,7 +941,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
               >
                 {change}
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
@@ -959,7 +959,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
               </linearGradient>
             </defs>
             {/* Area fill */}
-            <motion.path
+            <m.path
               d={areaD}
               fill="url(#chartGrad)"
               initial={{ opacity: 0 }}
@@ -967,7 +967,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
               transition={{ delay: 0.9, duration: 0.6 }}
             />
             {/* Line */}
-            <motion.path
+            <m.path
               d={pathD}
               fill="none"
               stroke="#f97316"
@@ -982,7 +982,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
         </div>
 
         {/* CWV row */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.5, duration: 0.4 }}
@@ -1005,7 +1005,7 @@ function AnalyticsMockup({ inView }: { inView: boolean }) {
               <Zap className="w-2.5 h-2.5" /> 98
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </MockCard>
   );
@@ -1043,7 +1043,7 @@ function FeatureRow({
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const textContent = (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: feature.reverse ? 32 : -32 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
@@ -1059,7 +1059,7 @@ function FeatureRow({
       </p>
       <ul className="mt-6 space-y-2.5">
         {feature.bullets.map((b, bi) => (
-          <motion.li
+          <m.li
             key={b}
             initial={{ opacity: 0, x: -12 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -1068,10 +1068,10 @@ function FeatureRow({
           >
             <CheckCircle2 className="w-4 h-4 text-primary-500 shrink-0" />
             {b}
-          </motion.li>
+          </m.li>
         ))}
       </ul>
-    </motion.div>
+    </m.div>
   );
 
   const visual = <MockupVisual type={feature.mockup} inView={inView} />;

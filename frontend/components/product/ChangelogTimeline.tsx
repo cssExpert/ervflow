@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Sparkles, Wrench, Shield, Zap, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -152,7 +152,7 @@ export default function ChangelogTimeline() {
                 const meta = TYPE_META[entry.type];
                 const Icon = meta.icon;
                 return (
-                  <motion.div
+                  <m.div
                     key={`${entry.version}-${entry.type}`}
                     layout
                     initial={{ opacity: 0, y: 20 }}
@@ -203,7 +203,7 @@ export default function ChangelogTimeline() {
                         ))}
                       </ul>
 
-                      <motion.div
+                      <m.div
                         initial="idle"
                         whileHover="hover"
                         className="inline-block mt-4"
@@ -213,16 +213,16 @@ export default function ChangelogTimeline() {
                           className="inline-flex items-center gap-1 text-xs font-semibold text-primary-500 hover:text-primary-400 transition-colors"
                         >
                           View details
-                          <motion.span
+                          <m.span
                             variants={{ idle: { x: 0 }, hover: { x: 3 } }}
                             transition={{ type: "spring", stiffness: 400, damping: 18 }}
                           >
                             <ArrowRight className="w-3.5 h-3.5" />
-                          </motion.span>
+                          </m.span>
                         </Link>
-                      </motion.div>
+                      </m.div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>

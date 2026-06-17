@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Privacy Notice — ERVFlow",
   description:
     "Your privacy matters. This notice explains how ERVFlow collects, uses, stores, and protects your information.",
+  alternates: { canonical: "/legal/privacy" },
 };
 
 const TOC: TocItem[] = [

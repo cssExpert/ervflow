@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { MoveRight, Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import BreadcrumbNav from "@/components/company/shared/BreadcrumbNav";
 
 const CRUMBS = [{ label: "Company" }, { label: "About" }];
@@ -30,13 +30,13 @@ export default function AboutHero() {
       />
 
       {/* Animated glows */}
-      <motion.div
+      <m.div
         aria-hidden
         animate={{ scale: [1, 1.12, 1], opacity: [0.08, 0.14, 0.08] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -top-40 right-0 w-200 h-150 rounded-full bg-primary-500 blur-[160px] pointer-events-none"
       />
-      <motion.div
+      <m.div
         aria-hidden
         animate={{ scale: [1, 1.2, 1], opacity: [0.04, 0.08, 0.04] }}
         transition={{
@@ -50,23 +50,23 @@ export default function AboutHero() {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-18">
         {/* Breadcrumb */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           <BreadcrumbNav crumbs={CRUMBS} />
-        </motion.div>
+        </m.div>
 
         {/* Staggered content */}
-        <motion.div
+        <m.div
           variants={STAGGER}
           initial="hidden"
           animate="visible"
           className="mt-12 md:mt-22"
         >
           {/* Floating badge */}
-          <motion.div
+          <m.div
             variants={ITEM}
             animate={{ y: [0, -5, 0] }}
             transition={{
@@ -74,7 +74,7 @@ export default function AboutHero() {
             }}
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary-500/20 bg-primary-500/8 mb-6"
           >
-            <motion.span
+            <m.span
               aria-hidden
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -83,36 +83,36 @@ export default function AboutHero() {
             <span className="text-xs font-semibold text-primary-400 uppercase tracking-widest">
               About ERVFlow
             </span>
-          </motion.div>
+          </m.div>
 
           {/* Headline — two lines stagger */}
-          <motion.h1
+          <m.h1
             variants={ITEM}
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-[1.08] max-w-3xl"
           >
             Building the Future of{" "}
-            <motion.span
+            <m.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
               className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow"
             >
               Website Creation
-            </motion.span>
-          </motion.h1>
+            </m.span>
+          </m.h1>
 
-          <motion.p
+          <m.p
             variants={ITEM}
             className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
           >
             ERVFlow combines AI, visual editing, and modern development
             workflows to help agencies and businesses build beautiful websites
             faster than ever before.
-          </motion.p>
+          </m.p>
 
           {/* CTAs */}
-          <motion.div variants={ITEM} className="mt-10 flex flex-row gap-3">
-            <motion.div
+          <m.div variants={ITEM} className="mt-10 flex flex-row gap-3">
+            <m.div
               initial="idle"
               whileHover="hover"
               whileTap={{ scale: 0.97 }}
@@ -122,22 +122,22 @@ export default function AboutHero() {
                 href="/"
                 className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
               >
-                <motion.span
+                <m.span
                   variants={{ idle: { scale: 1 }, hover: { scale: 1.03 } }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
                   className="flex items-center gap-2"
                 >
                   Start Building
-                  <motion.span
+                  <m.span
                     variants={{ idle: { x: 0 }, hover: { x: 5 } }}
                     transition={{ type: "spring", stiffness: 400, damping: 18 }}
                   >
                     <MoveRight className="w-4 h-4" />
-                  </motion.span>
-                </motion.span>
+                  </m.span>
+                </m.span>
               </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            </m.div>
+            <m.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/demo"
                 className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-medium border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-sm transition-colors duration-200"
@@ -145,9 +145,9 @@ export default function AboutHero() {
                 <Play className="w-4 h-4" />
                 Book a Demo
               </Link>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            </m.div>
+          </m.div>
+        </m.div>
       </div>
 
       <div

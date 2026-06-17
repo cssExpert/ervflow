@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Zap, Layers, Users, Globe, Code2, BarChart2 } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -82,7 +82,7 @@ export default function ValueProp() {
           </p>
         </SectionReveal>
 
-        <motion.div
+        <m.div
           ref={gridRef}
           variants={GRID}
           initial="hidden"
@@ -90,7 +90,7 @@ export default function ValueProp() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {FEATURES.map((f) => (
-            <motion.div
+            <m.div
               key={f.title}
               variants={CARD}
               whileHover={{
@@ -99,22 +99,22 @@ export default function ValueProp() {
               }}
               className="group p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-zinc-900 transition-colors duration-300"
             >
-              <motion.div
+              <m.div
                 whileHover={{ scale: 1.1, rotate: 6 }}
                 transition={{ type: "spring", stiffness: 350, damping: 14 }}
                 className={`w-10 h-10 rounded-xl border ${f.iconBg} flex items-center justify-center mb-4`}
               >
                 <f.icon className={`w-5 h-5 ${f.iconColor}`} />
-              </motion.div>
+              </m.div>
               <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">
                 {f.title}
               </h3>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 {f.desc}
               </p>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

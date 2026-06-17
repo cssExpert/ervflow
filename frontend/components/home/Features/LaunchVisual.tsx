@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 const DEPLOY_LOGS = [
   { text: "Installing dependencies", icon: "⬇" },
@@ -124,7 +124,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
           <AnimatePresence mode="wait">
             {/* CONFIGURE */}
             {phase === "configure" && (
-              <motion.div
+              <m.div
                 key="configure"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   ))}
                 </div>
 
-                <motion.div
+                <m.div
                   animate={
                     btnPulse
                       ? {
@@ -214,7 +214,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   <span className="text-[10px] font-bold text-white">
                     Deploy to Production
                   </span>
-                </motion.div>
+                </m.div>
 
                 <div className="flex items-center gap-2 text-[8px] font-mono text-white/40">
                   <svg
@@ -226,12 +226,12 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   </svg>
                   <span>3 commits ahead · last push 2m ago</span>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* BUILDING */}
             {phase === "building" && (
-              <motion.div
+              <m.div
                 key="building"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -240,7 +240,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                 className="absolute inset-0 flex flex-col gap-3 p-4 overflow-hidden"
               >
                 <div className="flex items-center gap-2">
-                  <motion.div
+                  <m.div
                     animate={{ rotate: 360 }}
                     transition={{
                       duration: 1.2,
@@ -257,7 +257,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   </span>
                 </div>
                 <div className="h-1.5 w-full rounded-full bg-white/6 overflow-hidden">
-                  <motion.div
+                  <m.div
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.15 }}
                     className="h-full rounded-full bg-linear-to-r from-orange-600 to-orange-400"
@@ -268,7 +268,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                     {DEPLOY_LOGS.map((log, i) => (
                       <AnimatePresence key={i}>
                         {i < logLines && (
-                          <motion.div
+                          <m.div
                             initial={{ opacity: 0, x: -6 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.2 }}
@@ -283,7 +283,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                                 <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                               </svg>
                             ) : (
-                              <motion.div
+                              <m.div
                                 animate={{ rotate: 360 }}
                                 transition={{
                                   duration: 1,
@@ -303,18 +303,18 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                                 done
                               </span>
                             )}
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* DOMAIN */}
             {phase === "domain" && (
-              <motion.div
+              <m.div
                 key="domain"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -348,7 +348,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   </span>
                   <AnimatePresence mode="wait">
                     {domainReady >= DOMAIN_ROWS.length ? (
-                      <motion.div
+                      <m.div
                         key="done"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -362,9 +362,9 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                           <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                         </svg>
                         Connected
-                      </motion.div>
+                      </m.div>
                     ) : (
-                      <motion.div
+                      <m.div
                         key="checking"
                         animate={{ rotate: 360 }}
                         transition={{
@@ -401,7 +401,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                       <div className="shrink-0">
                         <AnimatePresence mode="wait">
                           {i < domainReady ? (
-                            <motion.div
+                            <m.div
                               key="check"
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
@@ -415,9 +415,9 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                               >
                                 <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" />
                               </svg>
-                            </motion.div>
+                            </m.div>
                           ) : (
-                            <motion.div
+                            <m.div
                               key="spin"
                               animate={{ rotate: 360 }}
                               transition={{
@@ -436,7 +436,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
 
                 <AnimatePresence>
                   {domainReady >= 2 && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="flex items-center gap-2 bg-green-500/8 border border-green-500/20 rounded-lg px-3 py-2"
@@ -451,15 +451,15 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                       <span className="text-[9px] text-green-400 font-mono">
                         SSL certificate issued · TLS 1.3
                       </span>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             )}
 
             {/* SUCCESS */}
             {phase === "success" && (
-              <motion.div
+              <m.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -467,7 +467,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                 transition={{ duration: 0.4 }}
                 className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-4"
               >
-                <motion.div
+                <m.div
                   initial={{ scale: 0, rotate: -20 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{
@@ -489,18 +489,18 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                   >
                     <path d="M20 6 9 17l-5-5" />
                   </svg>
-                </motion.div>
+                </m.div>
 
                 <div className="text-center">
-                  <motion.p
+                  <m.p
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.25 }}
                     className="text-[13px] font-bold text-white"
                   >
                     Deployed to Production
-                  </motion.p>
-                  <motion.div
+                  </m.p>
+                  <m.div
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.38 }}
@@ -516,10 +516,10 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                     <span className="text-[10px] font-mono text-green-400">
                       mydentalclinic.com
                     </span>
-                  </motion.div>
+                  </m.div>
                 </div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
@@ -541,9 +541,9 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                       </span>
                     </div>
                   ))}
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.65 }}
@@ -573,15 +573,15 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                       <path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z" />
                     </svg>
                   </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
 
         {/* Status bar */}
         <div className="flex items-center gap-2 px-3 py-2 bg-[#B23507] border-t border-white/6 shrink-0">
-          <motion.div
+          <m.div
             animate={{
               backgroundColor:
                 phase === "building"
@@ -596,7 +596,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
             className="w-2 h-2 rounded-full shrink-0"
           />
           <AnimatePresence mode="wait">
-            <motion.span
+            <m.span
               key={phase}
               initial={{ opacity: 0, y: 3 }}
               animate={{ opacity: 1, y: 0 }}
@@ -608,7 +608,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
               {phase === "building" && "Building…"}
               {phase === "domain" && "Configuring domain…"}
               {phase === "success" && "✓ Live at mydentalclinic.com"}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
           <span className="ml-auto text-[8px] text-white/80 font-mono">
             {phase === "building"
@@ -623,7 +623,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
       {/* Floating live preview */}
       <AnimatePresence>
         {showCard && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20, y: 10, scale: 0.88 }}
             animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.92 }}
@@ -676,7 +676,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                 98 perf
               </span>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

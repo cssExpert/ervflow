@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 
 interface SectionRevealProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ export default function SectionReveal({
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={VARIANTS[from].hidden}
       animate={inView ? VARIANTS[from].visible : {}}
@@ -33,6 +33,6 @@ export default function SectionReveal({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { m, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Zap, Search, X } from "lucide-react";
 import { POSTS } from "@/lib/blog-data";
 import PostCard, { type PostCardVariant } from "@/components/blog/PostCard";
@@ -53,7 +53,7 @@ export default function BlogPage() {
       {/* Header */}
       <section className="pt-40 md:pt-50 pb-12 px-6 text-center">
         <div className="max-w-3xl mx-auto space-y-5">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
@@ -61,9 +61,9 @@ export default function BlogPage() {
           >
             <Zap className="w-3.5 h-3.5" aria-hidden="true" />
             ERVFlow Blog · Ideas &amp; Insights
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -73,9 +73,9 @@ export default function BlogPage() {
             <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
               Builders
             </span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -87,10 +87,10 @@ export default function BlogPage() {
           >
             Deep dives into Next.js, TypeScript, AI integration, and modern
             DevOps — straight from the team building ERVFlow.
-          </motion.p>
+          </m.p>
 
           {/* Search */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.22 }}
@@ -117,10 +117,10 @@ export default function BlogPage() {
                 <X size={14} aria-hidden="true" />
               </button>
             )}
-          </motion.div>
+          </m.div>
 
           {/* Category filters */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.28 }}
@@ -139,7 +139,7 @@ export default function BlogPage() {
                 {cat}
               </button>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -148,7 +148,7 @@ export default function BlogPage() {
         <LayoutGroup>
           <div className="max-w-6xl mx-auto">
             {filtered.length === 0 ? (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="text-center py-24 text-zinc-400 dark:text-neutral-500"
@@ -157,7 +157,7 @@ export default function BlogPage() {
                 <p className="text-sm">
                   Try a different search term or category
                 </p>
-              </motion.div>
+              </m.div>
             ) : (
               <>
                 <AnimatePresence mode="popLayout">

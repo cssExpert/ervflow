@@ -44,7 +44,7 @@ const resourcesLinks = [
     label: "Help Center",
   },
   {
-    href: "/",
+    href: "/status",
     label: "Status",
   },
 ];

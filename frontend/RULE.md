@@ -21,6 +21,8 @@
 - ALWAYS use TypeScript strict mode
 - NEVER commit directly to main
 - Keep files under 300 lines — split if larger
+- ALWAYS check Light/Dark Mode for all pages
+- ALWAYS check for Contrast Ration after adding/making changes
 
 
 ## Rule 12 - Responsive First

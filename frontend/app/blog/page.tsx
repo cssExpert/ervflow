@@ -70,7 +70,7 @@ export default function BlogPage() {
             className="mb-5 text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-zinc-800 dark:text-white"
           >
             Built for{" "}
-            <span className="bg-linear-to-r from-fuchsia-500 via-primary-600 to-indigo-500 bg-clip-text text-transparent animate-gradient-flow">
+            <span className="bg-linear-to-r from-[#CEFF00] via-primary-500 to-violet-500 bg-clip-text text-transparent animate-gradient-flow">
               Builders
             </span>
           </motion.h1>

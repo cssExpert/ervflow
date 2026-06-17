@@ -38,7 +38,7 @@ function NewsletterBlock() {
             e.preventDefault();
             if (email) setSent(true);
           }}
-          className="mx-auto max-w-2xl flex flex-col sm:flex-row gap-2 sm:gap-0 sm:bg-white sm:rounded-sm p-1.5 md:p-2 border border-black/10"
+          className="mx-auto max-w-2xl flex flex-col sm:flex-row gap-2 sm:gap-0 bg-white dark:bg-white/5 sm:rounded-sm p-1.5 md:p-2 border border-black/10"
         >
           <label htmlFor="newsletter-email" className="sr-only">
             Email address
@@ -48,14 +48,14 @@ function NewsletterBlock() {
             type="email"
             required
             placeholder="Type your email address..."
-            className="grow px-5 py-2.5 text-md text-zinc-800 placeholder:text-zinc-500 bg-white rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ring-0!"
+            className="grow px-5 py-2.5 text-md text-zinc-800 dark:text-zinc-300 placeholder:text-zinc-500 bg-white/0 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 ring-0!"
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
             type="submit"
-            className="px-6 py-2.5 md:py-3.5 md:px-8 text-sm md:text-base font-bold text-white bg-zinc-900 hover:bg-primary shadow-md rounded-sm transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="px-6 py-2.5 md:py-3.5 md:px-8 text-sm md:text-base font-bold text-white bg-black dark:text-black dark:bg-white hover:bg-primary hover:text-white shadow-md rounded-sm transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
-            Subscribe Free
+            Subscribe
           </button>
         </form>
       )}

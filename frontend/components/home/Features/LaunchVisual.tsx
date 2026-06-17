@@ -610,7 +610,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
               {phase === "success" && "✓ Live at mydentalclinic.com"}
             </m.span>
           </AnimatePresence>
-          <span className="ml-auto text-[8px] text-white/80 font-mono">
+          <span className="ml-auto text-[8px] text-white font-mono">
             {phase === "building"
               ? `${progress}%`
               : phase === "success"

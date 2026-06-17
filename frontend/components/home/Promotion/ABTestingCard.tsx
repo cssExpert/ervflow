@@ -23,7 +23,7 @@ export default function ABTestingCard({
       debugMode={debugMode}
       className="p-4 sm:p-8 flex flex-col justify-between h-full"
     >
-      <div className="space-y-2 mb-6">
+      <div className="space-y-2 mb-2">
         <span className="text-xs font-mono text-cyan-600 dark:text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">
           Module 02
         </span>
@@ -87,7 +87,9 @@ export default function ABTestingCard({
                 </div>
                 <div className="space-y-1 text-[11px]">
                   <div className="flex items-center gap-1.5 text-slate-600 dark:text-neutral-300 px-1 py-0.5">
-                    <span className="text-slate-500 dark:text-neutral-400">▾</span>{" "}
+                    <span className="text-slate-500 dark:text-neutral-400">
+                      ▾
+                    </span>{" "}
                     <span>Home</span>
                   </div>
                   <button
@@ -187,9 +189,13 @@ export default function ABTestingCard({
             </div>
 
             <div className="absolute bottom-2 right-2 bg-white/90 dark:bg-neutral-950/90 border border-black/10 dark:border-white/10 px-2 py-1 rounded text-[9px] font-mono flex items-center gap-1.5 shadow-md">
-              <span className="text-slate-600 dark:text-neutral-400">Conversion Rate:</span>
+              <span className="text-slate-600 dark:text-neutral-400">
+                Conversion Rate:
+              </span>
               {selectedABVersion === "A" && (
-                <span className="text-slate-600 dark:text-neutral-400">3.14%</span>
+                <span className="text-slate-600 dark:text-neutral-400">
+                  3.14%
+                </span>
               )}
               {selectedABVersion === "B" && (
                 <span className="text-cyan-400 font-bold">5.82% (Winner)</span>

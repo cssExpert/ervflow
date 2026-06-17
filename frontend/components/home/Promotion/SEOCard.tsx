@@ -228,7 +228,9 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
 
         <div className="w-full mt-6 grid grid-cols-2 gap-3 text-[10px] text-slate-600 dark:text-neutral-400 font-mono border-t border-black/8 dark:border-white/5 pt-4">
           <div className="flex items-center justify-between">
-            <label htmlFor="seo-range" className="cursor-pointer">Adjust SEO:</label>
+            <label htmlFor="seo-range" className="cursor-pointer">
+              Adjust SEO:
+            </label>
             <input
               id="seo-range"
               type="range"
@@ -245,7 +247,9 @@ export default function SEOCard({ debugMode }: { debugMode: boolean }) {
             />
           </div>
           <div className="flex items-center justify-between">
-            <label htmlFor="access-range" className="cursor-pointer">Adjust Access:</label>
+            <label htmlFor="access-range" className="cursor-pointer">
+              Adjust Access:
+            </label>
             <input
               id="access-range"
               type="range"

@@ -17,11 +17,14 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
 
     const setRefs = useCallback(
       (node: HTMLDivElement | null) => {
-        (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        (internalRef as React.MutableRefObject<HTMLDivElement | null>).current =
+          node;
         if (typeof forwardedRef === "function") {
           forwardedRef(node);
         } else if (forwardedRef) {
-          (forwardedRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+          (
+            forwardedRef as React.MutableRefObject<HTMLDivElement | null>
+          ).current = node;
         }
       },
       [forwardedRef],
@@ -60,19 +63,13 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
             ? "transform 0.08s ease-out"
             : "transform 0.5s ease-out",
         }}
-        className={`relative rounded-[24px] border border-black/8 dark:border-white/10 bg-white dark:bg-[#0a0a0a] overflow-hidden group/card ${className}`}
+        className={`relative rounded-2xl border border-white/10 light:border-(--border) bg-darker light:bg-(--card) overflow-hidden group/card ${className}`}
       >
         {/* Spotlight overlay */}
         <div
-          className="absolute inset-0 pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 [--spot:rgba(255,255,255,0.05)] light:[--spot:rgba(206,255,0,0.075)]"
           style={{
-            background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(0,0,0,0.04), transparent 80%)`,
-          }}
-        />
-        <div
-          className="absolute inset-0 pointer-events-none opacity-0 dark:opacity-0 group-hover/card:opacity-100 dark:group-hover/card:opacity-0 transition-opacity duration-500"
-          style={{
-            background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(247,98,53,0.06), transparent 80%)`,
+            background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), var(--spot), transparent 80%)`,
           }}
         />
 

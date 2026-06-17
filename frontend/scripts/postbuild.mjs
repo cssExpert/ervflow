@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 /**
- * Makes Next.js CSS non-render-blocking by replacing:
- *   <link rel="stylesheet" href="...css" data-precedence="next"/>
- * with the preload + onload pattern, which eliminates the render-blocking
- * resource warning. Safe because our loader covers the page for 900ms,
- * by which time CSS has finished downloading on any reasonable connection.
+ * Adds <link rel="preload" as="style"> hints before each blocking stylesheet.
+ * CSS remains render-blocking (prevents CLS/FOUC) but the browser starts
+ * fetching it earlier, reducing the blocking window.
+ *
+ * NOTE: Making CSS fully async breaks Next.js's data-precedence CSS
+ * reconciliation, causing visual regressions (e.g. Tailwind group-hover
+ * variants stop working after client-side navigation). Preload hints are
+ * the safe maximum we can do without critical CSS inlining.
  */
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join } from "path";
@@ -22,9 +25,6 @@ function walkHTML(dir) {
   return files;
 }
 
-// Add <link rel="preload" as="style"> hints BEFORE blocking stylesheets.
-// This keeps CSS render-blocking (prevents CLS/FOUC) while telling the browser
-// to start fetching CSS sooner, reducing the blocking window slightly.
 const CSS_RE =
   /(<link rel="stylesheet" href="(\/_next\/static\/chunks\/[^"]+\.css)" data-precedence="[^"]*"\/>)/g;
 

@@ -161,7 +161,7 @@ const Header = () => {
           <div className="inline-flex items-center gap-2.5">
             <Link
               href="/"
-              className="hidden md:inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
+              className="hidden md:inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-6 min-h-11 rounded-full text-sm transition-colors duration-300 shadow-xs"
             >
               <span className="font-bold tracking-tight">Login</span>
             </Link>
@@ -176,17 +176,13 @@ const Header = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 className="relative group inline-flex rounded-full p-0.75 overflow-hidden bg-white dark:bg-zinc-800/40 shadow-sm cursor-pointer select-none"
               >
-                {/* 1. ROTATING GLOW BEAM */}
-                <m.div
-                  className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
+                {/* 1. ROTATING GLOW BEAM — CSS animation runs on GPU compositor, not JS RAF */}
+                <div
+                  className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none animate-beam-rotate"
                   style={{
-                    x: "-50%",
-                    y: "-50%",
                     background:
                       "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
                   }}
-                  animate={{ rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
                 />
 
                 {/* 2. INNER CONTENT CARD */}
@@ -305,7 +301,7 @@ const Header = () => {
               <div className="flex flex-1 items-center gap-2">
                 <Link
                   href="/"
-                  className="inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-4.5 min-h-11 rounded-full text-sm transition-all duration-500 shadow-xs"
+                  className="inline-flex items-center border-[1.5px] border-black/5 dark:border-white text-slate-800 dark:text-black bg-slate-100 dark:bg-white hover:border-primary-500 hover:text-white hover:bg-primary-500 px-4.5 min-h-11 rounded-full text-sm transition-colors duration-300 shadow-xs"
                 >
                   <span className="font-bold tracking-tight">Login</span>
                 </Link>
@@ -320,20 +316,12 @@ const Header = () => {
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     className="relative inline-flex rounded-full p-0.5 overflow-hidden bg-zinc-800/40 shadow-lg cursor-pointer select-none"
                   >
-                    {/* 1. ROTATING GLOW BEAM */}
-                    <m.div
-                      className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none"
+                    {/* 1. ROTATING GLOW BEAM — CSS animation runs on GPU compositor, not JS RAF */}
+                    <div
+                      className="absolute top-1/2 left-1/2 w-[150%] h-[150%] pointer-events-none animate-beam-rotate"
                       style={{
-                        x: "-50%",
-                        y: "-50%",
                         background:
                           "conic-gradient(from 0deg at 50% 50%, transparent 60%, #F76235 85%, transparent 100%)",
-                      }}
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 4,
-                        ease: "linear",
                       }}
                     />
 

@@ -557,7 +557,7 @@ export default function LaunchVisual({}: { isActive: boolean }) {
                     >
                       <path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Z" />
                     </svg>
-                    <span className="text-[9px] font-mono text-white/65 flex-1 truncate">
+                    <span className="text-[9px] font-mono text-white/80 flex-1 truncate">
                       https://mydentalclinic.com
                     </span>
                   </div>

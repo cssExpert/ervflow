@@ -244,8 +244,8 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
                     i === litFile
                       ? "rgba(255,255,255,0.9)"
                       : f.active
-                        ? "rgba(255,255,255,0.65)"
-                        : "rgba(255,255,255,0.55)",
+                        ? "rgba(255,255,255,0.8)"
+                        : "rgba(255,255,255,0.80)",
                 }}
                 transition={{ duration: 0.25 }}
                 className="flex items-center gap-1 px-2 py-0.75 text-[9px] font-mono cursor-default"
@@ -276,13 +276,13 @@ export default function BuildWithStackVisual({}: { isActive: boolean }) {
           {/* Code pane */}
           <div className="flex-1 overflow-hidden relative">
             <div className="flex items-center gap-1 px-4 py-1.5 border-b border-white/5 bg-[#1e1e1e]">
-              <span className="text-[9px] text-white/55 font-mono">src</span>
-              <span className="text-[9px] ext-white/80 font-mono">/</span>
-              <span className="text-[9px] text-white/55 font-mono">
+              <span className="text-[9px] text-white/80 font-mono">src</span>
+              <span className="text-[9px] text-white/80 font-mono">/</span>
+              <span className="text-[9px] text-white/80 font-mono">
                 components
               </span>
-              <span className="text-[9px] ext-white/80 font-mono">/</span>
-              <span className="text-[9px] text-white/60 font-mono">
+              <span className="text-[9px] text-white/80 font-mono">/</span>
+              <span className="text-[9px] text-white/80 font-mono">
                 Hero.tsx
               </span>
             </div>

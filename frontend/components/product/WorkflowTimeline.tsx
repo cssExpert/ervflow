@@ -22,6 +22,8 @@ const STEPS = [
     num: "01",
     icon: MessageSquare,
     title: "Describe",
+    desc: "Tell ERVFlow what you want to build in plain English. No forms, no lengthy briefs — just describe your vision.",
+    tags: ["Natural language", "Any industry", "Instant start"],
     url: "app.ervflow.com/new",
     tab: "New Project — ERVFlow",
   },
@@ -29,6 +31,8 @@ const STEPS = [
     num: "02",
     icon: Zap,
     title: "Generate",
+    desc: "AI creates a complete sitemap, page copy, layouts, and design system in seconds — not hours.",
+    tags: ["AI-powered", "Brand-aware", "5 pages avg"],
     url: "app.ervflow.com/generating",
     tab: "Building your site...",
   },
@@ -36,6 +40,8 @@ const STEPS = [
     num: "03",
     icon: Paintbrush,
     title: "Customize",
+    desc: "Edit every element visually. Drag and drop, resize, and restyle with a pixel-perfect visual editor.",
+    tags: ["No-code", "200+ blocks", "Live preview"],
     url: "app.ervflow.com/editor",
     tab: "Visual Editor — ERVFlow",
   },
@@ -43,6 +49,8 @@ const STEPS = [
     num: "04",
     icon: Users,
     title: "Collaborate",
+    desc: "Invite clients and stakeholders to review directly on the page — leave comments and approve changes.",
+    tags: ["Shared links", "Comments", "Approvals"],
     url: "app.ervflow.com/review/dental-clinic",
     tab: "Review Link — Shared",
   },
@@ -50,6 +58,8 @@ const STEPS = [
     num: "05",
     icon: Rocket,
     title: "Publish",
+    desc: "Deploy with a single click to Vercel, Netlify, or any host. SSL, CDN, and performance optimization included.",
+    tags: ["1-click deploy", "SSL included", "Global CDN"],
     url: "dental-clinic-texas.com",
     tab: "Dental Clinic Texas — Home",
   },
@@ -727,8 +737,8 @@ export default function WorkflowTimeline() {
           </p>
         </SectionReveal>
 
-        {/* ── Desktop ── */}
-        <div className="hidden md:block">
+        {/* ── Desktop (lg+): full browser UI ── */}
+        <div className="hidden lg:block">
           {/* Timeline nodes + line */}
           <div className="relative mb-8">
             <div className="absolute top-10 left-[9%] right-[9%] h-0.5 bg-zinc-300 dark:bg-zinc-700" />
@@ -802,131 +812,116 @@ export default function WorkflowTimeline() {
               })}
             </div>
           </div>
+        </div>
 
-          {/* ── Browser UI card ── */}
+        {/* ── Tablet (md–lg): compact nodes row + animated card ── */}
+        <div className="hidden md:block lg:hidden">
+          {/* Node row */}
+          <div className="flex items-center justify-between mb-6">
+            {STEPS.map((step, i) => {
+              const isActive = activeStep === i;
+              const isPast = i < activeStep;
+              return (
+                <div key={step.num} className="flex items-center flex-1">
+                  <button
+                    onClick={() => setActiveStep(i)}
+                    className="flex flex-col items-center gap-1.5 group"
+                  >
+                    <div
+                      className={`relative w-11 h-11 rounded-xl flex flex-col items-center justify-center transition-all duration-300 ${
+                        isActive
+                          ? "bg-primary-500 shadow-md shadow-primary-500/30"
+                          : isPast
+                            ? "bg-primary-900 border border-primary-500/25"
+                            : "bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700"
+                      }`}
+                    >
+                      <span
+                        className={`text-[8px] font-mono leading-none mb-0.5 ${isActive ? "text-white/60" : isPast ? "text-primary-400/60" : "text-zinc-400 dark:text-zinc-500"}`}
+                      >
+                        {step.num}
+                      </span>
+                      <step.icon
+                        className={`w-4 h-4 ${isActive ? "text-white" : isPast ? "text-primary-400" : "text-zinc-500 dark:text-zinc-400"}`}
+                      />
+                    </div>
+                    <span
+                      className={`text-[10px] font-medium ${isActive ? "text-primary-500" : "text-zinc-500 dark:text-zinc-400"}`}
+                    >
+                      {step.title}
+                    </span>
+                  </button>
+                  {i < STEPS.length - 1 && (
+                    <div className="flex-1 mx-1.5 h-px bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
+                      <motion.div
+                        className="absolute inset-y-0 left-0 bg-primary-500/50"
+                        animate={{ width: i < activeStep ? "100%" : "0%" }}
+                        transition={{ duration: 0.4, ease: EASE }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Animated detail card */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStep}
-              initial={{ opacity: 0, y: 14, scale: 0.985 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.985 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="rounded-2xl overflow-hidden border border-zinc-700/50 dark:border-zinc-800 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_48px_rgba(0,0,0,0.22)] dark:shadow-2xl"
-              style={{ background: "#111113" }}
+              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5"
             >
-              {/* Chrome bar */}
-              <div
-                className="flex items-center gap-3 px-4 py-3 border-b border-zinc-800"
-                style={{ background: "#0d0d0f" }}
-              >
-                {/* Traffic lights */}
-                <div className="flex items-center gap-1.5 shrink-0">
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                </div>
-
-                {/* Active tab */}
-                <div className="flex items-end gap-px ml-2">
-                  <div className="flex items-center gap-2 bg-zinc-800 border border-zinc-700 border-b-0 rounded-t-lg px-3 py-1.5 -mb-px">
-                    {(() => {
-                      const TabIcon = STEPS[activeStep].icon;
-                      return (
-                        <TabIcon className="w-3 h-3 text-primary-400 shrink-0" />
-                      );
-                    })()}
-                    <span className="text-[10px] text-zinc-300 max-w-32.5 truncate">
-                      {STEPS[activeStep].tab}
-                    </span>
-                    <div className="w-3 h-3 flex items-center justify-center text-zinc-600 text-[9px] ml-1 cursor-default">
-                      ✕
+              {(() => {
+                const TabletIcon = STEPS[activeStep].icon;
+                return (
+                  <div className="flex gap-4 items-start">
+                    <div className="w-10 h-10 rounded-xl bg-primary-500 flex flex-col items-center justify-center shrink-0 shadow-md shadow-primary-500/20">
+                      <span className="text-[8px] font-mono text-white/60 leading-none">
+                        {STEPS[activeStep].num}
+                      </span>
+                      <TabletIcon className="w-4 h-4 text-white mt-0.5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1">
+                        {STEPS[activeStep].title}
+                      </h3>
+                      <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+                        {STEPS[activeStep].desc}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {STEPS[activeStep].tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-500 border border-primary-500/20"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                {/* URL bar */}
-                <div className="flex-1 flex items-center gap-2 bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 mx-2">
-                  <Globe className="w-3 h-3 text-zinc-600 shrink-0" />
-                  <span className="text-[11px] font-mono text-zinc-400 flex-1 truncate">
-                    {activeStep === 4 ? (
-                      <>
-                        <span className="text-emerald-400">https://</span>
-                        {STEPS[activeStep].url}
-                      </>
-                    ) : (
-                      STEPS[activeStep].url
-                    )}
-                  </span>
-                  {activeStep === 4 && (
-                    <div className="flex items-center gap-1 text-[9px] text-emerald-400 shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Live
-                    </div>
-                  )}
-                </div>
-
-                {/* Dot nav */}
-                <div className="flex items-center gap-1.5 shrink-0">
-                  {STEPS.map((_, di) => (
-                    <button
-                      key={di}
-                      onClick={() => handleClick(di)}
-                      className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                        di === activeStep
-                          ? "bg-primary-500 scale-125"
-                          : di < activeStep
-                            ? "bg-primary-500/40"
-                            : "bg-zinc-700"
-                      }`}
-                      aria-label={`Go to step ${di + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-
+                );
+              })()}
               {/* Progress bar */}
-              <div className="h-0.5 bg-zinc-800 relative overflow-hidden">
-                <AnimatePresence mode="wait">
-                  {!paused && inView && (
-                    <motion.div
-                      key={`prog-${activeStep}`}
-                      className="absolute inset-y-0 left-0 w-full origin-left"
-                      style={{
-                        background:
-                          "linear-gradient(to right, #c2440f, #f97316)",
-                      }}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: STEP_MS / 1000, ease: "linear" }}
-                    />
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Panel content */}
-              <div className="h-64">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={`panel-${activeStep}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="h-full"
-                  >
-                    {(() => {
-                      const Panel = PANELS[activeStep];
-                      return <Panel active={inView} />;
-                    })()}
-                  </motion.div>
-                </AnimatePresence>
+              <div className="mt-4 h-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
+                <motion.div
+                  key={`tablet-bar-${activeStep}-${loopCount}`}
+                  className="h-full bg-primary-500/60 rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={paused ? {} : { width: "100%" }}
+                  transition={{ duration: STEP_MS / 1000, ease: "linear" }}
+                />
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* ── Mobile ── */}
-        <div className="lg:hidden space-y-4">
+        {/* ── Mobile (<md): vertical timeline ── */}
+        <div className="md:hidden space-y-0">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
@@ -947,17 +942,147 @@ export default function WorkflowTimeline() {
                   <div className="w-px flex-1 mt-2 bg-zinc-200 dark:bg-zinc-800 min-h-8" />
                 )}
               </div>
-              <div className="pb-4 pt-0.5 flex-1">
+              <div className="pb-5 pt-0.5 flex-1">
                 <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1">
                   {step.title}
                 </h3>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  {step.tab}
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-2">
+                  {step.desc}
                 </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {step.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary-500/10 text-primary-500 border border-primary-500/20"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* ── Browser UI card ── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeStep}
+            initial={{ opacity: 0, y: 14, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.985 }}
+            transition={{ duration: 0.35, ease: EASE }}
+            className="rounded-2xl overflow-hidden border border-zinc-700/50 dark:border-zinc-800 shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_12px_48px_rgba(0,0,0,0.22)] dark:shadow-2xl"
+            style={{ background: "#111113" }}
+          >
+            {/* Chrome bar */}
+            <div
+              className="flex items-center gap-3 px-4 py-3 border-b border-zinc-800"
+              style={{ background: "#0d0d0f" }}
+            >
+              {/* Traffic lights */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+
+              {/* Active tab */}
+              <div className="flex items-end gap-px ml-2">
+                <div className="flex items-center gap-2 bg-zinc-800 border border-zinc-700 border-b-0 rounded-t-lg px-3 py-1.5 -mb-px">
+                  {(() => {
+                    const TabIcon = STEPS[activeStep].icon;
+                    return (
+                      <TabIcon className="w-3 h-3 text-primary-400 shrink-0" />
+                    );
+                  })()}
+                  <span className="text-[10px] text-zinc-300 max-w-32.5 truncate">
+                    {STEPS[activeStep].tab}
+                  </span>
+                  <div className="w-3 h-3 flex items-center justify-center text-zinc-600 text-[9px] ml-1 cursor-default">
+                    ✕
+                  </div>
+                </div>
+              </div>
+
+              {/* URL bar */}
+              <div className="flex-1 flex items-center gap-2 bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-1.5 mx-2">
+                <Globe className="w-3 h-3 text-zinc-600 shrink-0" />
+                <span className="text-[11px] font-mono text-zinc-400 flex-1 truncate">
+                  {activeStep === 4 ? (
+                    <>
+                      <span className="text-emerald-400">https://</span>
+                      {STEPS[activeStep].url}
+                    </>
+                  ) : (
+                    STEPS[activeStep].url
+                  )}
+                </span>
+                {activeStep === 4 && (
+                  <div className="flex items-center gap-1 text-[9px] text-emerald-400 shrink-0">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Live
+                  </div>
+                )}
+              </div>
+
+              {/* Dot nav */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                {STEPS.map((_, di) => (
+                  <button
+                    key={di}
+                    onClick={() => handleClick(di)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      di === activeStep
+                        ? "bg-primary-500 scale-125"
+                        : di < activeStep
+                          ? "bg-primary-500/40"
+                          : "bg-zinc-700"
+                    }`}
+                    aria-label={`Go to step ${di + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Progress bar */}
+            <div className="h-0.5 bg-zinc-800 relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                {!paused && inView && (
+                  <motion.div
+                    key={`prog-${activeStep}`}
+                    className="absolute inset-y-0 left-0 w-full origin-left"
+                    style={{
+                      background: "linear-gradient(to right, #c2440f, #f97316)",
+                    }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: STEP_MS / 1000, ease: "linear" }}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Panel content */}
+            <div className="h-64">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`panel-${activeStep}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="h-full"
+                >
+                  {(() => {
+                    const Panel = PANELS[activeStep];
+                    return <Panel active={inView} />;
+                  })()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

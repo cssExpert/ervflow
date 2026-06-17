@@ -120,7 +120,7 @@ export default function ComparisonTable() {
           className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
         >
           {/* Table header */}
-          <div className="grid grid-cols-[1fr_auto_auto] sm:grid-cols-[1fr_150px_150px] border-b border-zinc-200 dark:border-zinc-800">
+          <div className="grid grid-cols-[1fr_72px_72px] sm:grid-cols-[1fr_150px_150px] border-b border-zinc-200 dark:border-zinc-800">
             <div className="p-4 sm:p-5" />
             <div className="p-4 sm:p-5 text-center border-l border-zinc-200 dark:border-zinc-800 bg-primary-500/5">
               <span className="text-xs sm:text-sm font-bold text-primary-500 uppercase tracking-wide">
@@ -141,7 +141,7 @@ export default function ComparisonTable() {
               initial={{ opacity: 0, x: -12 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.45, ease: EASE, delay: 0.1 + i * 0.06 }}
-              className={`grid grid-cols-[1fr_auto_auto] sm:grid-cols-[1fr_150px_150px] ${
+              className={`grid grid-cols-[1fr_72px_72px] sm:grid-cols-[1fr_150px_150px] ${
                 i < ROWS.length - 1
                   ? "border-b border-zinc-100 dark:border-zinc-800/60"
                   : ""

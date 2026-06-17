@@ -10,11 +10,11 @@ import FooterTextLogo from "./FooterTextLogo";
 
 const companyLinks = [
   {
-    href: "/",
+    href: "/company/about",
     label: "About",
   },
   {
-    href: "/",
+    href: "/company/experts",
     label: "Hire an ERVFlow Expert",
   },
 ];

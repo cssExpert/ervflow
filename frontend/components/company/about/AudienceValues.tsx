@@ -1,4 +1,7 @@
+"use client";
+import { useRef } from "react";
 import { Building2, User, BarChart3, Rocket, Store, Layers } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const AUDIENCES = [
@@ -11,29 +14,19 @@ const AUDIENCES = [
 ];
 
 const VALUES = [
-  {
-    num: "01",
-    title: "Simplicity",
-    desc: "Complex workflows should feel effortless. We remove friction at every step.",
-  },
-  {
-    num: "02",
-    title: "Speed",
-    desc: "Launch faster without sacrificing quality. Time is your most valuable asset.",
-  },
-  {
-    num: "03",
-    title: "Flexibility",
-    desc: "Work the way your team prefers. ERVFlow adapts to your workflow, not the other way around.",
-  },
-  {
-    num: "04",
-    title: "Innovation",
-    desc: "We continuously push what AI-powered creation can do for real-world teams.",
-  },
+  { num: "01", title: "Simplicity", desc: "Complex workflows should feel effortless. We remove friction at every step." },
+  { num: "02", title: "Speed", desc: "Launch faster without sacrificing quality. Time is your most valuable asset." },
+  { num: "03", title: "Flexibility", desc: "Work the way your team prefers. ERVFlow adapts to your workflow, not the other way around." },
+  { num: "04", title: "Innovation", desc: "We continuously push what AI-powered creation can do for real-world teams." },
 ];
 
 export default function AudienceValues() {
+  const pillsRef = useRef<HTMLDivElement>(null);
+  const pillsInView = useInView(pillsRef, { once: true, margin: "-60px" });
+
+  const valuesRef = useRef<HTMLDivElement>(null);
+  const valuesInView = useInView(valuesRef, { once: true, margin: "-80px" });
+
   return (
     <>
       {/* Who We Serve */}
@@ -51,17 +44,28 @@ export default function AudienceValues() {
             </p>
           </SectionReveal>
 
-          <SectionReveal delay={0.1} className="flex flex-wrap justify-center gap-3">
+          <motion.div
+            ref={pillsRef}
+            initial="hidden"
+            animate={pillsInView ? "visible" : "hidden"}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } } }}
+            className="flex flex-wrap justify-center gap-3"
+          >
             {AUDIENCES.map(({ label, icon: Icon }) => (
-              <div
+              <motion.div
                 key={label}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-800 bg-zinc-900 text-sm text-zinc-300 hover:border-zinc-700 hover:text-zinc-100 transition-colors cursor-default"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.75, y: 12 },
+                  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 280, damping: 18 } },
+                }}
+                whileHover={{ scale: 1.06, y: -2, transition: { duration: 0.18 } }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-800 bg-zinc-900 text-sm text-zinc-300 hover:border-zinc-600 hover:text-zinc-100 transition-colors cursor-default"
               >
                 <Icon className="w-4 h-4 text-primary-500 shrink-0" />
                 {label}
-              </div>
+              </motion.div>
             ))}
-          </SectionReveal>
+          </motion.div>
         </div>
       </section>
 
@@ -77,21 +81,35 @@ export default function AudienceValues() {
             </h2>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {VALUES.map((v, i) => (
-              <SectionReveal key={v.title} delay={i * 0.07}>
-                <div className="h-full p-6 rounded-2xl border border-zinc-800 bg-zinc-900">
-                  <div className="w-8 h-8 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mb-4">
-                    <span className="text-[11px] font-bold text-primary-400 font-mono">
-                      {v.num}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-semibold text-zinc-100 mb-2">{v.title}</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed">{v.desc}</p>
-                </div>
-              </SectionReveal>
+          <motion.div
+            ref={valuesRef}
+            initial="hidden"
+            animate={valuesInView ? "visible" : "hidden"}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          >
+            {VALUES.map((v) => (
+              <motion.div
+                key={v.title}
+                variants={{
+                  hidden: { opacity: 0, y: 32 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+                }}
+                whileHover={{ y: -5, borderColor: "rgba(247,98,53,0.25)", transition: { duration: 0.2 } }}
+                className="h-full p-6 rounded-2xl border border-zinc-800 bg-zinc-900"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                  className="w-8 h-8 rounded-lg bg-primary-500/10 border border-primary-500/20 flex items-center justify-center mb-4"
+                >
+                  <span className="text-[11px] font-bold text-primary-400 font-mono">{v.num}</span>
+                </motion.div>
+                <h3 className="text-base font-semibold text-zinc-100 mb-2">{v.title}</h3>
+                <p className="text-sm text-zinc-400 leading-relaxed">{v.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </>

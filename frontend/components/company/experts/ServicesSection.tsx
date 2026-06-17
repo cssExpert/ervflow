@@ -1,3 +1,5 @@
+"use client";
+import { useRef } from "react";
 import {
   Palette,
   Code2,
@@ -7,51 +9,16 @@ import {
   GraduationCap,
   CheckCircle2,
 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 const SERVICES = [
-  {
-    icon: Palette,
-    title: "Website Design",
-    desc: "Custom website design tailored to your brand identity and conversion goals.",
-    iconColor: "text-violet-400",
-    iconBg: "border-violet-500/20 bg-violet-500/10",
-  },
-  {
-    icon: Code2,
-    title: "Custom Development",
-    desc: "Advanced functionality, third-party integrations, and custom component builds.",
-    iconColor: "text-blue-400",
-    iconBg: "border-blue-500/20 bg-blue-500/10",
-  },
-  {
-    icon: RefreshCcw,
-    title: "Platform Migration",
-    desc: "Move your existing website to ERVFlow with zero data loss and minimal downtime.",
-    iconColor: "text-emerald-400",
-    iconBg: "border-emerald-500/20 bg-emerald-500/10",
-  },
-  {
-    icon: BarChart2,
-    title: "SEO & Performance",
-    desc: "Optimize your site for Core Web Vitals, search visibility, and conversion rates.",
-    iconColor: "text-amber-400",
-    iconBg: "border-amber-500/20 bg-amber-500/10",
-  },
-  {
-    icon: FileText,
-    title: "Content Creation",
-    desc: "Professional copywriting, content strategy, and AI-assisted content pipelines.",
-    iconColor: "text-rose-400",
-    iconBg: "border-rose-500/20 bg-rose-500/10",
-  },
-  {
-    icon: GraduationCap,
-    title: "Training & Support",
-    desc: "Team onboarding, platform training, and ongoing expert guidance for your crew.",
-    iconColor: "text-cyan-400",
-    iconBg: "border-cyan-500/20 bg-cyan-500/10",
-  },
+  { icon: Palette, title: "Website Design", desc: "Custom website design tailored to your brand identity and conversion goals.", iconColor: "text-violet-400", iconBg: "border-violet-500/20 bg-violet-500/10" },
+  { icon: Code2, title: "Custom Development", desc: "Advanced functionality, third-party integrations, and custom component builds.", iconColor: "text-blue-400", iconBg: "border-blue-500/20 bg-blue-500/10" },
+  { icon: RefreshCcw, title: "Platform Migration", desc: "Move your existing website to ERVFlow with zero data loss and minimal downtime.", iconColor: "text-emerald-400", iconBg: "border-emerald-500/20 bg-emerald-500/10" },
+  { icon: BarChart2, title: "SEO & Performance", desc: "Optimize your site for Core Web Vitals, search visibility, and conversion rates.", iconColor: "text-amber-400", iconBg: "border-amber-500/20 bg-amber-500/10" },
+  { icon: FileText, title: "Content Creation", desc: "Professional copywriting, content strategy, and AI-assisted content pipelines.", iconColor: "text-rose-400", iconBg: "border-rose-500/20 bg-rose-500/10" },
+  { icon: GraduationCap, title: "Training & Support", desc: "Team onboarding, platform training, and ongoing expert guidance for your crew.", iconColor: "text-cyan-400", iconBg: "border-cyan-500/20 bg-cyan-500/10" },
 ];
 
 const BENEFITS = [
@@ -63,7 +30,24 @@ const BENEFITS = [
   "Ongoing support beyond project launch",
 ];
 
+const GRID = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.05 } },
+};
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const CARD = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
 export default function ServicesSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
+  const gridInView = useInView(gridRef, { once: true, margin: "-80px" });
+
+  const benefitsRef = useRef<HTMLUListElement>(null);
+  const benefitsInView = useInView(benefitsRef, { once: true, margin: "-60px" });
+
   return (
     <>
       {/* Services Grid */}
@@ -81,21 +65,32 @@ export default function ServicesSection() {
             </p>
           </SectionReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {SERVICES.map((svc, i) => (
-              <SectionReveal key={svc.title} delay={i * 0.06}>
-                <div className="group h-full p-5 sm:p-6 rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-zinc-700 transition-colors duration-300">
-                  <div
-                    className={`w-10 h-10 rounded-xl border ${svc.iconBg} flex items-center justify-center mb-4`}
-                  >
-                    <svc.icon className={`w-5 h-5 ${svc.iconColor}`} />
-                  </div>
-                  <h3 className="text-sm font-semibold text-zinc-100 mb-1.5">{svc.title}</h3>
-                  <p className="text-xs text-zinc-400 leading-relaxed">{svc.desc}</p>
-                </div>
-              </SectionReveal>
+          <motion.div
+            ref={gridRef}
+            variants={GRID}
+            initial="hidden"
+            animate={gridInView ? "visible" : "hidden"}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {SERVICES.map((svc) => (
+              <motion.div
+                key={svc.title}
+                variants={CARD}
+                whileHover={{ y: -5, transition: { duration: 0.2, ease: "easeOut" } }}
+                className="group h-full p-5 sm:p-6 rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-zinc-700 transition-colors duration-300"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 6 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 14 }}
+                  className={`w-10 h-10 rounded-xl border ${svc.iconBg} flex items-center justify-center mb-4`}
+                >
+                  <svc.icon className={`w-5 h-5 ${svc.iconColor}`} />
+                </motion.div>
+                <h3 className="text-sm font-semibold text-zinc-100 mb-1.5">{svc.title}</h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">{svc.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -116,21 +111,30 @@ export default function ServicesSection() {
               </p>
             </SectionReveal>
 
-            <SectionReveal delay={0.12}>
-              <ul className="space-y-2.5">
-                {BENEFITS.map((b, i) => (
-                  <li
-                    key={i}
-                    className="flex items-center gap-3 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-primary-400" />
-                    </div>
-                    <span className="text-sm text-zinc-300">{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </SectionReveal>
+            <motion.ul
+              ref={benefitsRef}
+              initial="hidden"
+              animate={benefitsInView ? "visible" : "hidden"}
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
+              className="space-y-2.5"
+            >
+              {BENEFITS.map((b, i) => (
+                <motion.li
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, x: 20 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE } },
+                  }}
+                  whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                  className="flex items-center gap-3 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900 cursor-default"
+                >
+                  <div className="w-6 h-6 rounded-full bg-primary-500/10 border border-primary-500/20 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-primary-400" />
+                  </div>
+                  <span className="text-sm text-zinc-300">{b}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
         </div>
       </section>

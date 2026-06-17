@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import { Star, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 
 interface Expert {
@@ -26,16 +28,21 @@ const EXPERTS: Expert[] = [
 
 function ExpertCard({ expert }: { expert: Expert }) {
   return (
-    <article className="flex flex-col h-full p-5 rounded-2xl border border-zinc-800 bg-zinc-900 hover:border-zinc-700 transition-colors duration-300">
+    <motion.article
+      whileHover={{ y: -6, borderColor: "rgba(247,98,53,0.2)", transition: { duration: 0.22, ease: "easeOut" } }}
+      className="flex flex-col h-full p-5 rounded-2xl border border-zinc-800 bg-zinc-900"
+    >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
-          <div
-            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${expert.gradient} flex items-center justify-center text-sm font-bold text-white shrink-0`}
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 300, damping: 14 }}
+            className={`w-12 h-12 rounded-xl bg-gradient-to-br ${expert.gradient} flex items-center justify-center text-sm font-bold text-white shrink-0 cursor-default`}
             aria-hidden
           >
             {expert.initials}
-          </div>
+          </motion.div>
           <div>
             <h3 className="text-sm font-semibold text-zinc-100">{expert.name}</h3>
             <p className="text-xs text-zinc-400 mt-0.5">{expert.role}</p>
@@ -48,7 +55,19 @@ function ExpertCard({ expert }: { expert: Expert }) {
               : "bg-zinc-800 text-zinc-500 border border-zinc-700"
           }`}
         >
-          {expert.available ? "Available" : "Busy"}
+          {expert.available ? (
+            <span className="flex items-center gap-1">
+              <motion.span
+                aria-hidden
+                animate={expert.available ? { scale: [1, 1.5, 1] } : {}}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1 h-1 rounded-full bg-emerald-400 inline-block"
+              />
+              Available
+            </span>
+          ) : (
+            "Busy"
+          )}
         </span>
       </div>
 
@@ -86,16 +105,18 @@ function ExpertCard({ expert }: { expert: Expert }) {
       {/* Footer */}
       <div className="flex items-center justify-between mt-auto">
         <span className="text-sm font-semibold text-zinc-100">{expert.rate}</span>
-        <Link
-          href="#"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-400 hover:text-primary-300 transition-colors"
-          aria-label={`View ${expert.name}'s profile`}
-        >
-          View Profile
-          <ExternalLink className="w-3 h-3" />
-        </Link>
+        <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.15 }}>
+          <Link
+            href="#"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary-400 hover:text-primary-300 transition-colors"
+            aria-label={`View ${expert.name}'s profile`}
+          >
+            View Profile
+            <ExternalLink className="w-3 h-3" />
+          </Link>
+        </motion.div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -117,20 +138,22 @@ export default function ExpertDirectory() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {EXPERTS.map((expert, i) => (
-            <SectionReveal key={expert.name} delay={i * 0.06}>
+            <SectionReveal key={expert.name} delay={i * 0.07}>
               <ExpertCard expert={expert} />
             </SectionReveal>
           ))}
         </div>
 
         <SectionReveal delay={0.2} className="text-center mt-10">
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 px-5 py-2.5 rounded-xl transition-colors"
-          >
-            View all experts
-            <ExternalLink className="w-3.5 h-3.5" />
-          </Link>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              href="#"
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 px-5 py-2.5 rounded-xl transition-colors"
+            >
+              View all experts
+              <ExternalLink className="w-3.5 h-3.5" />
+            </Link>
+          </motion.div>
         </SectionReveal>
       </div>
     </section>

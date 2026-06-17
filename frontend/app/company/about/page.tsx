@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import AboutHero from "@/components/company/about/AboutHero";
-import MissionBlock from "@/components/company/about/MissionBlock";
-import DifferentiatorGrid from "@/components/company/about/DifferentiatorGrid";
-import AudienceValues from "@/components/company/about/AudienceValues";
-import CompanyCTA from "@/components/company/shared/CompanyCTA";
+
+const MissionBlock = dynamic(() => import("@/components/company/about/MissionBlock"));
+const DifferentiatorGrid = dynamic(() => import("@/components/company/about/DifferentiatorGrid"));
+const AudienceValues = dynamic(() => import("@/components/company/about/AudienceValues"));
+const CompanyCTA = dynamic(() => import("@/components/company/shared/CompanyCTA"));
 
 export const metadata: Metadata = {
   title: "About ERVFlow — Building the Future of Website Creation",
@@ -44,7 +46,7 @@ export default function AboutPage() {
           heading="Ready to build your next website?"
           sub="Create, customize, and publish with ERVFlow. Start free — no credit card required."
           primary={{ label: "Start for Free", href: "/signup" }}
-          secondary={{ label: "Book a Demo", href: "/demo" }}
+          secondary={{ label: "Book a Demo", href: "/contact" }}
         />
       </main>
     </>

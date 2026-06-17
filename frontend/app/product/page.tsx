@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import ProductHero from "@/components/product/ProductHero";
 import SocialProof from "@/components/product/SocialProof";
-import ValueProp from "@/components/product/ValueProp";
-import WorkflowTimeline from "@/components/product/WorkflowTimeline";
-import FeatureShowcase from "@/components/product/FeatureShowcase";
-import ComparisonTable from "@/components/product/ComparisonTable";
-import UseCasesGrid from "@/components/product/UseCasesGrid";
-import CompanyCTA from "@/components/company/shared/CompanyCTA";
+
+const ValueProp = dynamic(() => import("@/components/product/ValueProp"));
+const WorkflowTimeline = dynamic(() => import("@/components/product/WorkflowTimeline"));
+const FeatureShowcase = dynamic(() => import("@/components/product/FeatureShowcase"));
+const ComparisonTable = dynamic(() => import("@/components/product/ComparisonTable"));
+const UseCasesGrid = dynamic(() => import("@/components/product/UseCasesGrid"));
+const CompanyCTA = dynamic(() => import("@/components/company/shared/CompanyCTA"));
 
 export const metadata: Metadata = {
   title: "Product — ERVFlow | AI-Powered Website Builder",
@@ -58,7 +60,7 @@ export default function ProductPage() {
           heading="Ready to Build Faster with AI?"
           sub="Start generating your first website in minutes. No credit card required."
           primary={{ label: "Start Building Free", href: "/signup" }}
-          secondary={{ label: "Watch Demo", href: "/demo" }}
+          secondary={{ label: "Watch Demo", href: "/contact" }}
         />
       </main>
     </>

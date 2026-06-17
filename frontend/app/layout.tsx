@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, Merienda } from "next/font/google";
 import ThemeProvider from "@/components/ThemeProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -89,7 +90,9 @@ export default function RootLayout({
     >
       <head>
         {/* Theme init — runs before React to avoid flash */}
-        <script
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light')document.documentElement.classList.add('dark')}catch(e){}})()`,
           }}
@@ -141,6 +144,12 @@ export default function RootLayout({
             0%   { transform: translateX(-100%); }
             50%  { transform: translateX(0%); }
             100% { transform: translateX(100%); }
+          }
+          @keyframes loaderFadeOut {
+            to { opacity: 0; visibility: hidden; pointer-events: none; }
+          }
+          #ervflow-loader {
+            animation: loaderFadeOut 0.35s ease 0.55s forwards;
           }
         `,
           }}

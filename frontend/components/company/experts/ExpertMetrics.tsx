@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Award } from "lucide-react";
+import { MoveRight, Award } from "lucide-react";
 import SectionReveal from "@/components/company/shared/SectionReveal";
 import StatCounter from "@/components/company/shared/StatCounter";
 
@@ -98,7 +98,7 @@ export default function ExpertMetrics() {
                   className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
                 >
                   Apply Now
-                  <ArrowRight className="w-4 h-4" />
+                  <MoveRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>

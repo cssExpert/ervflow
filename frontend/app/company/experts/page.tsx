@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import ExpertHero from "@/components/company/experts/ExpertHero";
-import ServicesSection from "@/components/company/experts/ServicesSection";
-import HowItWorks from "@/components/company/experts/HowItWorks";
-import ExpertDirectory from "@/components/company/experts/ExpertDirectory";
-import ExpertMetrics from "@/components/company/experts/ExpertMetrics";
-import CompanyCTA from "@/components/company/shared/CompanyCTA";
+
+const ServicesSection = dynamic(() => import("@/components/company/experts/ServicesSection"));
+const HowItWorks = dynamic(() => import("@/components/company/experts/HowItWorks"));
+const ExpertDirectory = dynamic(() => import("@/components/company/experts/ExpertDirectory"));
+const ExpertMetrics = dynamic(() => import("@/components/company/experts/ExpertMetrics"));
+const CompanyCTA = dynamic(() => import("@/components/company/shared/CompanyCTA"));
 
 export const metadata: Metadata = {
   title: "Hire an ERVFlow Expert — Certified Professionals",

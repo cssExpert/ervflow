@@ -2,5 +2,5 @@
 import { LazyMotion, domAnimation } from "framer-motion";
 
 export default function MotionProvider({ children }: { children: React.ReactNode }) {
-  return <LazyMotion features={domAnimation} strict>{children}</LazyMotion>;
+  return <LazyMotion features={domAnimation}>{children}</LazyMotion>;
 }

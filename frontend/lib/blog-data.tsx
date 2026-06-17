@@ -268,7 +268,7 @@ export const POSTS: Post[] = [
       {
         type: "cta",
         text: "Built on a production token system",
-        cta: { label: "See ERVFlow in Action", href: "/demo" },
+        cta: { label: "See ERVFlow in Action", href: "/contact" },
       },
     ],
   },

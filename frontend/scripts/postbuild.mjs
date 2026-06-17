@@ -22,19 +22,21 @@ function walkHTML(dir) {
   return files;
 }
 
+// Add <link rel="preload" as="style"> hints BEFORE blocking stylesheets.
+// This keeps CSS render-blocking (prevents CLS/FOUC) while telling the browser
+// to start fetching CSS sooner, reducing the blocking window slightly.
 const CSS_RE =
-  /<link rel="stylesheet" href="(\/_next\/static\/chunks\/[^"]+\.css)" data-precedence="[^"]*"\/>/g;
+  /(<link rel="stylesheet" href="(\/_next\/static\/chunks\/[^"]+\.css)" data-precedence="[^"]*"\/>)/g;
 
 let count = 0;
 for (const file of walkHTML("./out")) {
   const original = readFileSync(file, "utf8");
-  const patched = original.replace(CSS_RE, (_, href) =>
-    `<link rel="preload" href="${href}" as="style" onload="this.onload=null;this.rel='stylesheet'"/>` +
-    `<noscript><link rel="stylesheet" href="${href}"/></noscript>`
+  const patched = original.replace(CSS_RE, (match, _full, href) =>
+    `<link rel="preload" href="${href}" as="style"/>${match}`
   );
   if (patched !== original) {
     writeFileSync(file, patched, "utf8");
     count++;
   }
 }
-console.log(`[postbuild] Made CSS async in ${count} HTML files`);
+console.log(`[postbuild] Added CSS preload hints to ${count} HTML files`);

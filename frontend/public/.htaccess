@@ -8,41 +8,24 @@ RewriteRule ^(.*)$ $1/index.html [L]
 
 # ── Cache-Control headers ───────────────────────────────────
 <IfModule mod_headers.c>
-  # Next.js hashed static chunks — safe to cache 1 year immutable
-  <FilesMatch "\.(js|css|mjs)$">
+  # JS/CSS/fonts: Next.js adds content hashes to filenames — safe to cache 1 year
+  <FilesMatch "\.(js|css|mjs|woff2|woff|ttf|eot|otf)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  # Fonts — cache 1 year immutable
-  <FilesMatch "\.(woff2|woff|ttf|eot|otf)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
-  </FilesMatch>
-
-  # Hashed images under _next/ — cache 1 year immutable
-  <If "%{REQUEST_URI} =~ m|^/_next/|">
-    <FilesMatch "\.(png|jpg|jpeg|gif|webp|avif|svg)$">
-      Header set Cache-Control "public, max-age=31536000, immutable"
-    </FilesMatch>
-  </If>
-
-  # Public images (no hash in name) — cache 30 days
-  <FilesMatch "\.(png|jpg|jpeg|gif|webp|avif)$">
+  # Images and icons — cache 30 days
+  <FilesMatch "\.(png|jpg|jpeg|gif|svg|ico|webp|avif)$">
     Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
   </FilesMatch>
 
-  # Icons and favicons — cache 30 days
-  <FilesMatch "\.(svg|ico)$">
-    Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
-  </FilesMatch>
-
-  # Sitemap / robots — cache 1 day
+  # Sitemap / robots / XSL — cache 1 day
   <FilesMatch "\.(xml|xsl|txt)$">
     Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 
-  # HTML pages — always revalidate
+  # HTML — always revalidate
   <FilesMatch "\.html$">
-    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
 

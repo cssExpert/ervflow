@@ -25,32 +25,49 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleStickyNavbar);
   }, []);
 
-  // Track which hash-anchor section is in view
+  // Track which hash-anchor section is in view.
+  // Retries until all elements exist (they may be lazy-loaded after mount).
   useEffect(() => {
-    const hashHrefs = navLinks
+    const hashIds = navLinks
       .filter((l) => l.href.startsWith("/#"))
-      .map((l) => l.href.slice(2)); // e.g. "features"
+      .map((l) => l.href.slice(2));
 
-    if (!hashHrefs.length) return;
+    if (!hashIds.length) return;
 
+    let mounted = true;
     const observers: IntersectionObserver[] = [];
+    let timer: ReturnType<typeof setTimeout>;
 
-    hashHrefs.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+    const setup = () => {
+      if (!mounted) return;
+      observers.forEach((o) => o.disconnect());
+      observers.length = 0;
 
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveHash(id);
-          else setActiveHash((prev) => (prev === id ? "" : prev));
-        },
-        { threshold: 0.15 },
-      );
-      obs.observe(el);
-      observers.push(obs);
-    });
+      let missing = 0;
+      hashIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) { missing++; return; }
+        const obs = new IntersectionObserver(
+          ([entry]) => {
+            if (!mounted) return;
+            if (entry.isIntersecting) setActiveHash(id);
+            else setActiveHash((prev) => (prev === id ? "" : prev));
+          },
+          { threshold: 0.15, rootMargin: "-10% 0px -10% 0px" },
+        );
+        obs.observe(el);
+        observers.push(obs);
+      });
 
-    return () => observers.forEach((o) => o.disconnect());
+      if (missing > 0) timer = setTimeout(setup, 400);
+    };
+
+    setup();
+    return () => {
+      mounted = false;
+      observers.forEach((o) => o.disconnect());
+      clearTimeout(timer);
+    };
   }, []);
 
   const { resolvedTheme, setTheme } = useTheme();

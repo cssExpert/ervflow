@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/home/Hero";
+import HashScroller from "@/components/common/HashScroller";
 
 const HowItWorks = dynamic(() => import("@/components/home/HowItWorks"));
 const Features = dynamic(() => import("@/components/home/Features"));
@@ -44,6 +45,7 @@ export default function HomePage() {
         </div>
       </div>
 
+      <HashScroller />
       <Hero />
       <HowItWorks />
       <Features />

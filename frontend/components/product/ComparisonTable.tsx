@@ -122,13 +122,13 @@ export default function ComparisonTable() {
           {/* Table header */}
           <div className="grid grid-cols-[1fr_72px_72px] sm:grid-cols-[1fr_150px_150px] border-b border-zinc-200 dark:border-zinc-800">
             <div className="p-4 sm:p-5" />
-            <div className="p-4 sm:p-5 text-center border-l border-zinc-200 dark:border-zinc-800 bg-primary-500/5">
-              <span className="text-xs sm:text-sm font-bold text-primary-500 uppercase tracking-wide">
+            <div className="px-2 py-4 sm:px-4 sm:py-5 text-center border-l border-zinc-200 dark:border-zinc-800 bg-primary-500/5">
+              <span className="text-[10px] sm:text-sm font-bold text-primary-500 uppercase tracking-wide">
                 ERVFlow
               </span>
             </div>
-            <div className="p-4 sm:p-5 text-center border-l border-zinc-200 dark:border-zinc-800">
-              <span className="text-xs sm:text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
+            <div className="px-2 py-4 sm:px-4 sm:py-5 border-l border-zinc-200 dark:border-zinc-800">
+              <span className="text-[10px] sm:text-sm font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
                 Traditional
               </span>
             </div>

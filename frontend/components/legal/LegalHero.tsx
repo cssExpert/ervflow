@@ -21,7 +21,7 @@ export default function LegalHero({
     <section className="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 print:border-0">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-22 pb-12 sm:pt-30 sm:pb-14">
         {badge && (
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-5">
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400 mb-5">
             {badge}
           </div>
         )}

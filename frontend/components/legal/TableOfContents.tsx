@@ -68,17 +68,19 @@ export default function TableOfContents({
           )}
 
           <div className="relative">
-            <Search className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400" />
+            {/* Search icon — decorative, contrast not required */}
+            <Search className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-500 dark:text-zinc-400" aria-hidden />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search sections…"
-              className="w-full pl-7 pr-7 py-1.5 text-xs rounded-sm bg-zinc-100 dark:bg-zinc-800/70 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 placeholder:text-zinc-400 outline-none transition-[border-color,box-shadow] focus:border-primary focus:ring-2 focus:ring-primary/15"
+              className="w-full pl-7 pr-7 py-1.5 text-xs rounded-sm bg-zinc-100 dark:bg-zinc-800/70 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 placeholder:text-zinc-500 dark:placeholder:text-zinc-500 outline-none transition-[border-color,box-shadow] focus:border-primary focus:ring-2 focus:ring-primary/15"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"
+                aria-label="Clear search"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -86,16 +88,16 @@ export default function TableOfContents({
           </div>
 
           <nav className="space-y-0.5" aria-label="Document sections">
-            <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-600 px-2 mb-2">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 px-2 mb-2">
               Contents
             </p>
             {filtered.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
-                className={`w-full text-left text-xs sm:text-sm px-2.5 py-1.5 rounded-md transition-all duration-150 ${
+                className={`w-full text-left text-xs px-2.5 py-1.5 rounded-md transition-all duration-150 ${
                   active === item.id
-                    ? "text-primary-500 dark:text-zinc-100 font-semibold bg-primary-50 dark:bg-zinc-800"
+                    ? "text-zinc-900 dark:text-zinc-100 font-semibold bg-zinc-100 dark:bg-zinc-800"
                     : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
                 }`}
               >
@@ -110,14 +112,14 @@ export default function TableOfContents({
       <div className="lg:hidden w-full sticky top-16 z-30 mb-0 bg-zinc-50 dark:bg-zinc-950 pb-3 pt-2 print:hidden">
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-sm md:rounded-xl text-sm font-medium text-zinc-700 dark:text-zinc-300"
+          className="w-full flex items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm font-medium text-zinc-800 dark:text-zinc-200"
           aria-expanded={mobileOpen}
         >
           <span className="flex items-center gap-2 min-w-0">
-            <span className="shrink-0">Contents</span>
+            <span className="shrink-0 text-zinc-800 dark:text-zinc-200">Contents</span>
             {activeLabel && (
-              <span className="text-sm text-primary truncate">
-                &bull; {activeLabel}
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 truncate">
+                · {activeLabel}
               </span>
             )}
           </span>
@@ -126,7 +128,7 @@ export default function TableOfContents({
             transition={{ duration: 0.2 }}
             className="shrink-0 ml-2"
           >
-            <ChevronDown className="w-4 h-4 text-zinc-400" />
+            <ChevronDown className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
           </motion.span>
         </button>
 

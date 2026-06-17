@@ -22,7 +22,7 @@ export default function VersionHistory({
     <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/30 overflow-hidden">
       <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-200 dark:border-zinc-800">
         <div className="flex items-center gap-2 text-sm sm:text-base md:text-lg lg:text-xl font-bold text-zinc-800 dark:text-zinc-200">
-          <GitBranch className="w-5 h-5 text-zinc-400" />
+          <GitBranch className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
           Document History
         </div>
         <span className="font-mono text-[11px] bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-2 py-0.5 rounded border border-zinc-300 dark:border-zinc-700">

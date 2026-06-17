@@ -102,7 +102,7 @@ export default function LegalPage() {
       {/* Hero */}
       <section className="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-22 pb-12 sm:pt-30 sm:pb-14">
-          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400 mb-5">
+          <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary-700 dark:text-primary-400 mb-5">
             Legal Center
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
@@ -112,10 +112,10 @@ export default function LegalPage() {
             Access ERVFlow&apos;s policies, terms, privacy practices, and
             compliance information in one place.
           </p>
-          <div className="mt-5 flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-500">
+          <div className="mt-5 flex items-center gap-3 text-xs text-zinc-600 dark:text-zinc-400">
             <span>Last updated: June 2026</span>
-            <span className="text-zinc-300 dark:text-zinc-700">·</span>
-            <span className="font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-500 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">
+            <span className="text-zinc-400 dark:text-zinc-600" aria-hidden>·</span>
+            <span className="font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-400 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">
               v1.0
             </span>
           </div>
@@ -125,7 +125,7 @@ export default function LegalPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-14">
         {/* Policy cards */}
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-600 mb-6">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 mb-6">
             Quick Access
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -137,7 +137,7 @@ export default function LegalPage() {
 
         {/* Compliance badges */}
         <section>
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-600 mb-6">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-500 mb-6">
             Compliance &amp; Trust
           </h2>
           <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 p-6">
@@ -151,7 +151,7 @@ export default function LegalPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-xs text-zinc-500 dark:text-zinc-500 leading-relaxed max-w-2xl">
+            <p className="mt-5 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
               ERVFlow is committed to the highest standards of data protection
               and security. We continually work toward additional compliance
               certifications to meet the needs of enterprise and
@@ -165,12 +165,12 @@ export default function LegalPage() {
           <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <Mail className="w-5 h-5 text-zinc-400" />
+                <Mail className="w-5 h-5 text-zinc-500 dark:text-zinc-400" />
                 <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-zinc-900 dark:text-zinc-100">
                   Questions about privacy or compliance?
                 </h3>
               </div>
-              <p className="text-sm text-zinc-500 dark:text-zinc-500">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 Our legal team is here to help with any questions you have about
                 our policies.
               </p>

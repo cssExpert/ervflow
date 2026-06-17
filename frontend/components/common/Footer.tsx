@@ -51,15 +51,15 @@ const resourcesLinks = [
 
 const legalLinks = [
   {
-    href: "/",
+    href: "/legal",
     label: "Policy Center",
   },
   {
-    href: "/",
+    href: "/legal/privacy",
     label: "Privacy Notice",
   },
   {
-    href: "/",
+    href: "/legal/terms",
     label: "Terms of Services",
   },
 ];

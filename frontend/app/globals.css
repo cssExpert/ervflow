@@ -97,6 +97,16 @@
     animation: spin-slow 4s linear infinite;
   }
 
+  /* Rotating conic-gradient beam — GPU compositor, replaces Framer Motion RAF loop */
+  @keyframes beam-rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  .animate-beam-rotate {
+    will-change: transform;
+    animation: beam-rotate 4s linear infinite;
+  }
+
   /* Hero CSS entrance animations — replaces Framer Motion on critical path */
   @keyframes hero-fade-up {
     from {

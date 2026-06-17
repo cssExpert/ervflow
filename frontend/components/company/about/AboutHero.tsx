@@ -21,7 +21,7 @@ const ITEM = {
 
 export default function AboutHero() {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden bg-zinc-950">
+    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden bg-white dark:bg-zinc-950">
       {/* Dot grid */}
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -48,7 +48,7 @@ export default function AboutHero() {
         className="absolute bottom-0 left-1/4 w-125 h-87.5 rounded-full bg-primary-500 blur-[130px] pointer-events-none"
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-28">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-18">
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
@@ -63,7 +63,7 @@ export default function AboutHero() {
           variants={STAGGER}
           initial="hidden"
           animate="visible"
-          className="mt-12 md:mt-18"
+          className="mt-12 md:mt-22"
         >
           {/* Floating badge */}
           <motion.div
@@ -88,7 +88,7 @@ export default function AboutHero() {
           {/* Headline — two lines stagger */}
           <motion.h1
             variants={ITEM}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-100 tracking-tight leading-[1.08] max-w-3xl"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-[1.08] max-w-3xl"
           >
             Building the Future of{" "}
             <motion.span
@@ -103,7 +103,7 @@ export default function AboutHero() {
 
           <motion.p
             variants={ITEM}
-            className="mt-6 text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed"
+            className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
           >
             ERVFlow combines AI, visual editing, and modern development
             workflows to help agencies and businesses build beautiful websites
@@ -111,19 +111,16 @@ export default function AboutHero() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div
-            variants={ITEM}
-            className="mt-10 flex flex-col sm:flex-row gap-3"
-          >
+          <motion.div variants={ITEM} className="mt-10 flex flex-row gap-3">
             <motion.div
               initial="idle"
               whileHover="hover"
               whileTap={{ scale: 0.97 }}
-              className="inline-block"
+              className="inline-flex items-center gap-2 md:gap-3"
             >
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
               >
                 <motion.span
                   variants={{ idle: { scale: 1 }, hover: { scale: 1.03 } }}
@@ -143,7 +140,7 @@ export default function AboutHero() {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="/demo"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-medium border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100 rounded-sm transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-medium border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-sm transition-colors duration-200"
               >
                 <Play className="w-4 h-4" />
                 Book a Demo
@@ -154,7 +151,7 @@ export default function AboutHero() {
       </div>
 
       <div
-        className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-zinc-950 to-transparent pointer-events-none"
+        className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-white dark:from-zinc-950 to-transparent pointer-events-none"
         aria-hidden
       />
     </section>

@@ -62,12 +62,12 @@ function TimelineCard() {
       initial={{ opacity: 0, x: -44 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.75, ease: EASE }}
-      className="h-full flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden"
+      className="h-full flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden"
     >
       {/* Card header */}
-      <div className="px-6 py-4 border-b border-zinc-800 flex items-center gap-2">
+      <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-primary-500" aria-hidden />
-        <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
+        <span className="text-xs font-semibold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
           Your Journey
         </span>
       </div>
@@ -76,7 +76,7 @@ function TimelineCard() {
       <div className="px-6 py-7 flex-1 relative">
         {/* Animated vertical line */}
         <div
-          className="absolute left-[2.35rem] top-7 bottom-7 w-px bg-zinc-800 overflow-hidden"
+          className="absolute left-[2.35rem] top-7 bottom-7 w-px bg-zinc-100 dark:bg-zinc-800 overflow-hidden"
           aria-hidden
         >
           <motion.div
@@ -115,7 +115,7 @@ function TimelineCard() {
                   damping: 18,
                 }}
                 whileHover={{ scale: 1.1, rotate: 8 }}
-                className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex flex-col items-center justify-center shrink-0 z-10 cursor-default"
+                className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 flex flex-col items-center justify-center shrink-0 z-10 cursor-default"
               >
                 <span className="text-[9px] font-mono text-primary-500/60 leading-none">
                   {step.num}
@@ -125,10 +125,10 @@ function TimelineCard() {
 
               {/* Step text */}
               <div className="pt-0.5">
-                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-zinc-100 mb-1">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-1">
                   {step.title}
                 </h3>
-                <p className="text-xs text-zinc-400 leading-relaxed">
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -138,8 +138,8 @@ function TimelineCard() {
       </div>
 
       {/* Card footer */}
-      <div className="px-6 py-4 border-t border-zinc-800 flex items-center justify-between">
-        <span className="text-[11px] text-zinc-600">
+      <div className="px-6 py-4 border-t border-zinc-200 dark:border-zinc-800 flex items-center justify-between">
+        <span className="text-[11px] text-zinc-500 dark:text-zinc-600">
           Avg. time to first delivery: 48–72h
         </span>
         <div className="flex items-center gap-1.5">
@@ -147,7 +147,9 @@ function TimelineCard() {
             className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"
             aria-hidden
           />
-          <span className="text-[11px] text-zinc-500">Experts online now</span>
+          <span className="text-[11px] text-zinc-500 dark:text-zinc-500">
+            Experts online now
+          </span>
         </div>
       </div>
     </motion.div>
@@ -160,7 +162,7 @@ export default function HowItWorks() {
   const textInView = useInView(textRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-20 sm:py-28 bg-zinc-950 border-y border-zinc-900">
+    <section className="py-20 sm:py-28 bg-white dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           {/* Left — vertical timeline card */}
@@ -176,15 +178,15 @@ export default function HowItWorks() {
             <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
               Process
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 tracking-tight leading-[1.1]">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-[1.1]">
               From brief to launch in three steps.
             </h2>
-            <p className="mt-5 text-base text-zinc-400 leading-relaxed">
+            <p className="mt-5 text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Getting expert help shouldn&apos;t be complicated. Our streamlined
               matching process connects you with the right professional in hours
               — not weeks.
             </p>
-            <p className="mt-4 text-base text-zinc-400 leading-relaxed">
+            <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
               From the moment you submit your brief to your final delivery, your
               assigned expert handles everything with full transparency and
               built-in collaboration tools.
@@ -200,10 +202,14 @@ export default function HowItWorks() {
               ].map(({ value, label }) => (
                 <div
                   key={label}
-                  className="p-4 rounded-xl border border-zinc-800 bg-zinc-900"
+                  className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
                 >
-                  <p className="text-lg font-bold text-zinc-100">{value}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{label}</p>
+                  <p className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+                    {value}
+                  </p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-500 mt-0.5">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -215,7 +221,7 @@ export default function HowItWorks() {
             >
               <Link
                 href="#directory"
-                className="inline-flex items-center gap-2 px-5 py-4 text-sm font-semibold text-zinc-100 hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
+                className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-100 dark:text-zinc-100 hover:text-zinc-200 dark:hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
               >
                 Find an Expert Now
                 <MoveRight className="w-4 h-4" />

@@ -100,7 +100,7 @@ function ExpertCard({ expert }: { expert: Expert }) {
         borderColor: "rgba(247,98,53,0.2)",
         transition: { duration: 0.22, ease: "easeOut" },
       }}
-      className="flex flex-col h-full p-5 rounded-2xl border border-zinc-800 bg-zinc-900"
+      className="flex flex-col h-full p-5 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -114,17 +114,19 @@ function ExpertCard({ expert }: { expert: Expert }) {
             {expert.initials}
           </motion.div>
           <div>
-            <h3 className="text-sm font-semibold text-zinc-100">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               {expert.name}
             </h3>
-            <p className="text-xs text-zinc-400 mt-0.5">{expert.role}</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">
+              {expert.role}
+            </p>
           </div>
         </div>
         <span
           className={`text-[10px] font-semibold px-2 py-1 rounded-full shrink-0 ${
             expert.available
               ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-              : "bg-zinc-800 text-zinc-500 border border-zinc-700"
+              : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-500 border border-zinc-300 dark:border-zinc-700"
           }`}
         >
           {expert.available ? (
@@ -148,7 +150,7 @@ function ExpertCard({ expert }: { expert: Expert }) {
         {expert.specialties.map((s) => (
           <span
             key={s}
-            className="text-[10px] font-medium bg-zinc-800 text-zinc-300 border border-zinc-700 px-2 py-0.5 rounded-full"
+            className="text-[10px] font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 px-2 py-0.5 rounded-full"
           >
             {s}
           </span>
@@ -156,18 +158,22 @@ function ExpertCard({ expert }: { expert: Expert }) {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-2 py-3 border-t border-b border-zinc-800 mb-4 text-center">
+      <div className="grid grid-cols-3 gap-2 py-3 border-t border-b border-zinc-200 dark:border-zinc-800 mb-4 text-center">
         <div>
-          <p className="text-sm font-semibold text-zinc-100">
+          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
             {expert.experience}y
           </p>
-          <p className="text-[10px] text-zinc-500 mt-0.5">Experience</p>
+          <p className="text-[10px] text-zinc-500 dark:text-zinc-500 mt-0.5">
+            Experience
+          </p>
         </div>
         <div>
-          <p className="text-sm font-semibold text-zinc-100">
+          <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
             {expert.projects}
           </p>
-          <p className="text-[10px] text-zinc-500 mt-0.5">Projects</p>
+          <p className="text-[10px] text-zinc-500 dark:text-zinc-500 mt-0.5">
+            Projects
+          </p>
         </div>
         <div>
           <div className="flex items-center justify-center gap-1">
@@ -175,17 +181,19 @@ function ExpertCard({ expert }: { expert: Expert }) {
               className="w-3 h-3 text-amber-400 fill-amber-400"
               aria-hidden
             />
-            <p className="text-sm font-semibold text-zinc-100">
+            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
               {expert.rating}
             </p>
           </div>
-          <p className="text-[10px] text-zinc-500 mt-0.5">Rating</p>
+          <p className="text-[10px] text-zinc-500 dark:text-zinc-500 mt-0.5">
+            Rating
+          </p>
         </div>
       </div>
 
       {/* Footer */}
       <div className="flex items-center justify-between mt-auto">
-        <span className="text-sm font-semibold text-zinc-100">
+        <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
           {expert.rate}
         </span>
         <motion.div whileHover={{ x: 2 }} transition={{ duration: 0.15 }}>
@@ -207,17 +215,17 @@ export default function ExpertDirectory() {
   return (
     <section
       id="directory"
-      className="py-20 sm:py-28 bg-zinc-900/30 border-y border-zinc-800"
+      className="py-20 sm:py-28 bg-[#F9F9F9] dark:bg-zinc-900/30 border-y border-zinc-200 dark:border-zinc-800"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionReveal className="text-center mb-14">
           <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
             Expert Network
           </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-zinc-100 tracking-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
             Meet our certified experts
           </h2>
-          <p className="mt-4 text-base text-zinc-400 max-w-lg mx-auto">
+          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400 max-w-lg mx-auto">
             Every expert is individually vetted, certified, and trusted by
             ERVFlow.
           </p>
@@ -235,7 +243,7 @@ export default function ExpertDirectory() {
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
               href="#"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-100 hover:text-zinc-100 bg-[#405b50] hover:border-zinc-500 px-6 py-4 rounded-sm transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-100 dark:text-zinc-100 hover:text-zinc-200 dark:hover:text-zinc-100 bg-[#405b50] rounded-sm transition-colors duration-200"
             >
               View all experts
               <ExternalLink className="w-3.5 h-3.5" />

@@ -21,13 +21,13 @@ export default function ExpertMetrics() {
   return (
     <>
       {/* Success Metrics */}
-      <section className="py-20 sm:py-28 bg-zinc-950">
+      <section className="py-20 sm:py-28 bg-white dark:bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionReveal className="text-center mb-14">
             <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
               Track Record
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-zinc-100 tracking-tight">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               Results that speak for themselves
             </h2>
           </SectionReveal>
@@ -49,10 +49,10 @@ export default function ExpertMetrics() {
       {/* Become an Expert */}
       <section
         id="become-expert"
-        className="py-20 sm:py-28 bg-zinc-900/40 border-y border-zinc-800"
+        className="py-20 sm:py-28 bg-[#F9F9F9] dark:bg-zinc-900/40 border-y border-zinc-200 dark:border-zinc-800"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-3xl border border-zinc-800 bg-zinc-900 p-8 sm:p-12 lg:p-16 overflow-hidden">
+          <div className="relative rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 sm:p-12 lg:p-16 overflow-hidden">
             {/* Glow */}
             <div
               className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-500/10 blur-[80px] pointer-events-none"
@@ -60,7 +60,7 @@ export default function ExpertMetrics() {
             />
             {/* Top border accent */}
             <div
-              className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent"
+              className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary-500/40 to-transparent"
               aria-hidden
             />
 
@@ -72,10 +72,10 @@ export default function ExpertMetrics() {
                     Join the Network
                   </span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
                   Become a certified ERVFlow Expert
                 </h2>
-                <p className="mt-3 text-sm text-zinc-400 leading-relaxed">
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                   Help businesses succeed while growing your own. Access
                   exclusive projects, platform tools, and a thriving community
                   of top-tier professionals.
@@ -84,7 +84,7 @@ export default function ExpertMetrics() {
                   {PERKS.map((p) => (
                     <li
                       key={p}
-                      className="text-xs text-zinc-300 bg-zinc-800 border border-zinc-700 px-3 py-1 rounded-full"
+                      className="text-xs text-zinc-600 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 px-3 py-1 rounded-full"
                     >
                       {p}
                     </li>

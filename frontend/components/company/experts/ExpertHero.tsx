@@ -28,7 +28,7 @@ const ITEM = {
 
 export default function ExpertHero() {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden bg-zinc-950">
+    <section className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden bg-white dark:bg-zinc-950">
       {/* Dot grid */}
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -55,7 +55,7 @@ export default function ExpertHero() {
         className="absolute -bottom-20 right-1/4 w-100 h-75 rounded-full bg-primary-500 blur-[130px] pointer-events-none"
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-28">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-18">
         {/* Breadcrumb */}
         <motion.div
           initial={{ opacity: 0, x: -16 }}
@@ -91,16 +91,16 @@ export default function ExpertHero() {
                     scale: 1.15,
                     transition: { duration: 0.15 },
                   }}
-                  className={`relative w-9 h-9 rounded-full bg-linear-to-br ${gradient} border-2 border-zinc-950 flex items-center justify-center text-[10px] font-bold text-white cursor-default`}
+                  className={`relative w-9 h-9 rounded-full bg-linear-to-br ${gradient} border-2 border-white dark:border-zinc-950 flex items-center justify-center text-[10px] font-bold text-white cursor-default`}
                   aria-hidden
                 >
                   {initials}
                 </motion.div>
               ))}
             </div>
-            <span className="flex items-center gap-1.5 text-xs text-zinc-400">
+            <span className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400">
               <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-              <strong className="text-zinc-200">4.9</strong> from 500+ projects
+              <strong className="text-zinc-800 dark:text-zinc-200">4.9</strong> from 500+ projects
             </span>
           </motion.div>
 
@@ -131,7 +131,7 @@ export default function ExpertHero() {
           {/* Headline */}
           <motion.h1
             variants={ITEM}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-100 tracking-tight leading-[1.08] max-w-3xl"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight leading-[1.08] max-w-3xl"
           >
             Get Expert Help{" "}
             <motion.span
@@ -146,7 +146,7 @@ export default function ExpertHero() {
 
           <motion.p
             variants={ITEM}
-            className="mt-6 text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed"
+            className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed"
           >
             Work with certified ERVFlow professionals to design, build,
             optimize, and launch your website — faster and better than going it
@@ -154,10 +154,7 @@ export default function ExpertHero() {
           </motion.p>
 
           {/* CTAs */}
-          <motion.div
-            variants={ITEM}
-            className="mt-10 flex flex-col sm:flex-row gap-3"
-          >
+          <motion.div variants={ITEM} className="mt-10 flex flex-row gap-3">
             <motion.div
               initial="idle"
               whileHover="hover"
@@ -166,7 +163,7 @@ export default function ExpertHero() {
             >
               <Link
                 href="#directory"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-semibold bg-primary-500 hover:bg-primary-600 text-white rounded-sm transition-colors duration-200"
               >
                 <motion.span
                   variants={{ idle: { scale: 1 }, hover: { scale: 1.03 } }}
@@ -186,7 +183,7 @@ export default function ExpertHero() {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
                 href="#become-expert"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-medium border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100 rounded-sm transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 px-4 md:px-7 py-3.5 text-sm font-medium border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 rounded-sm transition-colors duration-200"
               >
                 Become an Expert
               </Link>
@@ -196,7 +193,7 @@ export default function ExpertHero() {
       </div>
 
       <div
-        className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-zinc-950 to-transparent pointer-events-none"
+        className="absolute bottom-0 inset-x-0 h-32 bg-linear-to-t from-white dark:from-zinc-950 to-transparent pointer-events-none"
         aria-hidden
       />
     </section>

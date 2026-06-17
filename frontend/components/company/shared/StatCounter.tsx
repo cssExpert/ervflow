@@ -35,12 +35,12 @@ export default function StatCounter({
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-4xl sm:text-5xl font-bold text-zinc-100 tabular-nums">
+      <div className="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-zinc-100 tabular-nums">
         {prefix}
         {count}
         {suffix}
       </div>
-      <p className="mt-2 text-sm text-zinc-500 font-medium">{label}</p>
+      <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-500 font-medium">{label}</p>
     </div>
   );
 }

@@ -182,7 +182,7 @@ export default function ServicesSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-primary-500">
               Services
             </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               What our experts can do
             </h2>
             <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400 max-w-xl mx-auto">
@@ -215,7 +215,7 @@ export default function ServicesSection() {
                 >
                   <svc.icon className={`w-5 h-5 ${svc.iconColor}`} />
                 </motion.div>
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 mb-1.5">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-1.5">
                   {svc.title}
                 </h3>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">

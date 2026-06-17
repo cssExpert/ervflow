@@ -21,7 +21,7 @@ const companyLinks = [
 
 const productLinks = [
   {
-    href: "/",
+    href: "/product",
     label: "Overview",
   },
   {
@@ -29,7 +29,7 @@ const productLinks = [
     label: "Pricing",
   },
   {
-    href: "/",
+    href: "/product/updates",
     label: "Updates",
   },
 ];

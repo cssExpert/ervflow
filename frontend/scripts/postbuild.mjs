@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 /**
- * Adds <link rel="preload" as="style"> hints before each blocking stylesheet.
- * CSS remains render-blocking (prevents CLS/FOUC) but the browser starts
- * fetching it earlier, reducing the blocking window.
+ * Makes Next.js CSS non-render-blocking while preserving data-precedence.
  *
- * NOTE: Making CSS fully async breaks Next.js's data-precedence CSS
- * reconciliation, causing visual regressions (e.g. Tailwind group-hover
- * variants stop working after client-side navigation). Preload hints are
- * the safe maximum we can do without critical CSS inlining.
+ * Strategy: keep the <link> element exactly as Next.js emits it (so React
+ * hydration reconciliation via data-precedence still works), but add
+ * media="print" so the browser doesn't block render on it. onload="" switches
+ * media back to "all" once the file is fetched. A <link rel="preload"> is
+ * prepended so the fetch starts as early as possible.
+ *
+ * The previous attempt removed the original <link> entirely, which broke
+ * Next.js CSS reconciliation (Tailwind group-hover/card variants disappeared
+ * after client-side navigation). This approach keeps the element in the DOM.
  */
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join } from "path";
@@ -25,18 +28,23 @@ function walkHTML(dir) {
   return files;
 }
 
+// Matches: <link rel="stylesheet" href="/_next/static/chunks/foo.css" data-precedence="VALUE"/>
 const CSS_RE =
-  /(<link rel="stylesheet" href="(\/_next\/static\/chunks\/[^"]+\.css)" data-precedence="[^"]*"\/>)/g;
+  /<link rel="stylesheet" href="(\/_next\/static\/chunks\/[^"]+\.css)" data-precedence="([^"]*)"\s*\/>/g;
 
 let count = 0;
 for (const file of walkHTML("./out")) {
   const original = readFileSync(file, "utf8");
-  const patched = original.replace(CSS_RE, (match, _full, href) =>
-    `<link rel="preload" href="${href}" as="style"/>${match}`
+  const patched = original.replace(CSS_RE, (_match, href, precedence) =>
+    // 1. Preload hint — browser fetches the file at high priority immediately
+    `<link rel="preload" href="${href}" as="style"/>` +
+    // 2. Original link preserved with data-precedence (React finds it during hydration)
+    //    media="print" stops the browser blocking render; onload restores media="all"
+    `<link rel="stylesheet" href="${href}" media="print" onload="this.media='all'" data-precedence="${precedence}"/>`
   );
   if (patched !== original) {
     writeFileSync(file, patched, "utf8");
     count++;
   }
 }
-console.log(`[postbuild] Added CSS preload hints to ${count} HTML files`);
+console.log(`[postbuild] Made CSS non-blocking in ${count} HTML files`);

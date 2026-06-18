@@ -2,7 +2,7 @@
 
 import Icon from "@/components/common/Icon";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronRight } from "lucide-react";
 import TiltCard from "./TiltCard";
 
@@ -29,6 +29,27 @@ export default function AnalyticsCard({
 }: AnalyticsCardProps) {
   const [hoverIndex, setHoverIndex] = useState(4);
   const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartRectRef = useRef<{ left: number; width: number } | null>(null);
+
+  const updateChartRect = useCallback(() => {
+    const el = chartContainerRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    chartRectRef.current = { left: r.left + window.scrollX, width: r.width };
+  }, []);
+
+  useEffect(() => {
+    const el = chartContainerRef.current;
+    if (!el) return;
+    updateChartRect();
+    const ro = new ResizeObserver(updateChartRect);
+    ro.observe(el);
+    window.addEventListener("scroll", updateChartRect, { passive: true });
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("scroll", updateChartRect);
+    };
+  }, [updateChartRect]);
 
   const referrers = [
     {
@@ -150,15 +171,18 @@ export default function AnalyticsCard({
     },
   ];
 
-  const handleChartMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!chartContainerRef.current) return;
-    const rect = chartContainerRef.current.getBoundingClientRect();
-    const percentage = Math.max(
-      0,
-      Math.min(1, (e.clientX - rect.left) / rect.width),
-    );
-    setHoverIndex(Math.round(percentage * (graphData.length - 1)));
-  };
+  const handleChartMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      const rect = chartRectRef.current;
+      if (!rect) return;
+      const percentage = Math.max(
+        0,
+        Math.min(1, (e.clientX - (rect.left - window.scrollX)) / rect.width),
+      );
+      setHoverIndex(Math.round(percentage * (graphData.length - 1)));
+    },
+    [],
+  );
 
   return (
     <TiltCard debugMode={debugMode} className="p-4 sm:p-8 flex flex-col h-full">
